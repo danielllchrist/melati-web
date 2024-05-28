@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Melati</title>
+    @vite('resources/css/app/css')
+    @vite('resources/css/customer/profile.css')
 </head>
 
 <body>
@@ -51,7 +53,7 @@
                                 <input class="pf-textfield" type="text" id="nama" name="nama"
                                     placeholder="Email sebelumnya" required>
                             </div>
-                            <div class="d-flex justify-content-end"><button class="pf-submit-btn">Simpan</button></div>
+                            <div class="pf-submit-btn-container"><button class="pf-submit-btn">Simpan</button></div>
                         </form>
                     </div>
                     <div class="pf-profile-pp">
@@ -99,7 +101,7 @@
                             <input class="pf-textfield" type="password" id="nama" name="nama"
                                 placeholder="Silahkan Mengisi Kata Sandi Baru" required>
                         </div>
-                        <div class="d-flex justify-content-end"><button class="pf-submit-btn">Ganti</button></div>
+                        <div class="pf-submit-btn-container"><button class="pf-submit-btn">Ganti</button></div>
                     </form>
                 </div>
             </div>

@@ -48,11 +48,11 @@ Route::get('/masuk', function () {
     return view('customer.login');
 });
 
-Route::get('/profil', function(){
+Route::get('/profile', function () {
     return view('customer.profile');
 });
 
-Route::get('/test', function(){
+Route::get('/test', function () {
     return view('customer.test');
 });
 

@@ -1,3 +1,38 @@
+.admin-menu{
+    display: flex;
+    gap : 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px !important;
+    text-decoration: none;
+}
+
+.info-admin {
+    width: 100%;
+    height : 323.79px;
+    display : flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap : 33px;
+    align-items: center;
+}
+
+.admin-footer-menu{
+    font-family: 'Poppins';
+    display : flex;
+    gap : 148px;
+    list-style-type: none;
+    color : #D5BE9E;
+}
+
+.admin-footer-menu a, .admin-footer-menu li{
+
+    color : #D5BE9E;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+}
+
 body{
     color : #D5BE9E;
 }
@@ -26,6 +61,7 @@ body{
 }
 
 .tnc{
+    font-family: 'Poppins';
     display : flex;
     flex-direction: row;
     justify-content: space-between;
@@ -102,3 +138,4 @@ hr {
     border-color: #D5BE9E;
     border-top: 1px solid;
   }
+

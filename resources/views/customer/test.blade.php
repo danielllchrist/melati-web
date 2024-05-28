@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    @vite('resources/css/app.css')
 
 </head>
 
 <body>
-    @include('components.customer.headercustomers')
+    @include('components.shipping_service.headerss')
     @include('components.customer.sidebarcustomer')
-    @include('components.customer.footercustomers')
+    @include('components.shipping_service.footerss')
 </body>
 
 

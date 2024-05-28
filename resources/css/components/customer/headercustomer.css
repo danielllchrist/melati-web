@@ -1,17 +1,14 @@
 body{
     margin: 0px;
     padding: 0px;
-}
-
-.header{
-    background-color: black;
-    width: 100%;
-    height: 70px;
-    border: 2px;
-    border-bottom: 2px solid white;
+    font-family: Poppins;
 }
 
 .header-custom {
+    background-color: black;
+    height: 70px;
+    border: 2px;
+    border-bottom: 2px solid #D5BE9E;
     height : 95px;
     justify-content: space-between;
     margin : 0;
@@ -25,7 +22,7 @@ body{
     -ms-flex-pack: justify;
     justify-content: space-between;
     border-bottom-style: solid;
-    border-color : var(--bs-primary);
+    border-color : #D5BE9E;
     border-width: 1px;
 }
 
@@ -36,6 +33,11 @@ body{
     align-items: center;
     margin : 0;
     gap : 60px;
+}
+
+.navmenu-custom{
+    text-decoration: none;
+    list-style-type: none;
 }
 
 .padding-search-custom{
@@ -49,7 +51,7 @@ body{
     appearance: none;
     background-color: transparent;
     background-clip: padding-box;
-    border: 1px solid var(--bs-primary);
+    border: 1px solid #D5BE9E;
     border-radius: 5px;
     justify-content: start;
     align-items: center;
@@ -61,7 +63,7 @@ body{
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--bs-primary);
+    color: #D5BE9E;
     appearance: none;
     background-color: transparent;
     background-clip: padding-box;
@@ -71,16 +73,17 @@ body{
 }
 
 .search-custom::placeholder {
-    color: var(--bs-primary);
+    color: #D5BE9E;
     opacity: 1; /* Firefox */
   }
 
 
 .search-custom  ::-ms-input-placeholder { /* Edge 12 -18 */
-    color: var(--bs-primary);
+    color: #D5BE9E;
   }
 
 input {
+    font-family: 'Poppins';
     border: none;
     outline: none;
 }

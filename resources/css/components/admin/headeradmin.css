@@ -1,0 +1,84 @@
+body{
+    margin : 0;
+    padding : 0;
+}
+
+.header-custom {
+    font-family: 'Poppins';
+    color : #D5BE9E;
+    background-color: black;
+    height: 70px;
+    border: 2px;
+    border-bottom: 2px solid #D5BE9E;
+    height : 95px;
+    justify-content: space-between;
+    margin : 0;
+    padding : 0px 60px;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border-bottom-style: solid;
+    border-color : #D5BE9E;
+    border-width: 1px;
+}
+
+.navmenu-custom {
+    display : flex;
+    text-decoration : none;
+    justify-content: center;
+    align-items: center;
+    margin : 0;
+    gap : 60px;
+}
+
+.navmenu-custom{
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.admin-menu{
+    color : #D5BE9E;
+    display: flex;
+    gap : 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px !important;
+    text-decoration: none;
+}
+
+.info-admin {
+    width: 100%;
+    height : 323.79px;
+    display : flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap : 33px;
+    align-items: center;
+}
+
+.admin-footer-menu{
+    display : flex;
+    gap : 148px;
+}
+
+.admin-footer-menu a, .admin-footer-menu li{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.ss-footer-menu a, .ss-footer-menu li{
+    font-size: 30px;
+    text-decoration: none;
+    font-weight : 500;
+}
+
+.ss-footer-menu {
+    display : flex;
+    gap : 148px;
+}
