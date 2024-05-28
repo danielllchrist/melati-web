@@ -1,0 +1,239 @@
+body{
+   background-color: #080808 !important; 
+}
+
+.atas{
+    padding: 25px !important;
+    display: flex !important;
+    /* background-color: pink; */
+    /* padding-left: 55px !important; */
+    /* padding-bottom: 25px !important; */
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    /* opacity: 0.5; */
+}
+.nonactive{
+    opacity: 0.5;
+    display: flex;
+}
+
+.active{
+    opacity: 1 !important;
+}
+
+.atas h1{
+    font-family: Poppins;
+    font-weight: 600;
+    color: #F0F1E4;
+    font-size: 19px;
+    margin-left: 22px;
+    padding-top: 6px;
+    padding: 15px;
+}
+.atas .back_icon{
+    padding-right: 20px;
+    margin-top: 13px;
+    width: 30px;
+}
+.back_icon{
+    transform: scaleX(-1);
+    height: 29px;
+}
+
+.bawah{
+    background-color: black;
+    display: flex;
+    width: 90%;
+    height: 78.5vh;
+    display: flex;
+    margin: auto; /* Center horizontally */
+}
+
+.kanan{
+    /* background-color:#F0F1E4; */
+    width: 24.4%;
+    height: 26%;
+    margin-left: 2.6%;
+    border-bottom: 1px solid #F0F1E4;
+    border-top: 1px solid #F0F1E4;
+}
+
+.kanan p{
+    font-family: Poppins;
+    font-weight: 500;
+    color: #F0F1E4;
+    font-size: 16px;
+    padding: 4px;
+    padding-right: 24px;
+    /* padding-left: 0px; */
+}
+
+.kanan h2{
+    font-family: Poppins;
+    font-weight: 700;
+    color: #F0F1E4;
+    font-size: 25px;
+    /* padding: 8px; */
+}
+
+.checkout{
+    font-family: Poppins;
+    font-weight: 700;
+    color: #4F290C;
+    font-size: 16px;
+    border-radius: 52px;
+    padding: 10px 30px 10px 30px;
+    background-color: #D5BE9E;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: -25px;
+    height:60px;
+}
+.checkout:hover{
+
+}
+
+.wrap{
+    /* background-color: beige; */
+    height: 56px;
+    margin-top: 20px;
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
+
+}
+
+/* .small{
+    height: 44px;
+    margin-top: 20px;
+} */
+
+.kiri{
+    background-color:#F0F1E4;
+    width: 73%;
+    height: 84%;
+    /* margin-left: 4%; */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.product{
+    background-color: #F0F1E4;
+    height: 120px;
+    /* width: 100%; */
+    display: flex;
+    padding: 20px;
+    padding-left: 0px;
+    border-bottom: 1px solid rgba(73,96,65,0.5);
+}
+
+.wraps{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+    padding-left: 0px;
+    padding-top: 0px;
+    /* background-color: #F0F1E4; */
+}
+
+.wraps h1{
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0px;  
+    padding: 0px; 
+    color: #080808;
+    background-color: #F0F1E4;
+    font-family: Poppins;
+}
+
+.wraps h2{
+    font-weight: bold;
+    font-size: 18px;  
+    margin: 0px;   
+    padding: 0px; 
+    color: #080808;
+    background-color: #F0F1E4;
+    font-family: Poppins;
+}
+
+.wraps p{
+    font-weight: normal;
+    font-size: 13px;
+    margin-top: 2px;  
+    padding: 0px; 
+    color: #080808;   
+    background-color: #f0f1e4fb;
+    font-family: Poppins;
+}
+
+.wraps2{
+    /* background-color: pink; */
+    display: flex;
+    justify-self: center;
+    align-self: flex-end;
+    align-items: center;
+}
+
+.wraps2 button{
+    all: unset;
+    cursor: pointer;
+}
+
+.icon{
+    height: 16px;
+    margin-top: 2px;
+}
+
+.wraps2 p{
+    color: black;
+    margin: 0px;
+    padding: 0px 18px 0px 18px;
+    margin-top: 5px;
+}
+
+#transparent-number-input {
+    background-color: transparent;
+    border: none;
+    font-size: 13px;
+    width: 80px;
+    text-align: center;
+    outline: none;
+    width: 40px;
+
+    color: black;
+    margin: 0px;
+    /* padding: 0px 12px 0px 12px; */
+    margin-top: 5px;
+    -moz-appearance: textfield;
+}
+#transparent-number-input::-webkit-outer-spin-button,
+#transparent-number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Chrome, Safari, Edge */
+    margin: 0; /* Safari */
+}
+
+#transparent-number-input:focus {
+    border-bottom-color: #007bff;
+}
+
+.kiri::-webkit-scrollbar-track
+{
+	background-color: #F0F1E4;
+}
+
+.kiri::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F0F1E4;
+}
+
+.kiri::-webkit-scrollbar-thumb
+{
+	background-color: #D5BE9E;
+}

@@ -1,0 +1,273 @@
+body{
+    font-family: 'Poppins';
+}
+
+.carousel-product-link{
+    text-decoration: none;
+    font-family: Poppins;
+    font-weight: bold !important;
+
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.carousel-wrapper{
+    width: 900px;
+    height: 620px;
+    margin: 50px;
+    margin-right: 0px;
+    margin-left: 60px;
+}
+
+.carousel-item{
+    width: 900px;
+    height: 620px;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.carousel-item img {
+    width: 900px;
+    height: 620px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.belanja-sekarang-button{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.belanja-sekarang-button h2{
+    margin: 0px 0px 2px;
+}
+
+.belanja-sekarang{
+    width: 100%;
+    height: 2px;
+    background-color: #8C8686;
+}
+
+.carousel-product-link {
+    position: absolute;
+    bottom: 23%;
+    left: 7%;
+}
+
+.carousel-product-link h2{
+    color: #F0F1E4;
+    font-size: large;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.men-women-content{
+    height: 285px;
+    width: 360px;
+    overflow: hidden;
+    position: relative;
+    margin: 50px;
+    margin-right: 60px;
+}
+
+.men-women-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#men {
+    margin-bottom: 25px;
+}
+
+#women {
+    margin-top: 25px;
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.recommendation-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+}
+
+.recommendation{
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-family: Poppins;
+    color: #F0F1E4;
+}
+
+.recommendation-button{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.recommendation p{
+    font-family: Poppins;
+    font-weight: bold !important;
+    margin: 0px 0px 2px;
+}
+
+.active-recommendation{
+    width: 100%;
+    height: 2px;
+    background-color: #8C8686;
+}
+
+.card-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+}
+
+.product-card{
+    width: 250px;
+    height: 390px;
+}
+
+.product-card img{
+    width: 250px;
+    height: 290px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.information{
+    position: relative;
+    width: 250px;
+}
+
+.information img{
+    width: 250px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.product-name{
+    font-family: Poppins;
+    font-weight: 600 !important;
+    color: #F0F1E4;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+
+.price{
+    font-family: Poppins;
+    font-weight: 600 !important;
+    color: #F0F1E4;
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+}
+
+#mix-and-match{
+    position: relative;
+    height: 350px;
+    width: 100%;
+}
+
+#mix-and-match img {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    bottom: 5%;
+    left: 5%;
+    z-index: -1;
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#mix-and-match h1 {
+    text-align: center;
+    width: 50%;
+    color: #F0F1E4;
+    position: relative;
+    top: 45%;
+    left: 25%;
+    right: 25%;
+    transform: translateY(-55%);
+    font-weight: 700;
+}
+
+.button {
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold !important;
+    background-color: #D5BE9E;
+    color: #4F290C;
+    border-radius: 90px;
+    padding: 10px;
+    font-size: larger !important;
+    text-decoration: none;
+}
+
+#button-mix-and-match-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+#button-mix-and-match {
+    width: 300px;
+}
+
+#belanja-sekarang-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    width: 100%;
+}
+
+#belanja-sekarang-banner h1{
+    text-align: center;
+    color: #F0F1E4;
+    font-weight: 900;
+}
+
+#belanja-sekarang-banner h2{
+    text-align: center;
+    color: #F0F1E4;
+    font-weight: 500;
+}
+
+#button-belanja-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#button-belanja {
+    width: 200px;
+}
