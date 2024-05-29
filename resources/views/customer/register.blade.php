@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    @vite('resources/css/customer/daftar.css')
+    @vite('resources/css/customer/register.css')
     @vite('resources/css/app.css')
 </head>
 <body>

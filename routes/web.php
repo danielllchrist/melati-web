@@ -48,7 +48,7 @@ Route::get('/masuk', function () {
     return view('customer.login');
 });
 
-Route::get('/profile', function () {
+Route::get('/profil', function () {
     return view('customer.profile');
 });
 
