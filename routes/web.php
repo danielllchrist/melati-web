@@ -52,6 +52,18 @@ Route::get('/profil', function () {
     return view('customer.profile');
 });
 
+Route::get('/penilaian', function () {
+    return view('customer.review');
+});
+
+Route::get('/detail-pesanan', function () {
+    return view('customer.orderdetail');
+});
+
+Route::get('/pengembalian-barang', function () {
+    return view('customer.return');
+});
+
 Route::get('/test', function () {
     return view('customer.test');
 });

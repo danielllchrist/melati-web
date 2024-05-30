@@ -21,7 +21,7 @@
                     <form class="form-inline my-2 my-lg-0">
                         <div class="search-custom-container"><img src = "assets/nav_menu/search.svg" alt = "search"
                                 width = "19" height = "19"><input class = "search-custom" type="text"
-                                placeholder="Search">
+                                placeholder="Pencarian">
                         </div>
                     </form>
                 </li>
