@@ -68,6 +68,10 @@ Route::get('/test', function () {
     return view('customer.test');
 });
 
+Route::get('/chat', function () {
+    return view('customer.chat');
+});
+
 // Route for Admins' Page
 
 // Route for Shipping Services' Page

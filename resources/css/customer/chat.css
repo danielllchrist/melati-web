@@ -1,0 +1,100 @@
+
+.atas{
+    padding: 0px !important;
+    display: flex !important;
+    /* background-color: pink; */
+    /* padding-left: 55px !important; */
+    /* padding-bottom: 25px !important; */
+    flex-direction: row;
+    align-content: center;
+    /* justify-content: center; */
+    /* opacity: 0.5; */
+    margin-left: 48px;
+    margin-top: 10px;
+}
+
+.atas h1{
+    font-family: Poppins;
+    font-weight: 600;
+    color: #F0F1E4;
+    font-size: 28px;
+    /* margin-left: 22px; */
+    /* padding-top: 6px;
+    padding: 15px; */
+}
+.atas .back_icon{
+    padding-right: 20px;
+    /* margin-top: 17px; */
+    width: 20px;
+}
+
+.bawah{
+    /* background-color: red; */
+    height: 78vh;
+    margin-bottom: 5%;
+}
+.roomchat{
+    margin: 80px;
+    margin-top: 15px;
+    height: 100%;
+    background-color: #F0F1E4;
+    padding: 10px;
+}
+.date h1{
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 12px;
+    /* padding: 0px; */
+    /* margin-bottom: 0px; */
+    text-align: center;
+    color: #4F290C;
+}
+
+/* --------------bawah------------- */
+.inputs {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 25px;
+    border: 1px solid #000;
+    background-color: #fff;
+}
+
+#message_input {
+    flex: 1;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    outline: none;
+}
+
+.wrap9 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#file_input {
+    display: none;
+}
+
+#icon-input-file {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#message_send {
+    background-color: #D3B8AE;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#message_send:hover {
+    background-color: #b8988d;
+}
