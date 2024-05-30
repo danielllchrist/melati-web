@@ -4,16 +4,9 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Alamat Saya</h5>
                 <button class="btn" data-dismiss="modal" aria-label="Close">
-                    <img class="x_icon" src="{{asset('assets/back.svg')}}">
+                    <img class="x_icon" src="{{asset('assets/cross.svg')}}">
                 </button>
             </div>
-            @include('user.modal.tambahAlamat')
-            <!-- <div class="tambah-alamat">
-                <button class="btn-add-popup" data-bs-toggle="modal" data-bs-target="#tambahAlamat">
-                  <img class="add_icon" src="{{asset('assets/back.svg')}}">
-                  Tambah Alamat
-                </button>
-            </div> -->
             <div class="modal-body">
                 @for ($i = 0; $i <10; $i++)
                 <button class="no-bootstrap flex">
@@ -28,9 +21,9 @@
             </div>
             <div class="modal-footer">
                 <div class="tambah-alamat">
-                    <button class="btn-add-popup" data-toggle="modal" data-target="#tambahAlamat">
-                    <img class="add_icon" src="{{asset('assets/back.svg')}}">
-                    Tambah Alamat
+                    <button class="btn-add-popup" data-bs-toggle="modal" data-bs-target="#tambahAlamat">
+                      <img class="add_icon" src="{{asset('assets/add.svg')}}">
+                      Tambah Alamat
                     </button>
                 </div>
             </div>

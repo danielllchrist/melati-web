@@ -10,7 +10,7 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-    <!-- @include('component.user.headeruser') -->
+    @include('components.customer.headercustomer')
     <div class="atas">
         <div class="nonactive active">
             <h1>Keranjang</h1>
@@ -33,7 +33,6 @@
             <h2>Alamat Pengiriman</h2>
             <button type="button" class="square no-bootstrap" data-toggle="modal" data-target="#alamatDetail">
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1"> -->
-
                 <div class="alamat dis">
                     <div class="wrap">
                         <!-- <p>Pilih alamat pengirimanmu</p> -->
@@ -52,19 +51,21 @@
                 </div>
             </button>
 
-            @include('user.modal.alamatDetail')
+            @include('customer.modal.alamatDetail')
 
             <h2>Voucher</h2>
-            <button type="button" class="square no-bootstrap" data-bs-toggle="modal" data-bs-target="#alamatDetail">
-            <div class="voucher dis">
-                <div class="wrap">
-                    <p>Gunakan voucher</p>
+            <button type="button" class="square no-bootstrap" data-toggle="modal" data-target="#vouchers">
+                <div class="voucher dis">
+                    <div class="wrap">
+                        <p>Gunakan voucher</p>
+                    </div>
+                    <div class="wrap2">
+                        <img class="back_icon" src="{{asset('assets/back.svg')}}">
+                    </div>
                 </div>
-                <div class="wrap2">
-                    <img class="back_icon" src="{{asset('assets/back.svg')}}">
-                </div>
-            </div>
             </button>
+
+            @include('customer.modal.vouchers')
 
 
             <h2>Metode Pembayaran</h2>
@@ -127,10 +128,10 @@
             </div>
         </div>
     </div>
-    <!-- @include('component.user.footeruser') -->
+    @include('components.customer.footercustomer')
 
-    @include('user.modal.alamatDetail')
-    @include('user.modal.tambahAlamat')
+    @include('customer.modal.alamatDetail')
+    @include('customer.modal.tambahAlamat')
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -142,9 +143,25 @@
       $('.tambahAlamat').modal('hide');
     });
 
-    // Ketika modal tambahAlamat ditampilkan, tutup modal alamatDetail
-    $('#tambahAlamat').on('show.bs.modal', function () {
+    // Ketika tombol "Tambah Alamat" di dalam modal alamatDetail diklik, tutup modal alamatDetail dan buka modal tambahAlamat
+    $('.btn-add-popup').on('click', function () {
       $('#alamatDetail').modal('hide');
+      setTimeout(function() {
+        $('#tambahAlamat').modal('show');
+      }, 500); // Waktu tunda untuk memastikan modal pertama benar-benar tertutup
+    });
+
+    // Ketika tombol "Pakai" di dalam modal vouchers diklik, tutup modal vouchers
+    $('#vouchers .btn-submit-popup').on('click', function () {
+      $('#vouchers').modal('hide');
+    });
+
+    // Event listener untuk kartu voucher
+    $('.voucher-card').on('click', function () {
+      // Hapus kelas 'selected' dari semua kartu
+      $('.voucher-card').removeClass('selected');
+      // Tambahkan kelas 'selected' ke kartu yang diklik
+      $(this).addClass('selected');
     });
   });
 </script>

@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Alamat Baru</h5>
                 <button class="btn" data-dismiss="modal" aria-label="Close">
-                    <img class="x_icon" src="{{asset('assets/back.svg')}}">
+                    <img class="x_icon" src="{{asset('assets/cross.svg')}}">
                 </button>
             </div>
                 <div class="modal-body">
