@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <title>Konfirmasi Pesanan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     @vite('resources/css/customer/checkout.css')
     @vite('resources/css/app.css')
 </head>
 <body>
-    @include('components.customer.headercustomer')
+    <!-- @include('component.user.headeruser') -->
     <div class="atas">
         <div class="nonactive active">
             <h1>Keranjang</h1>
-        </div>
+        </div> 
         <div class="nonactive active">
             <img class="back_icon" src="{{asset('assets/back.svg')}}">
             <h1>Checkout</h1>
@@ -31,7 +31,9 @@
     <div class="bottom">
         <div class="left">
             <h2>Alamat Pengiriman</h2>
-            <button type="button" class="square no-bootstrap" data-bs-toggle="modal" data-bs-target="#alamatDetail">
+            <button type="button" class="square no-bootstrap" data-toggle="modal" data-target="#alamatDetail">
+                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1"> -->
+
                 <div class="alamat dis">
                     <div class="wrap">
                         <!-- <p>Pilih alamat pengirimanmu</p> -->
@@ -50,7 +52,7 @@
                 </div>
             </button>
 
-            @include('customer.modal.alamatDetail')
+            @include('user.modal.alamatDetail')
 
             <h2>Voucher</h2>
             <button type="button" class="square no-bootstrap" data-bs-toggle="modal" data-bs-target="#alamatDetail">
@@ -113,7 +115,7 @@
                         <h3>Shipping</h3>
                         <p>Rp 200.000</p>
                     </div>
-
+  
                 </div>
                 <div class="w1 brdr">
                     <h2>Total</h2>
@@ -125,10 +127,30 @@
             </div>
         </div>
     </div>
-    @include('components.customer.footercustomer')
+    <!-- @include('component.user.footeruser') -->
+
+    @include('user.modal.alamatDetail')
+    @include('user.modal.tambahAlamat')
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function(){
+    // Ketika modal alamatDetail ditutup, semua modal ditutup
+    $('#alamatDetail').on('hidden.bs.modal', function () {
+      $('.tambahAlamat').modal('hide');
+    });
+
+    // Ketika modal tambahAlamat ditampilkan, tutup modal alamatDetail
+    $('#tambahAlamat').on('show.bs.modal', function () {
+      $('#alamatDetail').modal('hide');
+    });
+  });
+</script>
+
+
+
 
 </body>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script> -->
 </html>

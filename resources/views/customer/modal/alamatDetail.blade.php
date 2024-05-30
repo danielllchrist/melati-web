@@ -1,17 +1,39 @@
-<div class="modal fade" id="alamatDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="alamatDetail" tabindex="-1"  role="dialog" aria-labelledby="modal1Label" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Alamat Saya</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Alamat Saya</h5>
+                <button class="btn" data-dismiss="modal" aria-label="Close">
+                    <img class="x_icon" src="{{asset('assets/back.svg')}}">
+                </button>
+            </div>
+            @include('user.modal.tambahAlamat')
+            <!-- <div class="tambah-alamat">
+                <button class="btn-add-popup" data-bs-toggle="modal" data-bs-target="#tambahAlamat">
+                  <img class="add_icon" src="{{asset('assets/back.svg')}}">
+                  Tambah Alamat
+                </button>
+            </div> -->
+            <div class="modal-body">
+                @for ($i = 0; $i <10; $i++)
+                <button class="no-bootstrap flex">
+                  <div class="address-card">
+                      <h6>Grace | (+62)123456789</h6>
+                      <p>Jalan Pakuan No.3<br>
+                      Sentul, Kabupaten Bogor<br>
+                      Jawa Barat</p>
+                  </div>
+                </button>
+                @endfor
+            </div>
+            <div class="modal-footer">
+                <div class="tambah-alamat">
+                    <button class="btn-add-popup" data-toggle="modal" data-target="#tambahAlamat">
+                    <img class="add_icon" src="{{asset('assets/back.svg')}}">
+                    Tambah Alamat
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            
-        </div>
-        {{-- <div class="modal-footer">
-            
-
-        </div> --}}
-      </div>
     </div>
 </div>
