@@ -5,7 +5,7 @@ namespace App\Http\Controllers\customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class register extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.

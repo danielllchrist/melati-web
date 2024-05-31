@@ -41,6 +41,91 @@ a{
     color: #D5BE9E;
 }
 
+.title-div {
+    margin-left: 6%;
+}
+
+.title-div h2{
+    color: #F0F1E4;
+    font-weight: 500;
+    margin: 3px;
+}
+
+.products {
+    background-color:#F0F1E4;
+    width: 88%;
+    height: 78.5vh;
+    margin: 15px 6% 15px 6%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.products::-webkit-scrollbar-track
+{
+	background-color: #F0F1E4;
+}
+
+.products::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F0F1E4;
+}
+
+.products::-webkit-scrollbar-thumb
+{
+	background-color: #D5BE9E;
+}
+
+.product {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 30px;
+    border-bottom: #4F290C solid thin;
+}
+
+.product-img {
+    width: 120px;
+    height: 120px;
+    border: #4F290C solid thin;
+}
+
+.product-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.product-name, .product-size, .product-price {
+    margin: 0;
+    letter-spacing: 1px;
+    color: #4F290C;
+}
+
+.product-size {
+    font-weight: 500;
+}
+
+.product-qty {
+    text-align: right;
+    font-weight: 500;
+    margin: 12px;
+    letter-spacing: 1px;
+    color: #4F290C;
+}
+
+.product-price {
+    text-align: right;
+}
+
 .reason {
     width: 88%;
     margin: 15px 6% 15px 6%;
@@ -74,6 +159,47 @@ textarea::placeholder{
     font-family: Poppins;
     font-size: medium;
     font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.refund {
+    width: 35%;
+    border: #4F290C solid thin;
+    margin: 15px 6% 15px 6%;
+    padding: 0px 30px 0px 30px;
+    background-color: #F0F1E4;
+}
+
+.refund-detail {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border-bottom: #4F290C solid thin;
+}
+
+.refund-detail p {
+    width: 50%;
+}
+
+.refund-details {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.refund-details h3 {
+    width: 50%;
+}
+
+.fund {
+    text-align: left;
+    color: #4F290C;
+    letter-spacing: 1px;
+}
+
+.fund-value {
+    text-align: right;
+    color: #4F290C;
     letter-spacing: 1px;
 }
 

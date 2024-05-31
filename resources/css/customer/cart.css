@@ -1,5 +1,5 @@
 body{
-   background-color: #080808 !important; 
+   background-color: #080808 !important;
 }
 
 .atas{
@@ -145,8 +145,8 @@ body{
 .wraps h1{
     font-weight: 500;
     font-size: 14px;
-    margin: 0px;  
-    padding: 0px; 
+    margin: 0px;
+    padding: 0px;
     color: #080808;
     background-color: #F0F1E4;
     font-family: Poppins;
@@ -154,9 +154,9 @@ body{
 
 .wraps h2{
     font-weight: bold;
-    font-size: 18px;  
-    margin: 0px;   
-    padding: 0px; 
+    font-size: 18px;
+    margin: 0px;
+    padding: 0px;
     color: #080808;
     background-color: #F0F1E4;
     font-family: Poppins;
@@ -165,9 +165,9 @@ body{
 .wraps p{
     font-weight: normal;
     font-size: 13px;
-    margin-top: 2px;  
-    padding: 0px; 
-    color: #080808;   
+    margin-top: 2px;
+    padding: 0px;
+    color: #080808;
     background-color: #f0f1e4fb;
     font-family: Poppins;
 }
@@ -218,9 +218,9 @@ body{
     margin: 0; /* Safari */
 }
 
-#transparent-number-input:focus {
+/* #transparent-number-input:focus {
     border-bottom-color: #007bff;
-}
+} */
 
 .kiri::-webkit-scrollbar-track
 {
