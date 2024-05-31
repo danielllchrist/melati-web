@@ -18,9 +18,9 @@
         <div class= "justify-content-center align-items-center navmenu-custom">
             <ul class="navmenu-custom admin">
                 <li><a class="admin-menu" href="#"><img src="assets/admin_menu/home.svg" alt=""
-                            width = "28" height = "28">Dashboard</a></li>
+                            width = "25" height = "25">Dashboard</a></li>
                 <li><a class="admin-menu" href="#"><img src="assets/admin_menu/light.svg" alt=""
-                            width = "28" height = "28">Profile</a></li>
+                            width = "25" height = "25">Profile</a></li>
             </ul>
         </div>
 

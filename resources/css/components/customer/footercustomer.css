@@ -30,6 +30,7 @@ body{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-size : 12px;
 }
 
 .menus{
@@ -43,14 +44,14 @@ body{
 }
 
 .menus p, .menus li {
-    font-size: 18px;
+    font-size: 16px;
     color: #D5BE9E;
     text-decoration: none;
     font-family: 'Poppins';
 }
 
 .title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -98,7 +99,8 @@ body{
 hr {
     margin: 1rem 0;
     color: #D5BE9E;
-    border: 0;
     border-color: #D5BE9E;
     border-top: 1px solid;
+    opacity: 1;
   }
+
