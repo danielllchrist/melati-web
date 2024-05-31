@@ -5,7 +5,7 @@ namespace App\Http\Controllers\customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class landingpage extends Controller
+class LandingPageController extends Controller
 {
     /**
      * Display a listing of the resource.

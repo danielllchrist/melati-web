@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     @vite('resources/css/app.css')
     @vite('resources/css/customer/return.css')
 </head>
+
 <body>
     @include('components.customer.headercustomer')
     <div class="container">
@@ -25,25 +27,61 @@
         </section>
 
         <section>
+            <div class="title-div">
+                <h2>Produk yang ingin Anda kembalikan</h2>
+            </div>
             <div class="products">
-
+                @for ($i = 0; $i < 10; $i++)
+                <div class="product">
+                    <div class="product-img">
+                        <img src="assets/dummy-img/Rectangle 28.png" alt="">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">Eau De Toilette</h4>
+                        <h4 class="product-size">Size : M</h4>
+                        <h4 class="product-qty">x1</h4>
+                        <h4 class="product-price">Rp 100,000.00</h4>
+                    </div>
+                </div>
+                @endfor
             </div>
         </section>
 
         <section>
-            <form action="" method="post">
-                @csrf
-                <div class="reason">
+            <div class="title-div">
+                <h2>Kenapa Anda ingin mengembalikan pesanan ini?</h2>
+            </div>
+            <div class="reason">
+                <form action="" method="post">
+                    @csrf
                     <div class="text-area-wrapper">
                         <textarea name="" id="" placeholder="Beri tahu kami tentang pesanan Anda."></textarea>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </section>
 
         <section>
+            <div class="title-div">
+                <h2>Detail Pengembalian</h2>
+            </div>
             <div class="refund">
-
+                <div class="refund-detail">
+                    <p class="fund">Total Price</p>
+                    <p class="fund-value">Rp 450,000</p>
+                </div>
+                <div class="refund-detail">
+                    <p class="fund">Discounts</p>
+                    <p class="fund-value">- Rp 10,000</p>
+                </div>
+                <div class="refund-detail">
+                    <p class="fund">Shipping</p>
+                    <p class="fund-value">Rp 10,000</p>
+                </div>
+                <div class="refund-details">
+                    <h3 class="fund">Total Refund</h3>
+                    <h3 class="fund-value">Rp 450,000</h3>
+                </div>
             </div>
         </section>
 
@@ -57,4 +95,5 @@
     </div>
     @include('components.customer.footercustomer')
 </body>
+
 </html>
