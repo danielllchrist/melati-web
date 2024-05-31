@@ -17,17 +17,17 @@
         <div class= "justify-content-center align-items-center navmenu-custom">
             <ul class="navmenu-custom admin">
                 <li><a class="admin-menu" href="#"><img src="assets/admin_menu/home.svg" alt=""
-                            width = "28" height = "28">Dashboard</a></li>
+                            width = "25" height = "25">Dashboard</a></li>
                 <li><a class="admin-menu" href="#"><img src="assets/admin_menu/shopping bag.svg" alt=""
-                            width = "28" height = "28">Orders</a></li>
+                            width = "25" height = "25">Orders</a></li>
                 <li><a class="admin-menu" href="#"><img src="assets/admin_menu/package.svg" alt=""
-                            width = "28" height = "28">Products</a></li>
+                            width = "25" height = "25">Products</a></li>
                 <li><a class="admin-menu" href="#"><img src="assets/admin_menu/circle.svg" alt=""
-                            width = "28" height = "28">Chats</a></li>
+                            width = "25" height = "25">Chats</a></li>
                 <li><a class="admin-menu" href="#"><img src="assets/admin_menu/content.svg" alt=""
-                            width = "28" height = "28">Content</a></li>
+                            width = "25" height = "25">Content</a></li>
                 <li><a class="admin-menu" href="#"><img src="assets/admin_menu/light.svg" alt=""
-                            width = "28" height = "28">Profile</a></li>
+                            width = "25" height = "25">Profile</a></li>
             </ul>
         </div>
 
