@@ -58,7 +58,7 @@
             <section>
                 <div class="review">
                     <div class="text-area-wrapper">
-                        <textarea name="" id="" placeholder="Beri tahu kami tentang produk ini."></textarea>
+                        <textarea name="" id="" maxlength="1500" placeholder="Beri tahu kami tentang produk ini."></textarea>
                     </div>
                 </div>
             </section>

@@ -31,21 +31,62 @@
                     <div class="status-img">
                         <img src="assets\dummy-img\order state 1.svg" alt="">
                     </div>
-                    <div class="delivery-address">
-
+                    <div class="segment delivery-address">
+                        <h4 class="segment-title">Alamat Pengiriman</h4>
+                        <p class="penerima">Grace</p>
+                        <p class="no-telp">(+62)123456789</p>
+                        <p class="alamat">Jalan Pakuan No.3</p>
+                        <p class="kelurahan-kota-kabupaten">Sentul, Kabupaten Bogor</p>
+                        <p class="provinsi">Jawa Barat</p>
                     </div>
-                    <div class="order">
-
+                    <div class="segment order">
+                        <h4 class="segment-title">Pesanan</h4>
+                        <div class="products">
+                            @for ($i = 0; $i < 10; $i++)
+                                <div class="product">
+                                    <div class="product-img">
+                                        <img src="assets/dummy-img/Rectangle 28.png" alt="">
+                                    </div>
+                                    <div class="product-info">
+                                        <h4 class="product-name">Eau De Toilette</h4>
+                                        <h4 class="product-size">Size : M</h4>
+                                        <h4 class="product-qty">x1</h4>
+                                        <h4 class="product-price">Rp 100,000.00</h4>
+                                    </div>
+                                </div>
+                            @endfor
+                        </div>
+                        <hr class="end-line">
                     </div>
-                    <div class="order-amount">
-                        
+                    <div class="segment order-amount">
+                        <div class="amount">
+                            <div class="amount-item">
+                                <p class="amount-item-name">Subtotal</p>
+                                <p class="amount-item-value">Rp 450,000</p>
+                            </div>
+                            <div class="amount-item">
+                                <p class="amount-item-name">Discounts</p>
+                                <p class="amount-item-value">- Rp 10,000</p>
+                            </div>
+                            <div class="amount-item">
+                                <p class="amount-item-name">Shipping</p>
+                                <p class="amount-item-value">Rp 10,000</p>
+                            </div>
+                            <div class="total">
+                                <h3 class="amount-item-name">Total</h3>
+                                <h3 class="amount-item-value">Rp 450,000</h3>
+                            </div>
+                            <div class="payment-method">
+                                <img src="assets\dummy-img\cc.svg" alt="">
+                                <p class="amount-item-value">Credit Card</p>
+                            </div>
                     </div>
                     <div class="submit">
-
+                        <div class="btn-wrapper"><a href=""><div class="button">Nilai</div></a></div>
+                        <div class="btn-wrapper"><a href=""><div class="button">Ajukan Pengembalian</div></a></div>
                     </div>
                 </div>
             </section>
-
         </div>
     </div>
     @include('components.customer.footercustomer')

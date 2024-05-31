@@ -56,7 +56,7 @@ Route::get('/penilaian', function () {
     return view('customer.review');
 });
 
-Route::get('/detail-pesanan', function () {
+Route::get('/detil-pesanan', function () {
     return view('customer.orderdetail');
 });
 
