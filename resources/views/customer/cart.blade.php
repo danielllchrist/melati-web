@@ -59,7 +59,7 @@
                 <h2>Rp 100.000</h2>
             </div>
             <div class="wrap small">
-                <button class="checkout">CHECK OUT</button>
+                <button class="checkout">Checkout</button>
             </div>
         </div>
     </div>

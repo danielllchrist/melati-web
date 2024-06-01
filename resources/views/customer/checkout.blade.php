@@ -13,7 +13,9 @@
     @include('components.customer.headercustomer')
     <div class="atas">
         <div class="nonactive active">
-            <h1>Keranjang</h1>
+            <a href="/keranjang">
+                <h1>Keranjang</h1>
+            </a>
         </div> 
         <div class="nonactive active">
             <img class="back_icon" src="{{asset('assets/back.svg')}}">
@@ -124,7 +126,7 @@
                 </div>
             </div>
             <div class="wrap3">
-                <button class="bayar">BAYAR</button>
+                <button class="bayar">Konfirmasi Pesanan</button>
             </div>
         </div>
     </div>
@@ -160,6 +162,14 @@
     $('.voucher-card').on('click', function () {
       // Hapus kelas 'selected' dari semua kartu
       $('.voucher-card').removeClass('selected');
+      // Tambahkan kelas 'selected' ke kartu yang diklik
+      $(this).addClass('selected');
+    });
+
+    // Event listener untuk kartu address
+    $('.address-card').on('click', function () {
+      // Hapus kelas 'selected' dari semua kartu
+      $('.address-card').removeClass('selected');
       // Tambahkan kelas 'selected' ke kartu yang diklik
       $(this).addClass('selected');
     });
