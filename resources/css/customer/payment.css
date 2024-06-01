@@ -1,0 +1,128 @@
+body{
+   background-color: #080808 !important;
+}
+
+.atas{
+    padding: 25px !important;
+    display: flex !important;
+    /* background-color: pink; */
+    /* padding-left: 55px !important; */
+    /* padding-bottom: 25px !important; */
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    /* opacity: 0.5; */
+}
+.nonactive{
+    opacity: 0.5;
+    display: flex;
+}
+
+.active{
+    opacity: 1 !important;
+}
+
+.atas h1{
+    font-family: Poppins;
+    font-weight: 600;
+    color: #F0F1E4;
+    font-size: 19px;
+    margin-left: 22px;
+    padding-top: 6px;
+    padding: 15px;
+}
+.atas .back_icon{
+    padding-right: 20px;
+    margin-top: 13px;
+    width: 30px;
+}
+.back_icon{
+    transform: scaleX(-1);
+    height: 29px;
+}
+
+.bawah{
+    background-color: bl;
+    display: flex;
+    width: 90%;
+    height: 78.5vh;
+    display: flex;
+    margin: auto; 
+    flex-direction: column;
+    align-items: center;
+}
+
+#qrcode{
+    height: 100%;
+    width: auto;
+}
+
+.wrap{
+    background-color:#496041;
+    height: 53%;
+    padding: 5px;
+    /* margin-top: 7px; */
+}
+
+.bawah h2{
+    font-family: Poppins;
+    font-weight: 550;
+    color: #F0F1E4;
+    font-size: 25px;
+}
+
+#otp{
+    font-family: Poppins;
+    font-weight: 450;
+    color: #F0F1E4;
+    font-size: 20px;
+    padding: 5px;
+    padding-bottom: 0px;
+    margin-top: -8px;
+    width: 100%;
+    display: flex;
+    background-color: transparent;
+    text-decoration: none;
+    color: #F0F1E4;
+    border-bottom: 2px solid #F0F1E4;
+    text-align: center;
+}
+
+.bawah p{
+    font-family: Poppins;
+    font-weight: 450;
+    color: #F0F1E4;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.no-bootstrap {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.bayar{
+    font-family: Poppins;
+    font-weight: 700;
+    color: #4F290C;
+    font-size: 24px;
+    border-radius: 52px;
+    padding: 7px 45px 7px 45px;
+    background-color: #D5BE9E;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /* margin-top: -2px; */
+    margin-top: 20px;
+    width: 62%;
+}
+
+.custom-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

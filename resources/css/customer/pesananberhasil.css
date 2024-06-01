@@ -1,0 +1,10 @@
+.toast-header{
+    background-color: #F0F1E4;
+}
+.toast-header h1{
+    font-family: Poppins;
+    font-weight: 450;
+    color: #4F290C;
+    font-size: 20px;
+    margin-bottom: 0px;
+}

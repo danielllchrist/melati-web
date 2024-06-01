@@ -593,5 +593,7 @@ h5{
     /* box-shadow: 2px 4px 10px rgb(251, 250, 250); */
     /* width: 20px; */
     background-color: #D5BE9E;
-    /* border: 5px solid #D5BE9E; */
+}
+a{
+    text-decoration: none;
 }

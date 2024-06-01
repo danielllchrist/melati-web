@@ -72,6 +72,10 @@ Route::get('/chat', function () {
     return view('customer.chat');
 });
 
+Route::get('/pembayaran', function () {
+    return view('customer.payment');
+});
+
 // Route for Admins' Page
 
 // Route for Shipping Services' Page
