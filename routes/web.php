@@ -32,6 +32,14 @@ Route::get('/katalog', function () {
     return view('customer.catalog');
 });
 
+Route::get('/mixmatch', function () {
+    return view('customer.mixmatch');
+});
+
+Route::get('/detail', function () {
+    return view('customer.detail');
+});
+
 Route::get('/pesanan-saya', function () {
     return view('customer.myorder');
 });

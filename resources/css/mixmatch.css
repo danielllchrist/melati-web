@@ -1,0 +1,92 @@
+.top-wrapper > h1 {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.top-wrapper > h3 {
+    font-size: 38px;
+    font-weight: 400;
+}
+
+.card-custom, .card-custom-image > img {
+    max-width: 225px;
+    width: 100%;
+}
+
+.card-custom-image > img {
+    height: 300px;
+}
+
+.card-custom-text > a {
+    text-decoration: none;
+    width: 100%;
+    color: rgb(48, 34, 18);
+    font-weight: 600;
+    background-color: rgb(211, 160, 97);
+    display: inline-block;
+    padding: 5px 0;
+    font-weight: 600;
+    border-radius: 5em;
+    text-align: center;
+}
+
+.carousel-item > img {
+    width: 100%;
+    height: 350px;
+}
+
+.carousel {
+    position: relative;
+    display: flex;
+    width: 100%;
+}           
+
+.carousel-control-prev , .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: TranslateY(-50%);
+    margin: 0 -25px;
+}
+
+.carousel-control-prev {
+    right: auto;
+}
+
+.carousel-control-next {
+    left: auto;
+}
+
+.mix-match-page{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mix-match{
+    width: 25%;
+    margin: 20px 50px;
+    padding: 0 20px;
+    height: 475px;
+}
+
+.search-box{
+    padding: 10px 0;
+    width: 100%;
+}
+
+.search-input{
+    background: none;
+    border: 2px solid white;
+    padding: 10px;
+    width: 100%;
+}
+
+.icon-search{
+    position: absolute;
+    right: 30px;
+    top: 410px;
+}
+
+.carousel > h1 {
+    font-size: 30px;
+    font-weight: 700;
+}
