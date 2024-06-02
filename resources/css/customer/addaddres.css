@@ -1,0 +1,131 @@
+body{
+    background-color: #080808 !important;
+ }
+
+
+ .main-content{
+    width: auto;
+    height : auto;
+    background-color: black;
+    padding : 191px 80px 80px 80px;
+  }
+
+  .inner-container{
+    display : flex;
+    flex-direction: column;
+    /* gap : 42px; */
+    width : 977px;
+  }
+
+  .ps-header{
+    display : flex;
+    flex-direction: column;
+    gap : 15px;
+  }
+
+  .ps-title{
+    font-family: 'Poppins';
+    font-size: 30px;
+    font-weight: 700;
+    color : #D5BE9E;
+  }
+
+  button[type="submit"] {
+	background-color:#D5BE9E;
+	color: #4F290C;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	width: 200px;
+	height: 40px;
+	font-family: Poppins;
+	margin-top: 10px;
+    margin-bottom: 20px;
+	font-size: 15px;
+    font-weight: 600;
+  }
+
+  .square {
+    border: 2px solid #F0F1E4 !important;
+    padding: 18px !important;
+    margin: 7px 0px 25px 0px !important;
+    cursor: pointer;
+    width: 100%;
+}
+
+.dis{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+}
+
+.no-bootstrap {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.flex{
+    display: flex;
+    width: 100%;
+}
+
+.alamat .wrap {
+    text-align: left;
+}
+
+.right h3{
+    font-family: Poppins;
+    color: #F0F1E4;
+    font-weight: normal;
+    font-size: 14px;
+    font-weight: 500;
+    /* padding: 0px; */
+    margin-bottom: 3px;
+}
+.right p{
+    font-family: Poppins;
+    color: #F0F1E4;
+    font-weight: normal;
+    font-size: 13px;
+    padding: 0px;
+    margin-bottom: 0px;
+}
+.wrap2{
+    /* background-color: purple; */
+    display: flex;
+    align-self: center;
+
+}
+.back_icon{
+    transform: scaleX(-1);
+    height: 20px;
+}
+
+.tambah-alamat{
+    border-top: 0px;
+    height: 10vh;
+    /* padding: 20px; */
+    margin-top: 15px;
+}
+
+.btn-add-popup{
+    font-family: Poppins;
+    font-weight: 700;
+    color: #4F290C;
+    font-size: 15px;
+    border-radius: 52px;
+    padding: 8px 16px 8px 16px;
+    background-color: #D5BE9E;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    margin-left: 14px;
+    margin-bottom: -7px;
+    display: inline-block;
+}
