@@ -72,13 +72,12 @@ Route::get('/chat', function () {
     return view('customer.chat');
 });
 
-<<<<<<< Updated upstream
 Route::get('/pembayaran', function () {
     return view('customer.payment');
-=======
+});
+
 Route::get('/tambah-alamat', function () {
     return view('customer.addaddres');
->>>>>>> Stashed changes
 });
 
 // Route for Admins' Page
