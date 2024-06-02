@@ -4,37 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @vite('resources/css/app.css')
+    @vite('resources/css/customer/catalog.css')
+    <style>
+            .card-custom-body{
+            padding: 10px 50px 50px 15px;
+            background-image: url('assets/backgroundHargaKatalog.png');
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            filter: sepia(0.8);
+        }
+        </style>
 </head>
-<body>
+<body class="bg-dark">
     @include('components.customer.headercustomer')
-    <div class = "carousel">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img class="d-block w-100" src="..." alt="First slide">
+        <div class="container">
+        <div class="carousel position-relative">
+            <div id="carouselExampleIndicators" class="position-absolute top-50 start-50 translate-middle carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-                <div class="carousel-item">
-                <img class="d-block w-100" src="..." alt="Second slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="{{asset('assets/carouselCatalog.png')}}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="{{asset('assets/carouselCatalog.png')}}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="{{asset('assets/carouselCatalog.png')}}" class="d-block w-100" alt="...">
+                    </div>
                 </div>
-                <div class="carousel-item">
-                <img class="d-block w-100" src="..." alt="Third slide">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>  
+
+            <div class="d-flex pt-3">
+                <div class="kategori me-3">
+                    <h3 class="text-light mb-4">Kategori</h3>
+                    <div class="kategori-pria">
+                        <div class="collapsed-text">
+                            <a class="collapse-btn text-white-50" data-bs-toggle="collapse" href="#collapsePria" role="button" aria-expanded="false" aria-controls="collapsePria" id="btnPria">
+                                Pria
+                            </a>
+                            <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png" width="25px" id="arrowCollapsePria">
+                        </div>
+
+                        <div class="collapse multi-collapse" id="collapsePria">
+                            <li onclick="selectionData('pria', 'atasan')" id="pria-atasan">Atasan</li>
+                            <li onclick="selectionData('pria', 'bawahan')" id="pria-bawahan">Bawahan</li>
+                            <li onclick="selectionData('pria', 'aksesoris')" id="pria-aksesoris">Aksesoris</li>
+                        </div>
+                    </div>
+
+                    <div class="kategori-wanita">
+                        <div class="collapsed-text">
+                            <a class="collapse-btn text-white-50" data-bs-toggle="collapse" href="#collapseWanita" role="button" aria-expanded="false" aria-controls="collapseWanita" id="btnWanita">
+                                Wanita
+                            </a>
+                            <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png" width="25px" id="arrowCollapseWanita">
+                        </div>
+
+                        <div class="collapse multi-collapse" id="collapseWanita">
+                            <li onclick="selectionData('wanita', 'atasan')" id="wanita-atasan">Atasan</li>
+                            <li onclick="selectionData('wanita', 'bawahan')" id="wanita-bawahan">Bawahan</li>
+                            <li onclick="selectionData('wanita', 'aksesoris')" id="wanita-aksesoris">Aksesoris</li>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog d-flex flex-column mb-5 w-100">
+                    <div class="d-flex justify-content-end align-items-center header-catalog">
+                        <p class="text-light me-4 mt-3">Urut berdasarkan</p>
+                        <select name="sortBy" id="sortBy" onchange="sort(this)">
+                            <option value="1">Harga Tertinggi</option>
+                            <option value="2">Harga Terendah</option>
+                        </select>
+                    </div>
+                    <div class="content-catalog d-flex flex-wrap justify-content-around mt-3 mb-3" id="content-catalog">
+                    </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
-    </div>
-</body>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script>
+            var data = [
+                {"jk":"pria","kategori":"atasan","harga":120000,"wishlist":true}, 
+                {"jk":"pria","kategori":"bawahan","harga":150000,"wishlist":false},
+                {"jk":"pria","kategori":"aksesoris","harga":110000,"wishlist":true},
+                {"jk":"wanita","kategori":"atasan","harga":100000,"wishlist":true},
+                {"jk":"wanita","kategori":"bawahan","harga":125000,"wishlist":false}, 
+                {"jk":"wanita","kategori":"aksesoris","harga":149000,"wishlist":true}, 
+                {"jk":"pria","kategori":"atasan","harga":115000,"wishlist":true}, 
+                {"jk":"pria","kategori":"bawahan","harga":105000,"wishlist":true},
+                {"jk":"pria","kategori":"aksesoris","harga":90000,"wishlist":false}, 
+                {"jk":"wanita","kategori":"atasan","harga":50000,"wishlist":false}, 
+                {"jk":"wanita","kategori":"bawahan","harga":80000,"wishlist":false}, 
+                {"jk":"wanita","kategori":"aksesoris","harga":99000,"wishlist":true},
+                {"jk":"pria","kategori":"atasan","harga":119000,"wishlist":true}, 
+                {"jk":"pria","kategori":"bawahan","harga":109000,"wishlist":true}, 
+                {"jk":"pria","kategori":"bawahan","harga":104900,"wishlist":false}, 
+                {"jk":"wanita","kategori":"atasan","harga":105900,"wishlist":false}
+            ];
+
+            var dataTemp = data;
+
+            window.onload = function() {
+                sort(Object.values(1));
+            }
+
+            const rupiah = (number) => {
+                return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR"
+                }).format(number);
+            }
+
+            function sort(id) {
+                for(let i=0; i<dataTemp.length; i++){
+                    for(let j=0; j<dataTemp.length-1; j++){
+                        if(id.value == 2){
+                            if(dataTemp[j+1].harga < dataTemp[j].harga){
+                                var temp = dataTemp[j+1];
+                                dataTemp[j+1] = dataTemp[j];
+                                dataTemp[j] = temp;
+                            }
+                        }else{
+                            if(dataTemp[j+1].harga > dataTemp[j].harga){
+                                var temp = dataTemp[j+1];
+                                dataTemp[j+1] = dataTemp[j];
+                                dataTemp[j] = temp;
+                            }
+                        }
+                    }
+                }
+
+                document.getElementById("content-catalog").innerHTML = "";
+                var content = "";
+                for(let i=0; i<dataTemp.length; i++){
+                    if(dataTemp[i].wishlist){
+                        content += "<a href=\"detail\"><div class=\"card-custom\"><i class=\"fa fa-heart fa-2x heart-color\" id=\"wishlist-heart\" onclick=\"wishlist()\"></i><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" + rupiah(dataTemp[i].harga) + "</h3></div></div></a>";
+                    }else{
+                        content += "<a href=\"detail\"><div class=\"card-custom\"><i class=\"fa fa-heart-o fa-2x heart\" id=\"wishlist-heart\" onclick=\"wishlist()\"></i><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" + rupiah(dataTemp[i].harga) + "</h3></div></div></a>";
+                    }
+                }
+
+                document.getElementById("content-catalog").innerHTML = content;
+            }
+
+            $('#collapsePria').on('show.bs.collapse', function () {
+                document.getElementById("arrowCollapsePria").style.transform = "rotate(180deg)"
+                document.getElementById("btnPria").classList.remove("text-white-50");
+            })
+
+            $('#collapsePria').on('hidden.bs.collapse', function () {
+                document.getElementById("arrowCollapsePria").style.transform = "rotate(0deg)"
+                document.getElementById("btnPria").classList.add("text-white-50");
+                selectionData(null, null);
+            })
+
+            $('#collapseWanita').on('show.bs.collapse', function () {
+                document.getElementById("arrowCollapseWanita").style.transform = "rotate(180deg)"
+                document.getElementById("btnWanita").classList.remove("text-white-50");
+            })
+
+            $('#collapseWanita').on('hidden.bs.collapse', function () {
+                document.getElementById("arrowCollapseWanita").style.transform = "rotate(0deg)"
+                document.getElementById("btnWanita").classList.add("text-white-50");
+                selectionData(null, null);
+            })
+
+            function selectionData(jk, kategori){
+                dataTemp = [];
+                for(let i=0; i<data.length; i++){
+                    if((data[i].jk == jk && data[i].kategori == kategori) || (jk == null && kategori == null)){
+                        dataTemp.push(data[i]);
+                    }
+                }
+
+                sort(Object.values(1));
+            }
+        </script>
+    </body>
 </html>

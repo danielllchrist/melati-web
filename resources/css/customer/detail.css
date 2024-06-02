@@ -1,0 +1,142 @@
+.arrow-back{
+    filter: brightness(0) invert(1);
+    transform: rotate(-90deg);
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+body{
+    color: white;
+}
+
+.rating-color{
+    color:#D5BE9E !important;
+}
+
+.number > h1{
+    font-size: 74px;
+}
+
+.progress-bar{
+    background-color: #D5BE9E !important;
+}
+
+.star{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.star > p {
+    margin: 0 5px;
+}
+
+.progress-bar, .progress{
+    height: 10px;
+}
+
+hr{
+    border: 0;
+    border-left: 2px solid white !important;
+    margin: 0 50px;
+    opacity: 1;
+}
+
+.sort-by > button{
+    margin: 0 15px;
+}
+
+.content-review{
+    max-height: 450px;
+    height: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.content-review::-webkit-scrollbar{
+    display: none;
+}
+
+.wrap-review{
+    max-height: 650px;
+    height: 100%;
+    position: absolute;
+    max-width: 1280px;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.review{
+    margin: 10px 0;
+    border-bottom: 1px solid white;
+}
+
+.carousel-item > img{
+    max-height: 425px;
+}
+
+.image-content{
+    width: 40%;
+}
+
+.detail-image > img{
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.detail-content{
+    margin-left: 100px;
+    width: 75%;
+}
+
+.left-content > h1{
+    margin: 0;
+    padding: 0;
+}
+
+.star-products > p{
+    margin: 0;
+}
+
+.detail-content-body{
+    text-align: justify;
+    max-height: 250px;
+    height: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.detail-content-body::-webkit-scrollbar{
+    display: none;
+}
+
+.heart{
+    cursor: pointer;
+}
+
+.heart-color{
+    color: red;
+}
+
+.body-review{
+    text-align: justify;
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%234E242D' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%234E242D' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.category-review-color {
+    background-color: rgb(73, 51, 25);
+    border: 1px solid rgb(73, 51, 25);
+    color: white;
+}
