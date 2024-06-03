@@ -17,7 +17,7 @@
         </div> 
         <div class="nonactive">
             <img class="back_icon" src="{{asset('assets/back.svg')}}">
-            <h1>Checkout</h1>
+            <h1>Pesan</h1>
         </div>
         <div class="nonactive">
             <img class="back_icon" src="{{asset('assets/back.svg')}}">
@@ -36,7 +36,7 @@
                 <div class="wraps">
                     <h1>Eu da Toilette</h1>
                     <h2>Rp 100.000</h2>
-                    <p>M</p>
+                    <p>Ukuran : M</p>
                 </div>
                 <div class="wraps2">
                     <button class=trash>
@@ -59,7 +59,7 @@
                 <h2>Rp 100.000</h2>
             </div>
             <div class="wrap small">
-                <button class="checkout">Checkout</button>
+                <button class="checkout">Pesan Sekarang</button>
             </div>
         </div>
     </div>

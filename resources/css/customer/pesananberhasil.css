@@ -1,3 +1,6 @@
+.toast{
+    position: fixed !important;
+}
 .toast-header{
     background-color: #F0F1E4;
 }

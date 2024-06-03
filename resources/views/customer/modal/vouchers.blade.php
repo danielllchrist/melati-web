@@ -22,7 +22,7 @@
                     <!-- <button class="btn-add-popup" data-dismiss="modal">
                       Pakai
                     </button> -->
-                <button class=btn-submit-popup type="button" class="btn btn-submit" data-dismiss="modal" aria-label="Close">PAKAI</button>
+                <button class=btn-submit-popup type="button" class="btn btn-submit" data-dismiss="modal" aria-label="Close">PILIH</button>
 
 
             </div>

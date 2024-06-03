@@ -26,6 +26,7 @@
                       Tambah Alamat
                     </button>
                 </div>
+                <button class=btn-submit-popup type="button" class="btn btn-submit" data-dismiss="modal" aria-label="Close">Pilih</button>
             </div>
         </div>
     </div>
