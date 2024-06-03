@@ -18,7 +18,7 @@
         </div> 
         <div class="nonactive active">
             <img class="back_icon" src="{{asset('assets/back.svg')}}">
-            <h1>Checkout</h1>
+            <h1>Pesan</h1>
         </div>
         <div class="nonactive active">
             <img class="back_icon" src="{{asset('assets/back.svg')}}">
@@ -43,7 +43,6 @@
     </div>
 
     @include('components.customer.pesananberhasil')
-    @include('components.customer.pesanangagal')
 
 </body>
 @include('components.customer.footercustomer')

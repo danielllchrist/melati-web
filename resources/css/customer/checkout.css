@@ -304,15 +304,16 @@ body{
     /* padding-top: 10px; */
     padding-bottom: 0px;
     /* height: 20px; */
+    margin-top: -1px;
 }
 
 .brdr{
-    border-top: 1px solid rgba(73,96,65,0.3);
+    border-top: 0px solid rgba(73,96,65,0.3);
 }
 
 .w1 h2{
     font-family: Poppins;
-    font-weight: 500;
+    font-weight: 800;
     font-size: 23px;  
     padding-bottom: 10px;
     margin-bottom: 4px;
@@ -505,13 +506,13 @@ h5{
     color: #4F290C;
     font-size: 14px;
     border-radius: 52px;
-    padding: 8px 25px 8px 25px;
+    padding: 6.5px 25px 6.5px 25px;
     background-color: #D5BE9E;
     cursor: pointer;
     display: flex;
     align-items: center;
     margin-top: -25px;
-    margin-top: 16px;
+    margin-top: 12px;
 }
 .modal-footer{
     height: 11.5vh;
