@@ -11,10 +11,11 @@
     <div class = "sidebar">
         <div class = "sidebar-content">
             <div class="sidebar-back">
-                <img src="assets/side_bar/back_arrow.svg" alt="Back">
-                <div class="profile"><img class="pp-picture" src="assets/top1.png" alt="" />
-                    <p>Ryan</p>
-                </div>
+                <a href="#" class="profile"><img src="assets/side_bar/back_arrow.svg" alt="Back">
+                    <div class="profile"><img class="pp-picture" src="assets/top1.png" alt="" />
+                        <p>Ryan</p>
+                    </div>
+                </a>
             </div>
             <div class="sidebar-menu-container">
                 <div class="sidebar-menu">
