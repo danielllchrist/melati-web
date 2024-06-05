@@ -94,13 +94,15 @@
                             <div class="pf-name">Kata Sandi Lama</div>
                             <div class="pf-textfield"><input class="pf-inputpass" type="password" id="passlama"
                                     name="nama" placeholder="Silahkan Mengisi Kata Sandi Lama" required> <img
-                                    class = "hide-pass-icon" src="assets/eye.svg" alt = "hide" id = "eyehide"
-                                    onclick = "hidePassword()"></div>
+                                    class = "hide-pass-icon" src="assets/eye.svg" alt = "hide" id = "eyehidelama"
+                                    onclick = "hidePasswordLama()"></div>
                         </div>
                         <div class="pf-formdetail">
                             <div class="pf-name">Kata Sandi Baru</div>
-                            <input class="pf-textfield" type="password" id="passbaru" name="nama"
-                                placeholder="Silahkan Mengisi Kata Sandi Baru" required>
+                            <div class="pf-textfield"><input class="pf-inputpass" type="password" id="passbaru"
+                                    name="nama" placeholder="Silahkan Mengisi Kata Sandi Baru" required> <img
+                                    class = "hide-pass-icon" src="assets/eye.svg" alt = "hide" id = "eyehidebaru"
+                                    onclick = "hidePasswordBaru()"></div>
                         </div>
                         <div class="pf-submit-btn-container"><button class="pf-submit-btn">Ganti</button></div>
                     </form>
@@ -110,25 +112,29 @@
     </div>
     @include('components.customer.footercustomer')
     <script>
-        function hidePassword() {
+        function hidePasswordLama() {
             var x = document.getElementById('passlama');
-            var y = document.getElementById('passbaru');
-            var eye = document.getElementById('eyehide');
+            var eyel = document.getElementById('eyehidelama');
 
             if (x.type === "password") {
                 x.type = "text";
-                eye.style.opacity = 0.5;
+                eyel.style.opacity = 0.5;
             } else {
                 x.type = "password";
-                eye.style.opacity = 1;
+                eyel.style.opacity = 1;
             }
+        }
+
+        function hidePasswordBaru() {
+            var y = document.getElementById('passbaru');
+            var eyeb = document.getElementById('eyehidebaru');
 
             if (y.type === "password") {
                 y.type = "text";
-                eye.style.opacity = 0.5;
+                eyeb.style.opacity = 0.5;
             } else {
                 y.type = "password";
-                eye.style.opacity = 1;
+                eyeb.style.opacity = 1;
             }
         }
     </script>

@@ -90,4 +90,8 @@ Route::get('/tambah-alamat', function () {
 
 // Route for Admins' Page
 
+Route::get('/order-status', function(){
+    return view('admin.orderstatus');
+});
+
 // Route for Shipping Services' Page

@@ -75,6 +75,7 @@
     gap : 9px;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
   }
 
   .sidebar-back p{
