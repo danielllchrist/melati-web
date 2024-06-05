@@ -2,19 +2,24 @@
 .withsidebar{
     width : 100%;
     display : flex;
+    background-color: black;
 }
 
 .main-content{
     width : auto;
     height : auto;
+    background-color: black;
+    padding-bottom: 66px;
 }
 
 .sidebar{
-    position : relative;
+    top : 0;
+    position : sticky;
     width : 302px;
-    min-height : 878px;
+    /* min-height : 100%; */
+    height: 100%;
     background: black;
-    padding : 93px 0px;
+    padding : 50px 0px;
     font-family: 'Poppins';
     color : #F0F1E4;
 }
@@ -23,8 +28,8 @@
     content: ""; /* Add an empty content to the pseudo-element */
     right: 0;
     position : absolute;
-    top: 185px; /* Position the pseudo-element 20px from the top of the div */
-    min-height: 75%; /* Set the height of the pseudo-element to 150px */
+    top: 115px; /* Position the pseudo-element 20px from the top of the div */
+    min-height: 65vh; /* Set the height of the pseudo-element to 150px */
     border-right: 2px solid #D5BE9E;
   }
 
@@ -42,7 +47,7 @@
     justify-content: center;
 
     font-size: 30px;
-    color: var(--bs-secondary);
+    color: #F0F1E4;
     transition: all 0.3s ease-in-out;
   }
 
@@ -74,14 +79,14 @@
 
   .sidebar-back p{
     font-weight: bold;
-    color: var(--bs-secondary) !important;
+    color: #F0F1E4 !important;
   }
 
   .sidebar-menu-container{
     display : flex;
     flex-direction: column;
     padding-left: 81px;
-    color : var(--bs-secondary) !important;
+    color : #F0F1E4 !important;
     gap : 38px;
   }
 
@@ -96,7 +101,7 @@
   .sidebar-menu-container a{
     font-size: 15px;
     font-weight: 500;
-    color : var(--bs-secondary);
+    color : #F0F1E4;
     padding-left: 19px;
   }
 
