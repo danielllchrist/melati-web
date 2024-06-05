@@ -20,7 +20,8 @@
                     <div class = "padding-search-custom">
                         <form class="form-inline my-2 my-lg-0">
                             <div class="ps-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
-                                    width = "19" height = "19"><input class = "ps-search-custom" type="text"
+                                    width = "19" height = "19" onclick="hidePassword()"><input
+                                    class = "ps-search-custom" type="text"
                                     placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk">
                             </div>
                         </form>
@@ -30,10 +31,10 @@
                     <div class="ps-status-menu">
                         <ul class="status-menu">
                             <li><a class = "ps-menu-link active-menus" href="#">Menunggu Konfirmasi</a></li>
-                            <li><a class = "ps-menu-link" href="#">Processed</a></li>
-                            <li><a class = "ps-menu-link" href="#">On Delivery</a></li>
-                            <li><a class = "ps-menu-link" href="#">Arrived</a></li>
-                            <li><a class = "ps-menu-link" href="#">Cancelled</a></li>
+                            <li><a class = "ps-menu-link" href="#">Diproses</a></li>
+                            <li><a class = "ps-menu-link" href="#">Sedang Dikirim</a></li>
+                            <li><a class = "ps-menu-link" href="#">Tiba</a></li>
+                            <li><a class = "ps-menu-link" href="#">Dibatalkan</a></li>
                         </ul>
                     </div>
                     <div class="ps-order">
