@@ -10,7 +10,7 @@
 
 <body>
     <nav class="header-custom">
-        <a class="" href="#">
+        <a class="" href="/">
             <img src="assets/images/logo svg.svg" width="120" height="62" class="d-inline-block align-top"
                 alt="">
         </a>

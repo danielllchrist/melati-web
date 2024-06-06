@@ -40,7 +40,7 @@
                         <p class="provinsi">Jawa Barat</p>
                     </div>
                     <div class="segment order">
-                        <h4 class="segment-title">Pesanan</h4>
+                        <h4 class="segment-title" id="product-title">Pesanan</h4>
                         <div class="products">
                             @for ($i = 0; $i < 10; $i++)
                                 <div class="product">
@@ -49,14 +49,16 @@
                                     </div>
                                     <div class="product-info">
                                         <h4 class="product-name">Eau De Toilette</h4>
-                                        <h4 class="product-size">Size : M</h4>
-                                        <h4 class="product-qty">x1</h4>
+                                        <div class="product-size-and-quantity">
+                                            <h4 class="product-size">Ukuran : M</h4>
+                                            <h4 class="product-qty">x1</h4>
+                                        </div>
                                         <h4 class="product-price">Rp 100,000.00</h4>
+                                        <div class="rate"><div class="rate-wrapper"><a href=""><div class="rate-btn">Nilai</div></a></div></div>
                                     </div>
                                 </div>
                             @endfor
                         </div>
-                        <hr class="end-line">
                     </div>
                     <div class="segment order-amount">
                         <div class="amount">
@@ -65,11 +67,11 @@
                                 <p class="amount-item-value">Rp 450,000</p>
                             </div>
                             <div class="amount-item">
-                                <p class="amount-item-name">Discounts</p>
+                                <p class="amount-item-name">Diskon</p>
                                 <p class="amount-item-value">- Rp 10,000</p>
                             </div>
-                            <div class="amount-item">
-                                <p class="amount-item-name">Shipping</p>
+                            <div class="amount-item last-item">
+                                <p class="amount-item-name">Ongkos Kirim</p>
                                 <p class="amount-item-value">Rp 10,000</p>
                             </div>
                             <div class="total">
@@ -78,13 +80,12 @@
                             </div>
                             <div class="payment-method">
                                 <img src="assets\dummy-img\cc.svg" alt="">
-                                <p class="amount-item-value">Credit Card</p>
+                                <p class="amount-item-value">Kartu Kredit</p>
                             </div>
                     </div>
-                    <div class="submit">
-                        <div class="btn-wrapper"><a href=""><div class="button">Nilai</div></a></div>
-                        <div class="btn-wrapper"><a href=""><div class="button">Ajukan Pengembalian</div></a></div>
-                    </div>
+                </div>
+                <div class="submit">
+                    <div class="btn-wrapper"><a href=""><div class="button">Ajukan Pengembalian</div></a></div>
                 </div>
             </section>
         </div>

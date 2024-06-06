@@ -70,18 +70,17 @@ a{
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 25px 30px 0;
 }
 
 .segment-title{
-    margin: 0;
     letter-spacing: 1px;
     color: #4F290C;
     font-weight: 600;
+    margin: 20px 40px 0;
 }
 
 .delivery-address p {
-    margin: 0 0 0 40px;
+    margin: 0 0 0 70px;
     font-size: 14px;
     letter-spacing: 1px;
     color: #4F290C;
@@ -92,16 +91,18 @@ a{
 }
 
 .products {
-    margin: 20px;
+    margin: 0 40px 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .product {
     display: flex;
     flex-direction: row;
     gap: 20px;
+    padding: 20px 30px;
+    border-bottom: #D5BE9E solid 2px;
+
 }
 
 .product-img {
@@ -120,17 +121,24 @@ a{
 .product-info {
     display: flex;
     flex-direction: column;
-    width: 83%;
+    width: 87%;
 }
 
 .product-name, .product-size, .product-price, .product-qty{
     margin: 0;
     letter-spacing: 1px;
     color: #4F290C;
+    font-size: 13px;
+}
+
+.product-size-and-quantity {
+    display: flex;
+    flex-direction: row;
 }
 
 .product-size {
     font-weight: 500;
+    width: 50%;
 }
 
 .product-qty {
@@ -138,6 +146,7 @@ a{
     font-weight: 500;
     letter-spacing: 1px;
     color: #4F290C;
+    width: 50%;
 }
 
 .product-price {
@@ -145,11 +154,22 @@ a{
     font-weight: 600;
 }
 
-.end-line {
-    width: 94%;
-    color: #D5BE9E;
-    border: #D5BE9E solid thin;
-    margin: 5px 0;
+.rate-wrapper{
+    margin-left: 650px;
+}
+
+.rate-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: #4F290C;
+    background-color: #D5BE9E;
+    padding: 2px 40px;
+    margin: 2px 0;
+    border-radius: 20px;
 }
 
 .order-amount {
@@ -157,7 +177,7 @@ a{
 }
 
 .amount {
-    margin-left: 36.5vw;
+    margin-left: 36.4vw;
     display: flex;
     flex-direction: column;
 }
@@ -165,9 +185,13 @@ a{
 .amount-item {
     display: flex;
     flex-direction: row;
-    width: 340px;
+    width: 338px;
     gap: 18px;
-    margin: 5px 20px;
+    margin: 5px 30px;
+}
+
+.last-item {
+    margin-bottom: 30px;
 }
 
 .amount-item p, .total h3 {
@@ -198,9 +222,9 @@ a{
 .total {
     display: flex;
     flex-direction: row;
-    width: 340px;
+    width: 400px;
     gap: 18px;
-    padding: 10px 20px 0;
+    padding: 10px 30px 0;
     border-top: #D5BE9E solid 2px;
 }
 
@@ -218,7 +242,7 @@ a{
     display: flex;
     flex-direction: row;
     gap: 10px;
-    margin: 0 80px 0 0;
+    margin: 0 75px 0 0;
 }
 
 .payment-method img {
@@ -242,7 +266,11 @@ a{
 }
 
 .btn-wrapper {
-    margin: 30px 20px 30px 0;
+    margin: 30px;
+}
+
+.btn-wrapper a{
+    text-decoration: none;
 }
 
 .button {
