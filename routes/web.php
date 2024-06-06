@@ -76,7 +76,7 @@ Route::get('/test', function () {
     return view('customer.test');
 });
 
-Route::get('/chat', function () {
+Route::get('/customer-chat', function () {
     return view('customer.chat');
 });
 
@@ -89,6 +89,9 @@ Route::get('/tambah-alamat', function () {
 });
 
 // Route for Admins' Page
+Route::get('/admin-chat', function () {
+    return view('admin.chat');
+});
 
 Route::get('/order-status', function(){
     return view('admin.orderstatus');
