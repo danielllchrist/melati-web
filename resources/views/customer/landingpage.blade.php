@@ -18,36 +18,18 @@
             <div class="carousel-wrapper">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="assets\dummy-img\Screenshot 2024-05-18 162312.png" class="d-block w-100"
-                                alt="Promotion Banner 1">
-                                <a href="" class="carousel-product-link">
-                                    <div class="belanja-sekarang-button">
-                                        <h2>BELANJA SEKARANG</h2>
-                                        <div class="belanja-sekarang"></div>
-                                    </div>
-                                </a>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="assets\dummy-img\Screenshot 2024-05-18 162312.png" class="d-block w-100"
-                                alt="Promotion Banner 2">
-                                <a href="" class="carousel-product-link">
-                                    <div class="belanja-sekarang-button">
-                                        <h2>BELANJA SEKARANG</h2>
-                                        <div class="belanja-sekarang"></div>
-                                    </div>
-                                </a>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="assets\dummy-img\Screenshot 2024-05-18 162312.png" class="d-block w-100"
-                                alt="Promotion Banner 3">
-                                <a href="" class="carousel-product-link">
-                                    <div class="belanja-sekarang-button">
-                                        <h2>BELANJA SEKARANG</h2>
-                                        <div class="belanja-sekarang"></div>
-                                    </div>
-                                </a>
-                        </div>
+                        @for ($i = 0; $i < 3; $i++)
+                            <div class="carousel-item active">
+                                <img src="assets\dummy-img\Screenshot 2024-05-18 162312.png" class="d-block w-100"
+                                    alt="Promotion Banner 1">
+                                    <a href="" class="carousel-product-link">
+                                        <div class="belanja-sekarang-button">
+                                            <h2>BELANJA SEKARANG</h2>
+                                            <div class="belanja-sekarang"></div>
+                                        </div>
+                                    </a>
+                            </div>
+                        @endfor
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                         data-bs-slide="prev">
@@ -93,36 +75,18 @@
                 </a>
             </div>
             <div class="card-wrapper">
-                <a href="">
-                    <div class="product-card">
-                        <div class="product-img"><img src="assets\dummy-img\Snapinsta.png" alt=""></div>
-                        <div class="information">
-                            <img src="assets\dummy-img\Rectangle 657.png" alt="">
-                            <p class="product-name">Kamboja Kutubaru</p>
-                            <p class="price">Rp 120,000</p>
+                @for ($i = 0; $i < 3; $i++)
+                    <a href="">
+                        <div class="product-card">
+                            <div class="product-img"><img src="assets\dummy-img\Snapinsta.png" alt=""></div>
+                            <div class="information">
+                                <img src="assets\dummy-img\Rectangle 657.png" alt="">
+                                <p class="product-name">Kamboja Kutubaru</p>
+                                <p class="price">Rp 120,000</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="product-card">
-                        <div class="product-img"><img src="assets\dummy-img\Snapinsta.png" alt=""></div>
-                        <div class="information">
-                            <img src="assets\dummy-img\Rectangle 657.png" alt="">
-                            <p class="product-name">Kamboja Kutubaru</p>
-                            <p class="price">Rp 120,000</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="product-card">
-                        <div class="product-img"><img src="assets\dummy-img\Snapinsta.png" alt=""></div>
-                        <div class="information">
-                            <img src="assets\dummy-img\Rectangle 657.png" alt="">
-                            <p class="product-name">Kamboja Kutubaru</p>
-                            <p class="price">Rp 120,000</p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                @endfor
             </div>
     </section>
 
@@ -130,7 +94,7 @@
         <div id="mix-and-match">
             <img src="assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
             <h1>Bebaskan kreativitasmu! Mix and match gaya favoritmu dengan mudah.</h1>
-            <div id="button-mix-and-match-wrapper"><a href=""><div id="button-mix-and-match" class="button">Kunjungi fitur Mix and Match</div></a></div>
+            <div id="button-mix-and-match-wrapper"><a href="/mixmatch"><div id="button-mix-and-match" class="buttons">Kunjungi fitur Mix and Match</div></a></div>
         </div>
     </section>
 
@@ -138,7 +102,7 @@
         <div id="belanja-sekarang-banner">
             <h2>BATIK MELATI</h2>
             <h1>WARISAN BUDAYA , GAYA MODERN</h1>
-            <div class="button-belanja-wrapper"><a href=""><div id="button-belanja" class="button">Belanja Sekarang</div></a></div>
+            <div id="button-belanja-wrapper"><a href="/katalog"><div id="button-belanja" class="buttons">Belanja Sekarang</div></a></div>
         </div>
     </section>
     @include('components.customer.footercustomer')

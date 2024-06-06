@@ -38,7 +38,7 @@
                     </div>
                     <div class="product-info">
                         <h4 class="product-name">Eau De Toilette</h4>
-                        <h4 class="product-size">Size : M</h4>
+                        <h4 class="product-size">Ukuran : M</h4>
                         <h4 class="product-qty">x1</h4>
                         <h4 class="product-price">Rp 100,000.00</h4>
                     </div>
@@ -55,7 +55,7 @@
                 <form action="" method="post">
                     @csrf
                     <div class="text-area-wrapper">
-                        <textarea name="" id="" placeholder="Beri tahu kami tentang pesanan Anda."></textarea>
+                        <textarea name="" id="" maxlength="1000" placeholder="Beri tahu kami tentang pesanan Anda."></textarea>
                     </div>
                 </form>
             </div>
@@ -67,19 +67,19 @@
             </div>
             <div class="refund">
                 <div class="refund-detail">
-                    <p class="fund">Total Price</p>
+                    <p class="fund">Total Harga</p>
                     <p class="fund-value">Rp 450,000</p>
                 </div>
                 <div class="refund-detail">
-                    <p class="fund">Discounts</p>
+                    <p class="fund">Diskon</p>
                     <p class="fund-value">- Rp 10,000</p>
                 </div>
                 <div class="refund-detail">
-                    <p class="fund">Shipping</p>
+                    <p class="fund">Ongkos Kirim</p>
                     <p class="fund-value">Rp 10,000</p>
                 </div>
                 <div class="refund-details">
-                    <h3 class="fund">Total Refund</h3>
+                    <h3 class="fund">Total Pengembalian Dana</h3>
                     <h3 class="fund-value">Rp 450,000</h3>
                 </div>
             </div>

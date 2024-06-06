@@ -215,7 +215,7 @@ body{
     font-weight: 700;
 }
 
-.button {
+.buttons {
     text-align: center;
     text-decoration: none;
     font-weight: bold !important;
@@ -224,7 +224,11 @@ body{
     border-radius: 90px;
     padding: 10px;
     font-size: larger !important;
+}
+
+a .buttons:hover {
     text-decoration: none;
+
 }
 
 #button-mix-and-match-wrapper {
@@ -234,6 +238,10 @@ body{
     position: relative;
     top: 40%;
     transform: translateY(-50%);
+}
+
+#button-mix-and-match-wrapper a{
+    text-decoration: none;
 }
 
 #button-mix-and-match {
@@ -265,6 +273,10 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#button-belanja-wrapper a{
+    text-decoration: none;
 }
 
 #button-belanja {
