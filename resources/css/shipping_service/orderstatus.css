@@ -8,7 +8,7 @@ body{
     width: auto;
     height : auto;
     background-color: black;
-    padding : 191px 80px 80px 80px;
+    padding : 50px 80px 50px 80px;
   }
 
   .inner-container{
@@ -89,24 +89,7 @@ body{
 .status-menu{
     display: flex;
     justify-content: space-between;
-    width : 100%;
-    font-size: 17px;
-    font-weight : 600;
-    color : #F0F1E4;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
-    list-style-type: none;
-    text-decoration: none;
-    padding : 0;
-    margin : 0;
-}
 
-.status-menu a{
-    width : 270px;
-    display : flex;
-    justify-content: center;
-    font-size: 17px;
-    font-weight : 600;
     color : #F0F1E4;
     border-bottom: 2px solid transparent;
     transition: all 0.3s ease;
@@ -124,9 +107,26 @@ body{
     color : #D5BE9E;
 }
 
+.ps-menu-link{
+    gap : 103px;
+    font-size: 17px;
+    font-weight : 600;
+    display: flex;
+    justify-content: center;
+    width : 420px;
+    text-align: center;
+    color : #F0F1E4;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    list-style-type: none;
+    text-decoration: none;
+    padding : 0;
+    margin : 0;
+}
+
 .active-menus{
     color : #D5BE9E !important;
-    border-bottom: 2    x solid #D5BE9E;
+    border-bottom: 2px solid #D5BE9E;
 }
 
 .ps-order{
@@ -134,6 +134,7 @@ body{
     display : flex;
     flex-direction: column;
     color : #4F290C;
+    padding : 30px 45px;
 }
 
 .ps-status-order{
@@ -161,12 +162,16 @@ body{
 
 
 .menunggu-konfirmasi{
+    height : 36px;
     font-family: 'Poppins';
-    font-size : 16px;
+    font-size : 12px;
     padding : 5px 17px;
     border-radius: 20px;
     background-color: #496041;
     color : #F0F1E4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .ps-order-detail{
@@ -271,3 +276,31 @@ body{
     color: #F0F1E4 !important;
     text-decoration: none;
   }
+
+.table-cell{
+    border-bottom: 2px #4F290C solid;
+}
+
+thead{
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+table , th{
+    border-collapse: collapse;
+}
+
+td{
+    font-size: 14px;
+    padding : 20px 0px;
+    max-width: 150px;
+    font-weight: 200;
+    word-wrap: break-word;
+    border-bottom: 2px #4f290c31 solid;
+}
+
+
+tr {
+    text-align: center;
+}

@@ -95,3 +95,7 @@ Route::get('/order-status', function(){
 });
 
 // Route for Shipping Services' Page
+
+Route::get('/order-status-section', function(){
+    return view('shipping_service.orderstatus');
+});
