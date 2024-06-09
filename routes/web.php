@@ -32,6 +32,10 @@ Route::get('/katalog', function () {
     return view('customer.catalog');
 });
 
+Route::get('/wishlist', function () {
+    return view('customer.wishlist');
+});
+
 Route::get('/mixmatch', function () {
     return view('customer.mixmatch');
 });
@@ -95,6 +99,10 @@ Route::get('/admin-chat', function () {
 
 Route::get('/order-status', function(){
     return view('admin.orderstatus');
+});
+
+Route::get('/admindashboard', function () {
+    return view('admin.admindashboard');
 });
 
 // Route for Shipping Services' Page

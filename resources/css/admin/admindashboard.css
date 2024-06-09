@@ -1,0 +1,91 @@
+.box-1, .box-2, .box-3, .box-4{
+    width: 275px;
+    border-bottom: 5px solid rgb(59, 48, 33);
+    color: white;
+    padding: 20px 30px;
+}
+
+.box-left > p {
+    margin: 0;
+}
+
+.count {
+     font-weight: bold;
+     font-size: 24px;
+}
+
+.earning-img {
+    background-color: white;
+    border-radius: 5em;
+    padding: 5px;
+    width: 50px;
+}
+
+.discount-img {
+    background-color: white;
+    border-radius: 5em;
+    padding: 5px;
+    width: 50px;
+}
+
+.order-img {
+    background-color: white;
+    border-radius: 5em;
+    padding: 10px;
+    width: 50px;
+}
+.user-img{
+    background-color: white;
+    border-radius: 5em;
+    padding: 10px;
+    width: 50px;
+}
+
+#sortBy {
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.revenue-report{
+    width: 850px;
+    height: 100%;
+}
+
+#revenueChart{
+    background-color: white;
+    height: 695px;
+    padding: 20px;
+}
+
+#genderChart{
+    background-color: white;
+    padding: 20px;
+}
+
+.month{
+    background-color: white;
+    padding: 25px 30px;
+}
+
+.month-data > table{
+    border: 1px solid lightgray;
+}
+
+tr > td {
+    padding: 25px;
+}
+
+.data-count > p, .data-title > p{
+    margin: 0;
+    text-align: center;
+}
+
+.data-count > p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.data-title > p {
+    font-size: 16px;
+    color: gray;
+}

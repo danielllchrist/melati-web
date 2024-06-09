@@ -5,13 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Melati</title>
     @vite('resources/css/shipping_service/orderstatus.css')
     @vite('resources/css/app.css')
+    
+    <style>
+        .box-1 {
+            background-image: url('assets/backgroundHijau.png');
+        }
+
+        .box-2 {
+            background-image: url('assets/backgroundMerah.png');
+        }
+
+        .box-3 {
+            background-image: url('assets/backgroundCoklat.png');
+        }
+    </style>
 </head>
 
-<body>
+<body class = "bg-black" >
     @include('components.shipping_service.headerss')
+    <div class="container d-flex justify-content-between mt-5 mb-5">
+        <div class="d-flex box-1 justify-content-between align-items-center">
+            <div class="box-left">
+                <p>Need to be picked up</p>
+                <p class="count">15</p>
+            </div>
+            <div class="box-right">
+                <img src="assets/iconPickUp.png" class="pickup-img">
+            </div>
+        </div>
+        
+        <div class="d-flex box-2 justify-content-between align-items-center">
+            <div class="box-left">
+                <p>On Delivery</p>
+                <p class="count">37</p>
+            </div>
+            <div class="box-right">
+                <img src="assets/iconDelivery.png" class="delivery-img">
+            </div>
+        </div>
+
+        <div class="d-flex box-3 justify-content-between align-items-center">
+            <div class="box-left">
+                <p>Total Order</p>
+                <p class="count" id="total-order">543</p>
+                <select name="sortBy" id="sortBy" onchange="order(this)">
+                    <option value="1">This Week</option>
+                    <option value="2">This Month</option>
+                    <option value="3">This Year</option>
+                    <option value="4">All Orders</option>
+                </select>
+            </div>
+            <div class="box-right">
+                <img src="assets/iconDone.png" class="done-img">
+            </div>
+        </div>
+    </div>
+
     <div class="main-content ">
         <div class="inner-container">
             <div class = "ps-header">
@@ -74,6 +127,23 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        function order(atr){
+            var kategori = atr.value;
+
+            if(kategori == 1){
+                document.getElementById("total-order").innerHTML = "543";
+            }else if(kategori == 2){
+                document.getElementById("total-order").innerHTML = "1020";
+            }else if(kategori == 3){
+                document.getElementById("total-order").innerHTML = "3183";
+            }else{
+                document.getElementById("total-order").innerHTML = "4746";
+            }
+        }
+    </script>
     @include('components.shipping_service.footerss')
 </body>
 

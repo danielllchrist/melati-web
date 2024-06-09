@@ -304,3 +304,47 @@ td{
 tr {
     text-align: center;
 }
+
+
+.box-1, .box-2, .box-3{
+    width: 275px;
+    border-bottom: 5px solid rgb(59, 48, 33);
+    color: white;
+    padding: 20px 30px;
+}
+
+
+.box-left > p {
+    margin: 0;
+}
+
+.count {
+     font-weight: bold;
+     font-size: 24px;
+}
+
+.pickup-img {
+    background-color: white;
+    border-radius: 5em;
+    padding: 5px;
+    width: 50px;
+}
+
+.delivery-img {
+    background-color: white;
+    border-radius: 5em;
+    padding: 10px 5px;
+    width: 50px;
+}
+
+.done-img {
+    background-color: white;
+    border-radius: 5em;
+    padding: 15px 10px;
+    width: 50px;
+}
+
+#sortBy {
+    padding: 0 10px;
+    font-size: 14px;
+}
