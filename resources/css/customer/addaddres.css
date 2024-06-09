@@ -99,11 +99,8 @@ body{
     /* background-color: purple; */
     display: flex;
     align-self: center;
+    height: 25px;
 
-}
-.back_icon{
-    transform: scaleX(-1);
-    height: 20px;
 }
 
 .tambah-alamat{
