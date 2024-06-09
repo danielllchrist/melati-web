@@ -12,12 +12,12 @@
 
 <body>
     @include('components.admin.headeradmin')
-    <a href="#" class="back-btn"><img src="assets/side_bar/back_arrow.svg" alt="Back">
-        <div class="profile">
-            <p>Orders</p>
-        </div>
-    </a>
     <div class="main-content ">
+        <a href="#" class="back-btn"><img src="assets/side_bar/back_arrow.svg" alt="Back">
+            <div class="profile">
+                <p>Orders</p>
+            </div>
+        </a>
         <div class="inner-container">
             <div class = "ps-header">
                 <div class = "padding-search-custom">

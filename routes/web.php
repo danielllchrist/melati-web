@@ -105,6 +105,10 @@ Route::get('/admindashboard', function () {
     return view('admin.admindashboard');
 });
 
+Route::get('/admin-index', function(){
+    return view('admin.index');
+});
+
 Route::get('/profil-admin', function(){
     return view('admin.profile');
 });

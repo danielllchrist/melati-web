@@ -250,33 +250,6 @@ body{
     font-weight : 700;
 }
 
-.back-btn{
-    position : absolute;
-    top : 154px;
-    left : 33px;
-    display : flex;
-    gap : 19px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    color: #F0F1E4;
-    transition: all 0.3s ease-in-out;
-    text-decoration: none;
-}
-
-.back-btn:hover{
-    color : #D5BE9E;
-    text-decoration: none;
-  }
-
-
-  .back-btn p{
-    font-weight: bold;
-    color: #F0F1E4 !important;
-    text-decoration: none;
-  }
-
 .table-cell{
     border-bottom: 2px #4F290C solid;
 }
