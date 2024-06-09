@@ -11,6 +11,7 @@
 </head>
 <body>
     @include('components.customer.headercustomer')
+    <div class="main-content">
     <div class="atas">
         <div class="nonactive active">
             <a href="/keranjang">
@@ -103,27 +104,26 @@
                         </div>
                     </div>
                     @endfor
-                    <div class="w2">
-                        <p>3 Items</p>
-                    </div>
-                    <div class="w1 brdr">
-                        <h3>Subtotal</h3>
-                        <p>Rp 200.000</p>
-                    </div>
-                    <div class="w1">
-                        <h3>Discounts</h3>
-                        <p>Rp 200.000</p>
-                    </div>
-                    <div class="w1">
-                        <h3>Shipping</h3>
-                        <p>Rp 200.000</p>
-                    </div>
-  
-                </div>
-                <div class="w1 brdr">
-                    <h2>Total</h2>
-                    <h2>Rp 400.000</h2>
-                </div>
+            </div>
+            <div class="w2">
+                <p>3 Items</p>
+            </div>
+            <div class="w1 brdr">
+                <h3>Subtotal</h3>
+                <p>Rp 200.000</p>
+            </div>
+            <div class="w1">
+                <h3>Discounts</h3>
+                <p>Rp 200.000</p>
+            </div>
+            <div class="w1">
+                <h3>Shipping</h3>
+                <p>Rp 200.000</p>
+            </div>
+            <div class="w1 brdr">
+                <h2>Total</h2>
+                <h2>Rp 400.000</h2>
+            </div>
             </div>
             <div class="wrap3">
                 <button class="bayar">Konfirmasi Pesanan</button>
@@ -134,6 +134,7 @@
 
     @include('customer.modal.alamatDetail')
     @include('customer.modal.tambahAlamat')
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -175,9 +176,6 @@
     });
   });
 </script>
-
-
-
 
 </body>
 </html>

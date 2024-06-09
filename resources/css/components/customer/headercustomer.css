@@ -28,6 +28,9 @@ body{
     border-bottom-style: solid;
     border-color : #D5BE9E;
     border-width: 1px;
+    position: sticky;
+    top: 0; /* Position sticky to the top of the viewport */
+    z-index: 1000; /* Ensure the header is above other content */
 }
 
 .navmenu-custom {
