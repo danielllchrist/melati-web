@@ -44,15 +44,16 @@ body {
   
   input[type=text], input[type=password] {
 	font-family: Poppins;
-	width: 500px;
-	height: 40px;
-	padding: 12px 20px;
-	margin: 8px 0;
-	display: inline-block;
-	/* border: 1px solid #ccc; */
-	box-sizing: border-box;
-	color: #4F290C;
-	border-radius: 30px;
+    display : flex;
+    background: transparent;
+    text-decoration: none;
+    color : #F0F1E4;
+	border : none;
+    border-bottom : 2px solid #F0F1E4;
+	width : 441.5px;
+    background-clip: padding-box;
+    appearance: none;
+	outline: none;
   }
 
   .wrap-right label{
@@ -109,10 +110,8 @@ body {
   
   input::placeholder,
   textarea::placeholder {
-	opacity: 1;
-	color: #4F290C;
-	font-family: Poppins;
-	font-size: 15px;
+    color: #F0F1E4;
+    opacity: 1;	
   }
   
   .bottom p{
