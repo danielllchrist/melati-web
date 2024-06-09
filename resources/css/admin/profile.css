@@ -1,0 +1,232 @@
+body{
+    background-color: black;
+    /* font-family: "Poppins"; */
+}
+
+.pf-main-content{
+    height : auto;
+    display : flex;
+    padding : 191px 174px 72px 81px;
+}
+
+.pf-inner-container{
+    width : 100%;
+    height : auto;
+}
+
+.pf-profile{
+    display : flex;
+    gap : 154.5px;
+}
+
+.pf-profile-info{
+    display : flex;
+    flex-direction: column;
+    gap : 21px;
+}
+
+.pf-pass{
+    display : flex;
+    flex-direction: column;
+    gap : 21px;
+}
+
+
+.pf-title{
+    font-family: 'Poppins';
+    font-size: 30px;
+    font-weight: 700;
+    color : #D5BE9E;
+}
+
+.pf-submit-btn-container{
+    display : flex;
+    justify-content: flex-end;
+}
+
+.pf-submit-btn{
+    margin-top : 12px;
+    width : 131px;
+    font-family: 'Poppins';
+    font-size: 17px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D5BE9E;
+    color : #4F290C;
+    padding : 14px 30px;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    border-radius: 999px;
+    font-weight : 600;
+}
+
+.pf-pp-btn{
+    font-family: 'Poppins';
+    font-size: 15px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color : white;
+    padding : 15px;
+    text-decoration: none;
+    outline: none;
+    border: 2px solid white;
+    border-radius: 999px;
+    font-weight : 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.pf-pp-btn:hover{
+    border : 2px solid #D5BE9E;
+    color : #D5BE9E;
+}
+
+.hidden{
+    display : none;
+}
+
+.pf-profileform{
+    width: 593px;
+    height : auto;
+    display: flex;
+    flex-direction: column;
+    color : #F0F1E4;
+    font-family: 'Poppins';
+    font-size: 15px;
+    gap : 33px;
+    unicode-bidi: isolate;
+}
+
+.pf-formdetail{
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pf-textfield{
+    display : flex;
+    background-color: transparent;
+    text-decoration: none;
+    color : #F0F1E4;
+    border-bottom : 2px solid #F0F1E4;
+    width : 441.5px;
+    justify-content: space-between;
+}
+
+input[type=date] {
+    padding-right : 5px;
+	display: inline-block;
+  }
+  /* input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top : 2px;
+    left: -1px;
+    position: relative;
+    background-color: #D5BE9E;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top : 2px;
+    left: -1px;
+    position: relative;
+    background-color: #4F290C;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+} */
+
+input[type="radio"]{
+    accent-color: #D5BE9E;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.pf-textfield::placeholder {
+    color: #F0F1E4;
+    opacity: 1;
+  }
+
+  .pf-textfield::-ms-input-placeholder {
+    color: #F0F1E4;
+  }
+
+.pf-name{
+    display : flex;
+    width : auto;
+}
+
+.pf-gender{
+    display : flex;
+    justify-content: flex-start;
+    width : 441.5px;
+    gap : 127px;
+}
+
+.pf-radio{
+    display : flex;
+    gap : 7px;
+}
+
+.pf-radio input[type="radio"]{
+    color: #F0F1E4 !important;
+	background-color: #F0F1E4 !important;
+	border-radius: 50%;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+}
+
+.pf-profile-pp{
+    margin-top : 124px;
+    width : auto;
+    height : auto;
+    display : flex;
+    flex-direction: column;
+    gap : 17px;
+    align-items: center;
+}
+
+.pfp-image{
+    width : 100px;
+    height : 100px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.pf-inputpass{
+    width : 100%;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    color : #F0F1E4;
+}
+
+.pf-inputpass::placeholder {
+    color: #F0F1E4;
+    opacity: 1; /* Firefox */
+  }
+
+
+.pf-inputpass  ::-ms-input-placeholder { /* Edge 12 -18 */
+    color: #F0F1E4;
+  }
+
+.hide-pass-icon{
+    opacity : 1;
+    cursor: pointer;
+}
