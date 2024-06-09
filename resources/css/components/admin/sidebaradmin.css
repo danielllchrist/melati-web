@@ -1,0 +1,133 @@
+
+.withsidebar{
+    width : 100%;
+    display : flex;
+    background-color: black;
+}
+
+.main-content{
+    width : auto;
+    height : auto;
+    background-color: black;
+    padding-bottom: 66px;
+}
+
+.sidebar{
+    top : 0;
+    position : sticky;
+    width : 302px;
+    /* min-height : 100%; */
+    height: 100%;
+    background: black;
+    padding : 50px 0px;
+    font-family: 'Poppins';
+    color : #F0F1E4;
+}
+
+.sidebar:before {
+    content: ""; /* Add an empty content to the pseudo-element */
+    right: 0;
+    position : absolute;
+    top: 115px; /* Position the pseudo-element 20px from the top of the div */
+    min-height: 65vh; /* Set the height of the pseudo-element to 150px */
+    border-right: 2px solid #D5BE9E;
+  }
+
+  .sidebar-content{
+    display : flex;
+    flex-direction: column;
+    gap : 64px;
+  }
+
+  .sidebar-back{
+    display : flex;
+    gap : 25px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    color: #F0F1E4;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .sidebar-back:hover{
+    color : #D5BE9E;
+  }
+
+  .pp-picture{
+    object-fit:cover;
+    border-radius: 9999px;
+    width: 65px;
+    height: 65px;
+    /* make a shadow */
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    transition: all cubic-bezier(0.4, 0, 0.2, 1) 300ms;
+  }
+
+  .pp-picture:active{
+    /* border will glow when clicked */
+    box-shadow: 0px 0px 5px 0px #D5BE9E;
+  }
+
+  .profile{
+    display: flex;
+    gap : 9px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .sidebar-back p{
+    font-weight: bold;
+    color: #F0F1E4 !important;
+  }
+
+  .sidebar-menu-container{
+    display : flex;
+    flex-direction: column;
+    padding-left: 81px;
+    color : #F0F1E4 !important;
+    gap : 38px;
+  }
+
+  .sidebar-menu-container h2{
+    font-family: 'Poppins';
+    font-weight : 700;
+    font-size: 24px;
+    padding : 0;
+    margin : 0;
+  }
+
+  .sidebar-menu-container a{
+    font-size: 15px;
+    font-weight: 500;
+    color : #F0F1E4;
+    padding-left: 19px;
+  }
+
+  .sidebar-menu{
+    display : flex;
+    flex-direction: column;
+    gap : 15px;
+  }
+
+  .spacing-sidebarmenu{
+    padding : 0;
+    margin : 0;
+    display: flex;
+    flex-direction: column;
+    gap : 21px;
+    list-style-type: none;
+    font-family: 'Poppins';
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  .spacing-sidebarmenu a, .spacing-sidebarmenu li {
+    text-decoration: none;
+  }
+
+  .active-page, .active-page a {
+    color : #D5BE9E !important;
+  }

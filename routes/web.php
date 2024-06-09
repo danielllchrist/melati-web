@@ -105,8 +105,16 @@ Route::get('/admindashboard', function () {
     return view('admin.admindashboard');
 });
 
+Route::get('/profil-admin', function(){
+    return view('admin.profile');
+});
+
 // Route for Shipping Services' Page
 
 Route::get('/order-status-section', function(){
     return view('shipping_service.orderstatus');
+});
+
+Route::get('/profil-jasa-kirim', function(){
+    return view('shipping_service.profile');
 });
