@@ -98,3 +98,10 @@ input {
 img{
     vertical-align: middle;
 }
+
+.ps-title{
+    font-family: Poppins;
+    font-weight: 600;
+    /* color: #F0F1E4; */
+    font-size: 31px;
+}

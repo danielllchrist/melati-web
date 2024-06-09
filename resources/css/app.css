@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 .main-content {
     overflow-y: auto;
-    height: calc(100vh - 95px); /* Full height minus header height */
+    /* height: calc(100vh - 95px);  */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 ::-webkit-scrollbar
 {
-	width: 4px;
-	background-color: black;
+	width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+	/* width: 4px;
+	background-color: black; */
 }
 
 ::-webkit-scrollbar-thumb
