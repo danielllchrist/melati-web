@@ -9,14 +9,14 @@
 }
 
 .collapse-btn{
-    color: white;
+    color: #F0F1E4;
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
 }
 
 .collapse > li {
-    color: white;
+    color: #F0F1E4;
     list-style: none;
     margin-left: 20px;
     margin-top: 10px;
@@ -30,21 +30,25 @@
 
 .card-custom{
     border-radius: 0;
-    color: white;
-    width: 250px;
+    color: #F0F1E4;
+    width: 230px;
     height: 400px;
-    margin: 10px 0;
+    margin: 10px;
 }
 
 .card-custom > i {
     position: relative;
-    top: 275px;
-    left: 210px;
+    top: 240px;
+    left: 190px;
 }
 
 .card-custom-top{
     border-radius: 0;
     width: 100%;
+}
+
+.card-custom > img {
+    max-height: 245px;
 }
 
 .card-custom-body > p{
@@ -58,7 +62,7 @@
 select{
     width: 280px;
     height: 30px;
-    background-color: bisque;
+    background-color: #D5BE9E;
     border-radius: 0;
 }
 
@@ -79,4 +83,5 @@ select{
 
 .content-catalog > a {
     padding: 0;
+    text-decoration: none;
 }

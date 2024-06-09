@@ -35,7 +35,7 @@
         }
 
         .card-custom-text{
-            background-image: url('assets/backgroundCreatorsPick.png');
+            /* background-image: url('assets/backgroundCreatorsPick.png'); */
             padding: 10px 0;
             text-align: center;
         }
@@ -79,13 +79,23 @@
             left: auto;
         }
 
+        .mixmatch{
+            display: flex;
+        }
         .mix-match-page{
             display: flex;
             flex-wrap: wrap;
+            width: 35%;
+        }
+
+        .banner{
+            width: 40%;
+            height: 1000px;
+            background-color: #F0F1E4;
         }
 
         .mix-match{
-            width: 25%;
+            width: 100%;
             margin: 20px 50px;
             padding: 0 20px;
             height: 475px;
@@ -113,9 +123,59 @@
             font-size: 30px;
             font-weight: 700;
         }
+
+        .ps-search-custom-container {
+    display : flex;
+    width : 100%;
+    height : 45px;
+    padding: 10px 18px;
+    appearance: none;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 1px solid #F0F1E4;
+    border-radius: 5px;
+    justify-content: start;
+    align-items: center;
+}
+
+
+.ps-search-custom {
+    width : 100%;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #F0F1E4;
+    appearance: none;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: none;
+    transition: none;
+    margin-left : 15px;
+    outline : none;
+    font-family: 'Poppins';
+}
+
+.ps-search-custom:focus{
+    border : none;
+    outline : none;
+}
+
+.ps-search-custom::placeholder {
+    color: #F0F1E4;
+    opacity: 1; /* Firefox */
+    border : none;
+  }
+
+
+.ps-search-custom  ::-ms-input-placeholder { /* Edge 12 -18 */
+    color: #F0F1E4;
+    border : none;
+  }
     </style>
 </head>
-<body class="bg-dark text-light">
+<body class="bg-black text-light">
+@include('components.customer.headercustomer')
     <div class="container">
         <div class="top-wrapper mb-5 mt-5 d-flex flex-column justify-content-center align-items-center">
             <h1>Perfect Outfit Await</h1>
@@ -123,14 +183,14 @@
         </div>
 
         <div class="creator-pick-wrapper">
-            <h3>Creator's Pick</h3>
+            <h3>Rekomendasi</h3>
             <div class="d-flex justify-content-between mt-3 mb-3">
                 <div class="card-custom">
                     <div class="card-custom-image">
                         <img src="assets/dressHijau.png">
                     </div>
                     <div class="card-custom-text">
-                        <a href="#">
+                        <a href="detail">
                             <i class="fa fa-shopping-cart"></i>
                             Belanja Tampilan Ini
                         </a>
@@ -187,36 +247,15 @@
             </div>
         </div>
 
-        <div class="mix-match-page">
-            <div id="carousel-top-left" class="carousel slide mix-match d-flex flex-column text-center">
-                <h1>TOPS</h1>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/top.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/top.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/top.png" class="d-block w-100">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-top-left" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-top-left" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                <div class="search-box">
-                    <input type="text" name="search" placeholder="Cari" class="search-input">
-                    <i class="fa fa-search icon-search fa-2x"></i>
-                </div>
-            </div>
+        <div class="mixmatch pt-5">
 
+            <div class="banner">
+
+            </div>
+            
+            <div class="mix-match-page">
             <div id="carousel-top-mid" class="carousel slide mix-match d-flex flex-column text-center">
-                <h1>TOPS</h1>
+                <h1>ATASAN</h1>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="assets/top.png" class="d-block w-100">
@@ -237,67 +276,21 @@
                     <span class="visually-hidden">Next</span>
                 </button>
                 <div class="search-box">
-                    <input type="text" name="search" placeholder="Cari" class="search-input">
-                    <i class="fa fa-search icon-search fa-2x"></i>
+                <form class="form-inline my-2 my-lg-0">
+                        <div class="ps-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
+                                width = "19" height = "19"><input class = "ps-search-custom" type="text"
+                                placeholder="cari">
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <div id="carousel-top-right" class="carousel slide mix-match d-flex flex-column text-center">
-                <h1>TOPS</h1>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/top.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/top.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/top.png" class="d-block w-100">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-top-right" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-top-right" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                <div class="search-box">
-                    <input type="text" name="search" placeholder="Cari" class="search-input">
-                    <i class="fa fa-search icon-search fa-2x"></i>
-                </div>
-            </div>
+            
 
-            <div id="carousel-bottom-left" class="carousel slide mix-match d-flex flex-column text-center">
-                <h1>BOTTOMS</h1>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/bottom.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/bottom.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/bottom.png" class="d-block w-100">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-bottom-left" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-bottom-left" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                <div class="search-box">
-                    <input type="text" name="search" placeholder="Cari" class="search-input">
-                    <i class="fa fa-search icon-search fa-2x"></i>
-                </div>
-            </div>
+            
 
             <div id="carousel-bottom-mid" class="carousel slide mix-match d-flex flex-column text-center">
-                <h1>BOTTOMS</h1>
+                <h1>BAWAHAN</h1>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="assets/bottom.png" class="d-block w-100">
@@ -318,94 +311,19 @@
                     <span class="visually-hidden">Next</span>
                 </button>
                 <div class="search-box">
-                    <input type="text" name="search" placeholder="Cari" class="search-input">
-                    <i class="fa fa-search icon-search fa-2x"></i>
+                    <form class="form-inline my-2 my-lg-0">
+                            <div class="ps-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
+                                    width = "19" height = "19"><input class = "ps-search-custom" type="text"
+                                    placeholder="cari">
+                            </div>
+                        </form>
                 </div>
             </div>
-
-            <div id="carousel-bottom-right" class="carousel slide mix-match d-flex flex-column text-center">
-                <h1>BOTTOMS</h1>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/bottom.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/bottom.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/bottom.png" class="d-block w-100">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-bottom-right" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-bottom-right" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                <div class="search-box">
-                    <input type="text" name="search" placeholder="Cari" class="search-input">
-                    <i class="fa fa-search icon-search fa-2x"></i>
-                </div>
             </div>
 
-            <div id="carousel-accessories-left" class="carousel slide mix-match d-flex flex-column text-center">
-                <h1>ACCESSORIES</h1>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/accessories.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/accessories.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/accessories.png" class="d-block w-100">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-accessories-left" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-accessories-left" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                <div class="search-box">
-                    <input type="text" name="search" placeholder="Cari" class="search-input">
-                    <i class="fa fa-search icon-search fa-2x"></i>
-                </div>
-            </div>
-
-            <div id="carousel-accessories-mid" class="carousel slide mix-match d-flex flex-column text-center">
-                <h1>ACCESSORIES</h1>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/accessories.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/accessories.png" class="d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/accessories.png" class="d-block w-100">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-accessories-mid" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-accessories-mid" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                <div class="search-box">
-                    <input type="text" name="search" placeholder="Cari" class="search-input">
-                    <i class="fa fa-search icon-search fa-2x"></i>
-                </div>
-            </div>
-
-            <div id="carousel-accessories-right" class="carousel slide mix-match d-flex flex-column text-center">
-                <h1>ACCESSORIES</h1>
+            <div class="mix-match-page">
+            <div id="carousel-accessories-right" class="carousel slide mix-match d-flex flex-column text-center align-self-center">
+                <h1>AKSESORIS</h1>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="assets/accessories.png" class="d-block w-100">
@@ -426,9 +344,15 @@
                     <span class="visually-hidden">Next</span>
                 </button>
                 <div class="search-box">
-                    <input type="text" name="search" placeholder="Cari" class="search-input">
-                    <i class="fa fa-search icon-search fa-2x"></i>
+                <form class="form-inline my-2 my-lg-0">
+                        <div class="ps-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
+                                width = "19" height = "19"><input class = "ps-search-custom" type="text"
+                                placeholder="cari">
+                        </div>
+                    </form>
                 </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
@@ -437,5 +361,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    @include('components.customer.footercustomer')
 </body>
 </html>
