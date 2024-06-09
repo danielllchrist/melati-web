@@ -8,13 +8,24 @@ a{
 }
 
 .page-title {
-    width: 90%;
-    padding: 100px 20px 10px 20px;
+    width: 100%;
+    /* padding: 0px 20px 10px 0px; */
+}
+
+.content{
+    /* height: 100; */
+    width: 100%;
+    /* background-color: red; */
+    margin-bottom: 100px;
+}
+
+.main-content{
+    margin: 0px !important;
 }
 
 .title-wrapper {
     width: fit-content;
-    margin: 110px 25px 0px 25px;
+    margin: 47px 25px 0px 25px;
 }
 
 .title{
@@ -36,6 +47,10 @@ a{
     font-weight: 700;
     color: #D5BE9E;
     margin: 5px 20px;
+    font-family: Poppins;
+    font-weight: 600;
+    /* color: #F0F1E4; */
+    font-size: 31px;
 }
 
 .title h1:hover{
@@ -44,11 +59,12 @@ a{
 
 .order-detail {
     background-color: #F0F1E4;
-    width: 65vw;
+    /* width: 72.6vw; */
     margin: 20vw;
     display: flex;
     flex-direction: column;
-    margin: 20px 105px;
+    margin: 35px 80px;
+    /* position: absolute; */
 }
 
 .status-img {
@@ -284,4 +300,4 @@ a{
     background-color: #D5BE9E;
     padding: 5px 25px;
     border-radius: 20px;
-}
+}  

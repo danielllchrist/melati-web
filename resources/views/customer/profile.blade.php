@@ -14,7 +14,7 @@
     @include('components.customer.headercustomer')
     <div class="withsidebar">
         @include('components.customer.sidebarcustomer')
-        <div class="pf-main-content ">
+        <div class="main-content ">
             <div class="pf-inner-container">
                 <div class="pf-profile">
                     <div class="pf-profile-info">
@@ -66,8 +66,7 @@
                                 reader.onload = (e) => {
                                     photoPreview = e.target.result;
                                 };
-                                reader.readAsDataURL($refs.photo.files[0]);
-                        " />
+                                reader.readAsDataURL($refs.photo.files[0]);" />
 
                         <!-- Current Profile Photo -->
                         <div x-show="! photoPreview">

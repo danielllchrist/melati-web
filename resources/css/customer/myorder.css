@@ -3,34 +3,35 @@ body{
  }
 
 
- .main-content{
+.main-content{
     width: auto;
     height : auto;
     background-color: black;
-    padding : 191px 80px 80px 80px;
-  }
+    padding: 30px 10px 40px 70px;
+    /* margin: 47px 25px 0px 25px; */
+}
 
-  .inner-container{
+.inner-container{
     display : flex;
     flex-direction: column;
     gap : 42px;
     width : 977px;
-  }
+}
 
-  .ps-header{
+.ps-header{
     display : flex;
     flex-direction: column;
     gap : 15px;
-  }
+}
 
-  .ps-title{
+.ps-title{
     font-family: 'Poppins';
     font-size: 30px;
     font-weight: 700;
     color : #D5BE9E;
-  }
+}
 
-  .ps-search-custom-container {
+.ps-search-custom-container {
     display : flex;
     width : 550px;
     height : 45px;
@@ -63,12 +64,12 @@ body{
 .ps-search-custom::placeholder {
     color: #F0F1E4;
     opacity: 1; /* Firefox */
-  }
+}
 
 
 .ps-search-custom  ::-ms-input-placeholder { /* Edge 12 -18 */
     color: #F0F1E4;
-  }
+}
 
 .ps-content{
     display : flex;

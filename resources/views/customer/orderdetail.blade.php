@@ -13,6 +13,7 @@
     <div class="withsidebar">
         @include('components.customer.sidebarcustomer')
         <div class="main-content">
+            <div class="content">
             <section>
                 <div class="page-title">
                     <div class="title-wrapper">
@@ -88,6 +89,7 @@
                     <div class="btn-wrapper"><a href=""><div class="button">Ajukan Pengembalian</div></a></div>
                 </div>
             </section>
+            </div>
         </div>
     </div>
     @include('components.customer.footercustomer')
