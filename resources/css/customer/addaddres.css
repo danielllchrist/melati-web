@@ -2,51 +2,92 @@ body{
     background-color: #080808 !important;
  }
 
+ .sidebar-content{
+    margin-top: 25px;
+    padding-left: 29px;
+    /* margin-left: 10px; */
+    gap: 44px !important;
+    width: 100%;
+ }
 
- .main-content{
-    width: auto;
-    height : auto;
-    background-color: black;
-    padding : 191px 80px 80px 80px;
-  }
+ .sidebar-menu{
+    gap: 12px !important;
+ }
 
-  .inner-container{
-    display : flex;
-    flex-direction: column;
-    /* gap : 42px; */
-    width : 977px;
-  }
+ .sidebar{
+    width: 300px;
+    margin-top: 22px;
+ }
 
-  .ps-header{
-    display : flex;
-    flex-direction: column;
-    gap : 15px;
-  }
+ .sidebar-menu-container {
+    padding-left: 50px !important;
+ }
+ .sidebar-menu-container {
+    gap: 41px !important;
+ }
+ .spacing-sidebarmenu {
+    gap: 11px !important;
+ }
 
-  .ps-title{
-    font-family: 'Poppins';
-    font-size: 30px;
-    font-weight: 700;
-    color : #D5BE9E;
-  }
+ .sidebar-back{
+    margin-left: -30px;
+ }
 
-  button[type="submit"] {
-	background-color:#D5BE9E;
-	color: #4F290C;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 30px;
-	cursor: pointer;
-	width: 200px;
-	height: 40px;
-	font-family: Poppins;
-	margin-top: 10px;
-    margin-bottom: 20px;
-	font-size: 15px;
+ .sidebar-back p {
+    font-family: Poppins;
     font-weight: 600;
-  }
+    color: #F0F1E4;
+    font-size: 31px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
 
-  .square {
+.inner-container{
+    display : flex;
+    flex-direction: column;
+    gap : 0px;
+    width : 80%;
+    height: 100%;
+}
+
+.ps-header{
+    /* display : flex;
+    flex-direction: column; */
+    gap : 15px;
+}
+
+.ps-title{
+    color: #D5BE9E;
+    margin: 5px 20px;
+    margin-left: 0px;
+    margin-top: 10px;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 31px;
+    margin-bottom: 30px;
+}
+
+button[type="submit"] {
+    background-color:#D5BE9E;
+    color: #4F290C;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    font-family: Poppins;
+    /* margin-top: 10px; */
+    /* margin-bottom: 20px; */
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.main-content{
+    width: 1100px;
+}
+
+.square {
     border: 2px solid #F0F1E4 !important;
     padding: 18px !important;
     margin: 7px 0px 25px 0px !important;
@@ -84,7 +125,6 @@ body{
     font-weight: normal;
     font-size: 14px;
     font-weight: 500;
-    /* padding: 0px; */
     margin-bottom: 3px;
 }
 .right p{
@@ -96,7 +136,6 @@ body{
     margin-bottom: 0px;
 }
 .wrap2{
-    /* background-color: purple; */
     display: flex;
     align-self: center;
     height: 25px;
@@ -106,11 +145,10 @@ body{
 .tambah-alamat{
     border-top: 0px;
     height: 10vh;
-    /* padding: 20px; */
-    margin-top: 15px;
+    /* margin-top: 15px; */
 }
 
-.btn-add-popup{
+.tambah-alamat .btn-add-popup{
     font-family: Poppins;
     font-weight: 700;
     color: #4F290C;
@@ -121,8 +159,209 @@ body{
     cursor: pointer;
     display: flex;
     align-items: center;
+    /* margin-top: 2px; */
+    /* margin-left: 14px; */
+    /* margin-bottom: -7px; */
+    display: inline-block;
+    margin-left: 0px;
+}
+/* -----------------------modal------------------------- */
+btn{
+    background-color: black;
+}
+.modal-header{
+    margin-top: 7px;
+}
+.modal-content {
+    background-color: #000;
+    color: #F0F1E4;
+    padding: 8px;
+    /* padding-right: 12px; */
+    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75);
+}
+.modal-body {
+    background-color: black;
+    color: #000;
+    max-height: 57vh;
+    overflow-y: auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    /* padding:10px; */
+    margin-top: 27px;
+    /* padding-right: 0px; */
+}
+.modal-body::-webkit-scrollbar-track
+{
+	background-color: #000000;
+}
+
+.modal-body::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #F0F1E4;
+}
+
+.modal-body::-webkit-scrollbar-thumb
+{
+	background-color: #D5BE9E;
+}
+.address-card {
+    background-color: #F0F1E4;
+    border: 1px solid #000;
+    padding: 14px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.address-card h6{
+    font-family: Poppins;
+    color: black;
+    font-weight: normal;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    text-align: left;
+    color: #4F290C;
+}
+.address-card p{
+    font-family: Poppins;
+    color: black;
+    font-weight: normal;
+    font-size: 11px;
+    padding: 0px;
+    margin-bottom: 0px;
+    text-align: left;
+    color: #4F290C;
+}
+.btn-submit {
+    background-color: #d2b48c;
+    border: none;
+    color: #000;
+}
+.modal-header{
+    border-bottom: 0px solid #F0F1E4;
+    font-family: Poppins;
+    color: #F0F1E4;
+    font-weight: 500;
+    padding-bottom: 0px;
+}
+h5{
+    font-size: 25px !important;
+}
+.modal-footer{
+    border-top: 0px solid #dee2e6;
+}
+.x_icon{
+    width: 17px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-right: -15px;
+}
+.n-bootstrap {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+.btn-submit-popup{
+    font-family: Poppins;
+    font-weight: 700;
+    color: #4F290C;
+    font-size: 14px;
+    border-radius: 52px;
+    padding: 6.5px 25px 6.5px 25px;
+    background-color: #D5BE9E;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: -25px;
+    margin-top: 12px;
+}
+.modal-footer{
+    height: 11.5vh;
+    /* padding: 20px; */
+    margin-top: -5px;
+}
+.btn-add-popup{
+    font-family: Poppins;
+    font-weight: 700;
+    color: #4F290C;
+    font-size: 11px;
+    border-radius: 52px;
+    padding: 8px 16px 8px 16px;
+    background-color: #D5BE9E;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
     margin-top: 2px;
     margin-left: 14px;
     margin-bottom: -7px;
     display: inline-block;
+}
+.add_icon{
+    width: 18px;
+    margin-right: 2px;
+    margin-left: -5px;
+    /* margin-right: -15px; */
+}
+
+/*-----------------------modal voucher-----------------------*/
+.voucher-card {
+    background-color: #F0F1E4;
+    border: 1px solid #000;
+    padding: 14px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.voucher-card h6{
+    font-family: Poppins;
+    color: black;
+    font-weight: normal;
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 3px;
+    text-align: left;
+    color: #4F290C;
+}
+.voucher-card h9{
+    font-family: Poppins;
+    color: black;
+    font-weight: normal;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    /* text-align: left; */
+    color: #4F290C;
+}
+.voucher-card p{
+    font-family: Poppins;
+    color: black;
+    font-weight: normal;
+    font-size: 11px;
+    padding: 0px;
+    margin-bottom: 0px;
+    text-align: left;
+    color: #4F290C;
+}
+.voucher-card p:last-child{
+    font-family: Poppins;                                       
+    color: black;
+    font-weight: normal;
+    font-size: 8px;
+    padding: 0px;
+    margin-bottom: 0px;
+    text-align: right;
+    color: #4F290C;
+}
+.selected {
+    /* box-shadow: 2px 4px 10px rgb(251, 250, 250); */
+    /* width: 20px; */
+    background-color: #D5BE9E;
+}
+a{
+    text-decoration: none;
 }

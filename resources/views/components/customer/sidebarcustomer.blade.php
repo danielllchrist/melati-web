@@ -15,7 +15,7 @@
                     <div class="profile"><img class="pp-picture" src="assets/top1.png" alt="" />
                         <p>Ryan</p>
                     </div>
-                </a>
+                <!-- </a> -->
             </div>
             <div class="sidebar-menu-container">
                 <div class="sidebar-menu">

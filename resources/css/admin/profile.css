@@ -1,12 +1,5 @@
 body{
     background-color: black;
-    /* font-family: "Poppins"; */
-}
-
-.pf-main-content{
-    height : auto;
-    display : flex;
-    padding : 191px 174px 72px 81px;
 }
 
 .pf-inner-container{
@@ -22,7 +15,7 @@ body{
 .pf-profile-info{
     display : flex;
     flex-direction: column;
-    gap : 21px;
+    gap : 46px;
 }
 
 .pf-pass{
@@ -33,10 +26,12 @@ body{
 
 
 .pf-title{
-    font-family: 'Poppins';
-    font-size: 30px;
-    font-weight: 700;
-    color : #D5BE9E;
+    color: #D5BE9E;
+    margin: 5px 20px;
+    margin-left: 0px;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 31px;
 }
 
 .pf-submit-btn-container{
@@ -54,7 +49,7 @@ body{
     align-items: center;
     background-color: #D5BE9E;
     color : #4F290C;
-    padding : 14px 30px;
+    padding : 12px 30px;
     text-decoration: none;
     outline: none;
     border: none;

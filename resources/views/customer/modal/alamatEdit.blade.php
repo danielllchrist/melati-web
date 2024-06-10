@@ -1,4 +1,4 @@
-<div class="modal fade" id="tambahAlamat" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+<div class="modal fade" id="alamatEdit" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

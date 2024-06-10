@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/components/customer/sidebarcustomer.css')
+    @vite('resources/css/components/shipping_service/sidebar.css')
 </head>
 
 <body>
     <div class = "sidebar">
         <div class = "sidebar-content">
             <div class="sidebar-back">
-                <a href="#" class="profile"><img src="assets/side_bar/back_arrow.svg" alt="Back">
+                <a href="#" class="profile">
                     <div class="profile"><img class="pp-picture" src="assets/top1.png" alt="" />
                         <p>Ryan</p>
                     </div>

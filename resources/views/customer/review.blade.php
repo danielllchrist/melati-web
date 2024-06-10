@@ -14,18 +14,16 @@
 <body>
     @include('components.customer.headercustomer')
     <div class="container">
-        <section>
-            <div class="page-title">
-                <div class="title-wrapper">
-                    <a href="">
-                        <div class="title">
-                            <img src="assets\dummy-img\back arrow.svg" alt="">
-                            <h1>Penilaian Produk</h1>
-                        </div>
-                    </a>
+        <!-- <section> -->
+        <div class="page-title">
+            <a href="">
+                <div class="title">
+                    <img src="assets\dummy-img\back arrow.svg" alt="">
+                    <h1>Penilaian Produk</h1>
                 </div>
-            </div>
-        </section>
+            </a>
+        </div>
+        <!-- </section> -->
 
         <form action="" method="post">
             @csrf
