@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Melati</title>
     @vite('resources/css/admin/profile.css')
-    @vite('resources/css/app/css')
+    @vite('resources/css/app.css')
 </head>
 
 <body>
     @include('components.admin.headeradmin')
     <div class="withsidebar">
         @include('components.admin.sidebaradmin')
-        <div class="pf-main-content ">
+        <div class="main-content ">
             <div class="pf-inner-container">
                 <div class="pf-profile">
                     <div class="pf-profile-info">

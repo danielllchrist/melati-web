@@ -13,22 +13,18 @@
 <body>
     @include('components.customer.headercustomer')
     <div class="container">
-        <section>
-            <div class="page-title">
-                <div class="title-wrapper">
-                    <a href="">
-                        <div class="title">
-                            <img src="assets\dummy-img\back arrow.svg" alt="">
-                            <h1>Pengembalian Barang</h1>
-                        </div>
-                    </a>
+        <div class="page-title">
+            <a href="">
+                <div class="title">
+                    <img src="assets\dummy-img\back arrow.svg" alt="">
+                    <h1>Pengembalian Barang</h1>
                 </div>
-            </div>
-        </section>
+            </a>
+        </div>
 
         <section>
             <div class="title-div">
-                <h2>Produk yang ingin Anda kembalikan</h2>
+                <h2>Produk yang ingin Anda kembalikan :</h2>
             </div>
             <div class="products">
                 @for ($i = 0; $i < 10; $i++)
@@ -37,10 +33,15 @@
                         <img src="assets/dummy-img/Rectangle 28.png" alt="">
                     </div>
                     <div class="product-info">
-                        <h4 class="product-name">Eau De Toilette</h4>
-                        <h4 class="product-size">Ukuran : M</h4>
-                        <h4 class="product-qty">x1</h4>
-                        <h4 class="product-price">Rp 100,000.00</h4>
+                        <div class="left">
+                            <h4 class="product-name">Eau De Toilette</h4>
+                            <h4 class="product-size">Ukuran : M</h4>
+                        
+                        </div>
+                        <div class="right">
+                            <h4 class="product-qty">x1</h4>
+                            <h4 class="product-price">Rp 100,000.00</h4>
+                        </div>
                     </div>
                 </div>
                 @endfor

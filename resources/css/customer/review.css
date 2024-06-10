@@ -12,33 +12,37 @@ a{
 }
 
 .page-title {
-    width: 90%;
-    padding: 60px 60px 10px 20px;
-}
-
-.title-wrapper {
-    width: fit-content;
-    margin-left: 25px;
+    padding: 0px !important;
+    display: flex !important;
+    /* background-color: pink; */
+    /* padding-left: 55px !important; */
+    /* padding-bottom: 25px !important; */
+    flex-direction: row;
+    align-content: center;
+    /* justify-content: center; */
+    /* opacity: 0.5; */
+    margin-left: 48px;
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
 .title{
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: fit-content;
+    /* width: fit-content; */
 }
 
 .title img {
-    width: 23px;
-    height: 42px;
-    object-fit: cover;
+    padding-right: 20px;
+    width: 36px;
 }
 
 .title h1{
-    font-size: 36px;
-    font-weight: 500;
+    font-family: Poppins;
+    font-weight: 600;
     color: #F0F1E4;
-    margin: 20px;
+    font-size: 31px;
 }
 
 .title h1:hover{
@@ -124,7 +128,7 @@ a{
 textarea{
     resize: none;
     border: none;
-    height: 350px;
+    height: 290px;
     width: 97%;
     background-color: #F0F1E4;
     color: #4F290C;
@@ -145,6 +149,7 @@ textarea::placeholder{
     font-size: medium;
     font-weight: 600;
     letter-spacing: 1px;
+    opacity: 0.5;
 }
 
 .submit{

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Melati</title>
-    @vite('resources/css/app/css')
+    @vite('resources/css/app.css')
     @vite('resources/css/shipping_service/profile.css')
 </head>
 
@@ -14,7 +14,7 @@
     @include('components.shipping_service.headerss')
     <div class="withsidebar">
         @include('components.shipping_service.sidebar')
-        <div class="pf-main-content ">
+        <div class="main-content ">
             <div class="pf-inner-container">
                 <div class="pf-profile">
                     <div class="pf-profile-info">

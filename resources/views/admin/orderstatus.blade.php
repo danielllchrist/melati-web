@@ -13,11 +13,14 @@
 <body>
     @include('components.admin.headeradmin')
     <div class="main-content ">
-        <a href="#" class="back-btn"><img src="assets/side_bar/back_arrow.svg" alt="Back">
-            <div class="profile">
-                <p>Orders</p>
-            </div>
-        </a>
+        <div class="page-title">
+            <a href="">
+                <div class="title">
+                    <img src="assets\dummy-img\back arrow.svg" alt="">
+                    <h1>Order</h1>
+                </div>
+            </a>
+        </div>
         <div class="inner-container">
             <div class = "ps-header">
                 <div class = "padding-search-custom">
@@ -43,7 +46,7 @@
                     <div class="ps-status-order">
                         <h3>Order #001</h3>
                         <div class = "ps-info">
-                            <img src="assets/information_green_button.svg" alt="info">
+                            <img src="assets/information_green_button.svg" alt="info" class="i">
                             <div class="menunggu-konfirmasi">Menunggu Konfirmasi</div>
                         </div>
                     </div>

@@ -52,10 +52,7 @@
                             <img id="icon-input-file" src="{{asset('assets/uploadPict.svg')}}">
                             
                         </div>
-                        <!-- <div id="msg_wrap">
-                            <img id="file_result">
-                            <img class="cross" src="{{ asset('assets/silang.svg') }}" onclick="exit('msg_wrap')">
-                        </div> -->
+
                         <button type="submit" id="message_send">Kirim</button>
 
                     </div>
