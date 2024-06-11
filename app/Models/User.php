@@ -18,10 +18,44 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'userID',
         'name',
+        'gender',
+        'phoneNum',
         'email',
+        'age',
         'password',
+        'profilePicturePath',
     ];
+
+    public function address ()
+    {
+        return $this->hasMany(Address::class, 'userID', 'userID');
+    }
+
+    public function chat (){
+        return $this->hasMany(Chat::class, 'userID', 'userID');
+    }
+
+    public function cart ()
+    {
+        return $this->hasMany(Cart::class, 'userID', 'userID');
+    }
+
+    public function wishlist ()
+    {
+        return $this->hasMany(Wishlist::class, 'userID', 'userID');
+    }
+
+    public function transaction ()
+    {
+        return $this->hasMany(Transaction::class, 'userID', 'userID');
+    }
+
+    public function voucherUsage ()
+    {
+        return $this->hasMany(VoucherUsage::class, 'userID', 'userID');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

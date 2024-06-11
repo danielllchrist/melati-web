@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('manage_assets', function (Blueprint $table) {
             $table->uuid('assetID')->primary();
-           $table->string('assetPath')->nullable(true);
+            $table->string('assetPath')->nullable(true);
+            $table->timestamps();
         });
     }
 

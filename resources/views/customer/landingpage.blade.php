@@ -19,7 +19,7 @@
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @for ($i = 0; $i < 3; $i++)
-                            <div class="carousel-item active">
+                            <div class="carousel-item {{ $i == 1 ? 'active' : ''}}">
                                 <img src="assets\dummy-img\Screenshot 2024-05-18 162312.png" class="d-block w-100"
                                     alt="Promotion Banner 1">
                                     <a href="" class="carousel-product-link">

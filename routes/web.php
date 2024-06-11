@@ -113,6 +113,16 @@ Route::get('/profil-admin', function(){
     return view('admin.profile');
 });
 
+Route::get('/admin-order-detail', function(){
+    return view('admin.orderdetail');
+
+});
+
+Route::get('/admin-order-detail', function(){
+    return view('admin.orderdetail');
+
+});
+
 // Route for Shipping Services' Page
 
 Route::get('/order-status-section', function(){
@@ -121,4 +131,12 @@ Route::get('/order-status-section', function(){
 
 Route::get('/profil-jasa-kirim', function(){
     return view('shipping_service.profile');
+});
+
+Route::get('/shipping-service-order-detail', function(){
+    return view('shipping_service.orderdetail');
+});
+
+Route::get('/shipping-service-order-detail', function(){
+    return view('shipping_service.orderdetail');
 });

@@ -15,18 +15,16 @@ return new class extends Migration
             $table->uuid('transactionID')->primary();
             $table->uuid('userID')->nullable(false);
             $table->uuid('addressID')->nullable(false);
-            $table->uuid('statusID')->nullable(false);
             $table->uuid('voucherID')->nullable(true);
-            $table->timestamp('dateTime');
             $table->integer('subTotalPrice')->nullable(false);
             $table->integer('totalWeight')->nullable(false);
             $table->integer('totalDiscount')->nullable(true);
             $table->integer('shippingFee')->nullable(false);
             $table->integer('totalPrice')->nullable(false);
+            $table->timestamps();
 
             $table->foreign('userID')->references('userID')->on('users');
             $table->foreign('addressID')->references('addressID')->on('addresses');
-            $table->foreign('statusID')->references('statusID')->on('statuses');
             $table->foreign('voucherID')->references('voucherID')->on('vouchers');
         });
     }

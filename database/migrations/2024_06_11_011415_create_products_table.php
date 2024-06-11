@@ -17,9 +17,10 @@ return new class extends Migration
             $table->integer('productPrice')->nullable(false);
             $table->enum('productCategory', ['Atasan', 'Bawahan', 'Aksesoris'])->nullable(false);
             $table->text('productDescription')->nullable(false);
-            $table->integer('ProductWeight')->nullable(false);
-            $table->string('ProductImagePath')->nullable(false);
-            $table->enum('ForGender', ['Pria', 'Wanita'])->nullable(false);
+            $table->integer('productWeight')->nullable(false);
+            $table->string('productPicturePath')->nullable(false);
+            $table->enum('forGender', ['Pria', 'Wanita'])->nullable(false);
+            $table->timestamps();
         });
     }
 

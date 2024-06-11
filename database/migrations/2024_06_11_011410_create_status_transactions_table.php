@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('status_transactions', function (Blueprint $table) {
             $table->uuid('transactionID')->primary();
             $table->uuid('statusID')->primary();
-            $table->timestamp('datetime')->nullable(false);
+            $table->timestamps();
 
             $table->foreign('transactionID')->references('transactionID')->on('transactionx');
             $table->foreign('statusID')->references('statusID')->on('statuses');

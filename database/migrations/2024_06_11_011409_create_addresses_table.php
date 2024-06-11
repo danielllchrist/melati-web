@@ -15,9 +15,10 @@ return new class extends Migration
             $table->uuid('addressID')->primary();
             $table->uuid('userID')->nullable(false);
             $table->string('province', 255)->nullable(false);
-            $table->string('CityOrRegency', 255)->nullable(false);
+            $table->string('cityOrRegency', 255)->nullable(false);
             $table->string('nameAddress', 255)->nullable(false);
             $table->text('detailAddress')->nullable(false);
+            $table->timestamps();
 
             $table->foreign('userID')->references('userID')->on('users');
         });

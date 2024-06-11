@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('expiredDate')->nullable(false);
             $table->integer('minimumSpending')->nullable(false);
             $table->integer('voucherQuantity')->nullable(false);
+            $table->timestamps();
         });
     }
 
