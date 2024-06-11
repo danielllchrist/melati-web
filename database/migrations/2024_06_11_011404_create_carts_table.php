@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('userID')->primary();
             $table->uuid('productID')->primary();
             $table->integer('quantity')->nullable(false);
-            $table->date('dateTime')->nullable(false);
+            $table->timestamps();
 
             $table->foreign('userID')->references('userID')->on('users');
             $table->foreign('productID')->references('productID')->on('products');

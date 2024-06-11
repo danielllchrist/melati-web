@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('productID')->nullable(false);
             $table->enum('size', ['S', 'M', 'L', 'XL'])->nullable(true);
             $table->integer('Stock')->nullable(false);
+            $table->timestamps();
 
             $table->foreign('productID')->references('productID')->on('products');
         });

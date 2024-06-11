@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('voucher_usages', function (Blueprint $table) {
             $table->uuid('voucherID')->primary();
             $table->uuid('userID')->primary();
-
+            $table->timestamps();
 
             $table->foreign('voucherID')->references('voucherID')->on('vouchers');
             $table->foreign('userID')->references('userID')->on('users');

@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('manage_links', function (Blueprint $table) {
             $table->uuid('linkID')->primary();
-           $table->uuid('productID')->nullable(false);
-           
-           $table->foreign('productID')->references('productID')->on('products');
+            $table->uuid('productID')->nullable(false);
+            $table->timestamps();
+
+            $table->foreign('productID')->references('productID')->on('products');
         });
     }
 
