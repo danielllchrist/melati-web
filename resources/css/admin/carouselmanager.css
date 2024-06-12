@@ -1,0 +1,44 @@
+body{
+    background-color: black;
+    font-family: Poppins;
+}
+
+a{
+    text-decoration: none;
+}
+
+.page-title {
+    width: 100%;
+    padding: 20px 20px 10px;
+}
+
+.title-wrapper {
+    width: fit-content;
+    margin: 20px 25px 0px 25px;
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    width: fit-content;
+}
+
+.title img {
+    width: 16.43px;
+    height: 30.2px;
+    object-fit: cover;
+}
+
+.title h1{
+    font-size: 36px;
+    font-weight: 700;
+    color: #D5BE9E;
+    margin: 5px 20px;
+}
+
+.title h1:hover{
+    color: #D5BE9E;
+}
+

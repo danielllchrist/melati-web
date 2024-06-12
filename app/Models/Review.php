@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class Review extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids, HasCompositeKey;
+
+    protected $primaryKey = ['productID', 'transactionID'];
+
+    protected $keyType = 'string';
 
     protected $fillable = [
         'productID',
@@ -15,6 +21,13 @@ class Review extends Model
         'rating',
         'comment',
     ];
+
+    public $incrementing = false;
+
+    public function getKeyName()
+    {
+        return ['custom_order_id', 'custom_item_id'];
+    }
 
     public function product()
     {
