@@ -15,9 +15,9 @@ return new class extends Migration
             $table->uuid('statusID')->primary();
             $table->enum('statusName', [
                 'Menunggu Konfirmasi',
-                'Telah Diproses',
+                'Sedang Diproses',
                 'Dalam Pengiriman',
-                'Telah Tiba',
+                'Tiba Di Tujuan',
                 'Penilaian'
             ]);
             $table->enum('pic', [
