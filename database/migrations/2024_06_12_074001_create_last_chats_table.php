@@ -20,7 +20,6 @@ return new class extends Migration
 
             $table->foreign('chatID')->references('chatID')->on('chats');
             $table->foreign('lastSentUserID')->references('userID')->on('users');
-
         });
     }
 
