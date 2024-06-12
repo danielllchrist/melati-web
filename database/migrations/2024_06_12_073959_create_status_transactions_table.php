@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('status_transactions', function (Blueprint $table) {
-            $table->uuid('transactionID')->primary();
-            $table->uuid('statusID')->primary();
+            $table->uuid('transactionID');
+            $table->uuid('statusID');
             $table->timestamps();
+            $table->primary(['transactionID', 'statusID']);
 
-            $table->foreign('transactionID')->references('transactionID')->on('transactionx');
-            $table->foreign('statusID')->references('statusID')->on('statuses');
+            $table->foreign('transactionID')->references('transactionID')->on('transactions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('statusID')->references('statusID')->on('statuses')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

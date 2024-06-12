@@ -18,8 +18,8 @@ return new class extends Migration
             $table->uuid('lastSentUserID')->nullable(false);
             $table->timestamps();
 
-            $table->foreign('chatID')->references('chatID')->on('chats');
-            $table->foreign('lastSentUserID')->references('userID')->on('users');
+            $table->foreign('chatID')->references('chatID')->on('chats')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('lastSentUserID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
