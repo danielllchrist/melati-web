@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+    protected $primaryKey = 'addressID';
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'addressID',
         'userID',
@@ -16,6 +21,8 @@ class Address extends Model
         'nameAddress',
         'detailAddress',
     ];
+
+    public $incrementing = false;
 
     public function user()
     {

@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class LastChat extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+
+    protected $primaryKey = 'lastChatID';
+
+    protected $keyType = 'string';
 
     protected $fillable = [
         'lastChatID',
@@ -15,6 +20,8 @@ class LastChat extends Model
         'lastMessage',
         'lastSentUserID',
     ];
+
+    public $incrementing = false;
 
     public function chat()
     {

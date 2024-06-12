@@ -9,11 +9,17 @@ class RoomChat extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'roomChat';
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'roomChatID',
         'userID',
         'lastChatID',
     ];
+
+    public $incrementing = false;
 
     public function user()
     {

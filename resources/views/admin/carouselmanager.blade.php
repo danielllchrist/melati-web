@@ -21,6 +21,18 @@
                 </a>
             </div>
         </div>
+    </section>
+
+    <section>
+        <div class="editor">
+            @for ($i = 0; $i < 3; $i++)
+                <div class="">
+                    a
+                </div>
+            @endfor
+        </div>
+    </section>
+
     @include('components.admin.footeradmin')
 </body>
 </html>
