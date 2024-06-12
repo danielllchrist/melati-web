@@ -2,17 +2,30 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class VoucherUsage extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids, HasCompositeKey;
+
+    protected $primaryKey = ['voucherID','userID'];
+
+    protected $keyType = 'string';
 
     protected $fillable = [
         'voucherID',
         'userID',
     ];
+
+    public $incrementing = false;
+
+    public function getKeyName()
+    {
+        return['voucherID','userID'];
+    }
 
     public function voucher ()
     {

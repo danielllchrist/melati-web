@@ -2,17 +2,30 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class Wishlist extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids, HasCompositeKey;
+
+    protected $primaryKey =['userID','productID'];
+
+    protected $keyType = 'string';
 
     protected $fillable = [
-        'user_id',
-        'product_id',
+        'userID',
+        'productID',
     ];
+
+    public $incrementing = false;
+
+    public function getKeyName()
+    {
+        return ['userID','productID'];
+    }
 
     public function user()
     {

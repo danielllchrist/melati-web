@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Voucher extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+
+    protected $primaryKey = 'voucherID';
+
+    protected $keyType = 'string';
 
     protected $fillable = [
         'voucherID',
@@ -18,6 +23,8 @@ class Voucher extends Model
         'minimumSpending',
         'voucherQuantity',
     ];
+
+    public $incrementing = false;
 
     public function transaction()
     {
