@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class TransactionDetail extends Model
 {
-    use HasFactory;
+    use HasFactory,HasUuids,HasCompositeKey;
+
+    protected $primaryKey = ['transactionID','productID'];
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'transactionID',
         'productID',
@@ -15,6 +22,13 @@ class TransactionDetail extends Model
         'price',
         'weight',
     ];
+
+    public $incrementing = false;
+
+    public function getKeyName()
+    {
+        return ['transactionID','productID'];
+    }
 
     public function transaction()
     {

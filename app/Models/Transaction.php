@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    use HasFactory;
+    use HasFactory,HasUuids;
+
+    protected $primaryKey = 'transactionID';
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'transactionID',
         'userID',
@@ -21,6 +27,8 @@ class Transaction extends Model
         'shippingFee',
         'totalPrice',
     ];
+
+    public $incrementing = 'false';
 
     public function user()
     {

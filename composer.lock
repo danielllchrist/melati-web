@@ -1830,16 +1830,16 @@
         },
         {
             "name": "laravel-lang/config",
-            "version": "1.4.0",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/config.git",
-                "reference": "4ad2a198e423e4fba792174d10e8d9bc24a12877"
+                "reference": "944e073a245f67315d524943faff04f03ac4a9b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/config/zipball/4ad2a198e423e4fba792174d10e8d9bc24a12877",
-                "reference": "4ad2a198e423e4fba792174d10e8d9bc24a12877",
+                "url": "https://api.github.com/repos/Laravel-Lang/config/zipball/944e073a245f67315d524943faff04f03ac4a9b3",
+                "reference": "944e073a245f67315d524943faff04f03ac4a9b3",
                 "shasum": ""
             },
             "require": {
@@ -1898,9 +1898,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Laravel-Lang/config/issues",
-                "source": "https://github.com/Laravel-Lang/config/tree/1.4.0"
+                "source": "https://github.com/Laravel-Lang/config/tree/1.4.2"
             },
-            "time": "2024-06-11T23:39:48+00:00"
+            "time": "2024-06-12T12:25:22+00:00"
         },
         {
             "name": "laravel-lang/lang",
