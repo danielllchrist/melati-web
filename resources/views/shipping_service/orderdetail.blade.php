@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detil Pesanan</title>
     @vite('resources/css/app.css')
-    @vite('resources/css/admin/orderdetail.css')
+    @vite('resources/css/shipping_service/orderdetail.css')
 </head>
 <body>
-    @include('components.admin.headeradmin')
+    @include('components.shipping_service.headerss')
     <section>
         <div class="page-title">
             <div class="title-wrapper">
@@ -26,7 +26,7 @@
     <section>
         <div class="order-detail">
             <div class="status-img">
-                <img src="assets\dummy-img\order state 1.svg" alt="">
+                <img src="assets\dummy-img\order state 1 for ss.svg" alt="">
             </div>
             <div class="segment delivery-address">
                 <h4 class="segment-title">Alamat Pengiriman</h4>
@@ -81,10 +81,9 @@
             </div>
         </div>
         <div class="submit">
-            <div class="btn-wrapper"><a href=""><div class="button">Konfirmasi Pesanan</div></a></div>
-            <div class="btn-wrapper"><a href=""><div class="button">Batalkan Pesanan</div></a></div>
+            <div class="btn-wrapper"><a href=""><div class="button">Ambil Pesanan</div></a></div>
         </div>
     </section>
-    @include('components.admin.footeradmin')
+    @include('components.shipping_service.footerss')
 </body>
 </html>
