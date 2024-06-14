@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('lastMessage')->nullable(false);
             $table->uuid('lastSentUserID')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('chatID')->references('chatID')->on('chats')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('lastSentUserID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');

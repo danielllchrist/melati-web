@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nameAddress', 255)->nullable(false);
             $table->text('detailAddress')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('userID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });

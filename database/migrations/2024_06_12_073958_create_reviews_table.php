@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('comment')->nullable(true);
             $table->timestamps();
             $table->primary(['productID', 'transactionID']);
+            $table->softDeletes();
 
             $table->foreign('productID')->references('productID')->on('products');
             $table->foreign('transactionID')->references('transactionID')->on('transactions');

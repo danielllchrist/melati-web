@@ -5,17 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Chat extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, SoftDeletes;
+
+    protected $table = 'chats';
 
     protected $primaryKey = 'chatID';
 
     protected $keyType = 'string';
 
+    protected $guarded = ['chatID'];
+
     protected $fillable = [
-        'chatID',
         'userID',
         'message',
         'isImage',

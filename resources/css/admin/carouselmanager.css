@@ -42,3 +42,20 @@ a{
     color: #D5BE9E;
 }
 
+.editor {
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.image img {
+    width: 900px;
+    height: 620px;
+}

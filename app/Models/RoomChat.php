@@ -4,17 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RoomChat extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $primaryKey = 'roomChat';
+    protected $table = 'room_chats';
+
+    protected $primaryKey = 'roomChatID';
 
     protected $keyType = 'string';
 
+    protected $guarded = ['roomChatID'];
+
     protected $fillable = [
-        'roomChatID',
         'userID',
         'lastChatID',
     ];

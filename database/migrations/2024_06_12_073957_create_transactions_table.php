@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('shippingFee')->nullable(false);
             $table->integer('totalPrice')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('userID')->references('userID')->on('users');
             $table->foreign('addressID')->references('addressID')->on('addresses');

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('minimumSpending')->nullable(false);
             $table->integer('voucherQuantity')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

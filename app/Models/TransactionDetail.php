@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class TransactionDetail extends Model
 {
-    use HasFactory,HasUuids,HasCompositeKey;
+    use HasFactory,HasUuids,HasCompositeKey, SoftDeletes;
 
-    protected $primaryKey = ['transactionID','productID'];
+    protected $table = 'transaction_details';
+
+    protected $primaryKey = ['transactionID', 'productID'];
 
     protected $keyType = 'string';
 

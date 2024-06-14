@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('statusID');
             $table->timestamps();
             $table->primary(['transactionID', 'statusID']);
+            $table->softDeletes();
 
             $table->foreign('transactionID')->references('transactionID')->on('transactions')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('statusID')->references('statusID')->on('statuses')->onUpdate('cascade')->onDelete('cascade');

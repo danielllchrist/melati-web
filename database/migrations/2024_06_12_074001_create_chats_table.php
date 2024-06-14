@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('message')->nullable(false);
             $table->boolean('isImage')->default(false)->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('userID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
