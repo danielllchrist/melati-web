@@ -9,19 +9,19 @@
     @vite('resources/css/admin/admindashboard.css')
     <style>
         .box-1 {
-            background-image: url('assets/backgroundHijau.png');
+            background-image: url('\assets\backgroundHijau.png');
         }
 
         .box-2 {
-            background-image: url('assets/backgroundMerah.png');
+            background-image: url('\assets\backgroundMerah.png');
         }
 
         .box-3 {
-            background-image: url('assets/backgroundCream.png');
+            background-image: url('\assets\backgroundCream.png');
         }
 
         .box-4 {
-            background-image: url('assets/backgroundCoklat.png');
+            background-image: url('\assets\backgroundCoklat.png');
         }
     </style>
 
@@ -36,7 +36,7 @@
                     <p class="count">Rp 1.000.000</p>
                 </div>
                 <div class="box-right">
-                    <img src="assets/iconTotalEarning.png" class="earning-img">
+                    <img src="\assets\iconTotalEarning.png" class="earning-img">
                 </div>
             </div>
             
@@ -46,7 +46,7 @@
                     <p class="count">Rp 1.000.000</p>
                 </div>
                 <div class="box-right">
-                    <img src="assets/iconTotalDiscount.png" class="discount-img">
+                    <img src="\assets\iconTotalDiscount.png" class="discount-img">
                 </div>
             </div>
     
@@ -56,7 +56,7 @@
                     <p class="count" id="total-order">543</p>
                 </div>
                 <div class="box-right">
-                    <img src="assets/iconTotalOrder.png" class="order-img">
+                    <img src="\assets\iconTotalOrder.png" class="order-img">
                 </div>
             </div>
 
@@ -66,7 +66,7 @@
                     <p class="count" id="total-order">1234</p>
                 </div>
                 <div class="box-right">
-                    <img src="assets/iconTotalUser.png" class="user-img">
+                    <img src="\assets\iconTotalUser.png" class="user-img">
                 </div>
             </div>
         </div>

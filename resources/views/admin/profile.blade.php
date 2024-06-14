@@ -71,7 +71,7 @@
 
                         <!-- Current Profile Photo -->
                         <div x-show="! photoPreview">
-                            <img class="pfp-image" src="assets/top1.png" alt="profile"
+                            <img class="pfp-image" src="\assets\top1.png" alt="profile"
                                 class="rounded-full h-40 w-40 object-cover">
                         </div>
                         {{-- <!-- New Profile Photo Preview -->
@@ -94,14 +94,14 @@
                             <div class="pf-name">Kata Sandi Lama</div>
                             <div class="pf-textfield"><input class="pf-inputpass" type="password" id="passlama"
                                     name="nama" placeholder="Silahkan Mengisi Kata Sandi Lama" required> <img
-                                    class = "hide-pass-icon" src="assets/eye.svg" alt = "hide" id = "eyehidelama"
+                                    class = "hide-pass-icon" src="\assets\eye.svg" alt = "hide" id = "eyehidelama"
                                     onclick = "hidePasswordLama()"></div>
                         </div>
                         <div class="pf-formdetail">
                             <div class="pf-name">Kata Sandi Baru</div>
                             <div class="pf-textfield"><input class="pf-inputpass" type="password" id="passbaru"
                                     name="nama" placeholder="Silahkan Mengisi Kata Sandi Baru" required> <img
-                                    class = "hide-pass-icon" src="assets/eye.svg" alt = "hide" id = "eyehidebaru"
+                                    class = "hide-pass-icon" src="\assets\eye.svg" alt = "hide" id = "eyehidebaru"
                                     onclick = "hidePasswordBaru()"></div>
                         </div>
                         <div class="pf-submit-btn-container"><button class="pf-submit-btn">Ganti</button></div>

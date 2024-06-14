@@ -41,13 +41,13 @@
                         <div class="ps-status-order">
                             <h3>Order #001</h3>
                             <div class = "ps-info">
-                                <img src="assets/information_green_button.svg" alt="info">
+                                <img src="\assets\information_green_button.svg" alt="info">
                                 <div class="menunggu-konfirmasi">Menunggu Konfirmasi</div>
                             </div>
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>
@@ -93,13 +93,13 @@
                         <div class="ps-status-order">
                             <h3>Order #002</h3>
                             <div class = "ps-info">
-                                <img src="assets/information_green_button.svg" alt="info">
+                                <img src="\assets\information_green_button.svg" alt="info">
                                 <div class="menunggu-konfirmasi">Menunggu Konfirmasi</div>
                             </div>
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>
@@ -125,7 +125,7 @@
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MyOrderController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('admin.admindashboard');
     }
 
     /**
@@ -20,7 +20,7 @@ class MyOrderController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -61,5 +61,5 @@ class MyOrderController extends Controller
     public function destroy(string $id)
     {
         //
-    }
+    }    
 }

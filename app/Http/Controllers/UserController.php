@@ -1,18 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CatalogController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(){
+    }
+
+    public function profile(Request $request)
     {
-        //
+        $prefix = $request->segment(1);
+
+        switch ($prefix) {
+            case 'admin':
+                return view('admin.profile');
+            case 'shipping-service':
+                return view('shipping_service.profile');
+            default:
+                return view('customer.profile');
+        }
     }
 
     /**
@@ -20,7 +31,7 @@ class CatalogController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -61,5 +72,5 @@ class CatalogController extends Controller
     public function destroy(string $id)
     {
         //
-    }
+    }    
 }

@@ -187,7 +187,7 @@
             <div class="d-flex justify-content-between mt-3 mb-3">
                 <div class="card-custom">
                     <div class="card-custom-image">
-                        <img src="assets/dressHijau.png">
+                        <img src="\assets\dressHijau.png">
                     </div>
                     <div class="card-custom-text">
                         <a href="detail">
@@ -199,7 +199,7 @@
 
                 <div class="card-custom">
                     <div class="card-custom-image">
-                        <img src="assets/dressHijau.png">
+                        <img src="\assets\dressHijau.png">
                     </div>
                     <div class="card-custom-text">
                         <a href="#">
@@ -211,7 +211,7 @@
 
                 <div class="card-custom">
                     <div class="card-custom-image">
-                        <img src="assets/dressHijau.png">
+                        <img src="\assets\dressHijau.png">
                     </div>
                     <div class="card-custom-text">
                         <a href="#">
@@ -223,7 +223,7 @@
 
                 <div class="card-custom">
                     <div class="card-custom-image">
-                        <img src="assets/dressHijau.png">
+                        <img src="\assets\dressHijau.png">
                     </div>
                     <div class="card-custom-text">
                         <a href="#">
@@ -235,7 +235,7 @@
 
                 <div class="card-custom">
                     <div class="card-custom-image">
-                        <img src="assets/dressHijau.png">
+                        <img src="\assets\dressHijau.png">
                     </div>
                     <div class="card-custom-text">
                         <a href="#">
@@ -258,13 +258,13 @@
                 <h1>ATASAN</h1>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/top.png" class="d-block w-100">
+                        <img src="\assets\top.png" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/top.png" class="d-block w-100">
+                        <img src="\assets\top.png" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/top.png" class="d-block w-100">
+                        <img src="\assets\top.png" class="d-block w-100">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-top-mid" data-bs-slide="prev">
@@ -293,13 +293,13 @@
                 <h1>BAWAHAN</h1>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/bottom.png" class="d-block w-100">
+                        <img src="\assets\bottom.png" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/bottom.png" class="d-block w-100">
+                        <img src="\assets\bottom.png" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/bottom.png" class="d-block w-100">
+                        <img src="\assets\bottom.png" class="d-block w-100">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-bottom-mid" data-bs-slide="prev">
@@ -326,13 +326,13 @@
                 <h1>AKSESORIS</h1>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/accessories.png" class="d-block w-100">
+                        <img src="\assets\accessories.png" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/accessories.png" class="d-block w-100">
+                        <img src="\assets\accessories.png" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/accessories.png" class="d-block w-100">
+                        <img src="\assets\accessories.png" class="d-block w-100">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-accessories-right" data-bs-slide="prev">

@@ -21,12 +21,11 @@
 </head>
 <body class="bg-black">
     @include('components.customer.headercustomer')
-    <div class="container mb-5 mt-5">
-        <a href="home.html" class="d-flex align-items-center">
-            <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png" width="25px" class="arrow-back">
-            <h5 class="mt-1">Wishlist</h5>
-        </a>
-
+    <div class="atas">
+        <img class="back_icon" src="{{asset('assets/back.svg')}}">
+        <h1>Favorit</h1>
+    </div>
+    <div class="container mb-5 mt-0">
         <div class="d-flex flex-wrap mt-3 mb-3" id="content-wishlist">
             <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
             <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>

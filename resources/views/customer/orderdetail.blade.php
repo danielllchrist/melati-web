@@ -19,7 +19,7 @@
                         <div class="title-wrapper">
                             <a href="">
                                 <div class="title">
-                                    <img src="assets\dummy-img\back arrow coklat.svg" alt="">
+                                    <img src="\assets\dummy-img\back arrow coklat.svg" alt="">
                                     <h1>Pesanan #001</h1>
                                 </div>
                             </a>
@@ -30,7 +30,7 @@
                 <section>
                     <div class="order-detail">
                         <div class="status-img">
-                            <img src="assets\dummy-img\order state 1.svg" alt="">
+                            <img src="\assets\dummy-img\order state 1.svg" alt="">
                         </div>
                         <div class="segment delivery-address">
                             <h4 class="segment-title">Alamat Pengiriman</h4>
@@ -46,7 +46,7 @@
                                 @for ($i = 0; $i < 10; $i++)
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="assets/dummy-img/Rectangle 28.png" alt="">
+                                            <img src="\assets\dummy-img\Rectangle 28.png" alt="">
                                         </div>
                                         <div class="product-info">
                                             <h4 class="product-name">Eau De Toilette</h4>
@@ -80,7 +80,7 @@
                                     <h3 class="amount-item-value">Rp 450,000</h3>
                                 </div>
                                 <div class="payment-method">
-                                    <img src="assets\dummy-img\cc.svg" alt="">
+                                    <img src="\assets\dummy-img\cc.svg" alt="">
                                     <p class="amount-item-value">Kartu Kredit</p>
                                 </div>
                         </div>

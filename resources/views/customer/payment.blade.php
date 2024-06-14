@@ -42,7 +42,7 @@
         </form>
     </div>
 
-    @include('components.customer.pesananberhasil')
+@include('components.customer.ordersuccess')
 
 </body>
 @include('components.customer.footercustomer')
@@ -75,13 +75,13 @@
             $('.atas div:nth-child(4)').addClass('active');
             var toastElement = $('#pembayaranberhasil');
             toastElement.toast({
-                delay: 1000
+                delay: 1000000
             });
             toastElement.toast('show');
-            setTimeout(function() {
-                console.log("Redirecting to /pesanan-saya");
-                window.location.href = '/pesanan-saya';
-            }, 1000);
+            // setTimeout(function() {
+            //     console.log("Redirecting to /pesanan");
+            //     window.location.href = '/pesanan';
+            // }, 10000);
         });
     });
 

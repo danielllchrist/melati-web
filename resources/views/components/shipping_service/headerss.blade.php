@@ -11,15 +11,15 @@
 <body>
     <nav class="header-custom bg-black">
         <a class="navbar-brand" href="#">
-            <img src="assets/images/logo svg.svg" width="120" height="62" class="d-inline-block align-top"
+            <img src="\assets\images\logo svg.svg" width="120" height="62" class="d-inline-block align-top"
                 alt="">
         </a>
 
         <div class= "justify-content-center align-items-center navmenu-custom">
             <ul class="navmenu-custom admin">
-                <li><a class="admin-menu" href="#"><img src="assets/admin_menu/home.svg" alt=""
+                <li><a class="admin-menu" href="#"><img src="\assets\admin_menu\home.svg" alt=""
                             width = "25" height = "25">Dashboard</a></li>
-                <li><a class="admin-menu" href="#"><img src="assets/admin_menu/light.svg" alt=""
+                <li><a class="admin-menu" href="#"><img src="\assets\admin_menu\light.svg" alt=""
                             width = "25" height = "25">Profile</a></li>
             </ul>
         </div>
