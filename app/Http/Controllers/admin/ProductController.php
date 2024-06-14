@@ -1,18 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('admin.index');
+    }
+    
+    public function orderdetail()
+    {
+        return response()->view('admin.orderdetail', [
+            "orderID" => "halo123"
+        ]);
     }
 
     /**
@@ -20,7 +27,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

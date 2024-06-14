@@ -14,12 +14,10 @@
     @include('components.admin.headeradmin')
     <div class="main-content ">
         <div class="page-title">
-            <a href="">
-                <div class="title">
-                    <img src="assets\dummy-img\back arrow.svg" alt="">
-                    <h1>Pesanan</h1>
-                </div>
-            </a>
+            <div class="title">
+                <img src="\assets\dummy-img\back arrow.svg" alt="">
+                <h1>Order</h1>
+            </div>
         </div>
         <div class="main-content ">
             {{-- <a href="#" class="back-btn"><img src="assets/side_bar/back_arrow.svg" alt="Back">
@@ -31,7 +29,7 @@
                 <div class = "ps-header">
                     <div class = "padding-search-custom">
                         <form class="form-inline my-2 my-lg-0">
-                            <div class="ps-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
+                            <div class="ps-search-custom-container"><img src = "\assets\search-white.svg" alt = "search"
                                     width = "15" height = "15"><input class = "ps-search-custom" type="text"
                                     placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk">
                             </div>
@@ -52,13 +50,13 @@
                         <div class="ps-status-order">
                             <h3>Pesanan #001</h3>
                             <div class = "ps-info">
-                                <img src="assets/information_green_button.svg" alt="info" class="i">
+                                <img src="\assets\information_green_button.svg" alt="info" class="i">
                                 <div class="menunggu-konfirmasi">Menunggu Konfirmasi</div>
                             </div>
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>
@@ -84,7 +82,7 @@
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>
@@ -104,13 +102,13 @@
                         <div class="ps-status-order">
                             <h3>Order #002</h3>
                             <div class = "ps-info">
-                                <img src="assets/information_green_button.svg" alt="info">
+                                <img src="\assets\information_green_button.svg" alt="info">
                                 <div class="menunggu-konfirmasi">Menunggu Konfirmasi</div>
                             </div>
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>
@@ -123,7 +121,7 @@
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>
@@ -136,7 +134,7 @@
                         </div>
                         <div class="ps-order-detail">
                             <div class="ps-picture">
-                                <img src="assets/top2.png" class = "ps-picture-img" alt="">
+                                <img src="\assets\top2.png" class = "ps-picture-img" alt="">
                                 <div class="ps-picture-text">
                                     <h2 class="name">Eau De Toilette</h2>
                                     <p>Size : L</p>

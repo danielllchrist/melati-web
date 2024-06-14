@@ -54,10 +54,10 @@
                         untuk digunakan untuk siapapun, dimanapun, kapanpun.</p>
                 </div>
                 <div class="logo">
-                    <img src="assets\social\youtube.svg" alt="">
-                    <img src="assets\social\instagram.svg" alt="">
-                    <img src="assets\social\twitter.svg" alt="">
-                    <img src="assets\social\facebook.svg" alt="">
+                    <img src="\assets\social\youtube.svg" alt="">
+                    <img src="\assets\social\instagram.svg" alt="">
+                    <img src="\assets\social\twitter.svg" alt="">
+                    <img src="\assets\social\facebook.svg" alt="">
                 </div>
             </div>
         </div>

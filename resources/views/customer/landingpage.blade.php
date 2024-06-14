@@ -20,7 +20,7 @@
                     <div class="carousel-inner">
                         @for ($i = 0; $i < 3; $i++)
                             <div class="carousel-item {{ $i == 1 ? 'active' : ''}}">
-                                <img src="assets\dummy-img\Screenshot 2024-05-18 162312.png" class="d-block w-100"
+                                <img src="\assets\dummy-img\Screenshot 2024-05-18 162312.png" class="d-block w-100"
                                     alt="Promotion Banner 1">
                                     <a href="" class="carousel-product-link">
                                         <div class="belanja-sekarang-button">
@@ -45,10 +45,10 @@
             </div>
             <div class="flex-column">
                 <div id="men" class="men-women-content">
-                    <img src="assets\dummy-img\top 2.png" alt="men">
+                    <img src="\assets\dummy-img\top 2.png" alt="men">
                 </div>
                 <div id="women" class="men-women-content">
-                    <img src="assets\dummy-img\rok 3.png" alt="women">
+                    <img src="\assets\dummy-img\rok 3.png" alt="women">
                 </div>
             </div>
         </div>
@@ -78,9 +78,9 @@
                 @for ($i = 0; $i < 3; $i++)
                     <a href="">
                         <div class="product-card">
-                            <div class="product-img"><img src="assets\dummy-img\Snapinsta.png" alt=""></div>
+                            <div class="product-img"><img src="\assets\dummy-img\Snapinsta.png" alt=""></div>
                             <div class="information">
-                                <img src="assets\dummy-img\Rectangle 657.png" alt="">
+                                <img src="\assets\dummy-img\Rectangle 657.png" alt="">
                                 <p class="product-name">Kamboja Kutubaru</p>
                                 <p class="price">Rp 120,000</p>
                             </div>
@@ -92,7 +92,7 @@
 
     <section>
         <div id="mix-and-match">
-            <img src="assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
+            <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
             <h1>Bebaskan kreativitasmu! Mix and match gaya favoritmu dengan mudah.</h1>
             <div id="button-mix-and-match-wrapper"><a href="/mixmatch"><div id="button-mix-and-match" class="buttons">Kunjungi fitur Mix and Match</div></a></div>
         </div>

@@ -1,7 +1,23 @@
 <?php
 
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\OrderController as AdminOrderController;
+use App\Http\Controllers\admin\ProductController as AdminProductController;
+use App\Http\Controllers\customer\AddressController;
+use App\Http\Controllers\customer\CartController;
+use App\Http\Controllers\customer\ChatController;
+use App\Http\Controllers\customer\MixMatchController;
+use App\Http\Controllers\customer\OrderController;
+use App\Http\Controllers\customer\ProductController;
+use App\Http\Controllers\customer\ReturnController;
+use App\Http\Controllers\customer\ReviewController;
+use App\Http\Controllers\customer\WishlistController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\shipping_service\OrderController as Shipping_serviceOrderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,41 +32,8 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 // Route for Customers' Page
-
-Route::get('/', function () {
-    return view('customer.landingpage');
-});
-
-Route::get('/keranjang', function () {
-    return view('customer.cart');
-});
-
-Route::get('/katalog', function () {
-    return view('customer.catalog');
-});
-
-Route::get('/wishlist', function () {
-    return view('customer.wishlist');
-});
-
-Route::get('/mixmatch', function () {
-    return view('customer.mixmatch');
-});
-
-Route::get('/detail', function () {
-    return view('customer.detail');
-});
-
-Route::get('/pesanan-saya', function () {
-    return view('customer.myorder');
-});
-
-Route::get('/konfirmasi-pesanan', function () {
-    return view('customer.checkout');
-});
+Route::get('/', [LandingPageController::class, 'index']);
 
 Route::get('/daftar', function () {
     return view('customer.register');
@@ -60,90 +43,86 @@ Route::get('/masuk', function () {
     return view('customer.login');
 });
 
-Route::get('/profil', function () {
-    return view('customer.profile');
+Route::group([], function () {
+    Route::controller(LandingPageController::class)->group(function () {
+        Route::get('/', 'index');
+    });
+
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/koleksi', 'index');
+        Route::get('/koleksi/{id}', 'detail_product');
+        Route::get('/penilaian', 'review');
+        Route::get('/pengembalian', 'return');
+    });
+
+    Route::controller(CartController::class)->group(function () {
+        Route::get('/keranjang', 'index');
+    });
+
+    Route::controller(WishlistController::class)->group(function () {
+        Route::get('/favorit', 'index');
+    });
+
+    Route::controller(MixMatchController::class)->group(function () {
+        Route::get('/mix-and-match', 'index');
+    });
+
+    Route::controller(ChatController::class)->group(function () {
+        Route::get('/live-chat', 'chat');
+    });
+
+    //-------------- sidebar -------------------
+
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/pesanan', 'myorder');
+        Route::get('/pesanan/{orderID}', 'detail_myorder');
+        Route::get('/konfirmasi-pesanan', 'checkout');
+        Route::get('/pembayaran', 'payment');
+    });
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/profil', 'profile');
+    });
+
+    Route::resource("/alamat-saya",AddressController::class);  
+
 });
 
-Route::get('/penilaian', function () {
-    return view('customer.review');
+// Route for Admins' Page
+Route::prefix('admin')->group(function () {
+
+    Route::resource("/produk", AdminProductController::class);
+    
+    Route::controller(ChatController::class)->group(function () {
+        Route::get('/live-chat', 'chat');
+    });
+
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('', 'index');
+    });
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/profil', 'profile');
+    });
+
+    Route::controller(AdminOrderController::class)->group(function () {
+        Route::get('/pesanan', 'index');
+        Route::get('/pesanan/{orderID}', 'orderdetail');
+    });
+
 });
 
-Route::get('/detil-pesanan', function () {
-    return view('customer.orderdetail');
-});
+// Route for Shipping Services' Page
+Route::prefix('shipping-service')->group(function () {
+    Route::resource("/profil",UserController::class);  
+   
+    Route::controller(Shipping_serviceOrderController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{orderID}', 'orderdetail');
+    });
 
-Route::get('/pengembalian-barang', function () {
-    return view('customer.return');
 });
 
 Route::get('/test', function () {
     return view('customer.test');
-});
-
-Route::get('/customer-chat', function () {
-    return view('customer.chat');
-});
-
-Route::get('/pembayaran', function () {
-    return view('customer.payment');
-});
-
-Route::get('/tambah-alamat', function () {
-    return view('customer.addaddres');
-});
-
-// Route for Admins' Page
-Route::get('/admin-chat', function () {
-    return view('admin.chat');
-});
-
-Route::get('/order-status', function () {
-    return view('admin.orderstatus');
-});
-
-Route::get('/admindashboard', function () {
-    return view('admin.admindashboard');
-})->name('dashboard');
-
-Route::get('/admin-index', function () {
-    return view('admin.index');
-});
-
-Route::get('/profil-admin', function () {
-    return view('admin.profile');
-});
-
-Route::get('/admin-order-detail', function(){
-    return view('admin.orderdetail');
-
-});
-
-Route::get('/admin-order-detail', function(){
-    return view('admin.orderdetail');
-});
-
-Route::get('/carouselmanager', function(){
-    return view('admin.carouselmanager');
-});
-
-// Route for Shipping Services' Page
-
-Route::get('/order-status-section', function () {
-    return view('shipping_service.orderstatus');
-});
-
-Route::get('/profil-jasa-kirim', function () {
-    return view('shipping_service.profile');
-});
-
-Route::get('/shipping-service-order-detail', function(){
-    return view('shipping_service.orderdetail');
-});
-
-Route::get('/shipping-service-order-detail', function(){
-    return view('shipping_service.orderdetail');
-});
-
-Route::get('/shipping-service-order-detail', function(){
-    return view('shipping_service.orderdetail');
 });

@@ -1,13 +1,14 @@
 .toast{
     position: fixed !important;
+    z-index: 100 !important;
 }
 .toast-header{
-    background-color: #F0F1E4;
+    background-color: #F0F1E4 !important;
 }
 .toast-header h1{
-    font-family: Poppins;
-    font-weight: 450;
-    color: #4F290C;
-    font-size: 20px;
-    margin-bottom: 0px;
+    font-family: Poppins !important;
+    font-weight: 450 !important;
+    color: #4F290C !important;
+    font-size: 20px !important;
+    margin-bottom: 0px !important;
 }

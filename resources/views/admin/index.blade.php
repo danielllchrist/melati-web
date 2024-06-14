@@ -76,26 +76,26 @@
     @include('components.admin.headeradmin')
     <div class="main-content ">
         <div class="upper-section">
-            <a href="#" class="back-btn"><img src="assets/side_bar/back_arrow.svg" alt="Back">
+            <a href="#" class="back-btn"><img src="\assets\side_bar\back_arrow.svg" alt="Back">
                 <div class="profile">
                     <p>Produk</p>
                 </div>
             </a>
-            <button class="add-btn"><img src="assets/crud_admin/add-white.svg" class = "add-img"alt="">Tambah
+            <button class="add-btn"><img src="\assets\crud_admin\add-white.svg" class = "add-img"alt="">Tambah
                 Produk</button>
         </div>
         <div class="inner-container">
             <div class = "ai-header">
                 <div class = "padding-search-custom">
                     <form class="form-inline my-2 my-lg-0">
-                        <div class="ai-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
-                                width = "15" height = "15"><input class = "ai-search-custom" type="text"
+                        <div class="ai-search-custom-container"><img src = "\assets\search-white.svg" alt = "search"
+                                width = "19" height = "19"><input class = "ai-search-custom" type="text"
                                 placeholder="Search">
                         </div>
                     </form>
                 </div>
                 <button class="ctg-btn">Kategori
-                    Produk<img src="assets/crud_admin/collapse.svg" class = "collapse-img"alt=""></button>
+                    Produk<img src="\assets\crud_admin\collapse.svg" class = "collapse-img"alt=""></button>
             </div>
             <div class="ai-content">
                 <div class="ai-order">
@@ -116,7 +116,7 @@
                             @for ($i = 1; $i <= 10; $i++)
                                 <tr>
                                     <td>1</td>
-                                    <td><img src="assets/dressHijau.png" alt="" width ="120" height = "120">
+                                    <td><img src="\assets\dressHijau.png" alt="" width ="120" height = "120">
                                     </td>
                                     <td>Jalan Pakuan No.3
                                         Sentul, Kabupaten Bogor
@@ -132,11 +132,8 @@
                                         250
                                     </td>
                                     <td>
-                                        <div class="action-btn-container"><button class="action-btn"><img
-                                                    src="assets/crud_admin/edit.svg" width = "15" height = "15"
-                                                    alt=""></button><button class="action-btn"><img
-                                                    src="assets/crud_admin/delete.svg" width = "15" height = "15"
-                                                    alt=""></button></div>
+                                        <div class="action-btn-container"><button class="action-btn"><img src="assets/crud_admin/edit.svg" width = "15" height = "15" alt=""></button><button
+                                                class="action-btn"><img src="assets/crud_admin/delete.svg" width = "15" height = "15" alt=""></button></div>
                                     </td>
                                 </tr>
                             @endfor

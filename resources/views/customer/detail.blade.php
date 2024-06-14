@@ -12,31 +12,30 @@
     </head>
     <body class="bg-black">
         @include('components.customer.headercustomer')
+        <!-- <div class="atas">
+            <img class="back_icon" src="{{asset('assets/back.svg')}}">
+            <h1></h1>
+        </div> -->
         <div class="container">
             <div class="d-flex flex-column mt-5 mb-5">
-                <a href="home.html" class="d-flex align-items-center mb-4">
-                    <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png" width="25px" class="arrow-back">
-                    <h5 class="mt-1">Detail Produk</h5>
-                </a>
-
                 <div class="product-content d-flex justify-content-start ms-5 me-5">
                     <div class="image-content">
                         <div id="carouselExample" class="carousel slide">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" id="carousel-1">
-                                    <img src="assets/dressPink.png" class="d-block w-100">
+                                    <img src="\assets\dressPink.png" class="d-block w-100">
                                 </div>
                                 <div class="carousel-item" id="carousel-2">
-                                    <img src="assets/dressHijau.png" class="d-block w-100">
+                                    <img src="\assets\dressHijau.png" class="d-block w-100">
                                 </div>
                                 <div class="carousel-item" id="carousel-3">
-                                  <img src="assets/dressPink.png" class="d-block w-100">
+                                  <img src="\assets\dressPink.png" class="d-block w-100">
                                 </div>
                                 <div class="carousel-item" id="carousel-4">
-                                    <img src="assets/dressPink.png" class="d-block w-100">
+                                    <img src="\assets\dressPink.png" class="d-block w-100">
                                 </div>
                                 <div class="carousel-item" id="carousel-5">
-                                    <img src="assets/dressPink.png" class="d-block w-100">
+                                    <img src="\assets\dressPink.png" class="d-block w-100">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -50,11 +49,11 @@
                         </div>
 
                         <div class="detail-image d-flex justify-content-between">
-                            <img src="assets/dressPink.png" width="16%" onclick="switchCarousel(1)">
-                            <img src="assets/dressHijau.png" width="16%" onclick="switchCarousel(2)">
-                            <img src="assets/dressPink.png" width="16%" onclick="switchCarousel(3)">
-                            <img src="assets/dressPink.png" width="16%" onclick="switchCarousel(4)">
-                            <img src="assets/dressPink.png" width="16%" onclick="switchCarousel(5)">
+                            <img src="\assets\dressPink.png" width="16%" onclick="switchCarousel(1)">
+                            <img src="\assets\dressHijau.png" width="16%" onclick="switchCarousel(2)">
+                            <img src="\assets\dressPink.png" width="16%" onclick="switchCarousel(3)">
+                            <img src="\assets\dressPink.png" width="16%" onclick="switchCarousel(4)">
+                            <img src="\assets\dressPink.png" width="16%" onclick="switchCarousel(5)">
                         </div>
                     </div>
 

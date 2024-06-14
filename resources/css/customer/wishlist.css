@@ -1,3 +1,33 @@
+.atas{
+    padding: 0px !important;
+    display: flex !important;
+    /* background-color: pink; */
+    /* padding-left: 55px !important; */
+    /* padding-bottom: 25px !important; */
+    flex-direction: row;
+    align-content: center;
+    /* justify-content: center; */
+    /* opacity: 0.5; */
+    margin-left: 48px;
+    margin-top: 40px;
+    margin-bottom: -20px;
+}
+
+.atas h1{
+    font-family: Poppins;
+    font-weight: 600;
+    color: #F0F1E4;
+    font-size: 35px;
+    /* margin-left: 22px; */
+    /* padding-top: 6px;
+    padding: 15px; */
+}
+.atas .back_icon{
+    padding-right: 20px;
+    width: 36px;
+    margin-bottom: 8px;
+}
+
 .arrow-back{
     filter: brightness(0) invert(1);
     transform: rotate(-90deg);

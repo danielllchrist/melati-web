@@ -11,7 +11,7 @@
 <body>
     <nav class="header-custom">
         <a class="" href="/">
-            <img src="assets/images/logo svg.svg" width="120" height="62" class="d-inline-block align-top"
+            <img src="\assets\images\logo svg.svg" width="120" height="62" class="d-inline-block align-top"
                 alt="">
         </a>
 
@@ -19,18 +19,18 @@
             <ul class="navmenu-custom">
                 <li class = "padding-search-custom">
                     <form class="form-inline my-2 my-lg-0">
-                        <div class="search-custom-container"><img src = "assets/nav_menu/search.svg" alt = "search"
+                        <div class="search-custom-container"><img src = "\assets\nav_menu\search.svg" alt = "search"
                                 width = "19" height = "19"><input class = "search-custom" type="text"
                                 placeholder="Pencarian">
                         </div>
                     </form>
                 </li>
-                <li class><a href="#" class="nav-custom"><img src = "assets/nav_menu/wishlist.svg"
+                <li class><a href="#" class="nav-custom"><img src = "\assets\nav_menu\wishlist.svg"
                             alt = "wishlist" width = "28" height = "28"></a></li>
-                <li class><a href="#" class="nav-custom"><img src = "assets/nav_menu/cart.svg" alt = "cart"
+                <li class><a href="#" class="nav-custom"><img src = "\assets\nav_menu\cart.svg" alt = "cart"
                             width = "33" height = "33"></a>
                 </li>
-                <li class><a href="#" class="nav-custom"><img src = "assets/nav_menu/person.svg" alt = "profile"
+                <li class><a href="#" class="nav-custom"><img src = "\assets\nav_menu\person.svg" alt = "profile"
                             width = "28" height = "28"></a></li>
             </ul>
         </div>

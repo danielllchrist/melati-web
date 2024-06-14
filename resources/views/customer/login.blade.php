@@ -10,12 +10,12 @@
 <body>
 <div class="container">
   <div class="wrap-left">
-    <img src="assets/top2.png" alt="image">
+    <img src="\assets\top2.png" alt="image">
   </div>
 
   <div class="wrap-right">
 	<div class="wrap-header"><br>
-		<img src="/assets/Group 33862.png" alt="image">
+		<img src="\assets\Group 33862.png" alt="image">
 	</div>
 	<h1>Masuk</h1>
 	<p>Pembayaran cepat dan aman.<br> Masuk untuk menyimpan informasi<br>pengiriman Anda.</p><br>
