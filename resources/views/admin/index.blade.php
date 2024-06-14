@@ -12,6 +12,66 @@
     @vite('resources/css/app.css')
 </head>
 
+<script>
+    // AJAX DataTable
+    var datatable = $('#dataTable').DataTable({
+
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        ajax: {
+            url: '{!! url()->current() !!}',
+        },
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
+        },
+        columns: [{
+                data: 'transactions_id',
+                name: 'transactions_id',
+                class: 'text-center'
+            },
+            {
+                data: 'gambar',
+                name: 'gambar',
+                class: 'text-center'
+            },
+            {
+                data: 'alamat',
+                name: 'alamat',
+                class: 'text-center'
+            },
+            {
+                data: 'nama',
+                name: 'nama',
+                class: 'text-center'
+            },
+            {
+                data: 'harga',
+                name: 'harga',
+                class: 'text-center'
+            },
+            {
+                data: 'stok',
+                name: 'stok',
+                class: 'text-center'
+            },
+            {
+                data: 'berat',
+                name: 'berat',
+                class: 'text-center'
+            },
+            {
+                data: 'action',
+                name: 'action',
+                orderable: false,
+                searchable: false,
+                width: '15%',
+                class: 'text-center'
+            },
+        ],
+    });
+</script>
+
 <body>
     @include('components.admin.headeradmin')
     <div class="main-content ">
@@ -29,7 +89,7 @@
                 <div class = "padding-search-custom">
                     <form class="form-inline my-2 my-lg-0">
                         <div class="ai-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
-                                width = "19" height = "19"><input class = "ai-search-custom" type="text"
+                                width = "15" height = "15"><input class = "ai-search-custom" type="text"
                                 placeholder="Search">
                         </div>
                     </form>
@@ -72,8 +132,11 @@
                                         250
                                     </td>
                                     <td>
-                                        <div class="action-btn-container"><button class="action-btn"><img src="assets/crud_admin/edit.svg" width = "15" height = "15" alt=""></button><button
-                                                class="action-btn"><img src="assets/crud_admin/delete.svg" width = "15" height = "15" alt=""></button></div>
+                                        <div class="action-btn-container"><button class="action-btn"><img
+                                                    src="assets/crud_admin/edit.svg" width = "15" height = "15"
+                                                    alt=""></button><button class="action-btn"><img
+                                                    src="assets/crud_admin/delete.svg" width = "15" height = "15"
+                                                    alt=""></button></div>
                                     </td>
                                 </tr>
                             @endfor

@@ -97,19 +97,19 @@ Route::get('/admin-chat', function () {
     return view('admin.chat');
 });
 
-Route::get('/order-status', function(){
+Route::get('/order-status', function () {
     return view('admin.orderstatus');
 });
 
 Route::get('/admindashboard', function () {
     return view('admin.admindashboard');
-});
+})->name('dashboard');
 
-Route::get('/admin-index', function(){
+Route::get('/admin-index', function () {
     return view('admin.index');
 });
 
-Route::get('/profil-admin', function(){
+Route::get('/profil-admin', function () {
     return view('admin.profile');
 });
 
@@ -128,11 +128,11 @@ Route::get('/carouselmanager', function(){
 
 // Route for Shipping Services' Page
 
-Route::get('/order-status-section', function(){
+Route::get('/order-status-section', function () {
     return view('shipping_service.orderstatus');
 });
 
-Route::get('/profil-jasa-kirim', function(){
+Route::get('/profil-jasa-kirim', function () {
     return view('shipping_service.profile');
 });
 
