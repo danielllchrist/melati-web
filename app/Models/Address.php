@@ -5,16 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Address extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, SoftDeletes;
+
+    protected $table = 'addresses';
+
     protected $primaryKey = 'addressID';
 
     protected $keyType = 'string';
 
+    protected $guarded = ['addressID'];
+
     protected $fillable = [
-        'addressID',
         'userID',
         'province',
         'cityOrRegency',

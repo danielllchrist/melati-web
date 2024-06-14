@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class StatusTransaction extends Model
 {
-    use HasFactory,HasUuids,HasCompositeKey;
-    
-    protected $primaryKey = ['transactionID','statusID'];
+    use HasFactory,HasUuids,HasCompositeKey, SoftDeletes;
+
+    protected $table = 'status_transactions';
+
+    protected $primaryKey = ['transactionID', 'statusID'];
 
     protected $keyType = 'string';
 

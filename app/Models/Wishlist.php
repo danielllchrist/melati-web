@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class Wishlist extends Model
 {
-    use HasFactory, HasUuids, HasCompositeKey;
+    use HasFactory, HasUuids, HasCompositeKey, SoftDeletes;
+
+    protected $table = 'wishlists';
 
     protected $primaryKey =['userID','productID'];
 

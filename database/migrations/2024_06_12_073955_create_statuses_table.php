@@ -24,6 +24,7 @@ return new class extends Migration
                 'Admin',
                 'Jasa Kirim'
             ]);
+            $table->softDeletes();
         });
     }
 

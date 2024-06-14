@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('productID')->nullable(false);
             $table->timestamps();
             $table->primary(['userID', 'productID']);
+            $table->softDeletes();
 
             $table->foreign('userID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('productID')->references('productID')->on('products')->onUpdate('cascade')->onDelete('cascade');

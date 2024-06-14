@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('userID');
             $table->timestamps();
             $table->primary(['voucherID', 'userID']);
+            $table->softDeletes();
 
             $table->foreign('voucherID')->references('voucherID')->on('vouchers');
             $table->foreign('userID')->references('userID')->on('users');

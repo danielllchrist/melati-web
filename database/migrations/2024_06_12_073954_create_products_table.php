@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('productPicturePath')->nullable(false);
             $table->enum('forGender', ['Pria', 'Wanita'])->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

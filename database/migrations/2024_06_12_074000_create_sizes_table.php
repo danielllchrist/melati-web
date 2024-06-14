@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('Stock')->nullable(false);
             $table->timestamps();
             $table->primary(['sizeID', 'productID']);
+            $table->softDeletes();
 
             $table->foreign('productID')->references('productID')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });

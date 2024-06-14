@@ -5,17 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LastChat extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, SoftDeletes;
+
+    protected $table = 'last_chats';
 
     protected $primaryKey = 'lastChatID';
 
     protected $keyType = 'string';
 
+    protected $guarded = 'lastChatID';
+
     protected $fillable = [
-        'lastChatID',
         'chatID',
         'lastMessage',
         'lastSentUserID',
@@ -31,5 +35,10 @@ class LastChat extends Model
     public function roomChat()
     {
         return $this->hasOne(RoomChat::class, 'lastChatID', 'lastChatID');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'lastSentUserID', 'userID');
     }
 }
