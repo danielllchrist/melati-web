@@ -9,7 +9,7 @@
     <title>Melati</title>
     @vite('resources/css/shipping_service/orderstatus.css')
     @vite('resources/css/app.css')
-    
+
     <style>
         .box-1 {
             background-image: url('assets/backgroundHijau.png');
@@ -37,7 +37,7 @@
                 <img src="assets/iconPickUp.png" class="pickup-img">
             </div>
         </div>
-        
+
         <div class="d-flex box-2 justify-content-between align-items-center">
             <div class="box-left">
                 <p>On Delivery</p>
@@ -71,7 +71,7 @@
                 <div class = "padding-search-custom">
                     <form class="form-inline my-2 my-lg-0">
                         <div class="ps-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
-                                width = "19" height = "19"><input class = "ps-search-custom" type="text"
+                                width = "15" height = "15"><input class = "ps-search-custom" type="text"
                                 placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk">
                         </div>
                     </form>
