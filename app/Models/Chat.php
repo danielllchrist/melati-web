@@ -32,8 +32,8 @@ class Chat extends Model
         return $this->belongsTo(User::class, 'userID', 'userID');
     }
 
-    public function lastChat()
-    {
-        return $this->hasOne(LastChat::class, 'chatID', 'chatID');
-    }
+    // public function lastChat()
+    // {
+    //     return $this->hasOne(LastChat::class, 'chatID', 'chatID');
+    // }
 }

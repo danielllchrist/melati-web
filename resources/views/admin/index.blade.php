@@ -74,16 +74,20 @@
 
 <body>
     @include('components.admin.headeradmin')
+    <div class="atas">
+        <img class="back_icon" src="{{asset('assets/back.svg')}}">
+        <h1>Produk</h1>
+        
+        <button class="add-btn"><img src="\assets\crud_admin\add-white.svg" class = "add-img"alt="">
+            Tambah Produk
+        </button>
+    </div>
     <div class="main-content ">
-        <div class="upper-section">
-            <a href="#" class="back-btn"><img src="\assets\side_bar\back_arrow.svg" alt="Back">
-                <div class="profile">
-                    <p>Produk</p>
-                </div>
-            </a>
-            <button class="add-btn"><img src="\assets\crud_admin\add-white.svg" class = "add-img"alt="">Tambah
-                Produk</button>
-        </div>
+        {{-- <div class="upper-section">
+            <button class="add-btn"><img src="\assets\crud_admin\add-white.svg" class = "add-img"alt="">
+                Tambah Produk
+            </button>
+        </div> --}}
         <div class="inner-container">
             <div class = "ai-header">
                 <div class = "padding-search-custom">
@@ -132,8 +136,8 @@
                                         250
                                     </td>
                                     <td>
-                                        <div class="action-btn-container"><button class="action-btn"><img src="assets/crud_admin/edit.svg" width = "15" height = "15" alt=""></button><button
-                                                class="action-btn"><img src="assets/crud_admin/delete.svg" width = "15" height = "15" alt=""></button></div>
+                                        <div class="action-btn-container"><button class="action-btn"><img src="\assets\crud_admin\edit.svg" width = "15" height = "15" alt=""></button><button
+                                                class="action-btn"><img src="\assets\crud_admin\delete.svg" width = "15" height = "15" alt=""></button></div>
                                     </td>
                                 </tr>
                             @endfor

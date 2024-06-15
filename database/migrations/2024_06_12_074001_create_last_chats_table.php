@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('last_chats', function (Blueprint $table) {
             $table->uuid('lastChatID')->primary()->nullable(false);
-            $table->uuid('chatID')->nullable(false);
-            $table->uuid('lastMessage')->nullable(false);
+            // $table->uuid('roomChatID')->nullable(false);
+            $table->text('lastMessage')->nullable(false);
             $table->uuid('lastSentUserID')->nullable(false);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('chatID')->references('chatID')->on('chats')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('roomChatID')->references('roomChatID')->on('room_chats')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('lastSentUserID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }

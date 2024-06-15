@@ -2,13 +2,44 @@ body{
     background-color: #080808 !important;
     font-family: 'Poppins';
  }
+.atas{
+    padding: 0px !important;
+    display: flex !important;
+    /* background-color: pink; */
+    /* padding-left: 55px !important; */
+    /* padding-bottom: 25px !important; */
+    /* flex-direction: row; */
+    /* align-content: center; */
+    /* justify-content: space-between; */
+    /* opacity: 0.5; */
+    margin-left: 48px;
+    margin-top: 2.8%;
+    margin-bottom: 0px;
+    width: 93%;
+    /* background-color: pink; */
+}
 
+.atas h1{
+    font-family: Poppins;
+    font-weight: 600;
+    color: #F0F1E4;
+    font-size: 35px;
+    /* margin-left: 22px; */
+    /* padding-top: 6px;
+    padding: 15px; */
+}
+.atas .back_icon{
+    padding-right: 20px;
+    /* margin-top: 17px; */
+    width: 36px;
+    margin-bottom: 5px;
+}
 
  .main-content{
     width: auto;
     height : auto;
     background-color: black;
-    padding : 50px 80px 50px 80px;
+    padding : 20px 80px 50px 80px;
   }
 
   .upper-section{
@@ -30,6 +61,8 @@ body{
     color : white;
     font-weight: 600;
     font-size: 14px;
+    /* justify-self: flex-end ; */
+    margin-left: 75%;
   }
 
   .add-img{
@@ -176,7 +209,7 @@ body{
     display : flex;
     flex-direction: column;
     color : #4F290C;
-    padding : 10px 45px 30px 45px;
+    padding : 10px 25px 30px 25px;
 }
 
 .ai-status-order{

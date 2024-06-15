@@ -16,7 +16,7 @@
 
         <div class= "justify-content-center align-items-center navmenu-custom">
             <ul class="navmenu-custom admin">
-                <li><a class="admin-menu" href="{{ route('dashboard') }}"><img src="\assets\admin_menu\home.svg" alt=""
+                <li><a class="admin-menu" href="#"><img src="\assets\admin_menu\home.svg" alt=""
                             width = "25" height = "25">Dashboard</a></li>
                 <li><a class="admin-menu" href="#"><img src="\assets\admin_menu\shopping bag.svg" alt=""
                             width = "25" height = "25">Orders</a></li>
