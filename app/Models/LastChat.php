@@ -27,10 +27,10 @@ class LastChat extends Model
 
     public $incrementing = false;
 
-    public function chat()
-    {
-        return $this->belongsTo(Chat::class, 'chatID', 'chatID');
-    }
+    // public function chat()
+    // {
+    //     return $this->belongsTo(Chat::class, 'chatID', 'chatID');
+    // }
 
     public function roomChat()
     {

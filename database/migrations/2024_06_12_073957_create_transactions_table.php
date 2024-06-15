@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->uuid('transactionID')->primary();
+            $table->id('transactionID')->primary();
             $table->uuid('userID')->nullable(false);
             $table->uuid('addressID')->nullable(false);
             $table->uuid('voucherID')->nullable(true);
