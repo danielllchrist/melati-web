@@ -12,28 +12,24 @@
 
 <body>
     @include('components.admin.headeradmin')
-    <section>
-        <div class="page-title">
-            <div class="title-wrapper">
-                <a href="">
-                    <div class="title">
-                        <img src="assets\dummy-img\back arrow coklat.svg" alt="">
-                        <h1>Carousel Manager</h1>
-                    </div>
-                </a>
+    <div class="page-title">
+        <div class="title-wrapper">
+            <div class="title">
+                <img src="\assets\dummy-img\back arrow.svg" alt="">
+                <h1>Atur Promosi</h1>
             </div>
         </div>
-    </section>
+    </div>
 
     <section>
         <div class="editor">
             @for ($i = 0; $i < 3; $i++)
                 <div class="editor-wrapper">
                     <div class="image">
-                        <img src="assets\dummy-img\Screenshot 2024-05-18 162312.png" alt="">
+                        <img src="\assets\dummy-img\Screenshot 2024-05-18 162312.png" alt="">
                     </div>
-                    <a href=""><div class="btn">Sunting</div></a>
-                    <a href=""><div class="btn">Hapus</div></a>
+                    <div class="btn-wrapper"><a href=""><div class="button">Sunting</div></a></div>
+                    <div class="btn-wrapper"><a href=""><div class="button">Hapus</div></a></div>
                 </div>
             @endfor
         </div>

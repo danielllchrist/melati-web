@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('manage_links', function (Blueprint $table) {
             $table->uuid('linkID')->primary();
-            $table->uuid('productID')->nullable(false);
+            $table->foreignUuid('productID')->nullable(false);
             $table->timestamps();
             $table->softDeletes();
 

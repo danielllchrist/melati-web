@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id('transactionID')->primary();
-            $table->uuid('userID')->nullable(false);
-            $table->uuid('addressID')->nullable(false);
-            $table->uuid('voucherID')->nullable(true);
+            $table->id('transactionID');
+            $table->foreignUuid('userID')->nullable(false);
+            $table->foreignUuid('addressID')->nullable(false);
+            $table->foreignUuid('voucherID')->nullable(true);
             $table->integer('subTotalPrice')->nullable(false);
             $table->integer('totalWeight')->nullable(false);
             $table->integer('totalDiscount')->nullable(true);

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('sizes', function (Blueprint $table) {
             $table->uuid('sizeID');
-            $table->uuid('productID')->nullable(false);
+            $table->foreignUuid('productID')->nullable(false);
             $table->enum('size', ['S', 'M', 'L', 'XL'])->nullable(true);
-            $table->integer('Stock')->nullable(false);
+            $table->integer('stock')->nullable(false);
             $table->timestamps();
             $table->primary(['sizeID', 'productID']);
             $table->softDeletes();
