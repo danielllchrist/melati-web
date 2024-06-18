@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('wishlists', function (Blueprint $table) {
-            $table->uuid('userID')->nullable(false);
-            $table->uuid('productID')->nullable(false);
+            $table->foreignUuid('userID')->nullable(false);
+            $table->foreignUuid('productID')->nullable(false);
             $table->timestamps();
             $table->primary(['userID', 'productID']);
             $table->softDeletes();

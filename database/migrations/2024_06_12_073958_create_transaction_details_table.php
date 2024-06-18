@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaction_details', function (Blueprint $table) {
-            $table->id('transactionID');
-            $table->uuid('productID')->nullable(false);
+            $table->foreignId('transactionID');
+            $table->foreignUuid('productID')->nullable(false);
             $table->integer('quantity')->nullable(false);
             $table->integer('price')->nullable(false);
             $table->integer('weight')->nullable(false);

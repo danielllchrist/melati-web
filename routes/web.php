@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\ManageLandingPageController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
 use App\Http\Controllers\admin\ProductController as AdminProductController;
 use App\Http\Controllers\customer\AddressController;
@@ -29,8 +30,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Auth::routes();
 
 // Route for Customers' Page
 Route::get('/', [LandingPageController::class, 'index']);
@@ -84,7 +83,7 @@ Route::group([], function () {
         Route::get('/profil', 'profile');
     });
 
-    Route::resource("/alamat-saya",AddressController::class);  
+    Route::resource("/alamat-saya",AddressController::class);
 
 });
 
@@ -92,7 +91,7 @@ Route::group([], function () {
 Route::prefix('admin')->group(function () {
 
     Route::resource("/produk", AdminProductController::class);
-    
+
     Route::controller(ChatController::class)->group(function () {
         Route::get('/live-chat', 'chat');
     });
@@ -110,12 +109,16 @@ Route::prefix('admin')->group(function () {
         Route::get('/pesanan/{orderID}', 'orderdetail');
     });
 
+    Route::controller(ManageLandingPageController::class)->group(function () {
+        Route::get('/atur-promosi', 'index');
+    });
+
 });
 
 // Route for Shipping Services' Page
 Route::prefix('shipping-service')->group(function () {
-    Route::resource("/profil",UserController::class);  
-   
+    Route::resource("/profil",UserController::class);
+
     Route::controller(Shipping_serviceOrderController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/{orderID}', 'orderdetail');

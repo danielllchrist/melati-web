@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('voucher_usages', function (Blueprint $table) {
-            $table->uuid('voucherID');
-            $table->uuid('userID');
+            $table->foreignUuid('voucherID');
+            $table->foreignUuid('userID');
             $table->timestamps();
             $table->primary(['voucherID', 'userID']);
             $table->softDeletes();

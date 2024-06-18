@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('status_transactions', function (Blueprint $table) {
-            $table->id('transactionID');
-            $table->uuid('statusID');
+            $table->foreignId('transactionID');
+            $table->foreignUuid('statusID');
             $table->timestamps();
             $table->primary(['transactionID', 'statusID']);
             $table->softDeletes();

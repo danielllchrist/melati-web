@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->uuid('productID')->nullable(false);
-            $table->uuid('transactionID')->nullable(false);
+            $table->foreignUuid('productID')->nullable(false);
+            $table->foreignId('transactionID')->nullable(false);
             $table->integer('rating')->nullable(false);
             $table->text('comment')->nullable(true);
             $table->timestamps();
