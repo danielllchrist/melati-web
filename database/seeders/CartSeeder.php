@@ -18,14 +18,25 @@ class CartSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
-        for ($i=0; $i < 100; $i++) {
-            DB::table('carts')->insert([
-                'userID' => User::all()->random()->userID,
-                'productID' => Product::all()->random()->productID,
-                'quantity' => $faker->numberBetween(1, 10),
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
+        for ($i = 0; $i < 100; $i++) {
+            $userID = User::all()->random()->userID;
+            $productID = Product::all()->random()->productID;
+
+            // Cek apakah kombinasi userID dan productID sudah ada
+            $existingCart = DB::table('carts')->where('userID', $userID)->where('productID', $productID)->first();
+
+            if (!$existingCart) {
+                DB::table('carts')->insert([
+                    'userID' => $userID,
+                    'productID' => $productID,
+                    'quantity' => $faker->numberBetween(1, 10),
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+            } else {
+                // Jika kombinasi userID dan productID sudah ada, kurangi nilai loop dan lanjutkan
+                $i--;
+            }
         }
     }
 }
