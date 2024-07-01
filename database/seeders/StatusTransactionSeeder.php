@@ -17,13 +17,24 @@ class StatusTransactionSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
-        for ($i=0; $i < 100; $i++) {
-            DB::table('status_transactions')->insert([
-                'transactionID' => Transaction::all()->random()->transactionID,
-                'statusID' => Status::all()->random()->statusID,
-                'created_at' => $faker->dateTimeThisYear(),
-                'updated_at' => $faker->dateTimeThisYear(),
-            ]);
+        for ($i = 0; $i < 100; $i++) {
+            $transactionID = Transaction::all()->random()->transactionID;
+            $statusID = Status::all()->random()->statusID;
+
+            // Cek apakah kombinasi transactionID dan statusID sudah ada
+            $existingStatusTransaction = DB::table('status_transactions')->where('transactionID', $transactionID)->where('statusID', $statusID)->first();
+
+            if (!$existingStatusTransaction) {
+                DB::table('status_transactions')->insert([
+                    'transactionID' => $transactionID,
+                    'statusID' => $statusID,
+                    'created_at' => $faker->dateTimeThisYear(),
+                    'updated_at' => $faker->dateTimeThisYear(),
+                ]);
+            } else {
+                // Jika kombinasi transactionID dan statusID sudah ada, kurangi nilai loop dan lanjutkan
+                $i--;
+            }
         }
     }
 }

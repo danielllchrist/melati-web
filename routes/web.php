@@ -106,7 +106,7 @@ Route::prefix('admin')->group(function () {
 
     Route::controller(AdminOrderController::class)->group(function () {
         Route::get('/pesanan', 'index');
-        Route::get('/pesanan/{orderID}', 'orderdetail');
+        Route::get('/pesanan/{orderID}', 'orderdetail')->name("adminPesanan");
     });
 
     Route::controller(ManageLandingPageController::class)->group(function () {
