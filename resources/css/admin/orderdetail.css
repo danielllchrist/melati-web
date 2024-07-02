@@ -72,10 +72,17 @@ a{
 }
 
 .status-img img {
-    width: 50%;
+    width: 60%;
     /* height: 60%; */
     object-fit: cover;
+    margin-bottom: 30px;
+}
 
+#batal{
+    width: 8.5%;
+    /* height: 60%; */
+    object-fit: cover;
+    margin-bottom: 30px;    
 }
 
 .segment {

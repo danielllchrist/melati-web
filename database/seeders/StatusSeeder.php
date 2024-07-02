@@ -17,32 +17,32 @@ class StatusSeeder extends Seeder
         $faker = Faker::create('id_ID');
         DB::table('statuses')->insert([
             [
-                'statusID' => $faker->uuid,
+                'statusID' => 1,
                 'statusName' => 'Menunggu Konfirmasi',
                 'pic' => 'Admin',
             ],
             [
-                'statusID' => $faker->uuid,
+                'statusID' => 2,
                 'statusName' => 'Sedang di Proses',
                 'pic' => 'Admin',
             ],
             [
-                'statusID' => $faker->uuid,
+                'statusID' => 3,
                 'statusName' => 'Dalam Pengiriman',
                 'pic' => 'Jasa Kirim',
             ],
             [
-                'statusID' => $faker->uuid,
+                'statusID' => 4,
                 'statusName' => 'Tiba di Tujuan',
                 'pic' => 'Jasa Kirim',
             ],
             [
-                'statusID' => $faker->uuid,
+                'statusID' => 5,
                 'statusName' => 'Penilaian',
                 'pic' => 'Customer',
             ],
             [
-                'statusID' => $faker->uuid,
+                'statusID' => 6,
                 'statusName' => 'Dibatalkan',
                 'pic' => 'Customer',
             ]
