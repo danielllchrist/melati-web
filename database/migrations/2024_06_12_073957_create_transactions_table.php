@@ -16,18 +16,20 @@ return new class extends Migration
             $table->foreignUuid('userID')->nullable(false);
             $table->foreignUuid('addressID')->nullable(false);
             $table->foreignUuid('voucherID')->nullable(true);
+            $table->foreignUuid('statusID')->nullable(false);
             $table->integer('subTotalPrice')->nullable(false);
             $table->integer('totalWeight')->nullable(false);
             $table->integer('totalDiscount')->nullable(true);
             $table->integer('shippingFee')->nullable(false);
             $table->integer('totalPrice')->nullable(false);
-            $table->string('paymentMethod')->nullable(false);
+            $table->enum('paymentMethod', ['Kartu Kredit', 'Transfer Bank', 'E-Wallet'])->nullable(false);
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('userID')->references('userID')->on('users');
             $table->foreign('addressID')->references('addressID')->on('addresses');
             $table->foreign('voucherID')->references('voucherID')->on('vouchers');
+            $table->foreign('statusID')->references('statusID')->on('statuses')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

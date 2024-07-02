@@ -17,7 +17,7 @@ class AddressSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
-        for ($i=0; $i < 100; $i++) {
+        for ($i=0; $i < 10; $i++) {
             DB::table('addresses')->insert([
                 'addressID' => $faker->uuid,
                 'userID' => User::all()->random()->userID,

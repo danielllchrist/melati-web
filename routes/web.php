@@ -114,7 +114,7 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::controller(ManageLandingPageController::class)->group(function () {
-        Route::get('/atur-promosi', 'index');
+        Route::get('/manage', 'index');
     });
 
     Route::controller(AdminEditProductController::class)->group(function () {

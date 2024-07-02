@@ -18,7 +18,7 @@ class CartSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $userID = User::all()->random()->userID;
             $productID = Product::all()->random()->productID;
 

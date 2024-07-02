@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +9,7 @@ use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class TransactionDetail extends Model
 {
-    use HasFactory,HasUuids,HasCompositeKey, SoftDeletes;
+    use HasFactory, HasCompositeKey, SoftDeletes;
 
     protected $table = 'transaction_details';
 
@@ -29,9 +28,14 @@ class TransactionDetail extends Model
 
     public $incrementing = false;
 
+    public function getIncrementing()
+    {
+        return false; // Tidak menggunakan incrementing keys
+    }
+
     public function getKeyName()
     {
-        return ['transactionID','productID'];
+        return ['transactionID', 'productID'];
     }
 
     public function transaction()
@@ -42,5 +46,10 @@ class TransactionDetail extends Model
     public function product()
     {
         return $this->belongsTo(Product::class, 'productID', 'productID');
+    }
+
+    public function size()
+    {
+        return $this->belongsTo(Size::class, 'sizeID', 'sizeID');
     }
 }

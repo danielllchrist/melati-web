@@ -39,8 +39,13 @@ class StatusSeeder extends Seeder
             [
                 'statusID' => $faker->uuid,
                 'statusName' => 'Penilaian',
-                'pic' => 'Admin',
+                'pic' => 'Customer',
             ],
+            [
+                'statusID' => $faker->uuid,
+                'statusName' => 'Dibatalkan',
+                'pic' => 'Customer',
+            ]
         ]);
     }
 }

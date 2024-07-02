@@ -43,13 +43,13 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
         $faker = Faker::create('id_ID');
-        for ($i=0; $i < 100; $i++) {
+        for ($i=0; $i < 10; $i++) {
             DB::table('users')->insert([
                 'userID' => $faker->uuid,
                 'name' => $faker->name,
                 'gender' => $faker->randomElement(['Pria', 'Wanita']),
                 'phoneNum' => $faker->phoneNumber,
-                'email' => $faker->safeEmail(),
+                'email' => $faker->email(),
                 'age' => $faker->numberBetween(12, 60),
                 'password' => bcrypt('password'),
                 'profilePicturePath' => json_encode('https://via.placeholder.com/800x600'),

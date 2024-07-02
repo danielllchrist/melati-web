@@ -10,7 +10,7 @@ use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class Size extends Model
 {
-    use HasFactory, HasUuids, HasCompositeKey, SoftDeletes;
+    use HasFactory, HasCompositeKey, SoftDeletes;
 
     protected $table = 'sizes';
 
@@ -35,5 +35,10 @@ class Size extends Model
     public function product()
     {
         return $this->belongsTo(Product::class, 'productID', 'productID');
+    }
+
+    public function detail()
+    {
+        return $this->hasMany(Size::class, 'sizeID', 'sizeID');
     }
 }
