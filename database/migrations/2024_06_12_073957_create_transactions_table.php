@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('totalDiscount')->nullable(true);
             $table->integer('shippingFee')->nullable(false);
             $table->integer('totalPrice')->nullable(false);
+            $table->string('paymentMethod')->nullable(false);
             $table->timestamps();
             $table->softDeletes();
 
