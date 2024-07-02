@@ -32,18 +32,37 @@
             <span class="small-text">Kategori Produk. Wajib. Pilih salah satu</span>
 
         <label for="nama_produk">Harga*</label>
-        <input type="text" id="nama_produk" name="nama_produk" class="underline-input-full" required>
+        <input type="text" id="harga_produk" name="harga_produk" class="underline-input-full" required>
         <span class="small-text">Harga Produk. Contoh: 230000, 400000, dll. Wajib</span>
 
         <label for="nama_produk">Berat (gr)*</label>
-        <input type="text" id="nama_produk" name="nama_produk" class="underline-input-full" required>
+        <input type="text" id="berat_produk" name="berat_produk" class="underline-input-full" required>
         <span class="small-text">Berat Produk Dalam Satuan Gram. Contoh : 200, 50, 1500, dll. Wajib. </span>
 
         <label for="nama_produk">Deskripsi</label>
-        <input type="text" id="nama_produk" name="nama_produk" class="underline-input-full">
+        <input type="text" id="deskripsi_produk" name="deskripsi_produk" class="underline-input-full">
         <span class="small-text">Deskripsi Produk. Contoh : “Size sesuai dengan chart”, “Jangan Dicuci pake Pemutih” , dll. Tidak Wajib. </span>
 
+        <label for="product-image">Gambar Produk</label>
+        <div class="product-image-section">
+            <div class="product-image">
+                <img src="\assets\images\image76.svg" alt="Product Image" id="productImage">
+            </div>
+            <div class="image-buttons">
+                <button type="button" class="upload">Pilih Gambar</button>
+                <button type="button" class="delete">Hapus Gambar</button>
+            </div>
+
+            <div class="save-button">
+                <button type="submit">Simpan</button>
+            </div>
+        </div>
+
+    
+
       </form>
+
+   
 
     @include('components.admin.footeradmin')
 
