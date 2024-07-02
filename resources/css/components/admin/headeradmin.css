@@ -59,6 +59,11 @@ body{
     text-decoration: none;
 }
 
+.admin-menu:hover{
+    color : #D5BE9E;
+
+}
+
 .info-admin {
     width: 100%;
     height : 323.79px;
