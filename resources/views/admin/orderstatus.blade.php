@@ -63,7 +63,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: Size</p>
+                                                    <p>Size: {{ $detail->size->size}}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -103,7 +103,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: Size</p>
+                                                    <p>Size: {{ $detail->size->size}}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -143,7 +143,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: Size</p>
+                                                    <p>Size: {{ $detail->size->size}}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -183,7 +183,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: Size</p>
+                                                    <p>Size: {{ $detail->size->size}}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -214,7 +214,7 @@
                                         <div class="ps-info">
                                             <img src="/assets/information_green_button.svg" alt="info"
                                                 class="i">
-                                            <div class="dalam-proses status">{{ $order->status->statusName }}</div>
+                                            <div class="dalam-proses status" id="batal">{{ $order->status->statusName }}</div>
                                         </div>
                                     </div>
                                     @foreach ($order->transactionDetail as $detail)
@@ -223,7 +223,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: Size</p>
+                                                    <p>Size: {{ $detail->size->size}}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">

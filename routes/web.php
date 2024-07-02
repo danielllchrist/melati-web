@@ -111,8 +111,12 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::controller(AdminOrderController::class)->group(function () {
-        Route::get('/pesanan', 'index');
+        Route::get('/pesanan', 'index')->name("adminStatus");
         Route::get('/pesanan/{orderID}', 'orderdetail')->name("adminPesanan");
+        Route::post('/confirm-order', [OrderController::class, 'confirmOrder'])->name('confirmOrder');
+        Route::post('/reject-order', [OrderController::class, 'rejectOrder'])->name('rejectOrder');
+        Route::post('/send-order', [OrderController::class, 'sendOrder'])->name('sendOrder');
+
     });
 
     Route::controller(ManageLandingPageController::class)->group(function () {
