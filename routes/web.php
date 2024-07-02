@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\ManageLandingPageController;
 use App\Http\Controllers\admin\EditProductController as AdminEditProductController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
 use App\Http\Controllers\admin\ProductController as AdminProductController;
+use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\customer\AddressController;
 use App\Http\Controllers\customer\CartController;
 use App\Http\Controllers\customer\ChatController;
@@ -95,6 +96,7 @@ Route::group([], function () {
 Route::prefix('admin')->group(function () {
 
     Route::resource("/produk", AdminProductController::class);
+    Route::get('/produk/category/{category}', [CategoryProductController::class, 'category'])->name('category');
 
     Route::controller(ChatController::class)->group(function () {
         Route::get('/live-chat', 'chat');

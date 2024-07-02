@@ -6,19 +6,18 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class Size extends Model
 {
-    use HasFactory, HasCompositeKey, SoftDeletes;
+    use HasFactory, HasUuids, SoftDeletes;
 
     protected $table = 'sizes';
 
-    protected $primaryKey = ['sizeID','productID'];
+    protected $primaryKey = 'sizeID';
 
     protected $keyType = 'string';
 
-    protected $guarded = ['sizeID'];
+    protected $guarded = 'sizeID';
 
     protected $fillable = [
         'productID',
@@ -27,10 +26,6 @@ class Size extends Model
     ];
 
     public $incrementing = false;
-
-    public function getKeyName(){
-        return['sizeID','productID'];
-    }
 
     public function product()
     {
