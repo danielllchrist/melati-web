@@ -14,6 +14,8 @@ use App\Http\Controllers\customer\ReturnController;
 use App\Http\Controllers\customer\ReviewController;
 use App\Http\Controllers\customer\WishlistController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\shipping_service\OrderController as Shipping_serviceOrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -34,13 +36,13 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // Route for Customers' Page
 Route::get('/', [LandingPageController::class, 'index']);
 
-Route::get('/daftar', function () {
-    return view('customer.register');
-});
+Route::get('/daftar', [RegisterController::class, 'index']);
 
-Route::get('/masuk', function () {
-    return view('customer.login');
-});
+Route::post('/daftar', [RegisterController::class, 'store']);
+
+Route::get('/masuk', [LoginController::class, 'index']);
+
+Route::post('/masuk', [LoginController::class, 'login']);
 
 Route::group([], function () {
     Route::controller(LandingPageController::class)->group(function () {
