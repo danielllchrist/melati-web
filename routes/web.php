@@ -88,8 +88,7 @@ Route::group([], function () {
         Route::get('/profil', 'profile');
     });
 
-    Route::resource("/alamat-saya",AddressController::class);
-
+    Route::resource("/alamat-saya", AddressController::class);
 });
 
 // Route for Admins' Page
@@ -97,6 +96,10 @@ Route::prefix('admin')->group(function () {
 
     Route::resource("/produk", AdminProductController::class);
     Route::get('/produk/category/{category}', [CategoryProductController::class, 'category'])->name('category');
+
+    Route::controller(AdminEditProductController::class)->group(function () {
+        Route::get('/edit', 'index');
+    });
 
     Route::controller(ChatController::class)->group(function () {
         Route::get('/live-chat', 'chat');
@@ -122,22 +125,16 @@ Route::prefix('admin')->group(function () {
     Route::controller(ManageLandingPageController::class)->group(function () {
         Route::get('/manage', 'index');
     });
-
-    Route::controller(AdminEditProductController::class)->group(function () {
-        Route::get('/edit','index');
-    });
-
 });
 
 // Route for Shipping Services' Page
 Route::prefix('shipping-service')->group(function () {
-    Route::resource("/profil",UserController::class);
+    Route::resource("/profil", UserController::class);
 
     Route::controller(Shipping_serviceOrderController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/{orderID}', 'orderdetail');
     });
-
 });
 
 Route::get('/test', function () {

@@ -28,7 +28,17 @@ body{
     /* padding-top: 6px;
     padding: 15px; */
 }
-.atas .back_icon{
+
+a{
+    text-decoration: none;
+    color: #F0F1E4;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.atas{
     padding-right: 20px;
     /* margin-top: 17px; */
     width: 36px;
@@ -62,7 +72,8 @@ body{
     font-weight: 600;
     font-size: 14px;
     /* justify-self: flex-end ; */
-    margin-left: 75%;
+    /* margin-left: 75%; */
+    cursor : pointer;
   }
 
   .add-img{
@@ -71,10 +82,11 @@ body{
   }
 
   .ctg-btn{
+    width : 180px;
     height : 40px;
     background-color: #D5BE9E;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     border-radius: 30px;
     border : 0;
@@ -83,6 +95,7 @@ body{
     color : #4F290C;
     font-weight: 700;
     font-size : 14px;
+    cursor : pointer;
   }
 
   .inner-container{
@@ -94,9 +107,11 @@ body{
 
   .ai-header{
     display : flex;
+    flex-direction: row;
+    width : 100%;
     gap : 20px;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
   }
 
   .ai-title{
@@ -210,6 +225,7 @@ body{
     flex-direction: column;
     color : #4F290C;
     padding : 10px 25px 30px 25px;
+    border-radius: 5px;
 }
 
 .ai-status-order{
@@ -558,7 +574,8 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
 
 .crud-btn{
     display : flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap : 20px;
 }
 
 .category-slide-cs{
@@ -584,6 +601,9 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
     text-decoration: none;
     outline: none;
     border-radius: 5px;
+    width : 30px;
+    height : 30px;
+    cursor : pointer;
 }
 
 .del-btn:hover{
@@ -593,15 +613,36 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
 }
 
 .update-btn{
-    background-color: #496041;
+    background-color: #5f8e4f;
     color : white;
     text-decoration: none;
     outline: none;
     border-radius: 5px;
+    width : 30px;
+    height : 30px;
 }
 
 .update-btn:hover{
     color : white;
     text-decoration: none;
     outline: none;
+}
+
+h1{
+    margin : 0;
+    padding : 0;
+}
+
+.back_icon{
+    padding-right: 20px;
+    width: 36px;
+}
+
+.back-arrow{
+    display: flex;
+    align-items: center;
+}
+
+.current{
+    background-color: #D5BE9E !important;
 }

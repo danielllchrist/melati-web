@@ -19,15 +19,16 @@
 <body>
     @include('components.admin.headeradmin')
     <div class="atas">
-        <img class="back_icon" src="{{ asset('assets/back.svg') }}">
+        <a href="" class = "back-arrow"><img class="back_icon" src="{{ asset('assets/back.svg') }}"></a>
         <h1>Produk</h1>
-        <button class="add-btn"><img src="\assets\crud_admin\add-white.svg" class = "add-img"alt="">
-            Tambah Produk
-        </button>
     </div>
     <div class="main-content ">
         <div class="inner-container">
             <div class = "ai-header">
+                <a href = "{{ route('produk.create') }}"><button class="add-btn"><img
+                            src="\assets\crud_admin\add-white.svg" class = "add-img"alt="">
+                        Tambah Produk
+                    </button></a>
                 <div class="dropdown">
                     <button class="ctg-btn dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -53,7 +54,7 @@
                                 <th class="user-table-title">Gambar</th>
                                 <th class="user-table-title">Nama</th>
                                 <th class="user-table-title">Harga</th>
-                                <th class="user-table-title">Size</th>
+                                <th class="user-table-title">Ukuran</th>
                                 <th class="user-table-title">Stok</th>
                                 <th class="user-table-title">Berat (gr)</th>
                                 <th class="user-table-title">Action</th>
@@ -135,7 +136,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-
 
 
 

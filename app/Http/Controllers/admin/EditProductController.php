@@ -9,6 +9,6 @@ class EditProductController extends Controller
 {
     public function index()
     {
-        return view('admin.editproduct');
+        return view('admin.product.edit');
     }
 }
