@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ManageLandingPageController;
+use App\Http\Controllers\admin\EditProductController as AdminEditProductController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
 use App\Http\Controllers\admin\ProductController as AdminProductController;
 use App\Http\Controllers\customer\AddressController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\customer\ProductController;
 use App\Http\Controllers\customer\ReturnController;
 use App\Http\Controllers\customer\ReviewController;
 use App\Http\Controllers\customer\WishlistController;
+use App\Http\Controllers\EditProductController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -113,6 +115,10 @@ Route::prefix('admin')->group(function () {
 
     Route::controller(ManageLandingPageController::class)->group(function () {
         Route::get('/atur-promosi', 'index');
+    });
+
+    Route::controller(AdminEditProductController::class)->group(function () {
+        Route::get('/edit','index');
     });
 
 });
