@@ -22,14 +22,13 @@ class Transaction extends Model
     protected $fillable = [
         'userID',
         'addressID',
-        'statusID',
         'voucherID',
+        'subTotalPrice',
         'totalWeight',
-        'shippingPrice',
-        'paymentMethod',
-        'paymentStatus',
+        'totalDiscount',
         'shippingFee',
         'totalPrice',
+        'paymentMethod',
     ];
 
     public function user()
