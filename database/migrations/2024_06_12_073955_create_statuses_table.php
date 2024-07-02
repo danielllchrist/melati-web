@@ -18,11 +18,13 @@ return new class extends Migration
                 'Sedang di Proses',
                 'Dalam Pengiriman',
                 'Tiba di Tujuan',
-                'Penilaian'
+                'Penilaian',
+                'Dibatalkan'
             ]);
             $table->enum('pic', [
                 'Admin',
-                'Jasa Kirim'
+                'Jasa Kirim',
+                'Customer'
             ]);
             $table->softDeletes();
         });

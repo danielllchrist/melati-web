@@ -26,8 +26,8 @@ class Status extends Model
 
     public $incerementing = false;
 
-    public function statusTransaction()
+    public function transaction()
     {
-        return $this->hasMany(StatusTransaction::class, 'statusID', 'statusID');
+        return $this->hasMany(Transaction::class, 'statusID', 'statusID');
     }
 }

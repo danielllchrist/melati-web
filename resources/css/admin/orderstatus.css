@@ -3,6 +3,10 @@ body{
     font-family: 'Poppins';
  }
 
+.ps-order-wrap{
+    text-decoration: none;
+}
+
 .page-title {
     padding: 0px !important;
     display: flex !important;
@@ -142,6 +146,56 @@ body{
     margin : 0;
 }
 
+.ps-menu-link{
+    display: flex;
+    justify-content: space-between;
+    width : 100%;
+    font-size: 14px;
+    font-weight : 600;
+    color : #F0F1E4;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    list-style-type: none;
+    text-decoration: none;
+    padding : 0;
+    margin : 0;
+}
+ul.status-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #000; /* Background color similar to the image */
+    padding: 10px 0;
+}
+
+li {
+    flex: 1;
+    text-align: center;
+}
+
+button.ps-menu-link {
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight : 600;
+    color : #F0F1E4;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    list-style-type: none;
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    cursor: pointer;
+    font-family: 'Poppins';
+}
+
+button.ps-menu-link.active-menus {
+    color : #D5BE9E;
+    border-bottom: 2px solid #D5BE9E; /* Border color similar to the image */
+}
+
 .status-menu a{
     width : 270px;
     display : flex;
@@ -176,6 +230,7 @@ body{
     display : flex;
     flex-direction: column;
     color : #4F290C;
+    margin-bottom: 2%;
 }
 
 .ps-status-order{
@@ -207,7 +262,7 @@ body{
 }
 
 
-.menunggu-konfirmasi{
+.status{
     height : 30px;
     font-family: 'Poppins';
     font-size : 12px;
