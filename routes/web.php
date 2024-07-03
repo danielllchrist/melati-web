@@ -22,7 +22,6 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\shipping_service\OrderController as Shipping_serviceOrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -36,16 +35,20 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+// Route for All Users
+Route::get('/', [LandingPageController::class, 'index'])->name('landing');
+
+Route::middleware(['auth', 'admin', 'shipping_service'])->post('/keluar', [LoginController::class, 'logout']);
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/daftar', [RegisterController::class, 'index'])->name('daftar');
+    Route::post('/daftar', [RegisterController::class, 'store']);
+    Route::get('/masuk', [LoginController::class, 'index'])->name('masuk');
+    Route::post('/masuk', [LoginController::class, 'authenticate']);
+});
+
+
 // Route for Customers' Page
-Route::get('/', [LandingPageController::class, 'index']);
-
-Route::get('/daftar', [RegisterController::class, 'index']);
-
-Route::post('/daftar', [RegisterController::class, 'store']);
-
-Route::get('/masuk', [LoginController::class, 'index']);
-
-Route::post('/masuk', [LoginController::class, 'login']);
 
 Route::group([], function () {
     Route::controller(LandingPageController::class)->group(function () {
@@ -124,6 +127,7 @@ Route::prefix('admin')->group(function () {
 
     Route::controller(ManageLandingPageController::class)->group(function () {
         Route::get('/manage', 'index');
+        Route::get('/manajer-carousel', 'managecarousel');
     });
 });
 
