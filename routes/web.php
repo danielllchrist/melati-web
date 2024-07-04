@@ -97,16 +97,16 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     Route::get('/keluar', [LoginController::class, 'logout']);
     // logout jangan lupa diganti jadi post
     Route::resource('/produk', AdminProductController::class);
-    Route::get('/produk/category/{category}', [CategoryProductController::class, 'category'])->name('category');
-    Route::get('/produk/create_size/{produk}', [AdminProductController::class, 'CreateSize'])->name('create_size');
-    Route::post('/produk/store_size/{id}', [AdminProductController::class, 'StoreSize'])->name('store_size');
+    Route::get('/produk/kategori/{category}', [CategoryProductController::class, 'category'])->name('category');
+    Route::get('/produk/buat_ukuran/{produk}', [AdminProductController::class, 'CreateSize'])->name('create_size');
+    Route::post('/produk/simpan_ukuran/{id}', [AdminProductController::class, 'StoreSize'])->name('store_size');
 
     // Route::controller(AdminEditProductController::class)->group(function () {
     //     Route::get('/edit', 'index');
     // });
 
     Route::controller(ChatController::class)->group(function () {
-        Route::get('/live-chat', 'chat');
+        Route::get('/obrolan', 'chat');
     });
 
     Route::controller(UserController::class)->group(function () {
@@ -116,14 +116,17 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     Route::controller(AdminOrderController::class)->group(function () {
         Route::get('/pesanan', 'index')->name('adminStatus');
         Route::get('/pesanan/{orderID}', 'orderdetail')->name('adminPesanan');
-        Route::post('/confirm-order', [OrderController::class, 'confirmOrder'])->name('confirmOrder');
-        Route::post('/reject-order', [OrderController::class, 'rejectOrder'])->name('rejectOrder');
-        Route::post('/send-order', [OrderController::class, 'sendOrder'])->name('sendOrder');
+        Route::post('/terima-pesanan', [OrderController::class, 'confirmOrder'])->name('confirmOrder');
+        Route::post('/tolak-pesanan', [OrderController::class, 'rejectOrder'])->name('rejectOrder');
+        Route::post('/kirim-pesanan', [OrderController::class, 'sendOrder'])->name('sendOrder');
     });
 
     Route::controller(ManageLandingPageController::class)->group(function () {
         Route::get('/atur', 'index');
         Route::get('/manajer-carousel', 'managecarousel');
+        Route::post('/unggah-gambar/{id}', 'uploadImage')->name('upload.image');
+        Route::delete('/hapus-gambar/{id}')->name('deleteImage');
+
     });
 });
 
