@@ -9,13 +9,11 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return response()->view('shipping_service.orderstatus');
+        return view('shipping_service.orderstatus');
     }
 
     public function orderdetail()
     {
-        return response()->view('shipping_service.orderdetail', [
-            "orderID" => "halo123"
-        ]);
+        return view('shipping_service.orderdetail');
     }
 }

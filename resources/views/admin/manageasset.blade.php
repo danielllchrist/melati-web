@@ -4,12 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Manage Assets</title>
-    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite('resources/css/app.css')
     @vite('resources/css/admin/manageasset.css')
+    <style>
+        .card-custom {
+            border-radius: 0;
+            color: white;
+            width: 230px;
+            height: 400px;
+            margin: 0 10px;
+        }
+
+        .card-custom-top {
+            border-radius: 0;
+            width: 100%;
+        }
+
+        .card-custom-body {
+            padding: 10px 50px 50px 15px;
+            background-image: url('/assets/backgroundHargaKatalog.png');
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            filter: sepia(0.8);
+        }
+
+        .card-custom>img {
+            max-height: 245px;
+        }
+
+        .card-custom-body>p {
+            margin-bottom: 10px;
+        }
+
+        .card-custom-body>h3 {
+            font-size: 18px;
+        }
+
+        .catalog-item>a {
+            padding: 0;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body class="bg-black">
@@ -79,16 +119,17 @@
             </div>
             <div class="card-wrapper">
                 @for ($i = 0; $i < 3; $i++)
-                    <a href="">
-                        <div class="product-card">
-                            <div class="product-img"><img src="\assets\dummy-img\Snapinsta.png" alt=""></div>
-                            <div class="information">
-                                <img src="\assets\dummy-img\Rectangle 657.png" alt="">
-                                <p class="product-name">Kamboja Kutubaru</p>
-                                <p class="price">Rp 120,000</p>
+                    <div class="catalog-item">
+                        <a href="detail.html">
+                            <div class="card-custom">
+                                <img src="/assets/kambojaKutubaru.png" class="card-custom-top" alt="Catalog">
+                                <div class="card-custom-body">
+                                    <p>Kamboja Kutubaru</p>
+                                    <h3>Rp 100.000</h3>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 @endfor
             </div>
     </section>

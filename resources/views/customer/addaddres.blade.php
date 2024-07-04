@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -28,7 +29,7 @@
                     </button>
                 </div>
                 <div class="right">
-                    @for($i=0;$i<10;$i++)   
+                    @for($i=0;$i<10;$i++)
                         <button type="button" class="square no-bootstrap" data-toggle="modal" data-target="#alamatEdit">
                             <div class="alamat dis">
                                 <div class="wrap">
@@ -40,7 +41,7 @@
                                         Jalan Pakuan No.3<br>
                                         Sentul, Kabupaten Bogor<br>
                                         Jawa Barat
-                                        Pagar Hijau yg ada anjing galak banget hati-hati ya 
+                                        Pagar Hijau yg ada anjing galak banget hati-hati ya
                                     </p>
                                 </div>
                                 <div class="wrap2">
@@ -52,12 +53,12 @@
 
                     @include('customer.modal.alamatEdit')
                     @include('customer.modal.tambahAlamat')
-                    
+
                 </div>
             </div>
         </div>
     </div>
-    
+
     @include('components.customer.footercustomer')
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -99,7 +100,7 @@
       $(this).addClass('selected');
     });
   });
-</script>    
+</script>
 </body>
 
 </html>

@@ -142,48 +142,6 @@ body{
     gap: 100px;
 }
 
-.product-card{
-    width: 250px;
-    height: 390px;
-}
-
-.product-card img{
-    width: 250px;
-    height: 290px;
-    object-fit: cover;
-    object-position: center;
-}
-
-.information{
-    position: relative;
-    width: 250px;
-}
-
-.information img{
-    width: 250px;
-    height: 100px;
-    object-fit: cover;
-    object-position: center;
-}
-
-.product-name{
-    font-family: Poppins;
-    font-weight: 600 !important;
-    color: #F0F1E4;
-    position: absolute;
-    top: 5%;
-    left: 5%;
-}
-
-.price{
-    font-family: Poppins;
-    font-weight: 600 !important;
-    color: #F0F1E4;
-    position: absolute;
-    bottom: 20%;
-    left: 5%;
-}
-
 #mix-and-match{
     position: relative;
     height: 350px;

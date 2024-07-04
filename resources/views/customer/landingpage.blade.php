@@ -4,11 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Melati</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite('resources/css/app.css')
     @vite('resources/css/customer/landingpage.css')
+    <style>
+        .card-custom {
+            border-radius: 0;
+            color: white;
+            width: 230px;
+            height: 400px;
+            margin: 0 10px;
+        }
+
+        .card-custom-top {
+            border-radius: 0;
+            width: 100%;
+        }
+
+        .card-custom-body {
+            padding: 10px 50px 50px 15px;
+            background-image: url('/assets/backgroundHargaKatalog.png');
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            filter: sepia(0.8);
+        }
+
+        .card-custom>img {
+            max-height: 245px;
+        }
+
+        .card-custom-body>p {
+            margin-bottom: 10px;
+        }
+
+        .card-custom-body>h3 {
+            font-size: 18px;
+        }
+
+        .catalog-item>a {
+            padding: 0;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body class="bg-black">
@@ -19,15 +60,15 @@
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @for ($i = 0; $i < 3; $i++)
-                            <div class="carousel-item {{ $i == 1 ? 'active' : ''}}">
+                            <div class="carousel-item {{ $i == 1 ? 'active' : '' }}">
                                 <img src="\assets\dummy-img\Screenshot 2024-05-18 162312.png" class="d-block w-100"
                                     alt="Promotion Banner 1">
-                                    <a href="" class="carousel-product-link">
-                                        <div class="belanja-sekarang-button">
-                                            <h2>BELANJA SEKARANG</h2>
-                                            <div class="belanja-sekarang"></div>
-                                        </div>
-                                    </a>
+                                <a href="" class="carousel-product-link">
+                                    <div class="belanja-sekarang-button">
+                                        <h2>BELANJA SEKARANG</h2>
+                                        <div class="belanja-sekarang"></div>
+                                    </div>
+                                </a>
                             </div>
                         @endfor
                     </div>
@@ -76,16 +117,17 @@
             </div>
             <div class="card-wrapper">
                 @for ($i = 0; $i < 3; $i++)
-                    <a href="">
-                        <div class="product-card">
-                            <div class="product-img"><img src="\assets\dummy-img\Snapinsta.png" alt=""></div>
-                            <div class="information">
-                                <img src="\assets\dummy-img\Rectangle 657.png" alt="">
-                                <p class="product-name">Kamboja Kutubaru</p>
-                                <p class="price">Rp 120,000</p>
+                    <div class="catalog-item">
+                        <a href="detail.html">
+                            <div class="card-custom">
+                                <img src="/assets/kambojaKutubaru.png" class="card-custom-top" alt="Catalog">
+                                <div class="card-custom-body">
+                                    <p>Kamboja Kutubaru</p>
+                                    <h3>Rp 100.000</h3>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 @endfor
             </div>
     </section>
@@ -94,7 +136,9 @@
         <div id="mix-and-match">
             <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
             <h1>Bebaskan kreativitasmu! Mix and match gaya favoritmu dengan mudah.</h1>
-            <div id="button-mix-and-match-wrapper"><a href="/mixmatch"><div id="button-mix-and-match" class="buttons">Kunjungi fitur Mix and Match</div></a></div>
+            <div id="button-mix-and-match-wrapper"><a href="/mixmatch">
+                    <div id="button-mix-and-match" class="buttons">Kunjungi fitur Mix and Match</div>
+                </a></div>
         </div>
     </section>
 
@@ -102,7 +146,9 @@
         <div id="belanja-sekarang-banner">
             <h2>BATIK MELATI</h2>
             <h1>WARISAN BUDAYA , GAYA MODERN</h1>
-            <div id="button-belanja-wrapper"><a href="/katalog"><div id="button-belanja" class="buttons">Belanja Sekarang</div></a></div>
+            <div id="button-belanja-wrapper"><a href="/katalog">
+                    <div id="button-belanja" class="buttons">Belanja Sekarang</div>
+                </a></div>
         </div>
     </section>
     @include('components.customer.footercustomer')

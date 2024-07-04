@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wishlist</title>
+    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
+    <title>Favorit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @vite('resources/css/app.css')
@@ -46,24 +47,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         var data = [
-                {"id":1,"quantity":0}, 
+                {"id":1,"quantity":0},
                 {"id":2,"quantity":5},
                 {"id":3,"quantity":1},
                 {"id":4,"quantity":2},
-                {"id":5,"quantity":10}, 
-                {"id":6,"quantity":0}, 
-                {"id":7,"quantity":15}, 
+                {"id":5,"quantity":10},
+                {"id":6,"quantity":0},
+                {"id":7,"quantity":15},
                 {"id":8,"quantity":8},
-                {"id":9,"quantity":10}, 
-                {"id":10,"quantity":11}, 
-                {"id":11,"quantity":2}, 
+                {"id":9,"quantity":10},
+                {"id":10,"quantity":11},
+                {"id":11,"quantity":2},
                 {"id":12,"quantity":18},
                 {"id":13,"quantity":11}
             ];
-        
+
         function show() {
             var content = "";
-            
+
             for(let i=0; i<data.length; i++){
                 if(data[i].quantity > 0){
                     content += '<a href=\"detail\"><div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-' + data[i].id + '" onclick="wishlist(' + data[i].id + ')"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div></a>';

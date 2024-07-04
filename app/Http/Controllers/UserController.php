@@ -9,7 +9,9 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(){
+    public function index()
+    {
+        //
     }
 
     public function profile(Request $request)
@@ -31,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -72,5 +74,5 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
-    }    
+    }
 }

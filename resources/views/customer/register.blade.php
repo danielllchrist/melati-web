@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     <title>Daftar</title>
-    <link rel="icon" type="image/x-icon" href="\assets\Group 33862.png">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite('resources/css/customer/register.css')
     @vite('resources/css/app.css')
