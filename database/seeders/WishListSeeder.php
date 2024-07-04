@@ -21,7 +21,7 @@ class WishListSeeder extends Seeder
             $userID = User::all()->random()->userID;
             $productID = Product::all()->random()->productID;
 
-            $existingWishlist = DB::table('carts')->where('userID', $userID)->where('productID', $productID)->first();
+            $existingWishlist = DB::table('wishlists')->where('userID', $userID)->where('productID', $productID)->first();
 
             if (!$existingWishlist) {
                 DB::table('wishlists')->insert([
