@@ -99,17 +99,19 @@ Route::prefix('admin')->group(function () {
 
     Route::resource("/produk", AdminProductController::class);
     Route::get('/produk/category/{category}', [CategoryProductController::class, 'category'])->name('category');
+    Route::get('/produk/create_size/{produk}', [AdminProductController::class, 'CreateSize'])->name('create_size');
+    Route::post('/produk/store_size/{id}', [AdminProductController::class,'StoreSize'])->name('store_size');
 
-    Route::controller(AdminEditProductController::class)->group(function () {
-        Route::get('/edit', 'index');
-    });
+    // Route::controller(AdminEditProductController::class)->group(function () {
+    //     Route::get('/edit', 'index');
+    // });
 
     Route::controller(ChatController::class)->group(function () {
         Route::get('/live-chat', 'chat');
     });
 
     Route::controller(DashboardController::class)->group(function () {
-        Route::get('', 'index');
+        Route::get('', 'index')->name('admin_dashboard');
     });
 
     Route::controller(UserController::class)->group(function () {
@@ -122,7 +124,6 @@ Route::prefix('admin')->group(function () {
         Route::post('/confirm-order', [OrderController::class, 'confirmOrder'])->name('confirmOrder');
         Route::post('/reject-order', [OrderController::class, 'rejectOrder'])->name('rejectOrder');
         Route::post('/send-order', [OrderController::class, 'sendOrder'])->name('sendOrder');
-
     });
 
     Route::controller(ManageLandingPageController::class)->group(function () {

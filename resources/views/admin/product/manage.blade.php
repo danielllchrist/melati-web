@@ -19,29 +19,43 @@
 <body>
     @include('components.admin.headeradmin')
     <div class="atas">
-        <a href="" class = "back-arrow"><img class="back_icon" src="{{ asset('assets/back.svg') }}"></a>
+        <a href="{{ route('admin_dashboard') }}" class = "back-arrow"><img class="back_icon"
+                src="{{ asset('assets/back.svg') }}"></a>
         <h1>Produk</h1>
     </div>
     <div class="main-content ">
         <div class="inner-container">
             <div class = "ai-header">
-                <a href = "{{ route('produk.create') }}"><button class="add-btn"><img
-                            src="\assets\crud_admin\add-white.svg" class = "add-img"alt="">
-                        Tambah Produk
-                    </button></a>
-                <div class="dropdown">
+                <div class="dropdown dropdown-custom">
+                    <a href="{{ route('produk.create') }}" class = "add-btn"><img src="\assets\crud_admin\add-white.svg"
+                            class = "add-img"alt="">Tambah Produk</a>
+
+                    <div class="dropdown-menu category-slide-cs dropdown-custom" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item add-btn-menu" href="{{ route('produk.create') }}"><img
+                                src="\assets\crud_admin\item-btn.svg" class = "add-img"alt=""> Produk Baru</a>
+                        <a class="dropdown-item add-btn-menu" href="/"><img src="\assets\crud_admin\size-btn.svg"
+                                class = "add-img"alt=""> Tambah Size</a>
+                    </div>
+                </div>
+
+                <div class="dropdown dropdown-custom">
                     <button class="ctg-btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-toggle="tooltip"
+                        data-bs-title="Another tooltip">
                         Kategori Produk
                     </button>
-                    <div class="dropdown-menu category-slide-cs" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item category-slide-cs-menu" href="/admin/produk">Semua</a>
+                    <div class="dropdown-menu category-slide-cs dropdown-custom" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item category-slide-cs-menu" href="/admin/produk"><img
+                                src="\assets\crud_admin\semua.svg" class = "add-img"alt=""> Semua</a>
                         <a class="dropdown-item category-slide-cs-menu"
-                            href="{{ route('category', ['category' => 'Atasan']) }}">Atasan</a>
-                        <a class="dropdown-item category-slide-cs-menu"
-                            href="{{ route('category', ['category' => 'Bawahan']) }}">Bawahan</a>
-                        <a class="dropdown-item category-slide-cs-menu"
-                            href="{{ route('category', ['category' => 'Aksesoris']) }}">Aksesoris</a>
+                            href="{{ route('category', ['category' => 'Atasan']) }}"><img
+                                src="\assets\crud_admin\atasan.svg" class = "add-img"alt=""> Atasan</a>
+                        <a class="dropdown-item category-slide-cs-menu add-fs"
+                            href="{{ route('category', ['category' => 'Bawahan']) }}"> <img
+                                src="\assets\crud_admin\bawahan.svg" class = "add-img" alt=""> Bawahan</a>
+                        <a class="dropdown-item category-slide-cs-menu add-fs"
+                            href="{{ route('category', ['category' => 'Aksesoris']) }}"><img
+                                src="\assets\crud_admin\accessories.svg" class = "add-img"alt=""> Aksesoris</a>
                     </div>
                 </div>
             </div>
@@ -125,6 +139,11 @@
                     class: 'text-center'
                 },
             ],
+            // buttons: [
+            //     {
+            //         extend
+            //     }
+            // ]
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -135,6 +154,9 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 
 

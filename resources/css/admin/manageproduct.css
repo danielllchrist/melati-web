@@ -76,6 +76,11 @@ a:hover{
     cursor : pointer;
   }
 
+  .add-btn:hover{
+    color : white;
+  }
+
+
   .add-img{
     height : 19px;
     width : 19px;
@@ -529,7 +534,7 @@ tr {
       /*font-bold*/
       border-radius: .25rem;
       /*rounded*/
-      background: #0C3256 !important;
+      background: #F0F1E4 !important;
       /*bg-indigo-500*/
       border: 1px solid transparent;
       /*border border-transparent*/
@@ -542,7 +547,7 @@ tr {
     }
 
     .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-      color: #555555 !important;
+      color: red !important;
     }
 
     /*Add padding to bottom border */
@@ -581,12 +586,16 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
 .category-slide-cs{
     background-color: #F0F1E4;
     width : 100%;
-    border-radius: 20px;
+    border-radius: 10px;
     text-align: center;
 }
 
 .category-slide-cs-menu{
-    border-radius: 20px;
+    border-radius: 10px;
+    color : #4F290C;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .category-slide-cs-menu:active{
@@ -612,8 +621,24 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
     outline: none;
 }
 
-.update-btn{
+.add-size-btn{
     background-color: #5f8e4f;
+    color : white;
+    text-decoration: none;
+    outline: none;
+    border-radius: 5px;
+    width : 30px;
+    height : 30px;
+}
+
+.add-size-btn:hover{
+    color : white;
+    text-decoration: none;
+    outline: none;
+}
+
+.update-btn{
+    background-color: #2670e0;
     color : white;
     text-decoration: none;
     outline: none;
@@ -645,4 +670,27 @@ h1{
 
 .current{
     background-color: #D5BE9E !important;
+}
+
+.dropdown-custom{
+    /* slide down transition */
+    transition: all 0.3s ease;
+}
+
+.add-btn-menu{
+    border-radius: 10px;
+    color : #4F290C;
+    display : flex;
+    justify-content: space-around;
+}
+
+.add-btn-menu:active{
+    background-color: #D5BE9E;
+    border-radius: 10px;
+    color :rgb(59, 48, 33);
+}
+
+.add-fs{
+    font-size : 16px;
+    /* font-weight: 500; */
 }
