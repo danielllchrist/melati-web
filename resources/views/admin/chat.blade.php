@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     <title>Chat</title>
     @vite('resources/css/admin/chat.css')
     @vite('resources/css/app.css')
@@ -65,9 +66,9 @@
                     <div class="inputs">
                         <input id="message_input" type="text" name="message" placeholder="Ketik pesan disini..">
                         <div class="wrap9">
-                            <input id="file_input" type="file" name="photo" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">            
+                            <input id="file_input" type="file" name="photo" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
                             <img id="icon-input-file" src="{{asset('assets/uploadPict.svg')}}">
-                            
+
                         </div>
                         <!-- <div id="msg_wrap">
                             <img id="file_result">

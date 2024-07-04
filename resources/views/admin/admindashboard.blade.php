@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     @vite('resources/css/app.css')
@@ -39,7 +40,7 @@
                     <img src="\assets\iconTotalEarning.png" class="earning-img">
                 </div>
             </div>
-            
+
             <div class="d-flex box-2 justify-content-between align-items-center">
                 <div class="box-left">
                     <p>Total Disc + Refund</p>
@@ -49,7 +50,7 @@
                     <img src="\assets\iconTotalDiscount.png" class="discount-img">
                 </div>
             </div>
-    
+
             <div class="d-flex box-3 justify-content-between align-items-center">
                 <div class="box-left">
                     <p>Total Order</p>

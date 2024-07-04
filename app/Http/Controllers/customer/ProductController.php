@@ -7,24 +7,23 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(Request $request){
-        return response()->view('customer.catalog');
+    public function index()
+    {
+        return view('customer.catalog');
     }
 
     public function detail_product()
     {
-        return response()->view('customer.detail', [
-            "orderID" => "halo123"
-        ]);
+        return view('customer.detail');
     }
 
     public function review()
     {
-        return response()->view('customer.review');
+        return view('customer.review');
     }
 
     public function return()
     {
-        return response()->view('customer.return');
+        return view('customer.return');
     }
 }
