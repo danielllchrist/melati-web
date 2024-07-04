@@ -87,8 +87,10 @@
             <div class="flex-column">
                 <div id="men" class="men-women-content">
                     <img src="\assets\dummy-img\top 2.png" alt="men">
+                    <img src="\assets\dummy-img\top 2.png" alt="men">
                 </div>
                 <div id="women" class="men-women-content">
+                    <img src="\assets\dummy-img\rok 3.png" alt="women">
                     <img src="\assets\dummy-img\rok 3.png" alt="women">
                 </div>
             </div>
@@ -134,6 +136,7 @@
 
     <section>
         <div id="mix-and-match">
+            <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
             <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
             <h1>Bebaskan kreativitasmu! Mix and match gaya favoritmu dengan mudah.</h1>
             <div id="button-mix-and-match-wrapper"><a href="/mixmatch">
