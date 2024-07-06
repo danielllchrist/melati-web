@@ -19,7 +19,8 @@ return new class extends Migration
                 'Dalam Pengiriman',
                 'Tiba di Tujuan',
                 'Penilaian',
-                'Dibatalkan'
+                'Dibatalkan',
+                'Dikembalikan'
             ]);
             $table->enum('pic', [
                 'Admin',
