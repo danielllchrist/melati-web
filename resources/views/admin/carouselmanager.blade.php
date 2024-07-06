@@ -34,7 +34,7 @@
                 <input type="file" id="fileInput{{$manageAsset[0]->assetID}}" style="display:none;" onchange="uploadImage(event, '{{$manageAsset[0]->assetID}}')" required accept="image/png,image/jpg,image/jpeg">
             </div>
         </div>
-    
+
         <div class="asset-item">
             <div class="image-container">
                 <img src="{{ asset($manageAsset[1]->assetPath) }}" alt="Product Image" id="productImage{{$manageAsset[1]->assetID}}">
@@ -46,7 +46,7 @@
                 <input type="file" id="fileInput{{$manageAsset[1]->assetID}}" style="display:none;" onchange="uploadImage(event, '{{$manageAsset[1]->assetID}}')" required accept="image/png,image/jpg,image/jpeg">
             </div>
         </div>
-    
+
         <div class="asset-item">
             <div class="image-container">
                 <img src="{{ asset($manageAsset[2]->assetPath) }}" alt="Product Image" id="productImage{{$manageAsset[2]->assetID}}">
@@ -72,8 +72,7 @@
             formData.append('image', file);
             console.log(formData);
             
-            fetch('/admin/upload-image/' + id, {
-
+            fetch('/admin/unggah-gambar/' + id, {
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -98,7 +97,7 @@
 
         function deleteImage(id) {
             if (confirm('Anda yakin ingin menghapus gambar ini?')) {
-                fetch('/admin/delete-image/' + id, {
+                fetch('/admin/hapus-gambar/{id}' + id, {
                     method: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'

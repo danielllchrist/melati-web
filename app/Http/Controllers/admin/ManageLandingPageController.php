@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ManageAsset;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -11,12 +12,12 @@ use Illuminate\Support\Facades\Storage;
 class ManageLandingPageController extends Controller
 {
 
+    public function index() {
+        return view('admin.manageasset');
+    }
+
+
     public function managecarousel() {
-        return view('admin.carouselmanager');
-
-
-        // $storage = '\assets\dummy-img\Screenshot 2024-05-18 162312.png';
-
 
         $manageAsset = ManageAsset::all();
         // dd($manageAsset);
