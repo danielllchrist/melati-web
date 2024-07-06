@@ -45,6 +45,11 @@ class StatusSeeder extends Seeder
                 'statusID' => 6,
                 'statusName' => 'Dibatalkan',
                 'pic' => 'Customer',
+            ],
+            [
+                'statusID' => 7,
+                'statusName' => 'Dikembalikan',
+                'pic' => 'Customer',
             ]
         ]);
     }

@@ -37,6 +37,8 @@
                     <img src="\assets\dummy-img\status5.svg" alt="">
                 @elseif ($order->status->statusName == 'Dibatalkan')
                     <img id="batal" src="\assets\dummy-img\status6.svg" alt="">
+                @elseif ($order->status->statusName == 'Dikembalikan')
+                    <img id="batal" src="\assets\dummy-img\status7.svg" alt="">
                 @endif
             </div>
             <div class="segment delivery-address">
