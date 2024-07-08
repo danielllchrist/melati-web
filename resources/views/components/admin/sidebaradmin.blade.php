@@ -14,7 +14,7 @@
             <div class="sidebar-back">
                 <!-- <a href="#" class="profile"><img src="assets/side_bar/back_arrow.svg" alt="Back"> -->
                     <div class="profile"><img class="pp-picture" src="\assets\top1.png" alt="" />
-                        <p>Ryan</p>
+                        <p>{{$nama}}</p>
                     </div>
                 <!-- </a> -->
             </div>

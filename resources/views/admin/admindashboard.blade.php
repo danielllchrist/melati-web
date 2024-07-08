@@ -10,19 +10,19 @@
     @vite('resources/css/admin/admindashboard.css')
     <style>
         .box-1 {
-            background-image: url('\assets\backgroundHijau.png');
+            background-image: url('assets/backgroundHijau.png');
         }
 
         .box-2 {
-            background-image: url('\assets\backgroundMerah.png');
+            background-image: url('assets/backgroundMerah.png');
         }
 
         .box-3 {
-            background-image: url('\assets\backgroundCream.png');
+            background-image: url('assets/backgroundCream.png');
         }
 
         .box-4 {
-            background-image: url('\assets\backgroundCoklat.png');
+            background-image: url('assets/backgroundCoklat.png');
         }
     </style>
 
@@ -33,8 +33,8 @@
         <div class="d-flex justify-content-between mt-5 mb-5">
             <div class="d-flex box-1 justify-content-between align-items-center">
                 <div class="box-left">
-                    <p>Total Earnings</p>
-                    <p class="count">Rp 1.000.000</p>
+                    <p>Total Pendapatan</p>
+                    <p class="count">{{ "Rp " . number_format($earnings_total->total, 0, ",", "."); }}</p>
                 </div>
                 <div class="box-right">
                     <img src="\assets\iconTotalEarning.png" class="earning-img">
@@ -43,8 +43,8 @@
 
             <div class="d-flex box-2 justify-content-between align-items-center">
                 <div class="box-left">
-                    <p>Total Disc + Refund</p>
-                    <p class="count">Rp 1.000.000</p>
+                    <p>Total Diskon + Kembalian</p>
+                    <p class="count">{{ "Rp " . number_format($discount_total->total, 0, ",", "."); }}</p>
                 </div>
                 <div class="box-right">
                     <img src="\assets\iconTotalDiscount.png" class="discount-img">
@@ -53,8 +53,8 @@
 
             <div class="d-flex box-3 justify-content-between align-items-center">
                 <div class="box-left">
-                    <p>Total Order</p>
-                    <p class="count" id="total-order">543</p>
+                    <p>Total Pesanan</p>
+                    <p class="count" id="total-order">{{$transaction_total}}</p>
                 </div>
                 <div class="box-right">
                     <img src="\assets\iconTotalOrder.png" class="order-img">
@@ -63,8 +63,8 @@
 
             <div class="d-flex box-4 justify-content-between align-items-center">
                 <div class="box-left">
-                    <p>Total Users</p>
-                    <p class="count" id="total-order">1234</p>
+                    <p>Total Pengguna</p>
+                    <p class="count" id="total-order">{{$user_total}}</p>
                 </div>
                 <div class="box-right">
                     <img src="\assets\iconTotalUser.png" class="user-img">
@@ -79,46 +79,46 @@
             <div class="d-flex flex-column">
                 <div class="month mb-5">
                     <div class="month-title mb-4">
-                        <h3>This Month</h3>
+                        <h3 style="color: black">Bulan Ini</h3>
                     </div>
                     <div class="month-data">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" style="background-color:#F0F1E4;">
                             <tr>
-                                <td>
+                                <td style="background-color:#F0F1E4;">
                                     <div class="data-count">
-                                        <p>123</p>
+                                        <p>{{$transaction_this_month}}</p>
                                     </div>
                                     <div class="data-title">
-                                        <p>Orders</p>
+                                        <p>Pesanan</p>
                                     </div>
                                 </td>
 
-                                <td>
+                                <td style="background-color:#F0F1E4;">
                                     <div class="data-count">
-                                        <p>Rp. 1.000.000</p>
+                                        <p>{{ "Rp " . number_format($earnings_this_month->total, 0, ",", "."); }}</p>
                                     </div>
                                     <div class="data-title">
-                                        <p>Earnings</p>
+                                        <p>Pendapatan</p>
                                     </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td>
+                                <td style="background-color:#F0F1E4;">
                                     <div class="data-count">
-                                        <p>Rp. 150.000</p>
+                                        <p>{{ "Rp " . number_format($discount_this_month->total, 0, ",", "."); }}</p>
                                     </div>
                                     <div class="data-title">
-                                        <p>Discount</p>
+                                        <p>Diskon</p>
                                     </div>
                                 </td>
 
-                                <td>
+                                <td style="background-color:#F0F1E4;">
                                     <div class="data-count">
-                                        <p>Rp. 100.000</p>
+                                        <p>{{ "Rp " . number_format($return_this_month->total, 0, ",", "."); }}</p>
                                     </div>
                                     <div class="data-title">
-                                        <p>Refund</p>
+                                        <p>Kembalian</p>
                                     </div>
                                 </td>
                             </tr>
@@ -136,12 +136,23 @@
     <script>
         const ctx = document.getElementById('revenueChart');
 
+        let gender_pria = parseInt({{$user_by_gender[0]->total}});
+        let gender_wanita = parseInt({{$user_by_gender[1]->total}});
+        let dataset_gender = [gender_pria,gender_wanita];
+
+        let revenue_month = '{{ $month_revenue }}';
+        let total_revenue = '{{ $total_revenue }}';
+
+        let revenue_month_data = revenue_month.split('-');
+        let total_revenue_data = total_revenue.split('-');
+
+
         var revenue = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: revenue_month_data,
                 datasets: [{
-                    data: [1000000, 1800000, 4100000, 6000000, 6100000, 8200000, 8000000, 8400000, 8000000, 7800000, 7900000, 8100000],
+                    data: total_revenue_data,
                     borderColor: 'rgb(0, 0, 0)',
                     lineTension: 0.4,
                     pointRadius: 0
@@ -164,7 +175,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Revenue Report',
+                        text: 'Laporan Keuangan',
                         position: 'top',
                         align: 'start',
                         color: 'rgb(0, 0, 0)',
@@ -188,23 +199,23 @@
             type: 'doughnut',
             data: {
                 labels: [
-                    'Male',
-                    'Female'
+                    'Pria',
+                    'Wanita'
                 ],
                 datasets: [{
-                    data: [384, 850],
+                    data: dataset_gender,
                     backgroundColor: [
-                        'rgb(71, 51, 32)',
-                        'rgb(236, 190, 146)'
+                        '#4F290C',
+                        '#D5BE9E'
                     ],
                     hoverOffset: 4
-                }]
+                }]  
             },
             options: {
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Customers',
+                        text: 'Pelanggan',
                         position: 'top',
                         align: 'start',
                         color: 'rgb(0, 0, 0)',

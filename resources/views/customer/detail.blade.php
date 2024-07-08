@@ -41,11 +41,11 @@
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
+                                <span class="visually-hidden">Sebelumnya</span>
                             </button>
                             <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
+                                <span class="visually-hidden">Selanjutnya</span>
                             </button>
                         </div>
 
@@ -78,17 +78,17 @@
                             </div>
                             <h1>Rp 399.000</h1>
                             <div class="mt-3 mb-3">
-                                <p>Size :</p>
+                                <p>Ukuran :</p>
                                 <div class="btn-sizes">
-                                    <button class="btn btn-light rounded-circle ps-2 pe-2">XS</button>
-                                    <button class="btn btn-light rounded-circle ps-2 pe-2">S</button>
-                                    <button class="btn btn-light rounded-circle ps-2 pe-2">M</button>
-                                    <button class="btn btn-light rounded-circle ps-2 pe-2">L</button>
-                                    <button class="btn btn-light rounded-circle ps-2 pe-2">XL</button>
+                                    <button class="btn btn-light rounded-circle ps-2 pe-2" onclick="selectedSize(this.id)">XS</button>
+                                    <button class="btn btn-light rounded-circle ps-2 pe-2" onclick="selectedSize(this.id)">S</button>
+                                    <button class="btn btn-light rounded-circle ps-2 pe-2" onclick="selectedSize(this.id)">M</button>
+                                    <button class="btn btn-light rounded-circle ps-2 pe-2" onclick="selectedSize(this.id)">L</button>
+                                    <button class="btn btn-light rounded-circle ps-2 pe-2" onclick="selectedSize(this.id)">XL</button>
                                 </div>
                             </div>
                             <div class="quantity mb-4">
-                                <p>Quantity :</p>
+                                <p>Jumlah :</p>
                                 <div class="d-flex align-items-center justify-content-around">
                                     <div class="btn-qty">
                                         <input type="text" value="0" id="qty-value" onkeypress='validate(event)'>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="detail-content-body">
-                            <p>Description :</p>
+                            <p>Deskripsi :</p>
                             <p class="detail-review">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi eos nostrum perferendis labore ab, amet similique odit mollitia nihil quam consequuntur voluptatem quo at repudiandae consequatur dolorum sit. Expedita ullam ea magnam consequuntur enim repellendus saepe unde obcaecati quisquam ratione nemo nostrum praesentium fugiat voluptatem cumque, modi aut quidem provident. Iusto, atque sed nisi ratione saepe id nemo labore necessitatibus voluptatem aliquam autem aperiam voluptas sunt enim! Blanditiis debitis tenetur eligendi dicta omnis quia, obcaecati iusto exercitationem nemo quae beatae non ex illo harum, in vero voluptatibus consequuntur magnam doloremque quos, distinctio amet atque! Quod neque iste harum reiciendis id aut rem velit quia, dolorum explicabo incidunt dicta tempora iure exercitationem vitae error soluta, natus itaque temporibus ipsa, corrupti vero? Voluptate iure consequatur quam quod sint officia doloremque nihil, ducimus molestias rerum libero earum corrupti ut porro quisquam aut quibusdam sequi dignissimos. Ipsa dignissimos minus quo itaque. Repellendus ducimus eos dignissimos deleniti saepe quia asperiores cumque aliquid maxime voluptatibus! Magni, odio. Sit officia voluptatum molestias ipsa quisquam quas. Vero corrupti quae fuga voluptas iure dolores nisi nam, aspernatur cumque natus autem, ut illo nemo consectetur? Aliquid animi voluptatum, suscipit accusamus reiciendis blanditiis cupiditate laborum corporis quam sit obcaecati tempora mollitia enim. Autem voluptate eveniet sequi saepe qui maxime inventore modi, eos molestias nesciunt adipisci reprehenderit nemo! Enim velit omnis excepturi fugit quos, corporis vitae esse mollitia repudiandae? Est dolores ut voluptate eveniet excepturi, nisi illo iste amet aspernatur consequuntur itaque blanditiis veritatis eius maiores iure alias dolorem quam atque iusto aliquam animi repellendus! Dolorum illo perferendis quidem rem autem totam officiis, ad doloremque saepe, magni, iusto perspiciatis libero. Eos magni autem fuga optio deserunt culpa laudantium, doloribus quasi dolore sapiente eligendi ea esse minus iure nemo delectus quam quo. In deleniti fugit voluptatem saepe, ea odit, at minus ex quis incidunt explicabo quam ducimus maxime quasi perspiciatis facere nam quaerat voluptatum. Quas quis optio eveniet ratione quia neque non corrupti placeat, magni itaque, dolorem eum unde? Dolore numquam laudantium est corrupti adipisci expedita deserunt exercitationem error quaerat! Laborum alias laboriosam unde fugiat, porro assumenda. Iusto veritatis esse a excepturi corrupti deleniti, quis praesentium officiis reiciendis explicabo, ducimus asperiores? Iusto, fuga. Error, dolor? Quibusdam explicabo excepturi facilis optio alias, iure distinctio hic id! Dolore explicabo, beatae sapiente sed alias maxime rerum unde labore vero laborum sit, eveniet aspernatur! Ea autem totam blanditiis repellendus vitae earum dolorum ipsam, fuga eligendi? Quae perferendis debitis doloribus nesciunt quos corrupti, obcaecati sed tenetur autem nostrum, nisi magnam tempora porro neque, voluptates minima incidunt error temporibus illum! Animi repellat eaque illum nobis itaque at ea magni hic natus, rem, inventore numquam quia pariatur quae blanditiis, explicabo sunt labore eum neque eligendi delectus! Autem, aliquam ea ullam quas soluta iste ipsam nulla porro in doloremque suscipit esse voluptatem, dolores natus aut amet nihil sapiente ad est ipsum! Eos libero, pariatur nostrum rerum odio, nulla commodi unde eligendi laboriosam, autem provident nisi? Ipsa quod provident, repellendus nesciunt magni expedita, veritatis placeat enim veniam distinctio exercitationem hic, pariatur ut.</p>
                         </div>
                     </div>

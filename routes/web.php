@@ -111,6 +111,8 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
 
     Route::controller(UserController::class)->group(function () {
         Route::get('/profil', 'profile');
+        Route::post('/profil/update/{id}', 'update')->name('profileUpdate');
+        Route::post('/profil/update-pass/{id}', 'updatePassword')->name('passUpdate');
     });
 
     Route::controller(AdminOrderController::class)->group(function () {
