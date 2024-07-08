@@ -11,6 +11,17 @@ body {
 	margin-right: 10px; */
 }
 
+.top h1{
+    font-size: 40px;
+    font-weight: 600;
+    font-family: Poppins;
+    margin-bottom: 0px;
+}
+.top p{
+    font-size: 15px;
+    font-weight: 400;
+    font-family: Poppins;
+}
 .content-container {
     background-color: black;
     /* padding: 50px; */
@@ -56,9 +67,16 @@ input[type="password"] {
     outline: none;
 }
 
+.wrap{
+    height: 80px;
+    margin-top: 10px;
+}
+
 .wrap-right label {
     font-family: Poppins;
+    font-weight: 600;
     color: #f0f1e4;
+    font-size: 17px;
 }
 
 .gender-container {
@@ -134,4 +152,14 @@ textarea::placeholder {
 
 a {
     color: #d5be9e;
+}
+
+.error-message {
+    padding: 0px;
+    margin: 0px;
+    color: #b95244;
+    margin-bottom: 10px;
+    padding-top: 0px;
+    margin-top: -2px;
+    height: 10px ;
 }

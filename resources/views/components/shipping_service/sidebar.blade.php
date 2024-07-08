@@ -8,8 +8,8 @@
 </head>
 
 <body>
-    <div class = "sidebar">
-        <div class = "sidebar-content">
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-content">
             <div class="sidebar-back">
                 <a href="#" class="profile">
                     <div class="profile"><img class="pp-picture" src="\assets\top1.png" alt="" />
@@ -20,9 +20,10 @@
             <div class="sidebar-menu-container">
                 <div class="sidebar-menu">
                     <h2>Akun</h2>
-                    <ul class = "spacing-sidebarmenu">
-                        <li><a href="#">Profil</a></li>
-                        <li><a href="#">Ganti Password</a></li>
+                    <ul class="spacing-sidebarmenu">
+                        <li><a href="#profil">Profil</a></li>
+                        <li><a href="#ganti_password">Ganti Password</a></li>
+                        <li><a href="#keluar">Keluar</a></li>
                     </ul>
                 </div>
                 {{-- active-page bisa dimasukkin ke class biar warna menu nya ke selected --}}

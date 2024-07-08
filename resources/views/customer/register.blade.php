@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
+    <link rel="icon" type="image/x-icon" href="/assets/Logo.svg">
     <title>Daftar</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite('resources/css/customer/register.css')
@@ -22,60 +22,74 @@
                 <p>Dapatkan akses dan Jadilah anggota hari ini.</p><br>
                 <form action="/daftar" method="POST">
                     @csrf
-                    <label for="name">Nama</label><br>
-                    <input type="text" id="name" name="name" placeholder=" Masukan nama Anda" required
-                        value="{{ old('name') }}"><br>
-                    @error('name')
-                        {{ $message }}
-                    @enderror
-                    <br>
-
-                    <div class="gender-container">
-                        <input type="radio" id="pria" name="gender" value="Pria" required>
-                        <label for="pria">Pria</label>
-                        <input type="radio" id="wanita" name="gender" value="Wanita" required>
-                        <label for="wanita">Wanita</label>
+                    <div class="wrap">
+                        <label for="name">Nama</label>
+                        <input type="text" id="name" name="name" placeholder="Masukan nama Anda" required
+                            value="{{ old('name') }}">
+                        <div class="error-message">
+                        @error('name')
+                            {{ $message }}
+                        @enderror
+                        </div>
                     </div>
-
-                    <label for="phoneNum">Nomor Telepon</label><br>
-                    <input type="number" id="phoneNum" name="phoneNum" placeholder="Masukan Nomor Telepon" required
-                        value="{{ old('phoneNum') }}"><br>
-                    @error('phoneNum')
-                        {{ $message }}
-                    @enderror
-                    <br>
-
-                    <label for="email">Email</label><br>
-                    <input type="email" id="email" name="email" placeholder="Masukan Email" required
-                        value="{{ old('email') }}"><br>
-                    @error('email')
-                        {{ $message }}
-                    @enderror
-                    <br>
-
-                    <label for="age">Usia</label><br>
-                    <input type="number" id="age" name="age" placeholder="Masukan Usia" required
-                        value="{{ old('age') }}"><br>
-                    @error('age')
-                        {{ $message }}
-                    @enderror
-                    <br>
-
-                    <label for="password">Kata Sandi</label><br>
-                    <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required><br>
-                    @error('password')
-                        {{ $message }}
-                    @enderror
-                    <br>
-
-                    <label for="confirm-password">Konfirmasi Kata Sandi</label><br>
-                    <input type="password" id="confirm-password" name="confirm-password"
-                        placeholder="Konfirmasi Kata Sandi" required><br>
-                    @error('confirm-password')
-                        {{ $message }}
-                    @enderror
-                    <br>
-
+                    <div class="wrap">
+                        <label for="gender">Gender</label>
+                        <div class="gender-container">
+                            <input type="radio" id="pria" name="gender" value="Pria" required>
+                            <label for="pria">Pria</label>
+                            <input type="radio" id="wanita" name="gender" value="Wanita" required>
+                            <label for="wanita">Wanita</label>
+                        </div>
+                    </div>
+                    <div class="wrap">
+                        <label for="phoneNum">Nomor Telepon</label>
+                        <input type="number" id="phoneNum" name="phoneNum" placeholder="Masukan Nomor Telepon" required min="0"
+                            value="{{ old('phoneNum') }}">
+                        <div class="error-message">
+                        @error('phoneNum')
+                            {{ $message }}
+                        @enderror
+                        </div>
+                    </div>
+                    <div class="wrap">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Masukan Email" required
+                            value="{{ old('email') }}">
+                        <div class="error-message">
+                        @error('email')
+                            {{ $message }}
+                        @enderror
+                        </div>
+                    </div>
+                    <div class="wrap">
+                        <label for="age">Usia</label>
+                        <input type="number" id="age" name="age" placeholder="Masukan Usia" required min="0"
+                            value="{{ old('age') }}">
+                        <div class="error-message">
+                        @error('age')
+                            {{ $message }}
+                        @enderror
+                        </div>
+                    </div>
+                    <div class="wrap">
+                        <label for="password">Kata Sandi</label>
+                        <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
+                        <div class="error-message">
+                        @error('password')
+                            {{ $message }}
+                        @enderror
+                        </div>
+                    </div>
+                    <div class="wrap">
+                        <label for="confirm-password">Konfirmasi Kata Sandi</label>
+                        <input type="password" id="confirm-password" name="confirm-password"
+                            placeholder="Konfirmasi Kata Sandi" required>
+                        <div class="error-message">
+                        @error('confirm-password')
+                            {{ $message }}
+                        @enderror
+                        </div>
+                    </div>
             </div>
             <div class="bottom">
                 <button type="submit">Daftar</button><br>
@@ -88,6 +102,24 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const phoneNumInput = document.getElementById('phoneNum');
+            const ageInput = document.getElementById('age');
+
+            phoneNumInput.addEventListener('input', function () {
+                if (this.value < 0) {
+                    this.value = 0;
+                }
+            });
+
+            ageInput.addEventListener('input', function () {
+                if (this.value < 0) {
+                    this.value = 0;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

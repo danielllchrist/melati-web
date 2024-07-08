@@ -18,37 +18,41 @@
         <div class="wrap-right">
             <form action="/masuk" method="post">
                 @csrf
-                <div class="top">
-                    <div class="wrap-header"><br>
+                <div class="top"><br>
+                    <div class="wrap-header">
                         <img src="\assets\Group 33862.png" alt="image">
                     </div>
                     <h1>Masuk</h1>
-                    <p>Pembayaran cepat dan aman.<br> Masuk untuk menyimpan informasi<br>pengiriman Anda.</p><br>
+                    <p>Pembayaran cepat dan aman. Masuk untuk menyimpan informasi pengiriman Anda.</p>
                     @if (session()->has('success'))
                         <div class="alert">
                             <strong>{{ session()->get('success') }}</strong>
-                        </div><br>
+                        </div>
                     @endif
-                    <label for="email">Email</label><br>
-                    <input type="email" id="email" name="email" placeholder=" Masukan Email Anda" required autofocus value="{{ old('email') }}"><br>
-
-                    <label for="password">Password</label><br>
-                    <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required><br>
-                    @error('password')
-                        <div class="alert">
-                            {{ $message }}
-                        </div><br>
-                    @enderror
+                    <div class="wrap">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Masukan Email Anda" required
+                            autofocus value="{{ old('email') }}">
+                    </div>
+                    <div class="wrap">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
+                        <div class="error-message">
+                            @error('password')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
 
                     @if (session()->has('loginError'))
                         <div class="alert">
                             <strong>{{ session()->get('loginError') }}</strong>
-                        </div><br>
+                        </div>
                     @endif
                 </div>
 
                 <div class="bottom">
-                    <button type="submit">Masuk</button><br>
+                    <button type="submit">Masuk</button>
                     <p>Tidak punya akun? <a href="/daftar">Daftar</a></p>
                 </div>
             </form>

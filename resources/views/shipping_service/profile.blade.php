@@ -15,12 +15,12 @@
     @include('components.shipping_service.headerss')
     <div class="withsidebar">
         @include('components.shipping_service.sidebar')
-        <div class="main-content ">
-            <div class="pf-inner-container">
+        <div id="main-content" class="main-content">
+            <div id="profil" class="pf-inner-container">
                 <div class="pf-profile">
                     <div class="pf-profile-info">
                         <h3 class="pf-title">Profil</h3>
-                        <form action="" class="pf-profileform " method = "">
+                        <form action="" class="pf-profileform " method="">
                             <div class="pf-formdetail">
                                 <div class="pf-name">Nama</div>
                                 <input class="pf-textfield" type="text" id="nama" name="nama"
@@ -34,8 +34,8 @@
                             <div class="pf-formdetail">
                                 <div class="pf-name">Jenis Kelamin</div>
                                 <div class="pf-gender">
-                                    <div class="pf-radio"><input type="radio" id="pria" name="gender"
-                                            value="pria" required>
+                                    <div class="pf-radio"><input type="radio" id="pria" name="gender" value="pria"
+                                            required>
                                         <label for="pria">Pria</label>
                                     </div>
                                     <div class="pf-radio"><input type="radio" id="wanita" name="gender"
@@ -59,7 +59,7 @@
                     </div>
                     <div class="pf-profile-pp">
                         <!-- Profile Photo File Input -->
-                        <input name = "profile_photo_path" type="file" id="photo" class="hidden"
+                        <input name="profile_photo_path" type="file" id="photo" class="hidden"
                             wire:model.defer="photo" x-ref="photo"
                             x-on:change="
                                 photoName = $refs.photo.files[0].name;
@@ -71,7 +71,7 @@
                         " />
 
                         <!-- Current Profile Photo -->
-                        <div x-show="! photoPreview">
+                        <div x-show="!photoPreview">
                             <img class="pfp-image" src="\assets\top1.png" alt="profile"
                                 class="rounded-full h-40 w-40 object-cover">
                         </div>
@@ -88,25 +88,29 @@
                         </button>
                     </div>
                 </div>
-                <div class="pf-pass">
+                <div id="ganti_password" class="pf-pass">
                     <h3 class="pf-title">Ganti Kata Sandi</h3>
                     <form action="" class="pf-profileform">
                         <div class="pf-formdetail">
                             <div class="pf-name">Kata Sandi Lama</div>
                             <div class="pf-textfield"><input class="pf-inputpass" type="password" id="passlama"
                                     name="nama" placeholder="Silahkan Mengisi Kata Sandi Lama" required> <img
-                                    class = "hide-pass-icon" src="\assets\eye.svg" alt = "hide" id = "eyehidelama"
-                                    onclick = "hidePasswordLama()"></div>
+                                    class="hide-pass-icon" src="\assets\eye.svg" alt="hide" id="eyehidelama"
+                                    onclick="hidePasswordLama()"></div>
                         </div>
                         <div class="pf-formdetail">
                             <div class="pf-name">Kata Sandi Baru</div>
                             <div class="pf-textfield"><input class="pf-inputpass" type="password" id="passbaru"
                                     name="nama" placeholder="Silahkan Mengisi Kata Sandi Baru" required> <img
-                                    class = "hide-pass-icon" src="\assets\eye.svg" alt = "hide" id = "eyehidebaru"
-                                    onclick = "hidePasswordBaru()"></div>
+                                    class="hide-pass-icon" src="\assets\eye.svg" alt="hide" id="eyehidebaru"
+                                    onclick="hidePasswordBaru()"></div>
                         </div>
                         <div class="pf-submit-btn-container"><button class="pf-submit-btn">Ganti</button></div>
                     </form>
+                </div>
+                <div id="keluar" class="pf-keluar">
+                    <h3 class="pf-title">Keluar</h3>
+                    <button class="pf-logout-btn">Keluar dari akun</button>
                 </div>
             </div>
         </div>

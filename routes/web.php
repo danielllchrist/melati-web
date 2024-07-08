@@ -77,15 +77,15 @@ Route::middleware(['auth'])->group(function () {
     //-------------- sidebar -------------------
 
     Route::controller(OrderController::class)->group(function () {
-        Route::get('/pesanan', 'myorder');
+        Route::get('/pesanan', 'myorder') ->name("pesanan_saya");
         Route::get('/pesanan/{orderID}', 'detail_myorder');
         Route::get('/konfirmasi-pesanan', 'checkout');
         Route::get('/pembayaran', 'payment');
     });
     Route::controller(UserController::class)->group(function () {
-        Route::get('/profil', 'profile');
+        Route::get('/profil', 'profile')->name("profile");
     });
-    Route::resource('/alamat-saya', AddressController::class);
+    Route::resource('/alamat-saya', AddressController::class)->name("index","alamat_saya");
 });
 
 // Route for admin
@@ -93,7 +93,7 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'index')->name('admin_dashboard');
     });
-    Route::get('/profil', [UserController::class, 'profile']);
+    Route::get('/profil', [UserController::class, 'profile'])->name("profile");
     Route::get('/keluar', [LoginController::class, 'logout']);
     // logout jangan lupa diganti jadi post
     Route::resource('/produk', AdminProductController::class);
@@ -110,9 +110,13 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     });
 
     Route::controller(UserController::class)->group(function () {
+<<<<<<< Updated upstream
         Route::get('/profil', 'profile');
         Route::post('/profil/update/{id}', 'update')->name('profileUpdate');
         Route::post('/profil/update-pass/{id}', 'updatePassword')->name('passUpdate');
+=======
+        Route::get('/profil', 'profile')->name("profile");;
+>>>>>>> Stashed changes
     });
 
     Route::controller(AdminOrderController::class)->group(function () {
