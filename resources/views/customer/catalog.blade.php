@@ -161,9 +161,9 @@
                 var content = "";
                 for(let i=0; i<dataTemp.length; i++){
                     if(dataTemp[i].wishlist){
-                        content += "<a href=\"detail\"><div class=\"card-custom\"><i class=\"fa fa-heart fa-2x heart-color\" id=\"wishlist-heart-" + dataTemp[i].id + "\" onclick=\"wishlist(event, " + dataTemp[i].id + ")\"></i><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" + rupiah(dataTemp[i].harga) + "</h3></div></div></a>";
+                        content += "<div class=\"catalog-item\"><a href=\"detail.html\"><div class=\"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" + rupiah(dataTemp[i].harga) + "</h3></div></div></a><i class=\"fa fa-heart fa-2x heart-color\" id=\"wishlist-heart-" + dataTemp[i].id + "\" onclick=\"wishlist(event, " + dataTemp[i].id + ")\"></i></div>";
                     }else{
-                        content += "<a href=\"detail\"><div class=\"card-custom\"><i class=\"fa fa-heart-o fa-2x heart\" id=\"wishlist-heart-" + dataTemp[i].id + "\" onclick=\"wishlist(event, " + dataTemp[i].id + ")\"></i><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" + rupiah(dataTemp[i].harga) + "</h3></div></div></a>";
+                        content += "<div class=\"catalog-item\"><a href=\"detail.html\"><div class=\"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" + rupiah(dataTemp[i].harga) + "</h3></div></div></a><i class=\"fa fa-heart-o fa-2x heart\" id=\"wishlist-heart-" + dataTemp[i].id + "\" onclick=\"wishlist(event, " + dataTemp[i].id + ")\"></i></div>";
                     }
                 }
 

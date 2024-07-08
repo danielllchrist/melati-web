@@ -1,7 +1,7 @@
 .box-1, .box-2, .box-3, .box-4{
     width: 275px;
-    border-bottom: 5px solid rgb(59, 48, 33);
-    color: white;
+    border-bottom: 5px solid #4F290C;
+    color:#F0F1E4;
     padding: 20px 30px;
 }
 
@@ -15,27 +15,27 @@
 }
 
 .earning-img {
-    background-color: white;
+    background-color: #F0F1E4;
     border-radius: 5em;
     padding: 5px;
     width: 50px;
 }
 
 .discount-img {
-    background-color: white;
+    background-color: #F0F1E4;
     border-radius: 5em;
     padding: 5px;
     width: 50px;
 }
 
 .order-img {
-    background-color: white;
+    background-color:#F0F1E4;
     border-radius: 5em;
     padding: 10px;
     width: 50px;
 }
 .user-img{
-    background-color: white;
+    background-color:#F0F1E4;
     border-radius: 5em;
     padding: 10px;
     width: 50px;
@@ -52,18 +52,18 @@
 }
 
 #revenueChart{
-    background-color: white;
+    background-color:#F0F1E4;
     height: 695px;
     padding: 20px;
 }
 
 #genderChart{
-    background-color: white;
+    background-color:#F0F1E4;
     padding: 20px;
 }
 
 .month{
-    background-color: white;
+    background-color: #F0F1E4;
     padding: 25px 30px;
 }
 

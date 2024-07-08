@@ -67,13 +67,13 @@
 
             for(let i=0; i<data.length; i++){
                 if(data[i].quantity > 0){
-                    content += '<a href=\"detail\"><div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-' + data[i].id + '" onclick="wishlist(' + data[i].id + ')"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div></a>';
+                    content += '<div class="card-content"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-' + data[i].id + '" onclick="wishlist(' + data[i].id + ')"></i><div class="card-custom" onclick="accessLink()"><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp 150.000,00</h3></div></div></div>';
                 }
             }
 
             for(let i=0; i<data.length; i++){
                 if(data[i].quantity <= 0){
-                    content += '<div class="card-content"><div class="card-custom sold-out"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-' + data[i].id + '" onclick="wishlist(' + data[i].id + ')"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div><h1>SOLD OUT!</h1></div>';
+                    content += '<div class="card-content"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-' + data[i].id + '" onclick="wishlist(' + data[i].id + ')"></i><div class="card-custom sold-out" onclick="accessLink()"><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp 150.000,00</h3></div></div><h1>SOLD OUT!</h1></div>';
                 }
             }
 

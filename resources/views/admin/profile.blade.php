@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Melati</title>
     @vite('resources/css/admin/profile.css')
@@ -20,41 +19,47 @@
                 <div class="pf-profile">
                     <div class="pf-profile-info">
                         <h3 class="pf-title">Profil</h3>
-                        <form action="" class="pf-profileform " method = "">
+                        <form action="{{ route('profileUpdate', $data->userID) }}" class="pf-profileform " method = "post">
+                            @csrf
                             <div class="pf-formdetail">
                                 <div class="pf-name">Nama</div>
-                                <input class="pf-textfield" type="text" id="nama" name="nama"
-                                    placeholder="Nama sebelumnya" required>
+                                <input class="pf-textfield" type="text" id="nama" name="name"
+                                    placeholder="{{ $data->name ? $data->name : 'Nama sebelumnya' }} " value="{{ $data->name ? $data->name : '' }}" required>
                             </div>
                             <div class="pf-formdetail">
-                                <div class="pf-name">Tanggal Lahir</div>
-                                <input class="pf-textfield" type="date" id="tanggal_lahir" name="tanggal_lahir"
-                                    placeholder="12/12/1222" required>
+                                <div class="pf-name">Umur</div>
+                                <input class="pf-textfield" type="number" id="age" name="age"
+                                    placeholder="{{ $data->age ? $data->age : 'Umur sebelumnya' }}" value="{{ $data->age ? $data->age : '' }}" required>
                             </div>
                             <div class="pf-formdetail">
                                 <div class="pf-name">Jenis Kelamin</div>
                                 <div class="pf-gender">
                                     <div class="pf-radio"><input type="radio" id="pria" name="gender"
-                                            value="pria" required>
+                                            value="pria" {{ strtolower($data->gender) == "pria" ? "checked" : "" }}  required>
                                         <label for="pria">Pria</label>
                                     </div>
-                                    <div class="pf-radio"><input type="radio" id="wanita" name="gender"
-                                            value="wanita" required>
+                                    <div class="pf-radio">
+                                        <input type="radio" id="wanita" name="gender"
+                                            value="wanita" {{ strtolower($data->gender) == "wanita" ? "checked" : "" }}  required>
                                         <label for="wanita">Wanita</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="pf-formdetail">
                                 <div class="pf-name">Nomor Telepon</div>
-                                <input class="pf-textfield" type="text" id="nama" name="nama"
-                                    placeholder="Nomor sebelumnya" required>
+                                <input class="pf-textfield" type="text" id="nama" name="phoneNum"
+                                    placeholder="Nomor sebelumnya" value="{{ $data->phoneNum ? $data->phoneNum : '' }}" required>
                             </div>
                             <div class="pf-formdetail">
                                 <div class="pf-name">Email</div>
-                                <input class="pf-textfield" type="text" id="nama" name="nama"
-                                    placeholder="Email sebelumnya" required>
+                                <input class="pf-textfield" type="text" id="nama" name="email"
+                                    placeholder="Email sebelumnya" value="{{ $data->email ? $data->email : 'Nama sebelumnya' }}" required>
                             </div>
-                            <div class="pf-submit-btn-container"><button class="pf-submit-btn">Simpan</button></div>
+                            <div class="pf-submit-btn-container">
+                                <a href={{route('profileUpdate', $data->userID)}}>
+                                <button class="pf-submit-btn">Simpan</button>
+                                </a>
+                            </div>
                         </form>
                     </div>
                     <div class="pf-profile-pp">
@@ -90,7 +95,7 @@
                 </div>
                 <div class="pf-pass">
                     <h3 class="pf-title">Ganti Kata Sandi</h3>
-                    <form action="" class="pf-profileform">
+                    <form action="{{ route('passUpdate', $data->userID) }}" class="pf-profileform " method = "post">
                         <div class="pf-formdetail">
                             <div class="pf-name">Kata Sandi Lama</div>
                             <div class="pf-textfield"><input class="pf-inputpass" type="password" id="passlama"
