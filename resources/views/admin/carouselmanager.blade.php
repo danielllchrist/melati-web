@@ -96,27 +96,27 @@
         }
 
         function deleteImage(id) {
-            if (confirm('Anda yakin ingin menghapus gambar ini?')) {
-                fetch('/admin/hapus-gambar/{id}' + id, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('productImage' + id).parentElement.parentElement.remove();
-                    } else {
-                        alert('Gagal menghapus gambar.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan.');
-                });
-            }
+        if (confirm('Anda yakin ingin mengganti gambar ini dengan placeholder?')) {
+            fetch('/admin/hapus-gambar/' + id, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('productImage' + id).src = 'https://fakeimg.pl/800x400';
+                } else {
+                    alert('Gagal mengganti gambar.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan.');
+            });
         }
+    }
 
     </script>
 </body>

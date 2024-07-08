@@ -125,7 +125,7 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
         Route::get('/atur', 'index');
         Route::get('/manajer-carousel', 'managecarousel');
         Route::post('/unggah-gambar/{id}', 'uploadImage')->name('upload.image');
-        Route::delete('/hapus-gambar/{id}')->name('deleteImage');
+        Route::delete('/hapus-gambar/{id}','deleteImage')->name('delete.image');
 
     });
 });

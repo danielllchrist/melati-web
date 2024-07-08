@@ -59,18 +59,26 @@
             <div class="carousel-wrapper">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        @for ($i = 0; $i < 3; $i++)
-                            <div class="carousel-item {{ $i == 1 ? 'active' : '' }}">
-                                <img src="\assets\dummy-img\Screenshot 2024-05-18 162312.png" class="d-block w-100"
-                                    alt="Promotion Banner 1">
-                                <a href="" class="carousel-product-link">
-                                    <div class="belanja-sekarang-button">
-                                        <h2>BELANJA SEKARANG</h2>
-                                        <div class="belanja-sekarang"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        @endfor
+                        @php
+                            $i = 1
+                        @endphp
+                        @foreach ($assets as $asset)
+                            @if (!($asset->assetPath == 'https://fakeimg.pl/800x400'))
+                                <div class="carousel-item {{ $i == 1 ? 'active' : '' }}">
+                                    <img src="{{$asset->assetPath}}" class="d-block w-100"
+                                        alt="Promotion Banner">
+                                    <a href="/katalog" class="carousel-product-link">
+                                        <div class="belanja-sekarang-button">
+                                            <h2>BELANJA SEKARANG</h2>
+                                            <div class="belanja-sekarang"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                                @php
+                                    $i = 2
+                                @endphp
+                            @endif
+                        @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                         data-bs-slide="prev">
