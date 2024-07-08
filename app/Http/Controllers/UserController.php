@@ -17,25 +17,11 @@ class UserController extends Controller
 
     public function profile(Request $request)
     {
-<<<<<<< Updated upstream
-        $prefix = $request->segment(1);
-        $data = User::find('01ee9554-9e84-367d-96ec-bf2a25b4cb3e');
-        $id = $data->userID;
-        $nama = $data->name;
-        switch ($prefix) {
-            case 'admin':
-                return view('admin.profile',compact('data','id', 'nama'));
-            case 'shipping-service':
-                return view('shipping_service.profile',compact('data','id'));
-            default:
-                return view('customer.profile',compact('data','id'));
-=======
         $user = $request->user();
 
         // Check if the user is an admin
         if ($user->userID == '01ee9554-9e84-367d-96ec-bf2a25b4cb3e') {
             return view('admin.profile');
->>>>>>> Stashed changes
         }
 
         // Check if the user is a shipping service
