@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ManageAsset;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -11,12 +12,13 @@ use Illuminate\Support\Facades\Storage;
 class ManageLandingPageController extends Controller
 {
 
+    public function index() {
+        $assets = ManageAsset::all();
+        return view('admin.manageasset', compact('assets'));
+    }
+
+
     public function managecarousel() {
-        return view('admin.carouselmanager');
-
-
-        // $storage = '\assets\dummy-img\Screenshot 2024-05-18 162312.png';
-
 
         $manageAsset = ManageAsset::all();
         // dd($manageAsset);
@@ -85,24 +87,25 @@ class ManageLandingPageController extends Controller
 
     public function deleteImage($id)
     {
+        // $manageAsset = ManageAsset::find($id);
+
+        // $manageAsset->assetPath = 'https://fakeimg.pl/800x400';
+        // $manageAsset->save();
         try {
             $manageAsset = ManageAsset::find($id);
-
+    
             if (!$manageAsset) {
                 return response()->json(['success' => false, 'message' => 'Asset not found'], 404);
             }
-
-            $assetPath = str_replace('/storage', 'public', $manageAsset->assetPath);
-            if (Storage::exists($assetPath)) {
-                Storage::delete($assetPath);
-            }
-
-            $manageAsset->delete();
-
-            return response()->json(['success' => true, 'message' => 'Image deleted successfully']);
+    
+            // Update the asset path to the placeholder image URL
+            $manageAsset->assetPath = 'https://fakeimg.pl/800x400';
+            $manageAsset->save();
+    
+            return response()->json(['success' => true, 'message' => 'Image replaced with placeholder']);
         } catch (\Exception $e) {
-            Log::error('Error deleting image: ' . $e->getMessage());
-            return response()->json(['success' => false, 'message' => 'Error deleting image'], 500);
+            Log::error('Error replacing image: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Error replacing image'], 500);
         }
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ManageAsset;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
-    public function index(Request $request){
-        return response()->view('customer.landingpage');
+    public function index(){
+        $assets = ManageAsset::all();
+        return view('customer.landingpage', compact('assets'));
     }
 }
