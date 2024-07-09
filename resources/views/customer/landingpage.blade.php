@@ -108,38 +108,40 @@
     <section>
         <div class="product">
             <div class="recommendation-wrapper">
-                <a href="" class="recommendation active-button">
+                <a href="?filter=produk-terbaik" class="recommendation">
                     <div class="recommendation-button">
                         <p>PRODUK TERBAIK</p>
                         <div class="active-recommendation"></div>
                     </div>
                 </a>
-                <a href="" class="recommendation">
+                <a href="?filter=produk-terbaru" class="recommendation">
                     <div>
                         <p>PRODUK TERBARU</p>
                     </div>
                 </a>
-                <a href="" class="recommendation">
+                <a href="?filter=rating-tertinggi" class="recommendation">
                     <div>
                         <p>RATING TERTINGGI</p>
                     </div>
                 </a>
             </div>
             <div class="card-wrapper">
-                @for ($i = 0; $i < 3; $i++)
+                @foreach ($products as $product)
                     <div class="catalog-item">
                         <a href="detail.html">
                             <div class="card-custom">
-                                <img src="/assets/kambojaKutubaru.png" class="card-custom-top" alt="Catalog">
+                                <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
+                                    alt="Catalog">
                                 <div class="card-custom-body">
-                                    <p>Kamboja Kutubaru</p>
-                                    <h3>Rp 100.000</h3>
+                                    <p>{{ $product->productName }}</p>
+                                    <h3>Rp {{ $product->productPrice }}</h3>
                                 </div>
                             </div>
                         </a>
                     </div>
-                @endfor
+                @endforeach
             </div>
+        </div>
     </section>
 
     <section>
