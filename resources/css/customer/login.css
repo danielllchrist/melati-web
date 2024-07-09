@@ -10,6 +10,11 @@ body {
 	margin-left: 10px;
 	margin-right: 10px; */
 }
+html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .top h1{
     font-size: 40px;

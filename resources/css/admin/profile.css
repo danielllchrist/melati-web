@@ -121,6 +121,7 @@ html {
     border: none;
     border-radius: 999px;
     font-weight : 600;
+    cursor: pointer;
 }
 
 .pf-textfield{

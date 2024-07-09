@@ -109,7 +109,7 @@
                 </div>
                 <div id="logout" class="pf-keluar section">
                     <h3 class="pf-title">Keluar</h3>
-                    <button class="pf-logout-btn">Keluar dari akun</button>
+                    <button class="pf-logout-btn" onclick="window.location.href = '/keluar';">Keluar dari akun</button>
                 </div>
             </div>
         </div>

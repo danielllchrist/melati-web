@@ -35,7 +35,7 @@
                             autofocus value="{{ old('email') }}">
                     </div>
                     <div class="wrap">
-                        <label for="password">Password</label>
+                        <label for="password">Kata Sandi</label>
                         <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
                         <div class="error-message">
                             @error('password')

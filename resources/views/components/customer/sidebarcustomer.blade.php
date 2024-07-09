@@ -30,7 +30,8 @@
                 <div class="sidebar-menu">
                     <a class="menu" href="{{route("pesanan_saya")}}"><h2>Pesanan</h2></a>
                     <ul class="spacing-sidebarmenu">
-                        <li><a href="#">Pesanan Saya</a></li>
+                        <li><a href="#pesanan">Pesanan Saya</a></li>
+                        <li><a href="#pengembalian">Pengembalian Pesanan</a></li>
                     </ul>
                 </div>
                 <div class="sidebar-menu">

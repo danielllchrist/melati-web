@@ -13,15 +13,10 @@
         <div class="sidebar-content">
             <div class="sidebar-back">
                 <!-- <a href="#" class="profile"><img src="assets/side_bar/back_arrow.svg" alt="Back"> -->
-<<<<<<< Updated upstream
-                    <div class="profile"><img class="pp-picture" src="\assets\top1.png" alt="" />
-                        <p>{{$nama}}</p>
+                    <div class="profile">
+                        <img class="pp-picture" src="\assets\top1.png" alt="" />
+                        <p>{{ $data->name }}</p>
                     </div>
-=======
-                <div class="profile"><img class="pp-picture" src="\assets\top1.png" alt="" />
-                    <p>Ryan</p>
-                </div>
->>>>>>> Stashed changes
                 <!-- </a> -->
             </div>
             <div class="sidebar-menu-container">

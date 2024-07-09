@@ -19,12 +19,8 @@
                 <div id="profile" class="pf-profile section">
                     <div class="pf-profile-info">
                         <h3 class="pf-title">Profil</h3>
-<<<<<<< Updated upstream
                         <form action="{{ route('profileUpdate', $data->userID) }}" class="pf-profileform " method = "post">
                             @csrf
-=======
-                        <form action="" class="pf-profileform " method="">
->>>>>>> Stashed changes
                             <div class="pf-formdetail">
                                 <div class="pf-name">Nama</div>
                                 <input class="pf-textfield" type="text" id="nama" name="name"
@@ -118,7 +114,7 @@
                 </div>
                 <div id="logout" class="pf-keluar section">
                     <h3 class="pf-title">Keluar</h3>
-                    <button class="pf-logout-btn">Keluar dari akun</button>
+                    <button class="pf-logout-btn" onclick="window.location.href = '/keluar';">Keluar dari akun</button>
                 </div>
             </div>
         </div>

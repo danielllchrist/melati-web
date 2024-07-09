@@ -58,7 +58,7 @@ Route::middleware(['guest'])->group(function () {
 // Route for customer
 Route::middleware(['auth'])->group(function () {
     Route::get('/profil', [UserController::class, 'profile']);
-    Route::get('/keluar', [LoginController::class, 'logout']);
+    Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
     // logout jangan lupa diganti jadi post
     Route::controller(ProductController::class)->group(function () {
         Route::get('/penilaian', 'review');
@@ -93,8 +93,7 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'index')->name('admin_dashboard');
     });
-    Route::get('/profil', [UserController::class, 'profile'])->name("profile");
-    Route::get('/keluar', [LoginController::class, 'logout']);
+    Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
     // logout jangan lupa diganti jadi post
     Route::resource('/produk', AdminProductController::class);
     Route::get('/produk/kategori/{category}', [CategoryProductController::class, 'category'])->name('category');
@@ -110,13 +109,9 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     });
 
     Route::controller(UserController::class)->group(function () {
-<<<<<<< Updated upstream
-        Route::get('/profil', 'profile');
+        Route::get('/profil', 'profile')->name("profile");;
         Route::post('/profil/update/{id}', 'update')->name('profileUpdate');
         Route::post('/profil/update-pass/{id}', 'updatePassword')->name('passUpdate');
-=======
-        Route::get('/profil', 'profile')->name("profile");;
->>>>>>> Stashed changes
     });
 
     Route::controller(AdminOrderController::class)->group(function () {
@@ -140,7 +135,7 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
 Route::middleware(['shipping_service'])->prefix('/shipping-service')->group(function () {
     Route::get('/', [ShippingServiceOrderController::class, 'index']);
     Route::get('/profil', [UserController::class, 'profile']);
-    Route::get('/keluar', [LoginController::class, 'logout']);
+    Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
     // logout jangan lupa diganti jadi post
     Route::get('/order/{orderID}', [ShippingServiceOrderController::class, 'orderdetail']);
 });
