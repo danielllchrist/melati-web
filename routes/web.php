@@ -58,7 +58,7 @@ Route::middleware(['guest'])->group(function () {
 // Route for customer
 Route::middleware(['auth'])->group(function () {
     Route::get('/profil', [UserController::class, 'profile']);
-    Route::get('/keluar', [LoginController::class, 'logout']);
+    Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
     // logout jangan lupa diganti jadi post
     Route::controller(ProductController::class)->group(function () {
         Route::get('/penilaian', 'review');
@@ -77,15 +77,15 @@ Route::middleware(['auth'])->group(function () {
     //-------------- sidebar -------------------
 
     Route::controller(OrderController::class)->group(function () {
-        Route::get('/pesanan', 'myorder');
+        Route::get('/pesanan', 'myorder') ->name("pesanan_saya");
         Route::get('/pesanan/{orderID}', 'detail_myorder');
         Route::get('/konfirmasi-pesanan', 'checkout');
         Route::get('/pembayaran', 'payment');
     });
     Route::controller(UserController::class)->group(function () {
-        Route::get('/profil', 'profile');
+        Route::get('/profil', 'profile')->name("profile");
     });
-    Route::resource('/alamat-saya', AddressController::class);
+    Route::resource('/alamat-saya', AddressController::class)->name("index","alamat_saya");
 });
 
 // Route for admin
@@ -93,8 +93,7 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'index')->name('admin_dashboard');
     });
-    Route::get('/profil', [UserController::class, 'profile']);
-    Route::get('/keluar', [LoginController::class, 'logout']);
+    Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
     // logout jangan lupa diganti jadi post
     Route::resource('/produk', AdminProductController::class);
     Route::get('/produk/kategori/{category}', [CategoryProductController::class, 'category'])->name('category');
@@ -110,7 +109,7 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     });
 
     Route::controller(UserController::class)->group(function () {
-        Route::get('/profil', 'profile');
+        Route::get('/profil', 'profile')->name("profile");;
         Route::post('/profil/update/{id}', 'update')->name('profileUpdate');
         Route::post('/profil/update-pass/{id}', 'updatePassword')->name('passUpdate');
     });
@@ -136,7 +135,7 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
 Route::middleware(['shipping_service'])->prefix('/shipping-service')->group(function () {
     Route::get('/', [ShippingServiceOrderController::class, 'index']);
     Route::get('/profil', [UserController::class, 'profile']);
-    Route::get('/keluar', [LoginController::class, 'logout']);
+    Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
     // logout jangan lupa diganti jadi post
     Route::get('/order/{orderID}', [ShippingServiceOrderController::class, 'orderdetail']);
 });

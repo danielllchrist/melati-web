@@ -1,6 +1,9 @@
 body{
     background-color: black;
 }
+html {
+    scroll-behavior: smooth;
+}
 
 .pf-inner-container{
     width : 100%;
@@ -55,6 +58,25 @@ body{
     border: none;
     border-radius: 999px;
     font-weight : 600;
+}
+
+.pf-logout-btn{
+    margin-top : 12px;
+    width : 220px;
+    font-family: 'Poppins';
+    font-size: 17px;
+    /* display : flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: #D5BE9E;
+    color : #4F290C;
+    padding : 12px 30px;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    border-radius: 999px;
+    font-weight : 600;
+    cursor: pointer;
 }
 
 .pf-pp-btn{

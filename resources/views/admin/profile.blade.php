@@ -14,9 +14,9 @@
     @include('components.admin.headeradmin')
     <div class="withsidebar">
         @include('components.admin.sidebaradmin')
-        <div class="main-content ">
+        <div class="main-content">
             <div class="pf-inner-container">
-                <div class="pf-profile">
+                <div id="profile" class="pf-profile section">
                     <div class="pf-profile-info">
                         <h3 class="pf-title">Profil</h3>
                         <form action="{{ route('profileUpdate', $data->userID) }}" class="pf-profileform " method = "post">
@@ -64,7 +64,7 @@
                     </div>
                     <div class="pf-profile-pp">
                         <!-- Profile Photo File Input -->
-                        <input name = "profile_photo_path" type="file" id="photo" class="hidden"
+                        <input name="profile_photo_path" type="file" id="photo" class="hidden"
                             wire:model.defer="photo" x-ref="photo"
                             x-on:change="
                                 photoName = $refs.photo.files[0].name;
@@ -72,8 +72,7 @@
                                 reader.onload = (e) => {
                                     photoPreview = e.target.result;
                                 };
-                                reader.readAsDataURL($refs.photo.files[0]);
-                        " />
+                                reader.readAsDataURL($refs.photo.files[0]);" />
 
                         <!-- Current Profile Photo -->
                         <div x-show="! photoPreview">
@@ -93,25 +92,29 @@
                         </button>
                     </div>
                 </div>
-                <div class="pf-pass">
+                <div id="change-password" class="pf-pass section">
                     <h3 class="pf-title">Ganti Kata Sandi</h3>
                     <form action="{{ route('passUpdate', $data->userID) }}" class="pf-profileform " method = "post">
                         <div class="pf-formdetail">
                             <div class="pf-name">Kata Sandi Lama</div>
                             <div class="pf-textfield"><input class="pf-inputpass" type="password" id="passlama"
                                     name="nama" placeholder="Silahkan Mengisi Kata Sandi Lama" required> <img
-                                    class = "hide-pass-icon" src="\assets\eye.svg" alt = "hide" id = "eyehidelama"
-                                    onclick = "hidePasswordLama()"></div>
+                                    class="hide-pass-icon" src="\assets\eye.svg" alt="hide" id="eyehidelama"
+                                    onclick="hidePasswordLama()"></div>
                         </div>
                         <div class="pf-formdetail">
                             <div class="pf-name">Kata Sandi Baru</div>
                             <div class="pf-textfield"><input class="pf-inputpass" type="password" id="passbaru"
                                     name="nama" placeholder="Silahkan Mengisi Kata Sandi Baru" required> <img
-                                    class = "hide-pass-icon" src="\assets\eye.svg" alt = "hide" id = "eyehidebaru"
-                                    onclick = "hidePasswordBaru()"></div>
+                                    class="hide-pass-icon" src="\assets\eye.svg" alt="hide" id="eyehidebaru"
+                                    onclick="hidePasswordBaru()"></div>
                         </div>
                         <div class="pf-submit-btn-container"><button class="pf-submit-btn">Ganti</button></div>
                     </form>
+                </div>
+                <div id="logout" class="pf-keluar section">
+                    <h3 class="pf-title">Keluar</h3>
+                    <button class="pf-logout-btn" onclick="window.location.href = '/keluar';">Keluar dari akun</button>
                 </div>
             </div>
         </div>
@@ -143,6 +146,19 @@
                 eyeb.style.opacity = 1;
             }
         }
+
+        // Smooth scrolling with offset
+        document.querySelectorAll('.sidebar-menu a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                const yOffset = -100; // Adjust this value as needed
+                const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            });
+        });
     </script>
 </body>
 

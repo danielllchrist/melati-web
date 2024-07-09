@@ -1,6 +1,9 @@
 body{
     background-color: #080808 !important;
  }
+html {
+    scroll-behavior: smooth;
+}
 
 .inner-container{
     display : flex;
@@ -69,13 +72,14 @@ body{
     display : flex;
     flex-direction: column;
     gap : 20px;
+    margin-top: 40px;
 }
 
 .status-menu{
     display: flex;
     justify-content: space-between;
     width : 100%;
-    font-size: 17px;
+    font-size: 12px;
     font-weight : 600;
     color : #F0F1E4;
     border-bottom: 2px solid transparent;
@@ -87,10 +91,10 @@ body{
 }
 
 .status-menu a{
-    width : 270px;
+    width : 220px;
     display : flex;
     justify-content: center;
-    font-size: 17px;
+    font-size: 13px;
     font-weight : 600;
     color : #F0F1E4;
     border-bottom: 2px solid transparent;

@@ -42,6 +42,19 @@ class UserSeeder extends Seeder
             'updated_at' => Carbon::now(),
             'remember_token' => Str::random(10),
         ]);
+        DB::table('users')->insert([
+            'userID' => '48057d34-f68c-391d-a0ad-45b5429faccf',
+            'name' => 'Dalkuna Matata',
+            'gender' => 'Pria',
+            'phoneNum' => '08921309128',
+            'email' => 'dalkuna@example.com',
+            'age' => '20',
+            'password' => bcrypt('password'),
+            'profilePicturePath' => json_encode('https://via.placeholder.com/800x600'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'remember_token' => Str::random(10),
+        ]);
         $faker = Faker::create('id_ID');
         for ($i=0; $i < 10; $i++) {
             DB::table('users')->insert([
