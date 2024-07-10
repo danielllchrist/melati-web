@@ -23,6 +23,7 @@ class Transaction extends Model
         'userID',
         'addressID',
         'voucherID',
+        'statusID',
         'subTotalPrice',
         'totalWeight',
         'totalDiscount',

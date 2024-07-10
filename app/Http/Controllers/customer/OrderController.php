@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\customer;
 
 use Carbon\Carbon;
+use App\Models\Cart;
+use App\Models\Size;
 use App\Models\Voucher;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -93,11 +95,45 @@ class OrderController extends Controller
 
         return view('customer.checkout', compact('carts', 'vouchers', 'addresses', 'transaction', 'targetVoucher'));
     }
+    
+    public function payment(Request $request, $transactionID, $cartID)
+    {
+        // jika user ga pilih alamat, maka pilih alamat paling pertama
+        if ($request->selected_address == null) {
+            $addressID = Auth::user()->address->first()->addressID;
+        }
 
+        // mengurangi stok produk size dari database
+        $carts = Cart::where('userID', $cartID)->get();
+
+        // cari transaction
+        $transaction = Transaction::find($transactionID);
+
+        // for each sizeID in cart, decrease the stock of table sizes in database based on the quantity of products bought, if the stock is less than 0, give error
+        foreach ($carts as $cart) {
+            $size = Size::find($cart->sizeID);
+            if (!$size) {
+                // Size not found, give error
+                return back()->withError("Size not found");
+            }
+            $newStock = $size->stock - $cart->quantity;
+            if ($newStock < 0) {
+                // Stock is less than 0, give error
+                return back()->withError("Not enough stock for size {$size->name}");
+            }
+
+            $size->stock = $newStock;
+            $size->save();
+        }
+
+        // update transaction
+
+        return view('customer.payment');
+    }
 
     public function myorder()
     {
-       // Ambil semua pesanan dengan status 1 hingga 7
+        // Ambil semua pesanan dengan status 1 hingga 7
         $orders1 = Transaction::with('transactionDetail')->where('statusID', "1")->get();
         $orders2 = Transaction::with('transactionDetail')->where('statusID', "2")->orWhere('statusID', '3')->get();
         $orders3 = Transaction::with('transactionDetail')->where('statusID', "4")->get();
@@ -110,7 +146,7 @@ class OrderController extends Controller
         foreach ($orders3 as $order) {
             // dd($order->statusID);
             if (Carbon::parse($order->updated_at)->addDays(2)->isPast()) {
-                $order->statusID = 5;
+                // $order->statusID = 5;
                 $order->save(); // Simpan perubahan
             }
         }
