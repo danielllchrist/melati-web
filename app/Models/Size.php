@@ -36,4 +36,10 @@ class Size extends Model
     {
         return $this->hasMany(Size::class, 'sizeID', 'sizeID');
     }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class, 'sizeID', 'sizeID');
+    }
+
 }

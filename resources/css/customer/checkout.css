@@ -1,5 +1,5 @@
 body{
-   background-color: #080808 !important; 
+   background-color: #080808 !important;
 }
 
 .atas{
@@ -44,7 +44,7 @@ body{
     width: 90%;
     height: 73vh;
     display: flex;
-    margin: auto; /* Center horizontally */  
+    margin: auto; /* Center horizontally */
 }
 
 .left{
@@ -205,8 +205,8 @@ body{
 .wraps h1{
     font-weight: 500;
     font-size: 15px;
-    margin: 0px;  
-    padding: 0px; 
+    margin: 0px;
+    padding: 0px;
     color: #4F290C;
     background-color: #F0F1E4;
     font-family: Poppins;
@@ -214,9 +214,9 @@ body{
 
 .wraps h2{
     font-weight: bold;
-    font-size: 15px;  
-    margin: 0px;   
-    padding: 0px; 
+    font-size: 15px;
+    margin: 0px;
+    padding: 0px;
     color: #4F290C;
     /* background-color: #F0F1E4; */
     font-family: Poppins;
@@ -226,16 +226,16 @@ body{
     font-weight: normal;
     font-size: 12px;
     /* margin-top: 2px;   */
-    padding: 0px; 
+    padding: 0px;
     color: #4F290C;
     background-color: #f0f1e4fb;
     font-family: Poppins;
-    
+
 }
 
 .wraps2{
     /* background-color: pink; */
-    width: 15%;
+    width: 20%;
     display: flex;
     justify-content: flex-end;
     align-self: flex-end;
@@ -292,7 +292,7 @@ body{
     color: black;
     font-weight: 500;
     color: #4F290C;
-    font-size: 18px;    
+    font-size: 18px;
 }
 
 .w1{
@@ -314,7 +314,7 @@ body{
 .w1 h2{
     font-family: Poppins;
     font-weight: 800;
-    font-size: 23px;  
+    font-size: 23px;
     padding-bottom: 10px;
     margin-bottom: 4px;
     color: #4F290C;
@@ -373,7 +373,7 @@ body{
     align-items: flex-end;
     font-family: Poppins;
     /* font-weight: 500; */
-    font-size: 12px;  
+    font-size: 12px;
     /* padding-bottom: 2px; */
     margin: 0px ;
     margin-right: 14px;
@@ -514,6 +514,14 @@ h5{
     margin-top: -25px;
     margin-top: 12px;
 }
+
+.btn-submit-popup a{
+    color: #4F290C;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .modal-footer{
     height: 11.5vh;
     /* padding: 20px; */
@@ -581,7 +589,7 @@ h5{
     color: #4F290C;
 }
 .voucher-card p:last-child{
-    font-family: Poppins;                                       
+    font-family: Poppins;
     color: black;
     font-weight: normal;
     font-size: 8px;

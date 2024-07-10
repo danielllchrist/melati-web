@@ -2,13 +2,14 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
+use App\Models\Size;
 use App\Models\User;
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
-use Carbon\Carbon;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CartSeeder extends Seeder
 {
@@ -19,16 +20,17 @@ class CartSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
         for ($i = 0; $i < 10; $i++) {
-            $userID = User::all()->random()->userID;
-            $productID = Product::all()->random()->productID;
+            // $userID = User::all()->random()->userID;
+            $userID = '01ee9554-9e84-367d-96ec-bf2a25b4cb3e';
+            $sizeID = Size::all()->random()->sizeID;
 
             // Cek apakah kombinasi userID dan productID sudah ada
-            $existingCart = DB::table('carts')->where('userID', $userID)->where('productID', $productID)->first();
+            $existingCart = DB::table('carts')->where('userID', $userID)->where('sizeID', $sizeID)->first();
 
             if (!$existingCart) {
                 DB::table('carts')->insert([
                     'userID' => $userID,
-                    'productID' => $productID,
+                    'sizeID' => $sizeID,
                     'quantity' => $faker->numberBetween(1, 10),
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),

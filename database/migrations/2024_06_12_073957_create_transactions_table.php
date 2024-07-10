@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id('transactionID');
             $table->foreignUuid('userID')->nullable(false);
-            $table->foreignUuid('addressID')->nullable(false);
+            $table->foreignUuid('addressID')->nullable(true);
             $table->foreignUuid('voucherID')->nullable(true);
-            $table->foreignUuid('statusID')->nullable(false);
-            $table->integer('subTotalPrice')->nullable(false);
-            $table->integer('totalWeight')->nullable(false);
+            $table->foreignUuid('statusID')->nullable(true);
+            $table->integer('subTotalPrice')->nullable(true);
+            $table->integer('totalWeight')->nullable(true);
             $table->integer('totalDiscount')->nullable(true);
-            $table->integer('shippingFee')->nullable(false);
-            $table->integer('totalPrice')->nullable(false);
-            $table->enum('paymentMethod', ['Kartu Kredit', 'Transfer Bank', 'E-Wallet'])->nullable(false);
+            $table->integer('shippingFee')->nullable(true);
+            $table->integer('totalPrice')->nullable(true);
+            $table->enum('paymentMethod', ['Kartu Kredit', 'Transfer Bank', 'E-Wallet'])->nullable(true);
             $table->timestamps();
             $table->softDeletes();
 

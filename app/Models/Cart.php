@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,17 +9,17 @@ use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class Cart extends Model
 {
-    use HasFactory, HasUuids, HasCompositeKey, SoftDeletes;
+    use HasFactory, HasCompositeKey, SoftDeletes;
 
     protected $table = 'carts';
 
-    protected $primaryKey = ['userID', 'productID'];
+    protected $primaryKey = ['userID', 'sizeID'];
 
     protected $keyType = 'string';
 
     protected $fillable = [
         'userID',
-        'productID',
+        'sizeID',
         'quantity',
     ];
 
@@ -28,7 +27,7 @@ class Cart extends Model
 
     public function getKeyName()
     {
-        return ['userID', 'productID'];
+        return ['userID', 'sizeID'];
     }
 
     public function user ()
@@ -36,8 +35,8 @@ class Cart extends Model
         return $this->belongsTo(User::class, 'userID', 'userID');
     }
 
-    public function product()
+    public function size()
     {
-        return $this->belongsTo(Product::class, 'productID', 'productID');
+        return $this->belongsTo(Size::class, 'sizeID', 'sizeID');
     }
 }

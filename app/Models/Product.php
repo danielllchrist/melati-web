@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
@@ -31,9 +32,14 @@ class Product extends Model
 
     public $incrementing = false;
 
-    public function cart()
+    // mendapatkan foto pertama untuk thumbnail
+    public function getThumbnailAttribute()
     {
-        return $this->hasMany(Cart::class, 'productID', 'productID');
+        if ($this->productPicturePath) {
+            return Storage::url(json_decode($this->productPicturePath)[0]);
+        }
+
+        return 'https://via.placeholder.com/800x600';
     }
 
     public function wishlist()

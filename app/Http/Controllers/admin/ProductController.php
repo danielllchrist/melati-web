@@ -18,9 +18,9 @@ class ProductController extends Controller
         $size = Size::with('product')->get();
         if (request()->ajax()) {
             return DataTables::of($size)
-                // ->editColumn('thumbnail', function ($product) {
-                //     return '<img src="' . $product->thumbnail . '" alt="Thumbnail" class="w-20 mx-auto rounded-md">';
-                // })
+                ->editColumn('thumbnail', function ($product) {
+                    return '<img src="' . $product->thumbnail . '" alt="Thumbnail" class="w-20 mx-auto rounded-md">';
+                })
                 ->addColumn('action', function ($size) {
                     return '
                     <div class="crud-btn">
@@ -86,7 +86,7 @@ class ProductController extends Controller
             $productPicturePath = [];
 
             foreach ($request->file('productPicturePath') as $picture) {
-                $product_picture = $picture->store('assets/item', 'public');
+                $product_picture = $picture->store('assets/products', 'public');
 
                 //push to array
                 array_push($productPicturePath, $product_picture);
@@ -108,7 +108,7 @@ class ProductController extends Controller
         Product::create($productData);
         $latestproduct = Product::latest()->first();
         $sizeData['productID'] = $latestproduct->productID;
-        
+
         Size::create($sizeData);
 
 

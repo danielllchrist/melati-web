@@ -34,7 +34,7 @@
             <div class="d-flex box-1 justify-content-between align-items-center">
                 <div class="box-left">
                     <p>Total Pendapatan</p>
-                    <p class="count">{{ "Rp " . number_format($earnings_total->total, 0, ",", "."); }}</p>
+                    <p class="count">{{ "Rp " . number_format($earnings_total->total, 0, ",", ".") }}</p>
                 </div>
                 <div class="box-right">
                     <img src="\assets\iconTotalEarning.png" class="earning-img">
@@ -44,7 +44,7 @@
             <div class="d-flex box-2 justify-content-between align-items-center">
                 <div class="box-left">
                     <p>Total Diskon + Kembalian</p>
-                    <p class="count">{{ "Rp " . number_format($discount_total->total, 0, ",", "."); }}</p>
+                    <p class="count">{{ "Rp " . number_format($discount_total->total, 0, ",", ".") }}</p>
                 </div>
                 <div class="box-right">
                     <img src="\assets\iconTotalDiscount.png" class="discount-img">
@@ -95,7 +95,7 @@
 
                                 <td style="background-color:#F0F1E4;">
                                     <div class="data-count">
-                                        <p>{{ "Rp " . number_format($earnings_this_month->total, 0, ",", "."); }}</p>
+                                        <p>{{ "Rp " . number_format($earnings_this_month->total, 0, ",", ".") }}</p>
                                     </div>
                                     <div class="data-title">
                                         <p>Pendapatan</p>
@@ -106,7 +106,7 @@
                             <tr>
                                 <td style="background-color:#F0F1E4;">
                                     <div class="data-count">
-                                        <p>{{ "Rp " . number_format($discount_this_month->total, 0, ",", "."); }}</p>
+                                        <p>{{ "Rp " . number_format($discount_this_month->total, 0, ",", ".") }}</p>
                                     </div>
                                     <div class="data-title">
                                         <p>Diskon</p>
@@ -209,7 +209,7 @@
                         '#D5BE9E'
                     ],
                     hoverOffset: 4
-                }]  
+                }]
             },
             options: {
                 plugins: {

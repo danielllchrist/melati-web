@@ -547,7 +547,7 @@ tr {
     }
 
     .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-      color: red !important;
+      color: white !important;
     }
 
     /*Add padding to bottom border */
@@ -605,7 +605,7 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
 }
 
 .del-btn{
-    background-color: rgb(184, 60, 60);
+    background-color: #872F24;
     color : white;
     text-decoration: none;
     outline: none;
@@ -622,7 +622,7 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
 }
 
 .add-size-btn{
-    background-color: #5f8e4f;
+    background-color: #496041;
     color : white;
     text-decoration: none;
     outline: none;
@@ -638,7 +638,7 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
 }
 
 .update-btn{
-    background-color: #2670e0;
+    background-color: #4F290C;
     color : white;
     text-decoration: none;
     outline: none;
@@ -672,6 +672,19 @@ h1{
     background-color: #D5BE9E !important;
 }
 
+.current:hover{
+    color : white !important;
+}
+
+.div.dt-container .dt-paging .dt-paging-button.current{
+    color : white !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.current:hover{
+    color : #F0F1E4 !important;
+}
+
+
 .dropdown-custom{
     /* slide down transition */
     transition: all 0.3s ease;
@@ -693,4 +706,33 @@ h1{
 .add-fs{
     font-size : 16px;
     /* font-weight: 500; */
+}
+
+div.dt-container .dt-paging .dt-paging-button:active{
+    background-color: #D5BE9E !important;
+    color: white !important;
+}
+
+
+div.dt-container .dt-paging .dt-paging-button:hover{
+    background: #4F290C !important;
+    color: #F0F1E4 !important;
+}
+
+div.dt-processing > div:last-child > div{
+    background: #4F290C !important;
+}
+
+
+div.dt-container .dt-paging .dt-paging-button.disabled{
+    background : none !important;
+}
+
+
+div.dt-container .dt-paging .dt-paging-button.disabled:hover{
+    background : none !important;
+}
+
+.disabled:hover{
+    background-color: transparent !important;
 }
