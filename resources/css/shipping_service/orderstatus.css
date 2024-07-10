@@ -89,7 +89,7 @@ body{
 .status-menu{
     display: flex;
     justify-content: space-between;
-
+    cursor: pointer;
     color : #F0F1E4;
     border-bottom: 2px solid transparent;
     transition: all 0.3s ease;
@@ -264,13 +264,17 @@ table , th{
     border-collapse: collapse;
 }
 
+table{
+    width: 100%;
+}
+
 td{
     font-size: 14px;
     padding : 20px 0px;
     max-width: 150px;
     font-weight: 200;
     word-wrap: break-word;
-    border-bottom: 2px #4f290c31 solid;
+    /* border-bottom: 2px #4f290c31 solid; */
 }
 
 

@@ -7,6 +7,11 @@ a{
     text-decoration: none;
 }
 
+section{
+    display: flex;
+    justify-content: center;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -103,6 +108,7 @@ a{
     font-size: 14px;
     letter-spacing: 1px;
     color: #4F290C;
+    padding-right: 10px;
 }
 
 .penerima {
@@ -121,7 +127,7 @@ a{
     gap: 20px;
     padding: 20px 30px;
     border-bottom: #D5BE9E solid 2px;
-
+    /* align-items: end; */
 }
 
 .product-img {
@@ -161,17 +167,20 @@ a{
 }
 
 .product-qty {
-    text-align: right;
+    /* text-align: right; */
     font-weight: 500;
     letter-spacing: 1px;
     color: #4F290C;
-    width: 50%;
+    /* width: 50%; */
 }
 
 .product-price {
-    text-align: right;
+    /* margin-top: 25px; */
+    /* text-align: right; */
     font-weight: 600;
 }
+
+
 
 .order-amount {
     padding-top: 0;
@@ -286,4 +295,13 @@ a{
     background-color: #D5BE9E;
     padding: 5px 25px;
     border-radius: 20px;
+}
+
+.wrap{
+    display: flex;
+    flex-direction: column;
+    height: 20px;
+    align-items: flex-end;
+    margin-top: 8px;
+    /* justify-content: flex-end; */
 }
