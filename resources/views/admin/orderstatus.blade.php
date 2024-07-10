@@ -357,17 +357,17 @@
                 });
 
                 // Initial check to show/hide order lists based on the active menu
-                const activeMenu = document.querySelector('.ps-menu-link.active-menus');
-                if (activeMenu.id === 'menu-menunggu') {
-                    orderList1.style.display = 'block';
-                    orderList2.style.display = 'none';
-                } else if (activeMenu.id === 'menu-proses') {
-                    orderList1.style.display = 'none';
-                    orderList2.style.display = 'block';
-                } else {
-                    orderList1.style.display = 'none';
-                    orderList2.style.display = 'none';
-                }
+                // const activeMenu = document.querySelector('.ps-menu-link.active-menus');
+                // if (activeMenu.id === 'menu-menunggu') {
+                //     orderList1.style.display = 'block';
+                //     orderList2.style.display = 'none';
+                // } else if (activeMenu.id === 'menu-proses') {
+                //     orderList1.style.display = 'none';
+                //     orderList2.style.display = 'block';
+                // } else {
+                //     orderList1.style.display = 'none';
+                //     orderList2.style.display = 'none';
+                // }
             });
         </script>
 </body>

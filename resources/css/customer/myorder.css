@@ -124,11 +124,12 @@ html {
     display : flex;
     flex-direction: column;
     color : #4F290C;
+    margin-bottom: 20px;
 }
 
 .ps-status-order{
     display : flex;
-    height : 66px;
+    height : 60px;
     justify-content: space-between;
     align-items: center;
     padding : 0px 36px;
@@ -137,7 +138,7 @@ html {
 
 .ps-status-order h3{
     font-family: 'Poppins';
-    font-size : 22px;
+    font-size : 20px;
     color : #4F290C;
     font-weight : bold;
 }
@@ -149,21 +150,29 @@ html {
     gap : 8px;
 }
 
+.i{
+    width: 28px;
+}
+
 
 .menunggu-konfirmasi{
     font-family: 'Poppins';
-    font-size : 16px;
+    font-size : 12px;
     padding : 5px 17px;
     border-radius: 20px;
     background-color: #496041;
     color : #F0F1E4;
 }
 
+.ps-order-wrap{
+    text-decoration: none;
+}
+
 .ps-order-detail{
     display : flex;
     justify-content: space-between;
-    align-items: center;
-    padding : 20px 38px;
+    align-items: flex-end;
+    padding : 15px 38px;
     border-bottom: 2px solid rgb(79, 41, 12, 0.2);
 }
 
@@ -183,18 +192,18 @@ html {
 }
 
 .ps-picture-text h2{
-    font-size: 18px;
+    font-size: 17px;
 }
 
 
 .ps-picture-text p{
-    font-size: 15px;
+    font-size: 14px;
     color : #4F290C;
 }
 
 .ps-picture img{
-    width: 100px;
-    height: 100px;
+    width: 95px;
+    height: 95px;
     object-fit: cover;
     border : 1px solid #4F290C;
 }
@@ -202,13 +211,14 @@ html {
 .ps-total{
     display : flex;
     flex-direction: column;
-    justify-content: center;
+    justify-items:flex-end;
     align-items: flex-end;
 }
 
 .ps-total p{
     color : #4F290C;
     font-weight : 600;
+    margin: 0px;
 }
 
 .ps-total-order{
@@ -235,3 +245,11 @@ html {
     font-weight : 700;
 }
 
+#batal{
+    background-color: #872F24;
+}
+
+#pengembalian{
+    /* background-color: red; */
+    height: 90px;
+}

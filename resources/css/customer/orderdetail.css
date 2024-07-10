@@ -34,6 +34,7 @@ a{
     gap: 20px;
     align-items: center;
     width: fit-content;
+    margin-left: -6px;
 }
 
 .title img {
@@ -45,16 +46,12 @@ a{
 .title h1{
     font-size: 36px;
     font-weight: 700;
-    color: #D5BE9E;
-    margin: 5px 20px;
+    color: #F0F1E4;
+    margin: 5px 0px;
     font-family: Poppins;
     font-weight: 600;
     /* color: #F0F1E4; */
     font-size: 31px;
-}
-
-.title h1:hover{
-    color: #D5BE9E;
 }
 
 .order-detail {
@@ -65,6 +62,7 @@ a{
     flex-direction: column;
     margin: 35px 80px;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .status-img {
@@ -97,9 +95,10 @@ a{
 
 .delivery-address p {
     margin: 0 0 0 70px;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 1px;
     color: #4F290C;
+    width: 900px;
 }
 
 .penerima {
@@ -170,20 +169,28 @@ a{
     font-weight: 600;
 }
 
-.rate-wrapper{
-    margin-left: 650px;
+.rate{
+    align-self: flex-end;
+}
+
+#batal{
+    width: 8.5%;
+    /* height: 60%; */
+    object-fit: cover;
+    margin-bottom: 30px;    
 }
 
 .rate-btn {
+    width: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 14px;
     color: #4F290C;
     background-color: #D5BE9E;
-    padding: 2px 40px;
+    padding: 2px 10px;
     margin: 2px 0;
     border-radius: 20px;
 }

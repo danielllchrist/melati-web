@@ -77,8 +77,13 @@ Route::middleware(['auth'])->group(function () {
     //-------------- sidebar -------------------
 
     Route::controller(OrderController::class)->group(function () {
-        Route::get('/pesanan', 'myorder') ->name("pesanan_saya");
-        Route::get('/pesanan/{orderID}', 'detail_myorder');
+        Route::get('/pesanan_saya', 'myorder')->name("pesanan_saya");
+        Route::get('/pesanan_saya/{orderID}', 'detail_myorder')->name("detail_pesanan");
+        Route::post('/batalkan-pesanan', [OrderController::class, 'cancelOrder'])->name('cancelOrder');
+        Route::post('/menerima-pesanan', [OrderController::class, 'accOrder'])->name('accOrder');
+        Route::post('/mengembalikan-pesanan', [OrderController::class, 'returnorder'])->name('returnOrder');
+
+
         Route::get('/konfirmasi-pesanan', 'checkout');
         Route::get('/pembayaran', 'payment');
     });
@@ -117,9 +122,8 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     Route::controller(AdminOrderController::class)->group(function () {
         Route::get('/pesanan', 'index')->name('adminStatus');
         Route::get('/pesanan/{orderID}', 'orderdetail')->name('adminPesanan');
-        Route::post('/terima-pesanan', [OrderController::class, 'confirmOrder'])->name('confirmOrder');
-        Route::post('/tolak-pesanan', [OrderController::class, 'rejectOrder'])->name('rejectOrder');
-        Route::post('/kirim-pesanan', [OrderController::class, 'sendOrder'])->name('sendOrder');
+        Route::post('/terima-pesanan', [AdminOrderController::class, 'confirmOrder'])->name('confirmOrder');
+        Route::post('/tolak-pesanan', [AdminOrderController::class, 'rejectOrder'])->name('rejectOrder');
     });
 
     Route::controller(ManageLandingPageController::class)->group(function () {
@@ -133,9 +137,12 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
 
 // Route for shipping service
 Route::middleware(['shipping_service'])->prefix('/shipping-service')->group(function () {
-    Route::get('/', [ShippingServiceOrderController::class, 'index']);
+    Route::get('/', [ShippingServiceOrderController::class, 'index'])->name("dashboard_ss");
+    Route::get('/order/{orderID}', [ShippingServiceOrderController::class, 'orderdetail'])->name("orderdetail");
+    Route::post('/kirim-pesanan', [ShippingServiceOrderController::class, 'sendOrder'])->name('sendOrder');
+    Route::post('/pesanan-tiba', [ShippingServiceOrderController::class, 'doneOrder'])->name('doneOrder');
+
     Route::get('/profil', [UserController::class, 'profile']);
     Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
     // logout jangan lupa diganti jadi post
-    Route::get('/order/{orderID}', [ShippingServiceOrderController::class, 'orderdetail']);
 });

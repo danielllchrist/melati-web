@@ -39,7 +39,7 @@ a{
 .title h1{
     font-size: 36px;
     font-weight: 700;
-    color: #D5BE9E;
+    color: #F0F1E4;
     margin: 5px 20px;
 }
 
@@ -53,6 +53,7 @@ a{
     display: flex;
     flex-direction: column;
     margin: 20px 105px;
+    padding-bottom: 20px;
 }
 
 .status-img {
@@ -126,6 +127,7 @@ a{
     display: flex;
     flex-direction: column;
     width: 93%;
+    /* height: 100px; */
 }
 
 .product-name, .product-size, .product-price, .product-qty{
@@ -150,7 +152,7 @@ a{
     font-weight: 500;
     letter-spacing: 1px;
     color: #4F290C;
-    width: 50%;
+    /* width: 50%; */
 }
 
 .product-price {

@@ -62,9 +62,11 @@
                                 <h4 class="product-name">{{ $o->product->productName }}</h4>
                                 <div class="product-size-and-quantity">
                                     <h4 class="product-size">Ukuran : {{ $o->size->size }}</h4>
-                                    <h4 class="product-qty">{{ $o->product->quantity }}</h4>
                                 </div>
-                                <h4 class="product-price">Rp {{ $o->product->productPrice }}</h4>
+                                <div class="wrap">
+                                    <h4 class="product-qty">x{{ $o->quantity }}</h4>
+                                    <h4 class="product-price">Rp {{ $o->product->productPrice }}</h4>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -104,10 +106,10 @@
                         <a href="javascript:void(0)" class="button"
                             onclick="rejectOrder('{{ $order->transactionID }}')">Tolak Pesanan</a>
                     </div>
-                {{-- @elseif ($order->status->statusName == 'Sedang di Proses')
+                {{-- @elseif ($order->status->statusName == 'Dikembalikan')
                     <div class="btn-wrapper">
                         <a href="javascript:void(0)" class="button"
-                            onclick="sendOrder('{{ $order->transactionID }}')">Pesanan Siap Diantar</a>
+                            onclick="sendOrder('{{ $order->transactionID }}')">Kembalikan Pesanan</a>
                     </div> --}}
                 @endif
             </div>
@@ -177,10 +179,6 @@
                     alert('Error sending order.');
                 }
             });
-        }
-
-        function cancelOrder(transactionID) {
-            // Similar function for canceling order
         }
     </script>
 </body>
