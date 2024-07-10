@@ -88,6 +88,10 @@
         // AJAX DataTable
         var datatable = $('#dataTable').DataTable({
 
+            "language":{
+                "url":"//cdn.datatables.net/plug-ins/1.10.9/i18n/Indonesian.json",
+                'sEmptyTable':'Tidads'
+            },
             processing: true,
             serverSide: true,
             stateSave: true,

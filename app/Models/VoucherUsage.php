@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,11 +9,11 @@ use Thiagoprz\CompositeKey\HasCompositeKey;
 
 class VoucherUsage extends Model
 {
-    use HasFactory, HasUuids, HasCompositeKey, SoftDeletes;
+    use HasFactory, HasCompositeKey, SoftDeletes;
 
     protected $table = 'voucher_usages';
 
-    protected $primaryKey = ['voucherID','userID'];
+    protected $primaryKey = ['voucherID', 'userID'];
 
     protected $keyType = 'string';
 
@@ -27,15 +26,15 @@ class VoucherUsage extends Model
 
     public function getKeyName()
     {
-        return['voucherID','userID'];
+        return ['voucherID', 'userID'];
     }
 
-    public function voucher ()
+    public function voucher()
     {
         return $this->belongsTo(Voucher::class, 'voucherID', 'voucherID');
     }
 
-    public function user ()
+    public function user()
     {
         return $this->belongsTo(User::class, 'userID', 'userID');
     }

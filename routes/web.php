@@ -84,8 +84,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/mengembalikan-pesanan', [OrderController::class, 'returnorder'])->name('returnOrder');
 
 
-        Route::get('/konfirmasi-pesanan', 'checkout');
-        Route::get('/pembayaran', 'payment');
+        Route::get('/konfirmasi-pesanan/{transactionID}', 'checkout');
+        Route::get('/konfirmasi-pesanan/{transactionID}/{voucherID}', 'useVoucher')->name('use-voucher');
+        Route::post('/tambah-alamat', 'addAddress')->name('add-address');
+        Route::post('/pembayaran/{transactionID}/{cartID}', 'payment')->name('prepayment');
     });
     Route::controller(UserController::class)->group(function () {
         Route::get('/profil', 'profile')->name("profile");

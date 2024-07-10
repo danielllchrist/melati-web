@@ -20,7 +20,8 @@ class AddressSeeder extends Seeder
         for ($i=0; $i < 10; $i++) {
             DB::table('addresses')->insert([
                 'addressID' => $faker->uuid,
-                'userID' => User::all()->random()->userID,
+                // 'userID' => User::all()->random()->userID,
+                'userID' => '01ee9554-9e84-367d-96ec-bf2a25b4cb3e',
                 'nameAddress' => $faker->randomElement(['Rumah', 'Kantor', 'Apartment']),
                 'receiver' => $faker->name,
                 'phoneNum' => $faker->phoneNumber,

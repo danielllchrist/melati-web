@@ -37,5 +37,10 @@ class TransactionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ]);
         }
+        DB::table('transactions')->insert([
+            'userID' => '01ee9554-9e84-367d-96ec-bf2a25b4cb3e',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }
