@@ -22,17 +22,16 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             $user = User::where('email', $credentials['email'])->first();
-            // $request->session()->put('username', $user->name); 
+            // $request->session()->put('username', $user->name);
             if ($user->userID == '01ee9554-9e84-367d-96ec-bf2a25b4cb3e') {
-                return redirect()->intended('/admin');
+                return redirect()->intended(route('AdminDashboard'));
             } elseif ($user->userID == '029ef8cd-7c30-3d78-a748-5ba3520cbb8b') {
-                return redirect()->intended('/shipping-service');
+                return redirect()->intended(route('ShippingServiceDashboard'));
             } else {
-                return redirect()->intended('/');
+                return redirect()->intended(route('LandingPage'));
             }
-
-            return back()->with('loginError', 'Kredensial Invalid!');
         }
+        return back()->with('loginError', 'Kredensial Invalid!');
     }
 
     public function logout(Request $request): RedirectResponse
@@ -40,6 +39,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect(route('LandingPage'));
     }
 }

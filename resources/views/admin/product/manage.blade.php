@@ -20,7 +20,7 @@
 <body>
     @include('components.admin.headeradmin')
     <div class="atas">
-        <a href="{{ route('admin_dashboard') }}" class = "back-arrow"><img class="back_icon"
+        <a href="{{ route('AdminDashboard') }}" class = "back-arrow"><img class="back_icon"
                 src="{{ asset('assets/back.svg') }}"></a>
         <h1>Produk</h1>
     </div>
@@ -49,13 +49,13 @@
                         <a class="dropdown-item category-slide-cs-menu" href="/admin/produk"><img
                                 src="\assets\crud_admin\semua.svg" class = "add-img"alt=""> Semua</a>
                         <a class="dropdown-item category-slide-cs-menu"
-                            href="{{ route('category', ['category' => 'Atasan']) }}"><img
+                            href="{{ route('Category', ['category' => 'Atasan']) }}"><img
                                 src="\assets\crud_admin\atasan.svg" class = "add-img"alt=""> Atasan</a>
                         <a class="dropdown-item category-slide-cs-menu add-fs"
-                            href="{{ route('category', ['category' => 'Bawahan']) }}"> <img
+                            href="{{ route('Category', ['category' => 'Bawahan']) }}"> <img
                                 src="\assets\crud_admin\bawahan.svg" class = "add-img" alt=""> Bawahan</a>
                         <a class="dropdown-item category-slide-cs-menu add-fs"
-                            href="{{ route('category', ['category' => 'Aksesoris']) }}"><img
+                            href="{{ route('Category', ['category' => 'Aksesoris']) }}"><img
                                 src="\assets\crud_admin\accessories.svg" class = "add-img"alt=""> Aksesoris</a>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
 
             "language":{
                 "url":"//cdn.datatables.net/plug-ins/1.10.9/i18n/Indonesian.json",
-                'sEmptyTable':'Tidads'
+                "sEmptyTable": "Tidak ada data yang tersedia"
             },
             processing: true,
             serverSide: true,

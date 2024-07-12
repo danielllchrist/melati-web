@@ -47,7 +47,7 @@
 
                         <div id="order-list1" class="order-list">
                             @forelse ($orders1 as $order)
-                                <a href="{{ route('detail_pesanan', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
@@ -87,7 +87,7 @@
 
                         <div id="order-list2" class="order-list" style="display: none;">
                             @forelse ($orders2 as $order)
-                                <a href="{{ route('detail_pesanan', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
@@ -128,7 +128,7 @@
 
                         <div id="order-list3" class="order-list" style="display: none;">
                             @forelse ($orders3 as $order)
-                                <a href="{{ route('detail_pesanan', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
@@ -169,7 +169,7 @@
 
                         <div id="order-list4" class="order-list" style="display: none;">
                             @forelse ($orders4 as $order)
-                                <a href="{{ route('detail_pesanan', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
@@ -210,7 +210,7 @@
 
                         <div id="order-list5" class="order-list" style="display: none;">
                             @forelse ($orders5 as $order)
-                                <a href="{{ route('detail_pesanan', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
@@ -264,7 +264,6 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

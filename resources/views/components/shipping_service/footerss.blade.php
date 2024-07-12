@@ -17,8 +17,8 @@
             </a>
             <div>
                 <ul class="ss-footer-menu">
-                    <li><a class = "ss-nav" href = "#">Dashboard</a></li>
-                    <li><a class = "ss-nav" href = "#">Profile</a></li>
+                    <li><a class = "ss-nav" href = "{{ route('ShippingServiceDashboard') }}">Beranda</a></li>
+                    <li><a class = "ss-nav" href = "{{ route('ShippingServiceProfile') }}">Profil</a></li>
                 </ul>
             </div>
             <div class="logo">

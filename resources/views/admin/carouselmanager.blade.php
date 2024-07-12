@@ -87,6 +87,7 @@
             formData.append('image', file);
             console.log(formData);
 
+
             fetch('/admin/unggah-gambar/' + id, {
                     method: 'POST',
                     headers: {
@@ -96,7 +97,6 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    // alert('babi kau');
                     console.log(data);
                     if (data.success) {
                         document.getElementById('productImage' + id).src = data.filePath;

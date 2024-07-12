@@ -1,28 +1,26 @@
 <?php
 
-use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\ManageLandingPageController;
-use App\Http\Controllers\admin\EditProductController as AdminEditProductController;
-use App\Http\Controllers\admin\OrderController as AdminOrderController;
-use App\Http\Controllers\admin\ProductController as AdminProductController;
-use App\Http\Controllers\CategoryProductController;
-use App\Http\Controllers\customer\AddressController;
-use App\Http\Controllers\customer\CartController;
-use App\Http\Controllers\customer\ChatController;
-use App\Http\Controllers\customer\MixMatchController;
-use App\Http\Controllers\customer\OrderController;
-use App\Http\Controllers\customer\ProductController;
-use App\Http\Controllers\customer\ReturnController;
-use App\Http\Controllers\customer\ReviewController;
-use App\Http\Controllers\customer\WishlistController;
-use App\Http\Controllers\EditProductController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\shipping_service\OrderController as ShippingServiceOrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\admin\ManageLandingPageController as AdminManageLandingPageController;
+use App\Http\Controllers\admin\OrderController as AdminOrderController;
+use App\Http\Controllers\admin\ProductController as AdminProductController;
+use App\Http\Controllers\admin\CategoryProductController as AdminCategoryProductController;
+use App\Http\Controllers\admin\ChatController as AdminChatController;
+use App\Http\Controllers\customer\AddressController as CustomerAddressController;
+use App\Http\Controllers\customer\CartController as CustomerCartController;
+use App\Http\Controllers\customer\ChatController as CustomerChatController;
+use App\Http\Controllers\customer\MixMatchController as CustomerMixMatchController;
+use App\Http\Controllers\customer\OrderController as CustomerOrderController;
+use App\Http\Controllers\customer\ReviewController as CustomerReviewController;
+use App\Http\Controllers\customer\ReturnController as CustomerReturnController;
+use App\Http\Controllers\customer\ProductController as CustomerProductController;
+use App\Http\Controllers\customer\WishlistController as CustomerWishlistController;
+use App\Http\Controllers\shipping_service\OrderController as ShippingServiceOrderController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,116 +33,126 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-// Route for All Users
+// Route for all user
 Route::group([], function () {
-    Route::get('/', [LandingPageController::class, 'index'])->name('landing');
-    Route::controller(ProductController::class)->group(function () {
-        Route::get('/katalog', 'index');
-        Route::get('/katalog/{id}', 'detail_product');
+    Route::controller(LandingPageController::class)->group(function () {
+        Route::get('', 'index')->name('LandingPage');
     });
-
-    Route::controller(MixMatchController::class)->group(function () {
-        Route::get('/mix-and-match', 'index');
+    Route::controller(CustomerProductController::class)->group(function () {
+        Route::get('/katalog', 'index')->name('Catalogue');
+        Route::get('/katalog?gender=pria', 'women_catalogue')->name('WomenCatalogue');
+        Route::get('katalog?gender=wanita', 'men_catalogue')->name('MenCatalogue');
+        Route::get('/produk/{id}', 'detail_product')->name('ProductDetail');
+    });
+    Route::controller(CustomerMixMatchController::class)->group(function () {
+        Route::get('/mix-and-match', 'index')->name('MixMatch');
     });
 });
 
+// Route for guest
 Route::middleware(['guest'])->group(function () {
-    Route::get('/daftar', [RegisterController::class, 'index'])->name('daftar');
-    Route::post('/daftar', [RegisterController::class, 'store']);
-    Route::get('/masuk', [LoginController::class, 'index'])->name('masuk');
-    Route::post('/masuk', [LoginController::class, 'authenticate']);
+    Route::get('/daftar', [RegisterController::class, 'index'])->name('Register');
+    Route::post('/daftar', [RegisterController::class, 'store'])->name('Registers');
+    Route::get('/masuk', [LoginController::class, 'index'])->name('LogIn');
+    Route::post('/masuk', [LoginController::class, 'authenticate'])->name('LogIns');
 });
 
 // Route for customer
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profil', [UserController::class, 'profile']);
-    Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
-    // logout jangan lupa diganti jadi post
-    Route::controller(ProductController::class)->group(function () {
-        Route::get('/penilaian', 'review');
-        Route::get('/pengembalian', 'return');
+    Route::prefix('/profil')->controller(UserController::class)->group(function () {
+        Route::get('', 'profile')->name('CustomerProfile');
+        Route::post('/perbarui-profil', 'update_profile')->name('CustomerUpdateProfile');
+        Route::post('/perbarui-kata-sandi', 'update_password')->name('CustomerUpdatePassword');
+        Route::post('/perbarui-gambar-profil', 'update_profile_picture')->name('CustomerUpdateProfilePicture');
     });
-    Route::controller(CartController::class)->group(function () {
-        Route::get('/keranjang', 'index');
+    Route::controller(LoginController::class)->group(function () {
+        Route::post('/keluar', 'logout')->name('CustomerLogOut');
     });
-    Route::controller(WishlistController::class)->group(function () {
-        Route::get('/favorit', 'index');
+    Route::controller(CustomerReviewController::class)->group(function () {
+        Route::get('/penilaian', 'index')->name('CustomerReview');
     });
-    Route::controller(ChatController::class)->group(function () {
-        Route::get('/live-chat', 'chat');
+    Route::controller(CustomerReturnController::class)->group(function () {
+        Route::get('/pengembalian', 'index')->name('CustomerReturn');
     });
-
-    //-------------- sidebar -------------------
-
-    Route::controller(OrderController::class)->group(function () {
-        Route::get('/pesanan_saya', 'myorder')->name("pesanan_saya");
-        Route::get('/pesanan_saya/{orderID}', 'detail_myorder')->name("detail_pesanan");
-        Route::post('/batalkan-pesanan', [OrderController::class, 'cancelOrder'])->name('cancelOrder');
-        Route::post('/menerima-pesanan', [OrderController::class, 'accOrder'])->name('accOrder');
-        Route::post('/mengembalikan-pesanan', [OrderController::class, 'returnorder'])->name('returnOrder');
-
-
-        Route::get('/konfirmasi-pesanan/{transactionID}', 'checkout');
-        Route::get('/konfirmasi-pesanan/{transactionID}/{voucherID}', 'useVoucher')->name('use-voucher');
-        Route::post('/tambah-alamat', 'addAddress')->name('add-address');
+    Route::controller(CustomerCartController::class)->group(function () {
+        Route::get('/keranjang', 'index')->name('CustomerCart');
+    });
+    Route::controller(CustomerWishlistController::class)->group(function () {
+        Route::get('/favorit', 'index')->name('CustomerWishlist');
+    });
+    Route::controller(CustomerChatController::class)->group(function () {
+        Route::get('/obrolan', 'chat')->name('CustomerChat');
+    });
+    Route::controller(CustomerOrderController::class)->group(function () {
+        Route::get('/pesanan-saya', 'myorder')->name('CustomerMyOrder');
+        Route::get('/pesanan-saya/{orderID}', 'detail_myorder')->name('CustomerDetailOrder');
+        Route::post('/batalkan-pesanan', 'cancelOrder')->name('CustomerCancelOrder');
+        Route::post('/menerima-pesanan', 'accOrder')->name('CustomerAcceptOrder');
+        Route::post('/mengembalikan-pesanan', 'returnorder')->name('CustomerReturnOrder');
+        Route::get('/konfirmasi-pesanan/{transactionID}', 'checkout')->name('CustomerConfirmOrder');
+        Route::get('/konfirmasi-pesanan/{transactionID}/{voucherID}', 'useVoucher')->name('UseVoucher');
+        Route::post('/tambah-alamat', 'addAddress')->name('AddAddress');
         Route::post('/pembayaran/{transactionID}/{cartID}', 'payment')->name('prepayment');
+        Route::get('/pembayaran', 'pay')->name('CustomerPayment');
     });
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/profil', 'profile')->name("profile");
-    });
-    Route::resource('/alamat-saya', AddressController::class)->name("index","alamat_saya");
+    Route::resource('/alamat-saya', CustomerAddressController::class);
 });
 
 // Route for admin
 Route::middleware(['admin'])->prefix('/admin')->group(function () {
-    Route::controller(DashboardController::class)->group(function () {
-        Route::get('/', 'index')->name('admin_dashboard');
+    Route::controller(AdminDashboardController::class)->group(function () {
+        Route::get('/', 'index')->name('AdminDashboard');
     });
-    Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
-    // logout jangan lupa diganti jadi post
+    Route::prefix('/profil')->controller(UserController::class)->group(function () {
+        Route::get('', 'profile')->name('AdminProfile');
+        Route::post('/perbarui-profil', 'update_profile')->name('AdminUpdateProfile');
+        Route::post('/perbarui-kata-sandi', 'update_password')->name('AdminUpdatePassword');
+        Route::post('/perbarui-gambar-profil', 'update_profile_picture')->name('AdminUpdateProfilePicture');
+    });
+    Route::controller(LoginController::class)->group(function () {
+        Route::post('/keluar', 'logout')->name('AdminLogOut');
+    });
+    Route::controller(AdminCategoryProductController::class)->group(function () {
+        Route::get('/produk/kategori/{category}', 'category')->name('Category');
+    });
+    Route::controller(AdminProductController::class)->group(function () {
+        Route::get('/produk/buat_ukuran/{produk}', 'createsize')->name('CreateSize');
+        Route::post('/produk/simpan_ukuran/{id}', 'storesize')->name('StoreSize');
+    });
     Route::resource('/produk', AdminProductController::class);
-    Route::get('/produk/kategori/{category}', [CategoryProductController::class, 'category'])->name('category');
-    Route::get('/produk/buat_ukuran/{produk}', [AdminProductController::class, 'CreateSize'])->name('create_size');
-    Route::post('/produk/simpan_ukuran/{id}', [AdminProductController::class, 'StoreSize'])->name('store_size');
-
-    // Route::controller(AdminEditProductController::class)->group(function () {
-    //     Route::get('/edit', 'index');
-    // });
-
-    Route::controller(ChatController::class)->group(function () {
-        Route::get('/obrolan', 'chat');
+    Route::controller(AdminChatController::class)->group(function () {
+        Route::get('/obrolan', 'chat')->name('AdminChat');
     });
-
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/profil', 'profile')->name("profile");;
-        Route::post('/profil/update/{id}', 'update')->name('profileUpdate');
-        Route::post('/profil/update-pass/{id}', 'updatePassword')->name('passUpdate');
-    });
-
     Route::controller(AdminOrderController::class)->group(function () {
-        Route::get('/pesanan', 'index')->name('adminStatus');
-        Route::get('/pesanan/{orderID}', 'orderdetail')->name('adminPesanan');
-        Route::post('/terima-pesanan', [AdminOrderController::class, 'confirmOrder'])->name('confirmOrder');
-        Route::post('/tolak-pesanan', [AdminOrderController::class, 'rejectOrder'])->name('rejectOrder');
+        Route::get('/pesanan', 'index')->name('AdminStatus');
+        Route::get('/pesanan/{orderID}', 'orderdetail')->name('AdminOrder');
+        Route::post('/terima-pesanan', 'confirmorder')->name('AdminConfirmOrder');
+        Route::post('/tolak-pesanan', 'rejectorder')->name('AdminRejectOrder');
+        Route::post('/kirim-pesanan', 'sendorder')->name('AdminSendOrder');
     });
-
-    Route::controller(ManageLandingPageController::class)->group(function () {
-        Route::get('/atur', 'index');
-        Route::get('/manajer-carousel', 'managecarousel');
-        Route::post('/unggah-gambar/{id}', 'uploadImage')->name('upload.image');
-        Route::delete('/hapus-gambar/{id}','deleteImage')->name('delete.image');
-
+    Route::controller(AdminManageLandingPageController::class)->group(function () {
+        Route::get('/atur', 'Index')->name('ManageLandingPage');
+        Route::get('/manajer-carousel', 'managecarousel')->name('ManageCarousel');
+        Route::post('/unggah-gambar/{id}', 'uploadImage')->name('UploadImage');
+        Route::delete('/hapus-gambar/{id}','deleteImage')->name('DeleteImage');
     });
 });
 
 // Route for shipping service
 Route::middleware(['shipping_service'])->prefix('/shipping-service')->group(function () {
-    Route::get('/', [ShippingServiceOrderController::class, 'index'])->name("dashboard_ss");
-    Route::get('/order/{orderID}', [ShippingServiceOrderController::class, 'orderdetail'])->name("orderdetail");
-    Route::post('/kirim-pesanan', [ShippingServiceOrderController::class, 'sendOrder'])->name('sendOrder');
-    Route::post('/pesanan-tiba', [ShippingServiceOrderController::class, 'doneOrder'])->name('doneOrder');
-
-    Route::get('/profil', [UserController::class, 'profile']);
-    Route::get('/keluar', [LoginController::class, 'logout'])->name("logout");
-    // logout jangan lupa diganti jadi post
+    Route::controller(ShippingServiceOrderController::class)->group(function () {
+        Route::get('/', 'index')->name('ShippingServiceDashboard');
+        Route::get('/order/{orderID}', 'orderdetail')->name('ShippingServiceOrder');
+        Route::post('/kirim-pesanan', 'sendorder')->name('ShippingServiceSendOrder');
+        Route::post('/pesanan-tiba', 'doneorder')->name('ShippingServiceDoneOrder');
+    });
+    Route::prefix('/profil')->controller(UserController::class)->group(function () {
+        Route::get('', 'profile')->name('ShippingServiceProfile');
+        Route::post('/perbarui-profil', 'update_profile')->name('ShippingServiceUpdateProfile');
+        Route::post('/perbarui-kata-sandi', 'update_password')->name('ShippingServiceUpdatePassword');
+        Route::post('/perbarui-gambar-profil', 'update_profile_picture')->name('ShippingServiceUpdateProfilePicture');
+    });
+    Route::controller(LoginController::class)->group(function () {
+        Route::post('/keluar', 'logout')->name('ShippingServiceLogOut');
+    });
 });

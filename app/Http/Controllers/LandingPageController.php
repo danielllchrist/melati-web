@@ -46,6 +46,6 @@ class LandingPageController extends Controller
                 ->select('productID','productName','productPrice','productPicturePath')
                 ->get();
         }
-        return view('customer.landingpage', compact('assets','products'));
+        return view('customer.landingpage', compact('assets','products', 'filter'));
     }
 }

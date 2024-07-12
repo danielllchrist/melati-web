@@ -16,7 +16,7 @@ class ManageLandingPageController extends Controller
 
     public function index(Request $request) {
         $assets = ManageAsset::all();
-        
+
         $Bestproducts = TransactionDetail::select('productID')
         ->groupBy('productID')
         ->orderByRaW('SUM(quantity) desc')
@@ -61,33 +61,11 @@ class ManageLandingPageController extends Controller
         $manageAsset = ManageAsset::all();
         // dd($manageAsset);
 
-        return view('admin.carouselmanager',compact('manageAsset'));
-        
+        return view('admin.carouselmanager', compact('manageAsset'));
+
     }
 
-    // public function uploadImage(Request $request)   
-    // {
-        
-    //     // untuk memvalidasi file yang akan di upload
-    //     $request->validate([
-    //         'image'=> 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
-    //     ]);
-
-    //     // untuk menyimpan gambar
-    //     $image = $request->file('image');
-    //     $path = $image->store('public/uploads');
-
-
-    //     //untuk menyimparn gambar ke database manage_assets
-    //     $manageAsset = ['assetPath'=>Storage::url($path)];
-    //     ManageAsset::create($manageAsset);
-        
-    //     return response()->json([
-    //         'success' => true,
-    //         'filePath' => Storage::url($path)
-    //     ]);
-    // }
-   public function uploadImage(Request $request, $id)
+    public function uploadImage(Request $request, $id)
     {
         try {
             // Log the request data
@@ -125,21 +103,15 @@ class ManageLandingPageController extends Controller
 
     public function deleteImage($id)
     {
-        // $manageAsset = ManageAsset::find($id);
-
-        // $manageAsset->assetPath = 'https://fakeimg.pl/800x400';
-        // $manageAsset->save();
         try {
             $manageAsset = ManageAsset::find($id);
-    
             if (!$manageAsset) {
                 return response()->json(['success' => false, 'message' => 'Asset not found'], 404);
             }
-    
+
             // Update the asset path to the placeholder image URL
             $manageAsset->assetPath = 'https://fakeimg.pl/800x400';
             $manageAsset->save();
-    
             return response()->json(['success' => true, 'message' => 'Image replaced with placeholder']);
         } catch (\Exception $e) {
             Log::error('Error replacing image: ' . $e->getMessage());

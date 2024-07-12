@@ -10,7 +10,7 @@
 
 <body>
     <nav class="header-custom">
-        <a class="" href="/">
+        <a class="" href="{{ route('LandingPage') }}">
             <img src="\assets\images\logo svg.svg" width="120" height="62" class="d-inline-block align-top"
                 alt="">
         </a>
@@ -25,12 +25,12 @@
                         </div>
                     </form>
                 </li>
-                <li class><a href="/favorit" class="nav-custom"><img src = "\assets\nav_menu\wishlist.svg"
+                <li class><a href="{{ route('CustomerWishlist') }}" class="nav-custom"><img src = "\assets\nav_menu\wishlist.svg"
                             alt = "wishlist" width = "28" height = "28"></a></li>
-                <li class><a href="/keranjang" class="nav-custom"><img src = "\assets\nav_menu\cart.svg" alt = "cart"
+                <li class><a href="{{ route('CustomerCart') }}" class="nav-custom"><img src = "\assets\nav_menu\cart.svg" alt = "cart"
                             width = "33" height = "33"></a>
                 </li>
-                <li class><a href="/profil" class="nav-custom"><img src = "\assets\nav_menu\person.svg" alt = "profile"
+                <li class><a href="{{ route('CustomerProfile') }}" class="nav-custom"><img src = "\assets\nav_menu\person.svg" alt = "profile"
                             width = "28" height = "28"></a></li>
             </ul>
         </div>

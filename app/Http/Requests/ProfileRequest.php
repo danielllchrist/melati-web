@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests\customer;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProfileRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class ProfileRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,11 @@ class ProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|min:10|max:255',
+            'age' => 'required|numeric|min:12',
+            'gender' => Rule::in(['Pria', 'Wanita']),
+            'email' => 'required|email',
+            'phoneNum' => 'required|min:10|max:15',
         ];
     }
 }

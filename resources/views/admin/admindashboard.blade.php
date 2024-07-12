@@ -115,7 +115,7 @@
 
                                 <td style="background-color:#F0F1E4;">
                                     <div class="data-count">
-                                        <p>{{ "Rp " . number_format($return_this_month->total, 0, ",", "."); }}</p>
+                                        <p>{{ "Rp " . number_format($return_this_month->total, 0, ",", ".") }}</p>
                                     </div>
                                     <div class="data-title">
                                         <p>Kembalian</p>

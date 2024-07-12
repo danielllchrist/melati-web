@@ -20,7 +20,7 @@
                 <section>
                     <div class="page-title">
                         <div class="title-wrapper">
-                            <a href="{{ route('pesanan_saya') }}">
+                            <a href="{{ route('CustomerMyOrder') }}">
                                 <div class="title">
                                     <img src="\assets\dummy-img\back arrow.svg" alt="">
                                     <h1>Pesanan #001</h1>
@@ -47,7 +47,7 @@
                                 <img id="batal" src="\assets\dummy-img\status6.svg" alt="">
                             @elseif ($order->status->statusName == 'Dikembalikan')
                                 <img id="batal" src="\assets\dummy-img\status7.svg" alt="">
-                            @endif                        
+                            @endif
                         </div>
                         <div class="segment delivery-address">
                             <h4 class="segment-title">Alamat Pengiriman</h4>
@@ -132,7 +132,7 @@
         <script>
             function cancelOrder(transactionID) {
                 $.ajax({
-                    url: '{{ route('cancelOrder') }}',
+                    url: '{{ route('CustomerCancelOrder') }}',
                     type: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
@@ -153,7 +153,7 @@
             }
             function accOrder(transactionID) {
                 $.ajax({
-                    url: '{{ route('accOrder') }}',
+                    url: '{{ route('CustomerAcceptOrder') }}',
                     type: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
@@ -174,7 +174,7 @@
             }
             function returnOrder(transactionID) {
                 $.ajax({
-                    url: '{{ route('returnOrder') }}',
+                    url: '{{ route('CustomerReturnOrder') }}',
                     type: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',

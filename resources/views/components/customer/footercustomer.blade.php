@@ -15,32 +15,32 @@
                 <div class="about">
                     <p class="title">About Melati</p>
                     <ul class = "child">
-                        <li>Beranda</li>
-                        <li>Katalog</li>
-                        <li><i>Mix and Match</i></li>
+                        <li><a href="{{ route('LandingPage') }}">Beranda</a></li>
+                        <li><a href="{{ route('Catalogue') }}">Katalog</a></li>
+                        <li><i><a href="{{ route('MixMatch') }}">Mix and Match</a></i></li>
                     </ul>
                 </div>
                 <div class="kelamin">
                     <p class="title">Jenis Kelamin</p>
                     <ul class = "child">
-                        <li>Laki - Laki</li>
-                        <li>Perempuan</li>
+                        <li><a href="">Pria</a></li>
+                        <li><a href="">Wanita</a></li>
                     </ul>
                 </div>
                 <div class="bantuan">
                     <p class="title">Bantuan</p>
                     <ul class = "child">
-                        <li>FAQ</li>
-                        <li>Kebijakan Pembelian</li>
-                        <li>Hubungi Kami</li>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Kebijakan Pembelian</a></li>
+                        <li><a href="">Hubungi Kami</a></li>
                     </ul>
                 </div>
                 <div class="akun">
                     <p class="title">Akun Saya</p>
                     <ul class = "child">
-                        <li>Pesanan Saya</li>
-                        <li>Profil</li>
-                        <li>Keranjang</li>
+                        <li><a href="{{ route('CustomerMyOrder') }}">Pesanan Saya</a></li>
+                        <li><a href="{{ route('CustomerProfile') }}">Profil</a></li>
+                        <li><a href="{{ route('CustomerCart') }}">Keranjang</a></li>
                     </ul>
                 </div>
             </div>

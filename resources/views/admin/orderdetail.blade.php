@@ -16,7 +16,7 @@
     <div class="page-title">
         <div class="title-wrapper">
             <div class="title">
-                <a href="{{ route('adminStatus') }}"><img src="\assets\dummy-img\back arrow.svg" alt=""></a>
+                <a href="{{ route('AdminStatus') }}"><img src="\assets\dummy-img\back arrow.svg" alt=""></a>
                 <h1>Pesanan #{{ $order->transactionID }}</h1>
             </div>
         </div>
@@ -120,7 +120,7 @@
     <script>
         function confirmOrder(transactionID) {
             $.ajax({
-                url: '{{ route('confirmOrder') }}',
+                url: '{{ route('AdminConfirmOrder') }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -139,7 +139,7 @@
 
         function rejectOrder(transactionID) {
             $.ajax({
-                url: '{{ route('rejectOrder') }}',
+                url: '{{ route('AdminRejectOrder') }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -161,7 +161,7 @@
 
         function sendOrder(transactionID) {
             $.ajax({
-                url: '{{ route('sendOrder') }}',
+                url: '{{ route('AdminSendOrder') }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',

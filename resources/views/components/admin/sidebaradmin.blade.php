@@ -12,23 +12,20 @@
     <div class="sidebar">
         <div class="sidebar-content">
             <div class="sidebar-back">
-                <!-- <a href="#" class="profile"><img src="assets/side_bar/back_arrow.svg" alt="Back"> -->
-                    <div class="profile">
-                        <img class="pp-picture" src="\assets\top1.png" alt="" />
-                        <p>{{ $data->name }}</p>
-                    </div>
-                <!-- </a> -->
+                <div class="profile">
+                    <img class="pp-picture" src="{{ $user->profilePicturePath }}" alt="" id="profilepicture">
+                    <p>{{ Str::limit(strtok($user->name, ' '), 10) }}</p>
+                </div>
             </div>
             <div class="sidebar-menu-container">
                 <div class="sidebar-menu">
-                    <a class="menu" href="{{route("profile")}}"><h2>Akun</h2></a>
+                    <h2 class="menu">Akun</h2>
                     <ul class="spacing-sidebarmenu">
-                        <li><a href="#profile">Profil</a></li>
-                        <li><a href="#change-password">Ganti Password</a></li>
-                        <li><a href="#logout">Keluar</a></li>
+                        <li><a href="#profil">Profil</a></li>
+                        <li><a href="#ganti_password">Ganti Kata Sandi</a></li>
+                        <li><a href="#keluar">Keluar</a></li>
                     </ul>
                 </div>
-                {{-- active-page bisa dimasukkin ke class biar warna menu nya ke selected --}}
             </div>
         </div>
     </div>

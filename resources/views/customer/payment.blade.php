@@ -34,11 +34,11 @@
     <div class="bawah">
         <h2>Scan QR Code untuk menyelesaikan pembayaran</h2>
         <div class="wrap">
-            <img src="https://barcode.orcascan.com/?data=12345" id="qrcode" alt="">
+            <img src="https://qrcode.tec-it.com/API/QRCode?data={{ $otp }}" id="qrcode" alt="">
         </div>
         <p>Rp. 100.000</p>
         <form class="custom-form">
-            <input type="text" placeholder="Ketik kode OTP disini" id="otp" oninput="removeSpaces(this)" required>
+            <input type="number" placeholder="Ketik kode OTP disini" id="otp" oninput="removeSpaces(this)" required>
             <button id="bayar" class="no-bootstrap bayar">Bayar</button>
         </form>
     </div>
@@ -62,17 +62,18 @@
         $('#bayar').click(function(event) {
             event.preventDefault(); // Mencegah perilaku default dari tombol 'Bayar'
 
+            var actualOTP = {{ $otp }};
             var otpValue = $('#otp').val().trim().toUpperCase();
             console.log(otpValue);
             if (otpValue === '') {
                 // Jika belum terisi, kembalikan (tidak melakukan apa pun)
                 return;
-            } else if (otpValue !== 'TEST1') {
+            } else if (otpValue != actualOTP) {
                 alert('Kode OTP salah!');
                 return;
             }
 
-            // Jika nilai otpValue adalah 'TEST1', maka lanjutkan ke sini
+            // Jika nilai otpValue adalah 'actualOTP', maka lanjutkan ke sini
             $('.atas div:nth-child(4)').addClass('active');
             var toastElement = $('#pembayaranberhasil');
             toastElement.toast({
@@ -83,6 +84,7 @@
             //     console.log("Redirecting to /pesanan");
             //     window.location.href = '/pesanan';
             // }, 10000);
+            alert('berhasil');
         });
     });
 

@@ -20,7 +20,7 @@
                 </div>
                 <h1>Daftar</h1>
                 <p>Dapatkan akses dan Jadilah anggota hari ini.</p><br>
-                <form action="/daftar" method="POST">
+                <form action="{{ route('Registers') }}" method="POST">
                     @csrf
                     <div class="wrap">
                         <label for="name">Nama</label>
@@ -28,7 +28,7 @@
                             value="{{ old('name') }}">
                         <div class="error-message">
                         @error('name')
-                            {{ $message }}
+                            {{ str_replace('name', 'Nama', $message) }}
                         @enderror
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             value="{{ old('phoneNum') }}">
                         <div class="error-message">
                         @error('phoneNum')
-                            {{ $message }}
+                            {{ str_replace('phone num', 'Nomor Telepon', $message) }}
                         @enderror
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             value="{{ old('email') }}">
                         <div class="error-message">
                         @error('email')
-                            {{ $message }}
+                            {{ str_replace('email', 'Email', $message) }}
                         @enderror
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             value="{{ old('age') }}">
                         <div class="error-message">
                         @error('age')
-                            {{ $message }}
+                            {{ str_replace('age', 'Usia', $message) }}
                         @enderror
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
                         <div class="error-message">
                         @error('password')
-                            {{ $message }}
+                            {{ str_replace('password', 'Kata Sandi', $message) }}
                         @enderror
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                             placeholder="Konfirmasi Kata Sandi" required>
                         <div class="error-message">
                         @error('confirm-password')
-                            {{ $message }}
+                            {{ str_replace(['confirm-password', 'password'], ['Konfirmasi Kata Sandi', 'Kata Sandi'], $message) }}
                         @enderror
                         </div>
                     </div>
