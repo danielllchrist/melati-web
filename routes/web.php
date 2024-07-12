@@ -98,7 +98,16 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/pembayaran/{transactionID}', 'payment')->name('prepayment');
         Route::get('/pembayaran', 'pay')->name('CustomerPayment');
     });
-    Route::resource('/alamat-saya', CustomerAddressController::class);
+    // Route::resource('addresses', CustomerAddressController::class)->except(['index']);
+    Route::controller(CustomerAddressController::class)->group(function () {
+    Route::get('/alamat-saya', 'index')->name('alamat-saya.index');
+    Route::post('/simpan-alamat', 'store')->name('simpan-alamat');
+    Route::get('/getRegencies/{provinsi_id}', 'getRegencies');
+    Route::get('/getDistricts/{kota_id}', 'getDistricts');
+    Route::get('/getAddress/{id}', 'getAddress')->name('get-address');
+    Route::put('/updateAddress/{id}', 'updateAddress')->name('update-address');
+    });
+
 });
 
 // Route for admin

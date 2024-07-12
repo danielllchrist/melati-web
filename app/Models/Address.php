@@ -28,6 +28,7 @@ class Address extends Model
         'ward',
         'cityOrRegency',
         'province',
+        'description',
     ];
 
     public $incrementing = false;
@@ -40,5 +41,9 @@ class Address extends Model
     public function transaction()
     {
         return $this->hasMany(Transaction::class, 'addressID', 'addressID');
+    }
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province', 'id'); 
     }
 }
