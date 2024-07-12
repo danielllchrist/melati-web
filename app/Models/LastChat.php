@@ -20,6 +20,7 @@ class LastChat extends Model
     protected $guarded = 'lastChatID';
 
     protected $fillable = [
+        // chat gada di ERD dan migrations
         'chatID',
         'lastMessage',
         'lastSentUserID',

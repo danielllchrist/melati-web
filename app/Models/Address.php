@@ -21,10 +21,13 @@ class Address extends Model
 
     protected $fillable = [
         'userID',
-        'province',
-        'cityOrRegency',
         'nameAddress',
+        'receiver',
+        'phoneNum',
         'detailAddress',
+        'ward',
+        'cityOrRegency',
+        'province',
     ];
 
     public $incrementing = false;

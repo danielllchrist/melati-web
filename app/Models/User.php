@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -71,6 +72,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(LastChat::class, 'lastSentUserID', 'userID');
     }
+
+    // asumsi user hanya punya satu roomchat, dan 1 roomchat hanya dimiliki oleh satu user
 
     /**
      * The attributes that should be hidden for serialization.
