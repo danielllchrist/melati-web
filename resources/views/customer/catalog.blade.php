@@ -102,27 +102,27 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script>
-            var data = [
-                {"id":1,"jk":"pria","kategori":"atasan","harga":120000,"wishlist":true},
-                {"id":2,"jk":"pria","kategori":"bawahan","harga":150000,"wishlist":false},
-                {"id":3,"jk":"pria","kategori":"aksesoris","harga":110000,"wishlist":true},
-                {"id":4,"jk":"wanita","kategori":"atasan","harga":100000,"wishlist":true},
-                {"id":5,"jk":"wanita","kategori":"bawahan","harga":125000,"wishlist":false},
-                {"id":6,"jk":"wanita","kategori":"aksesoris","harga":149000,"wishlist":true},
-                {"id":7,"jk":"pria","kategori":"atasan","harga":115000,"wishlist":true},
-                {"id":8,"jk":"pria","kategori":"bawahan","harga":105000,"wishlist":true},
-                {"id":9,"jk":"pria","kategori":"aksesoris","harga":90000,"wishlist":false},
-                {"id":10,"jk":"wanita","kategori":"atasan","harga":50000,"wishlist":false},
-                {"id":11,"jk":"wanita","kategori":"bawahan","harga":80000,"wishlist":false},
-                {"id":12,"jk":"wanita","kategori":"aksesoris","harga":99000,"wishlist":true},
-                {"id":13,"jk":"pria","kategori":"atasan","harga":119000,"wishlist":true},
-                {"id":14,"jk":"pria","kategori":"bawahan","harga":109000,"wishlist":true},
-                {"id":15,"jk":"pria","kategori":"bawahan","harga":104900,"wishlist":false},
-                {"id":16,"jk":"wanita","kategori":"atasan","harga":105900,"wishlist":false}
-            ];
+            // var data = [
+            //     {"id":1,"jk":"pria","kategori":"atasan","harga":120000,"wishlist":true},
+            //     {"id":2,"jk":"pria","kategori":"bawahan","harga":150000,"wishlist":false},
+            //     {"id":3,"jk":"pria","kategori":"aksesoris","harga":110000,"wishlist":true},
+            //     {"id":4,"jk":"wanita","kategori":"atasan","harga":100000,"wishlist":true},
+            //     {"id":5,"jk":"wanita","kategori":"bawahan","harga":125000,"wishlist":false},
+            //     {"id":6,"jk":"wanita","kategori":"aksesoris","harga":149000,"wishlist":true},
+            //     {"id":7,"jk":"pria","kategori":"atasan","harga":115000,"wishlist":true},
+            //     {"id":8,"jk":"pria","kategori":"bawahan","harga":105000,"wishlist":true},
+            //     {"id":9,"jk":"pria","kategori":"aksesoris","harga":90000,"wishlist":false},
+            //     {"id":10,"jk":"wanita","kategori":"atasan","harga":50000,"wishlist":false},
+            //     {"id":11,"jk":"wanita","kategori":"bawahan","harga":80000,"wishlist":false},
+            //     {"id":12,"jk":"wanita","kategori":"aksesoris","harga":99000,"wishlist":true},
+            //     {"id":13,"jk":"pria","kategori":"atasan","harga":119000,"wishlist":true},
+            //     {"id":14,"jk":"pria","kategori":"bawahan","harga":109000,"wishlist":true},
+            //     {"id":15,"jk":"pria","kategori":"bawahan","harga":104900,"wishlist":false},
+            //     {"id":16,"jk":"wanita","kategori":"atasan","harga":105900,"wishlist":false}
+            // ];
 
             var sortBy = Object.values(1); //default sort
-            var dataTemp = data;
+            var dataTemp = {{ $product->toJson() }};
 
             window.onload = function() {
                 sort(Object.values(1));
