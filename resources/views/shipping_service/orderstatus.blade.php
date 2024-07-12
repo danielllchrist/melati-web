@@ -124,7 +124,7 @@
                                         </td>
                                         <td>
                                             <div class="ps-info">
-                                                <a href="{{route("orderdetail",$order->transactionID)}}">
+                                                <a href='{{route("ShippingServiceOrder",$order->transactionID)}}'>
                                                     <img src="assets/information_green_button.svg" width="30"
                                                         height="30" alt="info">
                                                 </a>
@@ -168,10 +168,10 @@
                                         </td>
                                         <td>
                                             <div class="ps-info">
-                                                <a href="{{route("orderdetail",$order->transactionID)}}">
+                                                <a href="{{route("ShippingServiceOrder",$order->transactionID)}}">
                                                 <img src="assets/information_green_button.svg" width="30"
                                                     height="30" alt="info">
-                                                </a>    
+                                                </a>
                                             </div>
                                         </td>
 
@@ -213,10 +213,10 @@
                                         </td>
                                         <td>
                                             <div class="ps-info">
-                                                <a href="{{route("orderdetail",$order->transactionID)}}">
+                                                <a href="{{route("ShippingServiceOrder",$order->transactionID)}}">
                                                 <img src="assets/information_green_button.svg" width="30"
                                                     height="30" alt="info">
-                                                </a>    
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

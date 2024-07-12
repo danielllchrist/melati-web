@@ -9,6 +9,7 @@ use App\Models\Voucher;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -95,7 +96,13 @@ class OrderController extends Controller
 
         return view('customer.checkout', compact('carts', 'vouchers', 'addresses', 'transaction', 'targetVoucher'));
     }
-    
+
+    public function pay ()
+    {
+        $otp = rand(10000, 99999);
+        return view('customer.payment', compact('otp'));
+    }
+
     public function payment(Request $request, $transactionID, $cartID)
     {
         // jika user ga pilih alamat, maka pilih alamat paling pertama
@@ -133,6 +140,9 @@ class OrderController extends Controller
 
     public function myorder()
     {
+        $userID = Auth::id();
+        $user = User::find($userID);
+
         // Ambil semua pesanan dengan status 1 hingga 7
         $orders1 = Transaction::with('transactionDetail')->where('statusID', "1")->get();
         $orders2 = Transaction::with('transactionDetail')->where('statusID', "2")->orWhere('statusID', '3')->get();
@@ -155,13 +165,16 @@ class OrderController extends Controller
         $orders4 = Transaction::with('transactionDetail')->where('statusID', '5')->get();
         $orders3 = Transaction::with('transactionDetail')->where('statusID', "4")->get();
 
-        return view('customer.myorder', compact("orders1", "orders2", "orders3", "orders4", "orders5", "orders6"));
+        return view('customer.myorder', compact("orders1", "orders2", "orders3", "orders4", "orders5", "orders6", "user"));
     }
 
     public function detail_myorder($orderID)
     {
+        $userID = Auth::id();
+        $user = User::find($userID);
+
         $order = Transaction::find($orderID);
-        return view('customer.orderdetail', compact('order'));
+        return view('customer.orderdetail', compact('order', 'user'));
     }
 
     public function cancelOrder(Request $request)

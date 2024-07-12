@@ -12,18 +12,18 @@ class ProductController extends Controller
         return view('customer.catalog');
     }
 
+    public function women_catalogue()
+    {
+        //
+    }
+
+    public function men_catalogue()
+    {
+        //
+    }
+
     public function detail_product()
     {
         return view('customer.detail');
-    }
-
-    public function review()
-    {
-        return view('customer.review');
-    }
-
-    public function return()
-    {
-        return view('customer.return');
     }
 }

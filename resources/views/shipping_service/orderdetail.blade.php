@@ -17,7 +17,7 @@
         <div class="page-title">
             <div class="title-wrapper">
                 <div class="title">
-                    <a href="{{ route('dashboard_ss') }}">
+                    <a href="{{ route('ShippingServiceDashboard') }}">
                         <img src="\assets\dummy-img\back arrow.svg" alt="">
                     </a>
                     <h1>Pesanan #{{ $order->transactionID }}</h1>
@@ -111,7 +111,7 @@
     <script>
         function sendOrder(transactionID) {
             $.ajax({
-                url: '{{ route('sendOrder') }}',
+                url: '{{ route('ShippingServiceSendOrder') }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -129,7 +129,7 @@
         }
         function doneOrder(transactionID) {
             $.ajax({
-                url: '{{ route('doneOrder') }}',
+                url: '{{ route('ShippingServiceDoneOrder') }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',

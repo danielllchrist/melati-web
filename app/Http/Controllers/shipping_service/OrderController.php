@@ -32,14 +32,14 @@ class OrderController extends Controller
         return view('shipping_service.orderdetail', compact("order"));
     }
 
-    public function sendOrder(Request $request)
+    public function sendorder(Request $request)
     {
         $transactionID = $request->input('transactionID');
-        
+
         $order = Transaction::find($transactionID);
         if ($order) {
-            $order->statusID = 3; 
-            $order->updated_at = Carbon::now(); 
+            $order->statusID = 3;
+            $order->updated_at = Carbon::now();
             $order->save();
 
             return response()->json(['success' => true]);
@@ -51,11 +51,11 @@ class OrderController extends Controller
     public function doneOrder(Request $request)
     {
         $transactionID = $request->input('transactionID');
-        
+
         $order = Transaction::find($transactionID);
         if ($order) {
-            $order->statusID = 4; 
-            $order->updated_at = Carbon::now(); 
+            $order->statusID = 4;
+            $order->updated_at = Carbon::now();
             $order->save();
 
             return response()->json(['success' => true]);

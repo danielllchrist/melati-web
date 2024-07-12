@@ -16,7 +16,7 @@
             <img src="\assets\top2.png" alt="image">
         </div>
         <div class="wrap-right">
-            <form action="/masuk" method="post">
+            <form action="{{ route('LogIns') }}" method="post">
                 @csrf
                 <div class="top"><br>
                     <div class="wrap-header">
@@ -39,7 +39,7 @@
                         <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
                         <div class="error-message">
                             @error('password')
-                                {{ $message }}
+                                {{ str_replace('password', 'Kata Sandi', $message) }}
                             @enderror
                         </div>
                     </div>

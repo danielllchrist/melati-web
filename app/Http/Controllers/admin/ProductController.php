@@ -6,6 +6,8 @@ use App\Models\Size;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\admin\ProductRequest;
+use App\Http\Requests\admin\SizeRequest;
 use Yajra\DataTables\DataTables as DataTables;
 
 class ProductController extends Controller
@@ -18,14 +20,14 @@ class ProductController extends Controller
         $size = Size::with('product')->get();
         if (request()->ajax()) {
             return DataTables::of($size)
-                ->editColumn('thumbnail', function ($product) {
-                    return '<img src="' . $product->thumbnail . '" alt="Thumbnail" class="w-20 mx-auto rounded-md">';
-                })
+                // ->editColumn('thumbnail', function ($size) {
+                //     return '<img src="' . $size->thumbnail . '" alt="Thumbnail" class="w-20 mx-auto rounded-md">';
+                // })
                 ->addColumn('action', function ($size) {
                     return '
                     <div class="crud-btn">
                         <a class="d-flex justify-content-center align-items-center w-full mx-1 mb-1 text-xs text-center add-size-btn transition duration-500 borderrounded-md select-none ease focus:outline-none focus:shadow-outline text-decoration-none d-flex align-items-center"
-                        href="' . route('create_size', $size->sizeID) . '"
+                        href="' . route('CreateSize', $size->sizeID) . '"
                         title="Tambah Size Baru">
                             <img src="\assets\crud_admin\size-light.svg" class="add-img" alt="" >
                         </a>
@@ -55,13 +57,6 @@ class ProductController extends Controller
         return view('admin.product.manage', compact('size'));
     }
 
-    public function orderdetail()
-    {
-        return response()->view('admin.or   derdetail', [
-            "orderID" => "halo123"
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -70,7 +65,7 @@ class ProductController extends Controller
         return view('admin.product.create', compact('size'));
     }
 
-    public function CreateSize($id)
+    public function createsize($id)
     {
         $size = Size::find($id);
         return view('admin.product.create_size', compact('size'));
@@ -79,7 +74,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Size $produk)
+    public function store(ProductRequest $request, Size $produk)
     {
         $data = $request;
         if ($request->hasFile('productPicturePath')) {
@@ -116,7 +111,7 @@ class ProductController extends Controller
             ->with('success', 'Produk berhasil dibuat');
     }
 
-    public function StoreSize(Request $request, $id)
+    public function storesize(SizeRequest $request, $id)
     {
         $data = $request;
 
@@ -152,7 +147,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Size $produk)
+    public function update(SizeRequest $request, Size $produk)
     {
         $size = Size::find($produk->sizeID);
         $product = Product::find($size->productID);

@@ -9,6 +9,6 @@ class ReturnController extends Controller
 {
     public function index()
     {
-        return response()->view('customer.return');
+        return view('customer.return');
     }
 }

@@ -26,7 +26,7 @@
     </div>
 
 
-    <form action="{{ route('store_size', ['id' => $size->product->productID]) }}" method="post"
+    <form action="{{ route('StoreSize', ['id' => $size->product->productID]) }}" method="post"
         enctype="multipart/form-data">
         @csrf
         <label for="producTID">ID*</label>

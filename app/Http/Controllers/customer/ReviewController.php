@@ -12,7 +12,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return response()->view('customer.review');
+        return view('customer.review');
     }
 
     /**

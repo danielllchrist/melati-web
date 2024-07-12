@@ -16,11 +16,11 @@
             </a>
             <div>
                 <ul class="admin-footer-menu">
-                    <li><a href = "#">Dashboard</a></li>
-                    <li><a href = "#">Orders</a></li>
-                    <li><a href = "#">Products</a></li>
-                    <li><a href = "#">Chats</a></li>
-                    <li><a href = "#">Contents</a></li>
+                    <li><a href = "{{ route('AdminDashboard') }}">Beranda</a></li>
+                    <li><a href = "{{ route('AdminStatus') }}">Pesanan</a></li>
+                    <li><a href = "{{ route('produk.index') }}">Produk</a></li>
+                    <li><a href = "{{ route('AdminChat') }}">Obrolan</a></li>
+                    <li><a href = "{{ route('ManageLandingPage') }}">Konten</a></li>
                 </ul>
             </div>
             <div class="logo">

@@ -17,10 +17,10 @@
 
         <div class= "justify-content-center align-items-center navmenu-custom">
             <ul class="navmenu-custom admin">
-                <li><a class="admin-menu" href="/shipping-service"><img src="\assets\admin_menu\home.svg" alt=""
-                            width = "25" height = "25">Dashboard</a></li>
-                <li><a class="admin-menu" href="/shipping-service/profil"><img src="\assets\admin_menu\light.svg" alt=""
-                            width = "25" height = "25">Profile</a></li>
+                <li><a class="admin-menu" href="{{ route('ShippingServiceDashboard') }}"><img src="\assets\admin_menu\home.svg" alt=""
+                            width = "25" height = "25">Beranda</a></li>
+                <li><a class="admin-menu" href="{{ route('ShippingServiceProfile') }}"><img src="\assets\admin_menu\light.svg" alt=""
+                            width = "25" height = "25">Profil</a></li>
             </ul>
         </div>
 

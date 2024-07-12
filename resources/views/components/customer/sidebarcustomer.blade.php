@@ -11,31 +11,31 @@
     <div class="sidebar">
         <div class="sidebar-content">
             <div class="sidebar-back">
-                <!-- <a href="#" class="profile"><img src="assets/side_bar/back_arrow.svg" alt="Back"> -->
-                <div class="profile"><img class="pp-picture" src="\assets\top1.png" alt="" />
-                    <p>Ryan</p>
+                <div class="profile">
+                    <img class="pp-picture" src="{{ $user->profilePicturePath }}" alt="" id="profilepicture">
+                    <p>{{ Str::limit(strtok($user->name, ' '), 10) }}</p>
                 </div>
-                <!-- </a> -->
             </div>
             <div class="sidebar-menu-container">
                 <div class="sidebar-menu">
-                    <a class="menu" href="{{route("profile")}}"><h2>Akun</h2></a>
+                    <h2 class="menu">Akun</h2>
                     <ul class="spacing-sidebarmenu">
-                        <li><a href="#profile">Profil</a></li>
-                        <li><a href="#change-password">Ganti Password</a></li>
-                        <li><a href="#logout">Keluar</a></li>
-                    </ul>
-                </div>
-                {{-- active-page bisa dimasukkin ke class biar warna menu nya ke selected --}}
-                <div class="sidebar-menu">
-                    <a class="menu" href="{{route("pesanan_saya")}}"><h2>Pesanan</h2></a>
-                    <ul class="spacing-sidebarmenu">
-                        <li><a href="#pesanan">Pesanan Saya</a></li>
-                        <li><a href="#pengembalian">Pengembalian Pesanan</a></li>
+                        <li><a href="#profil">Profil</a></li>
+                        <li><a href="#ganti_password">Ganti Kata Sandi</a></li>
+                        <li><a href="#keluar">Keluar</a></li>
                     </ul>
                 </div>
                 <div class="sidebar-menu">
-                    <a class="menu" href="{{route("alamat_saya")}}"><h2>Alamat</h2></a>
+                    <h2 class="menu">Pesanan</h2>
+                    <ul class="spacing-sidebarmenu">
+                        <li><a href="{{ route('CustomerMyOrder') }}">Pesanan Saya</a></li>
+                        <li><a href="{{ route('CustomerReturn') }}">Pengembalian Pesanan</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-menu">
+                    <a class="menu" href="{{ route('alamat-saya.index') }}">
+                        <h2>Alamat</h2>
+                    </a>
                 </div>
             </div>
         </div>

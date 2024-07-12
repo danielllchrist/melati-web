@@ -111,24 +111,32 @@
                 <a href="?filter=produk-terbaik" class="recommendation">
                     <div class="recommendation-button">
                         <p>PRODUK TERBAIK</p>
-                        <div class="active-recommendation"></div>
+                        @if ($filter == "" || $filter == "produk-terbaik")
+                            <div class="active-recommendation"></div>
+                        @endif
                     </div>
                 </a>
                 <a href="?filter=produk-terbaru" class="recommendation">
                     <div>
                         <p>PRODUK TERBARU</p>
+                        @if ($filter == "produk-terbaru")
+                            <div class="active-recommendation"></div>
+                        @endif
                     </div>
                 </a>
                 <a href="?filter=rating-tertinggi" class="recommendation">
                     <div>
                         <p>RATING TERTINGGI</p>
+                        @if ($filter == "rating-tertinggi")
+                            <div class="active-recommendation"></div>
+                        @endif
                     </div>
                 </a>
             </div>
             <div class="card-wrapper">
                 @foreach ($products as $product)
                     <div class="catalog-item">
-                        <a href="detail.html">
+                        <a href="{{ route('ProductDetail', ['id'=>'dummy']) }}">
                             <div class="card-custom">
                                 <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
                                     alt="Catalog">
@@ -149,7 +157,7 @@
             <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
             <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
             <h1>Bebaskan kreativitasmu! Mix and match gaya favoritmu dengan mudah.</h1>
-            <div id="button-mix-and-match-wrapper"><a href="/mixmatch">
+            <div id="button-mix-and-match-wrapper"><a href="{{ route('MixMatch') }}">
                     <div id="button-mix-and-match" class="buttons">Kunjungi fitur Mix and Match</div>
                 </a></div>
         </div>
@@ -159,7 +167,7 @@
         <div id="belanja-sekarang-banner">
             <h2>BATIK MELATI</h2>
             <h1>WARISAN BUDAYA , GAYA MODERN</h1>
-            <div id="button-belanja-wrapper"><a href="/katalog">
+            <div id="button-belanja-wrapper"><a href="{{ route('Catalogue') }}">
                     <div id="button-belanja" class="buttons">Belanja Sekarang</div>
                 </a></div>
         </div>

@@ -16,18 +16,18 @@
 
         <div class= "justify-content-center align-items-center navmenu-custom">
             <ul class="navmenu-custom admin">
-                <li><a class="admin-menu" href="/admin"><img src="\assets\admin_menu\home.svg" alt=""
-                            width = "25" height = "25">Dashboard</a></li>
-                <li><a class="admin-menu" href="/admin/pesanan"><img src="\assets\admin_menu\shopping bag.svg" alt=""
-                            width = "25" height = "25">Orders</a></li>
-                <li><a class="admin-menu" href="/admin/produk"><img src="\assets\admin_menu\package.svg" alt=""
-                            width = "25" height = "25">Products</a></li>
-                <li><a class="admin-menu" href="/admin/live-chat"><img src="\assets\admin_menu\circle.svg" alt=""
-                            width = "25" height = "25">Chats</a></li>
-                <li><a class="admin-menu" href="/admin/atur"><img src="\assets\admin_menu\content.svg" alt=""
-                            width = "25" height = "25">Content</a></li>
-                <li><a class="admin-menu" href="/admin/profil"><img src="\assets\admin_menu\light.svg" alt=""
-                            width = "25" height = "25">Profile</a></li>
+                <li><a class="admin-menu" href="{{ route('AdminDashboard') }}"><img src="\assets\admin_menu\home.svg" alt=""
+                            width = "25" height = "25">Beranda</a></li>
+                <li><a class="admin-menu" href="{{ route('AdminStatus') }}"><img src="\assets\admin_menu\shopping bag.svg" alt=""
+                            width = "25" height = "25">Pesanan</a></li>
+                <li><a class="admin-menu" href="{{ route('produk.index') }}"><img src="\assets\admin_menu\package.svg" alt=""
+                            width = "25" height = "25">Produk</a></li>
+                <li><a class="admin-menu" href="{{ route('AdminChat') }}"><img src="\assets\admin_menu\circle.svg" alt=""
+                            width = "25" height = "25">Obrolan</a></li>
+                <li><a class="admin-menu" href="{{ route('ManageLandingPage') }}"><img src="\assets\admin_menu\content.svg" alt=""
+                            width = "25" height = "25">Konten</a></li>
+                <li><a class="admin-menu" href="{{ route('AdminProfile') }}"><img src="\assets\admin_menu\light.svg" alt=""
+                            width = "25" height = "25">Profil</a></li>
             </ul>
         </div>
 

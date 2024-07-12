@@ -102,5 +102,9 @@ hr {
     border-color: #D5BE9E;
     border-top: 1px solid;
     opacity: 1;
-  }
+}
 
+a {
+    color: #D5BE9E;
+    text-decoration: none;
+}
