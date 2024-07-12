@@ -167,8 +167,8 @@
         <div id="belanja-sekarang-banner">
             <h2>BATIK MELATI</h2>
             <h1>WARISAN BUDAYA , GAYA MODERN</h1>
-            <div id="button-belanja-wrapper"><a href="{{ route('Catalogue') }}">
-                    <div id="button-belanja" class="buttons">Belanja Sekarang</div>
+            <div id="button-belanja-wrapper"><a href={{route('katalogMelati')}}>
+                    <div id="button-belanja" class="buttons" >Belanja Sekarang</div>
                 </a></div>
         </div>
     </section>

@@ -3,23 +3,15 @@
 namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function product()
     {
-        return view('customer.catalog');
-    }
-
-    public function women_catalogue()
-    {
-        //
-    }
-
-    public function men_catalogue()
-    {
-        //
+        $product = Product::all();
+        return view('customer.catalog', compact('product'));
     }
 
     public function detail_product()
