@@ -106,11 +106,6 @@
                         <a href="javascript:void(0)" class="button"
                             onclick="rejectOrder('{{ $order->transactionID }}')">Tolak Pesanan</a>
                     </div>
-                {{-- @elseif ($order->status->statusName == 'Dikembalikan')
-                    <div class="btn-wrapper">
-                        <a href="javascript:void(0)" class="button"
-                            onclick="sendOrder('{{ $order->transactionID }}')">Kembalikan Pesanan</a>
-                    </div> --}}
                 @endif
             </div>
     </section>

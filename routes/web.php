@@ -76,6 +76,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::controller(CustomerCartController::class)->group(function () {
         Route::get('/keranjang', 'index')->name('CustomerCart');
+        Route::delete('/keranjang/delete/{id}', 'destroy')->name('keranjang.destroy');
+        Route::put('/keranjang/update/{id}', 'update')->name('keranjang.update');
+        Route::post('/keranjang/buat-pesanan', 'store')->name('keranjang.store');
     });
     Route::controller(CustomerWishlistController::class)->group(function () {
         Route::get('/favorit', 'index')->name('CustomerWishlist');
