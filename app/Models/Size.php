@@ -17,7 +17,7 @@ class Size extends Model
 
     protected $keyType = 'string';
 
-    protected $guarded = 'sizeID';
+    protected $guarded = ['sizeID'];
 
     protected $fillable = [
         'productID',

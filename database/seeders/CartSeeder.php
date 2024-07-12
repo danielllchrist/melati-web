@@ -20,6 +20,7 @@ class CartSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
         for ($i = 0; $i < 10; $i++) {
+            // Ini untuk testing doang, kalo udah deploy pake yang atas
             // $userID = User::all()->random()->userID;
             $userID = '01ee9554-9e84-367d-96ec-bf2a25b4cb3e';
             $sizeID = Size::all()->random()->sizeID;

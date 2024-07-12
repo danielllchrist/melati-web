@@ -19,7 +19,7 @@
     @endif
     <div class="main-content">
         <form
-            action="{{ route('prepayment', ['transactionID' => $transaction->transactionID, 'cartID' => $carts->first()->userID]) }}"
+            action="{{ route('prepayment', ['transactionID' => $transaction->transactionID, 'cartID' => $items->first()->userID]) }}"
             method = "post">
             @csrf
             <div class="atas">
@@ -87,15 +87,15 @@
                     <h2>Metode Pembayaran</h2>
                     <div class="pembayaran">
                         <label class="square">
-                            <input type="radio" name="payment" value="credit_card" required>
+                            <input type="radio" name="payment" value="Kartu Kredit" required>
                             <p>Kartu Kredit</p>
                         </label>
                         <label class="square">
-                            <input type="radio" name="payment" value="bank_transfer" required>
+                            <input type="radio" name="payment" value="Bank Transfer" required>
                             <p>Transfer Bank</p>
                         </label>
                         <label class="square">
-                            <input type="radio" name="payment" value="e_wallet" required>
+                            <input type="radio" name="payment" value="E-Wallet" required>
                             <p>E-Wallet</p>
                         </label>
                     </div>
@@ -117,17 +117,17 @@
                                 </div>
                             </div>
                         @endfor --}}
-                            @forelse ($carts as $c)
+                            @forelse ($items as $i)
                                 <div class="product">
                                     <img id="productimg" src="{{ asset('assets/perfume.svg') }}">
                                     <div class="wraps">
-                                        <h1>{{ $c->size->product->productName }}</h1>
-                                        {{-- {{dd($c->size->product->size)}} --}}
-                                        <p>{{ $c->size->size }}</p>
+                                        <h1>{{ $i->size->product->productName }}</h1>
+                                        {{-- {{dd($i->size->product->size)}} --}}
+                                        <p>{{ $i->size->size }}</p>
                                     </div>
                                     <div class="wraps2">
-                                        <p>{{ $c->quantity }} x
-                                            {{ 'Rp ' . number_format($c->size->product->productPrice, 0, ',', '.') }}
+                                        <p>{{ $i->quantity }} x
+                                            {{ 'Rp ' . number_format($i->size->product->productPrice, 0, ',', '.') }}
                                         </p>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@
                         <div class="w2">
                             {{-- count of different items --}}
 
-                            <p>{{ $c->count() }} Items</p>
+                            <p>{{ $items->count() }} Items</p>
                         </div>
                         <div class="w1 brdr">
                             <h3>Subtotal</h3>
@@ -149,7 +149,7 @@
                         </div>
                         <div class="w1">
                             <h3>Discounts</h3>
-                            {{-- <p>{{"Rp " . number_format($c->size->product->productPrice, 0, ',', '.')}}</p> --}}
+                            {{-- <p>{{"Rp " . number_format($i->size->product->productPrice, 0, ',', '.')}}</p> --}}
                             <p>{{ $targetVoucher == null ? 'Rp. 0' : 'Rp. ' . number_format($targetVoucher->voucherNominal, 0, ',', '.') }}
                             </p>
                         </div>

@@ -95,7 +95,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/konfirmasi-pesanan/{transactionID}', 'checkout')->name('CustomerConfirmOrder');
         Route::get('/konfirmasi-pesanan/{transactionID}/{voucherID}', 'useVoucher')->name('UseVoucher');
         Route::post('/tambah-alamat', 'addAddress')->name('AddAddress');
-        Route::post('/pembayaran/{transactionID}/{cartID}', 'payment')->name('prepayment');
+        Route::post('/pembayaran/{transactionID}', 'payment')->name('prepayment');
         Route::get('/pembayaran', 'pay')->name('CustomerPayment');
     });
     Route::resource('/alamat-saya', CustomerAddressController::class);

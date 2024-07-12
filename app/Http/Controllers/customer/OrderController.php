@@ -5,9 +5,11 @@ namespace App\Http\Controllers\customer;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\Size;
+use App\Models\Product;
 use App\Models\Voucher;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -16,21 +18,11 @@ class OrderController extends Controller
 {
     public function checkout($transactionID)
     {
+        // cari user
         $user = Auth::user();
-        // get item in table carts where the productID is the same as $user->userID
-        $carts = $user->cart;
 
-        // make a subtotal based on item quantity and item price
-        $totalWeight = 0;
-        $subtotal = 0;
-        foreach ($carts as $cart) {
-            // Disini, digunakan size dan bukan produk karena setiap produk ada size nya sendiri
-            $subtotal += $cart->quantity * $cart->size->product->productPrice;
-            $totalWeight += $cart->size->product->productWeight;
-        }
-
-        // 2 Ribu
-        $shipping = $totalWeight * 2;
+        // get item from transaction details
+        $items = TransactionDetail::where('transactionID', $transactionID)->get();
 
         // make a collection vouchers based on user
         foreach ($user->voucherUsage as $v) {
@@ -38,9 +30,22 @@ class OrderController extends Controller
         }
         $targetVoucher = null;
 
-        $total = $subtotal + $shipping;
-
+        // get address that user have
         $addresses = $user->address;
+
+        // make a subtotal based on item quantity and item price
+        $totalWeight = 0;
+        $subtotal = 0;
+        foreach ($items as $item) {
+            // Disini, digunakan size dan bukan produk karena setiap produk ada size nya sendiri
+            $subtotal += $item->quantity * $item->size->product->productPrice;
+            $totalWeight += $item->size->product->productWeight;
+        }
+
+        // 2 Ribu
+        $shipping = $totalWeight * 2;
+
+        $total = $subtotal + $shipping;
 
         // get transaction data
         $transaction = Transaction::find($transactionID);
@@ -52,7 +57,7 @@ class OrderController extends Controller
         $transaction->shippingFee = $shipping;
         $transaction->save();
 
-        return view('customer.checkout', compact('carts', 'vouchers', 'addresses', 'targetVoucher', 'transaction'));
+        return view('customer.checkout', compact('items', 'vouchers', 'addresses', 'targetVoucher', 'transaction'));
     }
 
     public function addAddress(Request $request)
@@ -65,42 +70,51 @@ class OrderController extends Controller
 
     public function useVoucher($transactionID, $voucherID)
     {
+        // cari transaction
+        $transaction = Transaction::find($transactionID);
 
-        // get transaction
-        $transaction = Transaction::where('transactionID', $transactionID)->first();
-        // dd($transaction);
-
-        // get item in table carts where the productID is the same as $user->userID
+        // cari user
         $user = Auth::user();
-        $carts = $user->cart;
+
+        // get item from transaction details
+        $items = TransactionDetail::where('transactionID', $transactionID)->get();
 
         // make a collection vouchers based on user
         foreach ($user->voucherUsage as $v) {
             $vouchers[] = $v->voucher;
         }
+        $targetVoucher = null;
 
         // get address that user have
         $addresses = $user->address;
 
+        // make a subtotal based on item quantity and item price
+        $totalWeight = 0;
+        $subtotal = 0;
+        foreach ($items as $item) {
+            // Disini, digunakan size dan bukan produk karena setiap produk ada size nya sendiri
+            $subtotal += $item->quantity * $item->size->product->productPrice;
+            $totalWeight += $item->size->product->productWeight;
+        }
+
+        // 2 Ribu
+        $shipping = $totalWeight * 2;
+
+        $total = $subtotal + $shipping;
+
         $targetVoucher = null;
         // if user didn't choose any vouchers / if targetVoucher is not selected, send erro
         if ($voucherID == 'null') {
-            return view('customer.checkout', compact('carts', 'vouchers', 'addresses', 'transaction', 'targetVoucher'));
+            return view('customer.checkout', compact('items', 'vouchers', 'addresses', 'transaction', 'targetVoucher'));
         }
 
         $targetVoucher = Voucher::where('voucherID', $voucherID)->first();
         $transaction->voucherID = $voucherID;
         $transaction->totalDiscount = $targetVoucher->voucherNominal;
         $transaction->totalPrice -= $targetVoucher->voucherNominal;
+        $transaction->save();
 
-
-        return view('customer.checkout', compact('carts', 'vouchers', 'addresses', 'transaction', 'targetVoucher'));
-    }
-
-    public function pay ()
-    {
-        $otp = rand(10000, 99999);
-        return view('customer.payment', compact('otp'));
+        return view('customer.checkout', compact('items', 'vouchers', 'addresses', 'transaction', 'targetVoucher'));
     }
 
     public function payment(Request $request, $transactionID, $cartID)
@@ -111,29 +125,33 @@ class OrderController extends Controller
         }
 
         // mengurangi stok produk size dari database
-        $carts = Cart::where('userID', $cartID)->get();
+        $items = TransactionDetail::where('transactionID', $transactionID)->get();
 
         // cari transaction
         $transaction = Transaction::find($transactionID);
-
         // for each sizeID in cart, decrease the stock of table sizes in database based on the quantity of products bought, if the stock is less than 0, give error
-        foreach ($carts as $cart) {
-            $size = Size::find($cart->sizeID);
+        foreach ($items as $item) {
+            $size = Size::find($item->sizeID);
             if (!$size) {
                 // Size not found, give error
                 return back()->withError("Size not found");
             }
-            $newStock = $size->stock - $cart->quantity;
+            $newStock = $size->stock - $item->quantity;
             if ($newStock < 0) {
                 // Stock is less than 0, give error
-                return back()->withError("Not enough stock for size {$size->name}");
+                return back()->withError("Not enough stock for size {$size->sizeID}");
             }
 
             $size->stock = $newStock;
             $size->save();
         }
 
+
         // update transaction
+        $transaction->addressID = $request->selected_address;
+        $transaction->voucherID = $request->selected_voucher_name;
+        $transaction->paymentMethod = $request->payment;
+        $transaction->save();
 
         return view('customer.payment');
     }
