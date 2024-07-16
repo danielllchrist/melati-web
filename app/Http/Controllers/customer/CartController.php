@@ -12,7 +12,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
-{
+{   
+    public function view()
+    {
+        return response()->view('customer.cart');
+    }
     /**
      * Display a listing of the resource.
      */

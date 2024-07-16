@@ -39,10 +39,13 @@ Route::group([], function () {
         Route::get('', 'index')->name('LandingPage');
     });
     Route::controller(CustomerProductController::class)->group(function () {
-        Route::get('/katalog', 'index')->name('Catalogue');
+        Route::get('/katalog', 'product')->name('Catalogue');
         Route::get('/katalog?gender=pria', 'women_catalogue')->name('WomenCatalogue');
         Route::get('katalog?gender=wanita', 'men_catalogue')->name('MenCatalogue');
         Route::get('/produk/{id}', 'detail_product')->name('ProductDetail');
+        Route::get('/filter/{filterType}', 'filter')->name('Filter');
+        Route::post('/wish', 'wish')->name('wish');
+        Route::post('/unwish', 'unwish')->name('unwish');
     });
     Route::controller(CustomerMixMatchController::class)->group(function () {
         Route::get('/mix-and-match', 'index')->name('MixMatch');

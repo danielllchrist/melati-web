@@ -11,6 +11,10 @@ use Thiagoprz\CompositeKey\HasCompositeKey;
 class Wishlist extends Model
 {
     use HasFactory, HasUuids, HasCompositeKey, SoftDeletes;
+    use HasCompositeKey, HasUuids {
+        HasCompositeKey::getIncrementing insteadof HasUuids;
+        HasUuids::getIncrementing as getUuidIncrementing;
+    }
 
     protected $table = 'wishlists';
 
@@ -20,7 +24,7 @@ class Wishlist extends Model
 
     protected $fillable = [
         'userID',
-        'productID',
+        'productID'
     ];
 
     public $incrementing = false;
@@ -39,4 +43,5 @@ class Wishlist extends Model
     {
         return $this->belongsTo(Product::class, 'productID', 'productID');
     }
+    
 }
