@@ -73,7 +73,7 @@
                                             </div>
                                             <h4 class="product-price">Rp {{ $o->product->productPrice }}</h4>
                                             @if ($order->status->statusName == 'Penilaian')
-                                                <div class="rate"><div class="rate-wrapper"><a href=""><div class="rate-btn">Nilai</div></a></div></div>
+                                                <div class="rate"><div class="rate-wrapper"><a href="{{ route('review.create', ['transactionID' => $order->transactionID, 'productID' => $o->product]) }}"><div class="rate-btn">Nilai</div></a></div></div>
                                             @endif
                                         </div>
                                     </div>

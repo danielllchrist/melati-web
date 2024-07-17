@@ -15,30 +15,28 @@
 <body>
     @include('components.customer.headercustomer')
     <div class="container">
-        <!-- <section> -->
         <div class="page-title">
             <a href="">
                 <div class="title">
-                    <img src="assets\dummy-img\back arrow.svg" alt="">
+                    <img src="{{ asset('assets/dummy-img/back arrow.svg') }}" alt="">
                     <h1>Penilaian Produk</h1>
                 </div>
             </a>
         </div>
-        <!-- </section> -->
 
-        <form action="" method="post">
+        <form action="{{ route('review.store', ['transactionID' => $transactionDetail->transactionID, 'productID' => $transactionDetail->productID]) }}" method="post">
             @csrf
             <section>
                 <div class="product-detail">
                     <div class="img-wrapper">
-                        <img src="assets/dummy-img/Rectangle 28.png" alt="">
+                        <img src="{{ asset($product->productPicturePath) }}" alt="">
                     </div>
                     <div class="details-and-stars">
-                        <h3 class="product-name">Eau De Toilette</h3>
-                        <h3 class="product-size">Size : M</h3>
+                        <h3 class="product-name">{{ $product->productName }}</h3>
+                        <h3 class="product-size">Size: {{ $size->size }}</h3>
                         <div class="rating">
                             <div class="star-icon">
-                                <input type="radio" value="1" name="product_rating" checked id="rating1">
+                                <input type="radio" value="1" name="product_rating" id="rating1">
                                 <label for="rating1" class="fa fa-star"></label>
                                 <input type="radio" value="2" name="product_rating" id="rating2">
                                 <label for="rating2" class="fa fa-star"></label>
@@ -57,20 +55,19 @@
             <section>
                 <div class="review">
                     <div class="text-area-wrapper">
-                        <textarea name="" id="" maxlength="1000" placeholder="Beri tahu kami tentang produk ini."></textarea>
+                        <textarea name="review_text" id="review_text" maxlength="1000" placeholder="Beri tahu kami tentang produk ini."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="submit">
+                    <div class="submit-btn-wrapper">
+                        <button type="submit" class="submit-btn">Nilai</button>
                     </div>
                 </div>
             </section>
         </form>
-
-        <section>
-            <div class="submit">
-                <div class="submit-btn-wrapper">
-                    <button class="submit-btn">Nilai</button>
-                </div>
-            </div>
-        </section>
-
     </div>
     @include('components.customer.footercustomer')
 </body>

@@ -71,9 +71,13 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(LoginController::class)->group(function () {
         Route::post('/keluar', 'logout')->name('CustomerLogOut');
     });
+   
     Route::controller(CustomerReviewController::class)->group(function () {
-        Route::get('/penilaian', 'index')->name('CustomerReview');
+        Route::get('/penilaian/{transactionID}/{productID}', 'create')->name('review.create');
+        Route::post('/penilaian/{transactionID}/{productID}', 'store')->name('review.store');
+        // Route::get('/penilaian', 'index')->name('review.index');
     });
+
     Route::controller(CustomerReturnController::class)->group(function () {
         Route::get('/pengembalian', 'index')->name('CustomerReturn');
     });
