@@ -14,15 +14,15 @@
 
     <style>
         .box-1 {
-            background-image: url('assets/backgroundHijau.png');
+            background-image: url('/assets/backgroundHijau.png');
         }
 
         .box-2 {
-            background-image: url('assets/backgroundMerah.png');
+            background-image: url('/assets/backgroundMerah.png');
         }
 
         .box-3 {
-            background-image: url('assets/backgroundCoklat.png');
+            background-image: url('/assets/backgroundCoklat.png');
         }
 
         .order-list a {
@@ -38,36 +38,38 @@
         <div class="d-flex box-1 justify-content-between align-items-center">
             <div class="box-left">
                 <p>Need to be picked up</p>
-                <p class="count">15</p>
+                <p class="count">{{ $countOrders2updated }}</p>
             </div>
             <div class="box-right">
-                <img src="assets/iconPickUp.png" class="pickup-img">
+                <img src="/assets/iconPickUp.png" class="pickup-img">
             </div>
         </div>
 
         <div class="d-flex box-2 justify-content-between align-items-center">
             <div class="box-left">
                 <p>On Delivery</p>
-                <p class="count">37</p>
+                <p class="count">{{$order3Count}}</p>
             </div>
             <div class="box-right">
-                <img src="assets/iconDelivery.png" class="delivery-img">
+                <img src="/assets/iconDelivery.png" class="delivery-img">
             </div>
         </div>
 
         <div class="d-flex box-3 justify-content-between align-items-center">
             <div class="box-left">
                 <p>Total Order</p>
-                <p class="count" id="total-order">543</p>
-                <select name="sortBy" id="sortBy" onchange="order(this)">
-                    <option value="1">This Week</option>
-                    <option value="2">This Month</option>
-                    <option value="3">This Year</option>
-                    <option value="4">All Orders</option>
-                </select>
+                <p class="count" id="total-order">{{ $orders->count() }}</p>
+                <form action="{{ route('orderstatus') }}" method="GET">
+                    <select name="sortBy" id="sortBy" onchange="this.form.submit()">
+                        <option value="1" {{ request('sortBy') == '1' ? 'selected' : '' }}>This Week</option>
+                        <option value="2" {{ request('sortBy') == '2' ? 'selected' : '' }}>This Month</option>
+                        <option value="3" {{ request('sortBy') == '3' ? 'selected' : '' }}>This Year</option>
+                        <option value="4" {{ request('sortBy') == '4' ? 'selected' : '' }}>All Orders</option>
+                    </select>
+                </form>
             </div>
             <div class="box-right">
-                <img src="assets/iconDone.png" class="done-img">
+                <img src="/assets/iconDone.png" class="done-img">
             </div>
         </div>
     </div>
@@ -77,7 +79,7 @@
             <div class="ps-header">
                 <div class="padding-search-custom">
                     <form class="form-inline my-2 my-lg-0">
-                        <div class="ps-search-custom-container"><img src="assets/search-white.svg" alt="search"
+                        <div class="ps-search-custom-container"><img src="/assets/search-white.svg" alt="search"
                                 width="15" height="15"><input class="ps-search-custom" type="text"
                                 placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk">
                         </div>
@@ -125,7 +127,7 @@
                                         <td>
                                             <div class="ps-info">
                                                 <a href='{{route("ShippingServiceOrder",$order->transactionID)}}'>
-                                                    <img src="assets/information_green_button.svg" width="30"
+                                                    <img src="/assets/information_green_button.svg" width="30"
                                                         height="30" alt="info">
                                                 </a>
                                             </div>
@@ -169,7 +171,7 @@
                                         <td>
                                             <div class="ps-info">
                                                 <a href="{{route("ShippingServiceOrder",$order->transactionID)}}">
-                                                <img src="assets/information_green_button.svg" width="30"
+                                                <img src="/assets/information_green_button.svg" width="30"
                                                     height="30" alt="info">
                                                 </a>
                                             </div>
@@ -214,7 +216,7 @@
                                         <td>
                                             <div class="ps-info">
                                                 <a href="{{route("ShippingServiceOrder",$order->transactionID)}}">
-                                                <img src="assets/information_green_button.svg" width="30"
+                                                <img src="/assets/information_green_button.svg" width="30"
                                                     height="30" alt="info">
                                                 </a>
                                             </div>

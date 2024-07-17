@@ -61,7 +61,7 @@
             @empty
                 <div class="btn-wrap">
                     <h2>Keranjangmu masih kosong nih..</h2>
-                    <button class="btn-ctg" onclick="window.location.href='{{ route('catalogue') }}'">Belanja
+                    <button class="btn-ctg" onclick="window.location.href='{{ route('Catalogue') }}'">Belanja
                         Sekarang</button>
                 </div>
             @endforelse

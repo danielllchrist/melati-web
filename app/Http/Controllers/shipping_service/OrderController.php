@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // Ambil semua orders2 dengan statusID 2
     $orders2 = Transaction::with('transactionDetail')->where('statusID', "2")->get();
@@ -19,11 +19,41 @@ class OrderController extends Controller
         return Carbon::now()->diffInHours($order->updated_at) >= 24;
     });
 
+    // hitung need to be pickup
+    $countOrders2updated = $orders2updated->count();
+
+    //hitung on delivery
+    $order3Count = Transaction::where('statusID','3')->count();
+
+
+
     // Ambil orders3 dan orders4
     $orders3 = Transaction::with('transactionDetail')->where('statusID', "3")->get();
     $orders4 = Transaction::with('transactionDetail')->where('statusID', '4')->get();
 
-    return view('shipping_service.orderstatus', compact("orders2updated", "orders3", "orders4"));
+    // sort total orders
+    $sortBy = $request->get('sortBy', '4'); // Default ke 'All Orders'
+        
+    switch ($sortBy) {
+        case '1':
+            $orders = Transaction::where('created_at', '>=', now()->startOfWeek())->orderBy('transactionID')->get();
+            break;
+        case '2':
+            $orders = Transaction::where('created_at', '>=', now()->startOfMonth())->orderBy('transactionID')->get();
+            break;
+        case '3':
+            $orders = Transaction::where('created_at', '>=', now()->startOfYear())->orderBy('transactionID')->get();
+            break;
+        case '4':
+            $orders = Transaction::orderBy('transactionID')->get();
+            break;
+        default:
+            $orders = Transaction::orderBy('transactionID')->get();
+            break;
+    }
+
+
+    return view('shipping_service.orderstatus', compact("orders2updated", "orders3", "orders4",'orders','countOrders2updated','order3Count'));
     }
 
     public function orderdetail($orderID)

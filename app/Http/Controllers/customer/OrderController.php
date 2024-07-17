@@ -24,10 +24,13 @@ class OrderController extends Controller
         // get item from transaction details
         $items = TransactionDetail::where('transactionID', $transactionID)->get();
 
+        $vouchers[] = null;
+
         // make a collection vouchers based on user
         foreach ($user->voucherUsage as $v) {
-            $vouchers[] = $v->voucher;
+            $vouchers = $v->voucher;
         }
+
         $targetVoucher = null;
 
         // get address that user have

@@ -33,6 +33,7 @@ body{
     border-bottom-style: solid;
     border-color : #D5BE9E;
     border-width: 1px;
+    position: sticky;
 }
 
 .navmenu-custom {
@@ -91,3 +92,8 @@ body{
     gap : 148px;
 }
 
+input {
+    font-family: 'Poppins';
+    border: none;
+    outline: none;
+}

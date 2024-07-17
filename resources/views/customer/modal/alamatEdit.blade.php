@@ -1,4 +1,3 @@
-<!-- Edit Address Modal -->
 <div class="modal fade" id="alamatEdit-{{$address->addressID}}" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -40,11 +39,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label style="color: #ffffff;">Provinsi</label>
-                            <select name="provinsi" id="provinsi" class="form-control"
+                            <select name="provinsi" id="provinsi-{{ $address->addressID }}" class="form-control"
                                 style="font-family: Poppins; display: flex; background: black; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">
                                 <option value="">Pilih Provinsi</option>
                                 @foreach ($provinces as $provinsi)
-                                    <option value="{{ $provinsi->id }}" {{ $provinsi->name == $address->province ? 'selected' : '' }}>
+                                    <option value="{{ $provinsi->id }}" {{ $provinsi->id == $address->province_id ? 'selected' : '' }}>
                                         {{ $provinsi->name }}
                                     </option>
                                 @endforeach
@@ -54,11 +53,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label style="color: #ffffff;">Kota/Region</label>
-                            <select name="kota" id="kota" class="form-control"
+                            <select name="kota" id="kota-{{ $address->addressID }}" class="form-control"
                                 style="font-family: Poppins; display: flex; background: black; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">
                                 <option value="">Pilih Kota/Region</option>
                                 @foreach ($regencies as $regency)
-                                    <option value="{{ $regency->id }}" {{ $regency->name == $address->cityOrRegency ? 'selected' : '' }}>
+                                    <option value="{{ $regency->id }}" {{ $regency->id == $address->cityOrRegency_id ? 'selected' : '' }}>
                                         {{ $regency->name }}
                                     </option>
                                 @endforeach
@@ -68,17 +67,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label style="color: #ffffff;">Kelurahan</label>
-                            <select name="kecamatan" id="kecamatan" class="form-control"
+                            <select name="kecamatan" id="kecamatan-{{ $address->addressID }}" class="form-control"
                                 style="font-family: Poppins; display: flex; background: black; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">
                                 <option value="">Pilih Kelurahan</option>
                                 @foreach ($districts as $district)
-                                    <option value="{{ $district->id }}" {{ $district->name == $address->ward ? 'selected' : '' }}>
+                                    <option value="{{ $district->id }}" {{ $district->id == $address->ward_id ? 'selected' : '' }}>
                                         {{ $district->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div>                    
                     <div class="row">
                         <div class="col-md-12">
                             <label style="color: #ffffff;">Alamat Lengkap</label>
@@ -101,5 +100,3 @@
         </div>
     </div>
 </div>
-
-    
