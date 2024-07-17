@@ -156,8 +156,9 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
 // Route for shipping service
 Route::middleware(['shipping_service'])->prefix('/shipping-service')->group(function () {
     Route::controller(ShippingServiceOrderController::class)->group(function () {
-        Route::get('/', 'index')->name('ShippingServiceDashboard');
+        Route::get('/', 'index')->name('ShippingServiceDashboard','orderstatus');
         Route::get('/order/{orderID}', 'orderdetail')->name('ShippingServiceOrder');
+        Route::get('/orderstatus','index')->name('orderstatus');
         Route::post('/kirim-pesanan', 'sendorder')->name('ShippingServiceSendOrder');
         Route::post('/pesanan-tiba', 'doneorder')->name('ShippingServiceDoneOrder');
     });

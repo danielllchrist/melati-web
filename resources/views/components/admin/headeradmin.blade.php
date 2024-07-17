@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/css/app.css')
     @vite('resources/css/components/admin/headeradmin.css')
 </head>
 
 <body>
     <nav class="header-custom bg-black">
-        <a class="navbar-brand" href="#">
+        <a class="" href="{{ route('LandingPage') }}">
             <img src="\assets\images\logo svg.svg" width="120" height="62" class="d-inline-block align-top"
                 alt="">
         </a>

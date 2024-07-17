@@ -85,7 +85,7 @@
                             console.log(data); // Tambahkan ini untuk debugging
                             $('#city').empty();
                             $('#district').empty();
-                            $('#city').append('<option value="">Pilih Kota/Region</option>');
+                            $('#city').append('<option value="">Pilih Kota/Kabupaten</option>');
                             $.each(data.regencies, function(key, value) {
                                 $('#city').append('<option value="' + key + '">' +
                                     value + '</option>');
@@ -173,96 +173,70 @@
 
     {{-- EDIT ALAMAT --}}
     <script>
-        $(document).ready(function() {
-            $('.edit-alamat-btn').on('click', function() {
-                var addressId = $(this).data('id');
-                var modalId = '#alamatEdit-' + addressId;
+        $('.edit-alamat-btn').on('click', function() {
+            var addressID = $(this).data('id');
+            var provinsiSelect = $('#provinsi-' + addressID);
+            var kotaSelect = $('#kota-' + addressID);
+            var kecamatanSelect = $('#kecamatan-' + addressID);
 
-                $.ajax({
-                    url: '/getAddress/' + addressId,
-                    type: 'GET',
-                    success: function(data) {
-                        $(modalId).find('input[name="address_id"]').val(data.id);
-                        $(modalId).find('input[name="nama_tempat"]').val(data.nameAddress);
-                        $(modalId).find('input[name="nama_penerima"]').val(data.receiver);
-                        $(modalId).find('input[name="nomor_telepon"]').val(data.phoneNum);
-                        $(modalId).find('select[name="provinsi"]').val(data.province).change();
+            console.log(addressID);
+            provinsiSelect.change(function() {
+                var provinsiId = $(this).val();
+                console.log(provinsiId);
+                if (provinsiId) {
+                    $.ajax({
+                        url: '/getRegencies/' + provinsiId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            console.log(data); // Tambahkan ini untuk debugging
+                            kotaSelect.empty();
+                            kecamatanSelect.empty();
+                            kotaSelect.append('<option value="">Pilih Kota/Region</option>');
+                            $.each(data.regencies, function(key, value) {
+                                kotaSelect.append('<option value="' + key + '">' +
+                                    value + '</option>');
+                            });
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error(textStatus,
+                                errorThrown); // Tambahkan ini untuk debugging
+                        }
+                    });
+                } else {
+                    kotaSelect.empty();
+                    kecamatanSelect.empty();
+                }
+            });
 
-                        // Fetch cities based on the selected province
-                        // $.ajax({
-                        //     url: '/getRegencies/' + data.province,
-                        //     type: 'GET',
-                        //     dataType: 'json',
-                        //     success: function(regencyData) {
-                        //         $(modalId).find('select[name="kota"]').empty();
-                        //         $(modalId).find('select[name="kota"]').append(
-                        //             '<option value="">Pilih Kota/Kabupaten</option>'
-                        //             );
-                        //         $.each(regencyData.regencies, function(key, value) {
-                        //             $(modalId).find('select[name="kota"]')
-                        //                 .append('<option value="' + key +
-                        //                     '">' + value + '</option>');
-                        //         });
-
-                        //         // Set the selected city
-                        //         $(modalId).find('select[name="kota"]').val(data
-                        //             .cityOrRegency).change();
-
-                        //         // Fetch districts based on the selected city
-                        //         $.ajax({
-                        //             url: '/getDistricts/' + data
-                        //                 .cityOrRegency,
-                        //             type: 'GET',
-                        //             dataType: 'json',
-                        //             success: function(districtData) {
-                        //                 $(modalId).find(
-                        //                     'select[name="kecamatan"]'
-                        //                     ).empty();
-                        //                 $(modalId).find(
-                        //                     'select[name="kecamatan"]'
-                        //                     ).append(
-                        //                     '<option value="">Pilih Kecamatan</option>'
-                        //                     );
-                        //                 $.each(districtData.districts,
-                        //                     function(key, value) {
-                        //                         $(modalId).find(
-                        //                             'select[name="kecamatan"]'
-                        //                             ).append(
-                        //                             '<option value="' +
-                        //                             key + '">' +
-                        //                             value +
-                        //                             '</option>');
-                        //                     });
-
-                        //                 // Set the selected district
-                        //                 $(modalId).find(
-                        //                     'select[name="kecamatan"]'
-                        //                     ).val(data.ward);
-                        //             },
-                        //             error: function(jqXHR, textStatus,
-                        //                 errorThrown) {
-                        //                 console.error(textStatus,
-                        //                     errorThrown); // Debugging
-                        //             }
-                        //         });
-                        //     },
-                        //     error: function(jqXHR, textStatus, errorThrown) {
-                        //         console.error(textStatus, errorThrown); // Debugging
-                        //     }
-                        // });
-
-                        $(modalId).find('textarea[name="alamat_lengkap"]').val(data
-                            .detailAddress);
-                        $(modalId).find('textarea[name="deskripsi_alamat"]').val(data
-                            .description);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
+            kotaSelect.change(function() {
+                var kotaId = $(this).val();
+                if (kotaId) {
+                    $.ajax({
+                        url: '/getDistricts/' + kotaId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            console.log(data); // Tambahkan ini untuk debugging
+                            kecamatanSelect.empty();
+                            kecamatanSelect.append('<option value="">Pilih Kecamatan</option>');
+                            $.each(data.districts, function(key, value) {
+                                kecamatanSelect.append('<option value="' + key + '">' +
+                                    value + '</option>');
+                            });
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error(textStatus,
+                                errorThrown); // Tambahkan ini untuk debugging
+                        }
+                    });
+                } else {
+                    kecamatanSelect.empty();
+                }
             });
         });
     </script>
+
 
 </body>
 

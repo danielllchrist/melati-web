@@ -10,6 +10,7 @@ use App\Models\Regency;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AddressController extends Controller
 {
@@ -23,6 +24,8 @@ class AddressController extends Controller
         $user = User::find($userID);
         $addresses = $user->address;
 
+        $addresses = Address::orderBy('created_at', 'desc')->get();
+
         $provinces = Province::all();
         $regencies = Regency::all(); 
         $districts = District::all(); 
@@ -35,13 +38,17 @@ class AddressController extends Controller
     public function getRegencies($provinsi_id)
     {
         // dd("jhvjbb");
+        Log::info('Fetching regencies for province_id: ' . $provinsi_id); // Debugging
         $regencies = Regency::where('province_id', $provinsi_id)->pluck('name', 'id');
+        Log::info('Regencies: ' . $regencies); // Debugging
         return response()->json(['regencies' => $regencies]);
     }
 
     public function getDistricts($kota_id)
     {
+        Log::info('Fetching districts for kota_id: ' . $kota_id); // Debugging
         $districts = District::where('regency_id', $kota_id)->pluck('name', 'id');
+        Log::info('Districts: ' . $districts); // Debugging
         return response()->json(['districts' => $districts]);
     }
 
@@ -50,12 +57,24 @@ class AddressController extends Controller
         $request->validate([
             'nama_tempat' => 'required|string|max:255',
             'nama_penerima' => 'required|string|max:255',
-            'nomor_telepon' => 'required|string|max:15',
-            'province' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'district' => 'required|string|max:255',
+            'nomor_telepon' => 'required|numeric|digits_between:11,15',
+            'province' => 'required|',
+            'city' => 'required|',
+            'district' => 'required|',
             'alamat_lengkap' => 'required|string|max:255',
             'deskripsi_alamat' => 'nullable|string|max:255',
+        ],
+        [
+            'nama_tempat.required' => 'Nama Tempat harus diisi',
+            'nama_penerima.required' => 'Nama Penerima harus diisi',
+            'nomor_telepon.required' => 'Nomor Telepon harus diisi',
+            'nomor_telepon.numeric' => 'Nomor Telepon harus berupa angka',
+            'nomor_telepon.digits_between' => 'Nomor Telepon harus antara 11 hingga 13 angka',
+            'province.required' => 'Provinsi harus diisi',
+            'city.required' => 'Kota/Region harus diisi',
+            'district.required' => 'Kecamatan harus diisi',
+            'alamat_lengkap.required' => 'Alamat Lengkap harus diisi',
+            'deskripsi_alamat.required' => 'Deskripsi Alamat harus diisi',
         ]);
 
         $userID = Auth::id();
@@ -101,12 +120,9 @@ class AddressController extends Controller
             'deskripsi_alamat' => 'nullable|string',
         ]);
 
-
         $provinceName = Province::find($request->input('provinsi'))->name;
         $cityName = Regency::find($request->input('kota'))->name;
         $districtName = District::find($request->input('kecamatan'))->name;
-        // dd($request);
-
 
         $address = Address::findOrFail($id);
         $address->nameAddress = $request->input('nama_tempat');
