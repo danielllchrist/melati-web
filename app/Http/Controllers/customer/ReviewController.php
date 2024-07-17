@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Review;
+use App\Models\Size;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -18,17 +22,38 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($transactionID, $productID)
     {
-        //
+        $transactionDetail = TransactionDetail::where('transactionID', $transactionID)
+            ->where('productID', $productID)
+            ->firstOrFail();
+
+        $product = Product::findOrFail($transactionDetail->productID);
+        $size = Size::findOrFail($transactionDetail->sizeID);
+
+        return view('customer.review', compact('transactionDetail', 'product', 'size'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request, $transactionID, $productID)
     {
-        //
+        $request->validate([
+            'product_rating' => 'required|integer|min:1|max:5',
+            'review_text' => 'nullable|string|max:1000',
+        ]);
+
+        $transactionDetail = TransactionDetail::where('transactionID', $transactionID)
+            ->where('productID', $productID)
+            ->firstOrFail();
+
+        // Membuat review baru
+        $review = new Review();
+        $review->transactionID = $transactionDetail->transactionID;
+        $review->productID = $transactionDetail->productID;
+        $review->rating = $request->product_rating;
+        $review->comment = $request->review_text;
+        $review->save();
+
+        return redirect()->route('CustomerMyOrder');
     }
 
     /**
