@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
         for ($i=0; $i < 10; $i++) {
             DB::table('products')->insert([
                 'productID' => $faker->uuid,
-                'productName' => $faker->name,
+                'productName' => implode(' ', $faker->words(3)),
                 'productPrice' => $faker->numberBetween(10000, 1000000),
                 'productCategory' => $faker->randomElement(['Atasan', 'Bawahan', 'Aksesoris']),
                 'productDescription' => $faker->text,

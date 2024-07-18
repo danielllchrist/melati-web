@@ -18,20 +18,21 @@
         <div class= "justify-content-center align-items-center navmenu-custom">
             <ul class="navmenu-custom">
                 <li class = "padding-search-custom">
-                    <form class="form-inline my-2 my-lg-0">
+                    <form class="form-inline my-2 my-lg-0" action = "/katalog">
                         <div class="search-custom-container"><img src = "\assets\nav_menu\search.svg" alt = "search"
                                 width = "19" height = "19"><input class = "search-custom" type="text"
-                                placeholder="Pencarian">
+                                placeholder="Pencarian" name="search">
                         </div>
                     </form>
                 </li>
-                <li class><a href="{{ route('CustomerWishlist') }}" class="nav-custom"><img src = "\assets\nav_menu\wishlist.svg"
-                            alt = "wishlist" width = "28" height = "28"></a></li>
-                <li class><a href="{{ route('CustomerCart') }}" class="nav-custom"><img src = "\assets\nav_menu\cart.svg" alt = "cart"
-                            width = "33" height = "33"></a>
+                <li class><a href="{{ route('CustomerWishlist') }}" class="nav-custom"><img
+                            src = "\assets\nav_menu\wishlist.svg" alt = "wishlist" width = "28" height = "28"></a>
                 </li>
-                <li class><a href="{{ route('CustomerProfile') }}" class="nav-custom"><img src = "\assets\nav_menu\person.svg" alt = "profile"
-                            width = "28" height = "28"></a></li>
+                <li class><a href="{{ route('CustomerCart') }}" class="nav-custom"><img
+                            src = "\assets\nav_menu\cart.svg" alt = "cart" width = "33" height = "33"></a>
+                </li>
+                <li class><a href="{{ route('CustomerProfile') }}" class="nav-custom"><img
+                            src = "\assets\nav_menu\person.svg" alt = "profile" width = "28" height = "28"></a></li>
             </ul>
         </div>
 

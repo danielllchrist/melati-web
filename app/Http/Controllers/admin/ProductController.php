@@ -75,7 +75,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request, Size $produk)
+    public function store(ProductRequest $request)
     {
         $product = $request->validated();
         $pictures = [];

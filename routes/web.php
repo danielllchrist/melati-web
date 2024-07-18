@@ -100,21 +100,26 @@ Route::middleware(['customer'])->group(function () {
         Route::post('/menerima-pesanan', 'accOrder')->name('CustomerAcceptOrder');
         Route::post('/mengembalikan-pesanan', 'returnorder')->name('CustomerReturnOrder');
         Route::get('/konfirmasi-pesanan/{transactionID}', 'checkout')->name('CustomerConfirmOrder');
+        Route::get('/getRegencies/{provinsi_id}', 'getRegencies');
+        Route::get('/getDistricts/{kota_id}', 'getDistricts');
         Route::get('/konfirmasi-pesanan/{transactionID}/{voucherID}', 'useVoucher')->name('UseVoucher');
         Route::post('/tambah-alamat', 'addAddress')->name('AddAddress');
         Route::post('/pembayaran/{transactionID}', 'payment')->name('prepayment');
-        Route::get('/pembayaran', 'pay')->name('CustomerPayment');
     });
     // Route::resource('addresses', CustomerAddressController::class)->except(['index']);
     Route::controller(CustomerAddressController::class)->group(function () {
-    Route::get('/alamat-saya', 'index')->name('alamat-saya.index');
-    Route::post('/simpan-alamat', 'store')->name('simpan-alamat');
-    Route::get('/getRegencies/{provinsi_id}', 'getRegencies');
-    Route::get('/getDistricts/{kota_id}', 'getDistricts');
-    Route::get('/getAddress/{id}', 'getAddress')->name('get-address');
-    Route::put('/updateAddress/{id}', 'updateAddress')->name('update-address');
+        Route::get('/alamat-saya', 'index')->name('alamat-saya.index');
+        Route::post('/simpan-alamat', 'store')->name('simpan-alamat');
+        Route::get('/getRegencies/{provinsi_id}', 'getRegencies');
+        Route::get('/getDistricts/{kota_id}', 'getDistricts');
+        Route::get('/getAddress/{id}', 'getAddress')->name('get-address');
+        Route::put('/updateAddress/{id}', 'updateAddress')->name('update-address');
     });
 
+    // Route::controller(UserController::class)->group(function () {
+    //     Route::get('/profil', 'profile')->name("profile");
+    // });
+    // Route::resource('/alamat-saya', CustomerAddressController::class)->name("index","alamat_saya");
 });
 
 // Route for admin
@@ -153,7 +158,7 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
         Route::get('/atur', 'Index')->name('ManageLandingPage');
         Route::get('/manajer-carousel', 'managecarousel')->name('ManageCarousel');
         Route::post('/unggah-gambar/{id}', 'uploadImage')->name('UploadImage');
-        Route::delete('/hapus-gambar/{id}','deleteImage')->name('DeleteImage');
+        Route::delete('/hapus-gambar/{id}', 'deleteImage')->name('DeleteImage');
     });
 });
 

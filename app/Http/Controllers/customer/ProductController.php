@@ -19,9 +19,16 @@ class ProductController extends Controller
 
         $gender = $request->query('gender');
         $category = $request->query('category');
-        // dump($product);
 
+        $query = $request->input('search');
 
+        if($query){
+            $product = Product::where('productName', 'like', '%' . $query . '%')
+                ->orWhere('productCategory', 'like', '%' . $query . '%')
+                ->orWhere('productDescription', 'like', '%' . $query . '%')
+                ->orWhere('forGender', 'like', '%' . $query . '%')
+                ->get();
+        }
 
         if ($gender && $category) {
             $product = Product::where('productCategory', $category)
@@ -44,7 +51,7 @@ class ProductController extends Controller
 
         if (empty($existingWish)) {
             // Create a new wish using raw SQL
-            $insertQuery = "INSERT INTO `wishlists` (`userID`, `productID`, `created_at`, `updated_at`, `deleted_at`) 
+            $insertQuery = "INSERT INTO `wishlists` (`userID`, `productID`, `created_at`, `updated_at`, `deleted_at`)
                         VALUES (?, ?, ?, ?, ?)";
             DB::insert($insertQuery, [$userID, $productID, $now, $now, $now]);
         }
@@ -56,11 +63,11 @@ class ProductController extends Controller
     {
         $productID = $request->input('productID');
         $userID = (string) auth()->user()->userID;
-    
+
         // Delete the wish using raw SQL with parameter binding
         $deleteQuery = "DELETE FROM `wishlists` WHERE `productID` = ? AND `userID` = ?";
         DB::delete($deleteQuery, [$productID, $userID]);
-    
+
         return redirect()->back();
     }
 

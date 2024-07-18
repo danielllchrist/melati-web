@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\customer;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MixMatchController extends Controller
 {
     public function index()
     {
-        return response()->view('customer.mixmatch');
+        $products = Product::latest()->take(5)->get();
+        $atasan = Product::where('ProductCategory', 'Atasan')->take(3)->get();
+        $bawahan = Product::where('ProductCategory', 'Bawahan')->take(3)->get();
+        $aksesoris = Product::where('ProductCategory', 'Aksesoris')->take(3)->get();
+        return response()->view('customer.mixmatch', compact('products', 'atasan', 'bawahan', 'aksesoris'));
     }
 }
