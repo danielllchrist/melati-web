@@ -181,7 +181,7 @@
         }
 
         function hidePasswordLama() {
-            var x = document.getElementById('passlama');
+            var x = document.getElementById('old_password');
             var eyel = document.getElementById('eyehidelama');
 
             if (x.type === "password") {
@@ -194,7 +194,7 @@
         }
 
         function hidePasswordBaru() {
-            var y = document.getElementById('passbaru');
+            var y = document.getElementById('password');
             var eyeb = document.getElementById('eyehidebaru');
 
             if (y.type === "password") {

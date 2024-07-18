@@ -19,7 +19,7 @@
             </div>
             <div class="sidebar-menu-container">
                 <div class="sidebar-menu">
-                    <h2 class="menu">Akun</h2>
+                    <a href="{{ route('AdminProfile') }}"><h2 class="menu">Akun</h2></a>
                     <ul class="spacing-sidebarmenu">
                         <li><a href="#profil">Profil</a></li>
                         <li><a href="#ganti_password">Ganti Kata Sandi</a></li>

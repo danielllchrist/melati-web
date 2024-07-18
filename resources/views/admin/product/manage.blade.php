@@ -101,39 +101,33 @@
             columns: [{
                     data: 'product.productID',
                     name: 'product.productID',
-                    class: 'text-center'
                 },
                 {
-                    data: 'product.productPicturePath',
-                    name: 'product.productPicturePath',
-                    class: 'text-center',
+                    data: 'thumbnail',
+                    name: 'thumbnail',
+                    class: 'thumbnailwrapper',
                     orderable: false,
                     searchable: false,
                 },
                 {
                     data: 'product.productName',
                     name: 'product.productName',
-                    class: 'text-center'
                 },
                 {
                     data: 'product.productPrice',
                     name: 'product.productPrice',
-                    class: 'text-center'
                 },
                 {
                     data: 'size',
                     name: 'size',
-                    class: 'text-center'
                 },
                 {
                     data: 'stock',
                     name: 'stock',
-                    class: 'text-center'
                 },
                 {
                     data: 'product.productWeight',
                     name: 'product.productWeight',
-                    class: 'text-center'
                 },
                 {
                     data: 'action',
@@ -141,14 +135,8 @@
                     orderable: false,
                     searchable: false,
                     width: '15%',
-                    class: 'text-center'
                 },
             ],
-            // buttons: [
-            //     {
-            //         extend
-            //     }
-            // ]
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

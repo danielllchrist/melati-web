@@ -33,7 +33,11 @@
         <input value = "{{ old('productName') ?? $size->product->productName }}" type="text" id="productName"
             name="productName" class="underline-input-full" required>
         <span class="small-text">Nama Produk. Contoh: Batik Keris, Peci, dll</span>
-
+        <div class="error-message">
+            @error('productName')
+                {{ str_replace('productName', 'Nama Produk', $message) }}
+            @enderror
+        </div>
         <label for="size">Ukuran*</label>
         <select id="size" name="size" required>
             @foreach (['S', 'M', 'L', 'XL'] as $option)
@@ -42,12 +46,20 @@
             @endforeach
         </select>
         <span class="small-text">Ukuran Produk. Wajib. Pilih salah satu</span>
-
+        <div class="error-message">
+            @error('size')
+                {{ str_replace('size', 'Ukuran Produk', $message) }}
+            @enderror
+        </div>
         <label for="stock">Stok*</label>
         <input value = "{{ old('stock') ?? $size->stock }}" type="text" id="stock" name="stock"
             class="underline-input-full" required>
         <span class="small-text">Jumlah Stok Produk. Contoh: 5, 20, 100 dll</span>
-
+        <div class="error-message">
+            @error('stock')
+                {{ str_replace('stock', 'Stok', $message) }}
+            @enderror
+        </div>
         <label for="productCategory">Kategori*</label>
         <select id="productCategory" name="productCategory" required>
             @foreach (['Atasan', 'Bawahan', 'Aksesoris'] as $option)
@@ -57,24 +69,40 @@
             @endforeach
         </select>
         <span class="small-text">Kategori Produk. Wajib. Pilih salah satu</span>
-
+        <div class="error-message">
+            @error('productCategory')
+                {{ str_replace('productCategory', 'Kategori Produk', $message) }}
+            @enderror
+        </div>
         <label for="productPrice">Harga*</label>
         <input value = "{{ old('productPrice') ?? $size->product->productPrice }}" type="text" id="productPrice"
             name="productPrice" class="underline-input-full" required>
         <span class="small-text">Harga Produk. Contoh: 230000, 400000, dll. Wajib</span>
-
+        <div class="error-message">
+            @error('productPrice')
+                {{ str_replace('productPrice', 'Harga Produk', $message) }}
+            @enderror
+        </div>
         <label for="productWeight">Berat
             (gr)*</label>
         <input value = "{{ old('productWeight') ?? $size->product->productWeight }}" type="text" id="productWeight"
             name="productWeight" class="underline-input-full" required>
         <span class="small-text">Berat Produk Dalam Satuan Gram. Contoh : 200, 50, 1500, dll. Wajib. </span>
-
+        <div class="error-message">
+            @error('productWeight')
+                {{ str_replace('productWeight', 'Berat Produk', $message) }}
+            @enderror
+        </div>
         <label for="productDescription">Deskripsi</label>
         <input value = "{{ old('productDescription') ?? $size->product->productDescription }}" type="text"
             id="productDescription" name="productDescription" class="underline-input-full">
         <span class="small-text">Deskripsi Produk. Contoh : “Size sesuai dengan chart”, “Jangan Dicuci pake Pemutih” ,
             dll. Tidak Wajib. </span>
-
+        <div class="error-message">
+            @error('productDescription')
+                {{ str_replace('productDescription', 'Deskripsi Produk', $message) }}
+            @enderror
+        </div>
         <label for="forGender">Gender*</label>
         <select id="forGender" name="forGender" required>
             {{-- <option value="Atasan">Atasan</option>
@@ -86,18 +114,27 @@
             @endforeach
         </select>
         <span class="small-text">Baju digunakan untuk Pria atau Wanita. Wajib. Pilih salah satu</span>
-
-        <label for="productPicturePath">Gambar Produk</label>
-        <div class="product-image-section">
-            <div class="product-image">
-                <img src="\assets\images\image76.svg" alt="Product Image" id="productImage">
-            </div>
-            <div class="image-buttons">
-                <button type="button" class="upload">Pilih Gambar</button>
-                <button type="button" class="delete">Hapus Gambar</button>
-            </div>
+        <div class="error-message">
+            @error('forGender')
+                {{ $message }}
+            @enderror
         </div>
-
+        <label for="picture">Gambar Produk</label>
+        <input name="picture[]" id="picture" class="underline-input-full"
+            placeholder="Max 5 photos" accept="image/png,image/jpg,image/jpeg" type="file" multiple>
+        <span class="small-text">Gambar Produk. Wajib. Pilih minimal 1 gambar</span>
+        <div class="error-message">
+            @error('picture')
+                {{ str_replace('picture', 'Gambar Produk', $message) }}
+            @enderror
+        </div>
+        @if ($size->product->productPicturePath)
+            <div class="picture-wrapper">
+                @foreach (json_decode($size->product->productPicturePath) as $picture)
+                    <img src="{{ Storage::url($picture) }}" alt="product picture">
+                @endforeach
+            </div>
+        @endif
 
         <div class="save-button">
             <button type="submit">Simpan</button>

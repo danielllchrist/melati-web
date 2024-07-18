@@ -736,3 +736,9 @@ div.dt-container .dt-paging .dt-paging-button.disabled:hover{
 .disabled:hover{
     background-color: transparent !important;
 }
+
+.thumbnailwrapper img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}

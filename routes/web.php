@@ -61,7 +61,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 // Route for customer
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['customer'])->group(function () {
     Route::prefix('/profil')->controller(UserController::class)->group(function () {
         Route::get('', 'profile')->name('CustomerProfile');
         Route::post('/perbarui-profil', 'update_profile')->name('CustomerUpdateProfile');
@@ -71,7 +71,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(LoginController::class)->group(function () {
         Route::post('/keluar', 'logout')->name('CustomerLogOut');
     });
-   
+
     Route::controller(CustomerReviewController::class)->group(function () {
         Route::get('/penilaian/{transactionID}/{productID}', 'create')->name('review.create');
         Route::post('/penilaian/{transactionID}/{productID}', 'store')->name('review.store');
@@ -160,7 +160,7 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
 // Route for shipping service
 Route::middleware(['shipping_service'])->prefix('/shipping-service')->group(function () {
     Route::controller(ShippingServiceOrderController::class)->group(function () {
-        Route::get('/', 'index')->name('ShippingServiceDashboard','orderstatus');
+        Route::get('/', 'index')->name('ShippingServiceDashboard');
         Route::get('/order/{orderID}', 'orderdetail')->name('ShippingServiceOrder');
         Route::get('/orderstatus','index')->name('orderstatus');
         Route::post('/kirim-pesanan', 'sendorder')->name('ShippingServiceSendOrder');

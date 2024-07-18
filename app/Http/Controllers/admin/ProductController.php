@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\ProductRequest;
 use App\Http\Requests\admin\SizeRequest;
+use App\Http\Requests\admin\UpdateSizeRequest;
 use Yajra\DataTables\DataTables as DataTables;
 
 class ProductController extends Controller
@@ -20,9 +21,9 @@ class ProductController extends Controller
         $size = Size::with('product')->get();
         if (request()->ajax()) {
             return DataTables::of($size)
-                // ->editColumn('thumbnail', function ($size) {
-                //     return '<img src="' . $size->thumbnail . '" alt="Thumbnail" class="w-20 mx-auto rounded-md">';
-                // })
+                ->editColumn('thumbnail', function ($size) {
+                    return '<img src="' . $size->product->thumbnail . '" alt="Thumbnail" class="w-20 mx-auto rounded-md">';
+                })
                 ->addColumn('action', function ($size) {
                     return '
                     <div class="crud-btn">
@@ -50,7 +51,7 @@ class ProductController extends Controller
                     ';
                 })
 
-                ->rawColumns(['action'])  //untuk munculin column yang dibuat diatas terender dengan baik
+                ->rawColumns(['action', 'thumbnail'])  //untuk munculin column yang dibuat diatas terender dengan baik
                 ->make(true);
         }
 
@@ -76,29 +77,23 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request, Size $produk)
     {
-        $data = $request;
-        if ($request->hasFile('productPicturePath')) {
-            $productPicturePath = [];
+        $product = $request->validated();
+        $pictures = [];
 
-            foreach ($request->file('productPicturePath') as $picture) {
-                $product_picture = $picture->store('assets/products', 'public');
+        foreach ($request->file('picture') as $picture) {
+            $picture_path = $picture->store('public/product');
 
-                //push to array
-                array_push($productPicturePath, $product_picture);
-            }
-
-            $data['productPicturePath'] = json_encode($productPicturePath);
+            //push to array
+            array_push($pictures, $picture_path);
         }
 
+        $product['productPicturePath'] = json_encode($pictures);
 
-        // Ini harus diubah
-        $data['productPicturePath'] = 'test.png';
-
-        $sizeData = $data->only(['productID', 'size', 'stock']);
-        $productData = $data->only(['productID', 'productName', 'productPrice', 'productCategory',  'productDescription', 'productWeight',  'productPicturePath', 'forGender']);
-
-
-        // dd($productData, $sizeData);
+        $sizeData = array_intersect_key($product, array_flip(['productID', 'size', 'stock']));
+        $productData = array_intersect_key($product, array_flip([
+            'productID', 'productName', 'productPrice', 'productCategory',
+            'productDescription', 'productWeight', 'productPicturePath', 'forGender'
+        ]));
 
         Product::create($productData);
         $latestproduct = Product::latest()->first();
@@ -147,23 +142,32 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SizeRequest $request, Size $produk)
+    public function update(UpdateSizeRequest $request, Size $produk)
     {
         $size = Size::find($produk->sizeID);
         $product = Product::find($size->productID);
 
-        $data = $request;
-        if ($request->hasFile('productPicturePath')) {
-            $productPicturePath = [];
 
-            foreach ($request->file('productPicturePath') as $picture) {
-                $product_picture = $picture->store('assets/item', 'public');
+        $existingSizes = Size::where('productID', $size->productID)->get();
+        foreach ($existingSizes as $existingSize) {
+            if ($existingSize->size == $request->size && $existingSize->sizeID != $size->sizeID) {
+                return redirect()->route('produk.edit', ['produk' => $produk])->withErrors('size', 'Ukuran sudah ada!');
+            }
+        }
+
+        $pictures = [];
+
+
+        $data = $request;
+        if ($request->hasFile('picture')) {
+
+            foreach ($request->file('picture') as $picture) {
+                $picture_path = $picture->store('public/product');
 
                 //push to array
-                array_push($productPicturePath, $product_picture);
+                array_push($pictures, $picture_path);
             }
-
-            $data['productPicturePath'] = json_encode($productPicturePath);
+            $data['productPicturePath'] = $pictures;
         } else {
             $data['productPicturePath'] = $product->productPicturePath;
         }

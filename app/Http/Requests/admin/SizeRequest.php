@@ -3,6 +3,7 @@
 namespace App\Http\Requests\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SizeRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class SizeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,8 @@ class SizeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'size' => Rule::in(['S', 'M', 'L', 'XL']),
+            'stock' => 'required|numeric|min:1|max:10000',
         ];
     }
 }
