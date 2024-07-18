@@ -56,4 +56,9 @@ class Transaction extends Model
     {
         return $this->hasMany(TransactionDetail::class, 'transactionID', 'transactionID');
     }
+
+    public function returnOrder()
+    {
+        return $this->hasOne(ReturnOrder::class, 'transactionID', 'transactionID');
+    }
 }

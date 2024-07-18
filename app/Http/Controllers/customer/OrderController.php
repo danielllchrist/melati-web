@@ -5,13 +5,17 @@ namespace App\Http\Controllers\customer;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\Size;
+use App\Models\User;
+use App\Models\Address;
 use App\Models\Product;
+use App\Models\Regency;
 use App\Models\Voucher;
+use App\Models\District;
+use App\Models\Province;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -25,7 +29,6 @@ class OrderController extends Controller
         $items = TransactionDetail::where('transactionID', $transactionID)->get();
 
         $vouchers[] = null;
-
         // make a collection vouchers based on user
         foreach ($user->voucherUsage as $v) {
             $vouchers = $v->voucher;
@@ -35,6 +38,9 @@ class OrderController extends Controller
 
         // get address that user have
         $addresses = $user->address;
+
+        // default address
+        $latestAddress = Address::where('userID', $user->userID)->latest('updated_at')->first();
 
         // make a subtotal based on item quantity and item price
         $totalWeight = 0;
@@ -60,7 +66,12 @@ class OrderController extends Controller
         $transaction->shippingFee = $shipping;
         $transaction->save();
 
-        return view('customer.checkout', compact('items', 'vouchers', 'addresses', 'targetVoucher', 'transaction'));
+        // ambil pilihan alamat
+        $provinces = Province::all();
+        $regencies = Regency::all();
+        $districts = District::all();
+
+        return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'targetVoucher', 'transaction', 'latestAddress'));
     }
 
     public function addAddress(Request $request)
@@ -82,14 +93,18 @@ class OrderController extends Controller
         // get item from transaction details
         $items = TransactionDetail::where('transactionID', $transactionID)->get();
 
+        $vouchers[] = null;
         // make a collection vouchers based on user
         foreach ($user->voucherUsage as $v) {
-            $vouchers[] = $v->voucher;
+            $vouchers = $v->voucher;
         }
         $targetVoucher = null;
 
         // get address that user have
         $addresses = $user->address;
+
+        // default address
+        $latestAddress = Address::where('userID', $user->userID)->latest('updated_at')->first();
 
         // make a subtotal based on item quantity and item price
         $totalWeight = 0;
@@ -108,7 +123,7 @@ class OrderController extends Controller
         $targetVoucher = null;
         // if user didn't choose any vouchers / if targetVoucher is not selected, send erro
         if ($voucherID == 'null') {
-            return view('customer.checkout', compact('items', 'vouchers', 'addresses', 'transaction', 'targetVoucher'));
+            return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'transaction', 'targetVoucher', 'latestAddress'));
         }
 
         $targetVoucher = Voucher::where('voucherID', $voucherID)->first();
@@ -117,10 +132,28 @@ class OrderController extends Controller
         $transaction->totalPrice -= $targetVoucher->voucherNominal;
         $transaction->save();
 
-        return view('customer.checkout', compact('items', 'vouchers', 'addresses', 'transaction', 'targetVoucher'));
+        // ambil pilihan alamat
+        $provinces = Province::all();
+        $regencies = Regency::all();
+        $districts = District::all();
+
+        return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'transaction', 'targetVoucher', 'latestAddress'));
     }
 
-    public function payment(Request $request, $transactionID, $cartID)
+    public function getRegencies($provinsi_id)
+    {
+        // dd("jhvjbb");
+        $regencies = Regency::where('province_id', $provinsi_id)->pluck('name', 'id');
+        return response()->json(['regencies' => $regencies]);
+    }
+
+    public function getDistricts($kota_id)
+    {
+        $districts = District::where('regency_id', $kota_id)->pluck('name', 'id');
+        return response()->json(['districts' => $districts]);
+    }
+
+    public function payment(Request $request, $transactionID)
     {
         // jika user ga pilih alamat, maka pilih alamat paling pertama
         if ($request->selected_address == null) {
@@ -156,7 +189,9 @@ class OrderController extends Controller
         $transaction->paymentMethod = $request->payment;
         $transaction->save();
 
-        return view('customer.payment');
+
+        $otp = rand(10000, 99999);
+        return view('customer.payment', compact('otp'));
     }
 
     public function myorder()

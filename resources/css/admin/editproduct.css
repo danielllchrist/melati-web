@@ -163,6 +163,7 @@ button[type="submit"] {
     justify-content: flex-end;
     /* margin-top: 300px; */
     margin-right : 150px;
+    cursor : pointer;
 }.sbmt-btn{
     display: flex;
     justify-self: end;

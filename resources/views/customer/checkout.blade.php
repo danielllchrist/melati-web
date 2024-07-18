@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +18,11 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
     <div class="main-content">
-        <form
-            action="{{ route('prepayment', ['transactionID' => $transaction->transactionID, 'cartID' => $items->first()->userID]) }}"
-            method = "post">
+        <form action="{{ route('prepayment', ['transactionID' => $transaction->transactionID]) }}" method = "post">
             @csrf
             <div class="atas">
                 <div class="nonactive active">
-                    <a href="/keranjang">
-                        <h1>Keranjang</h1>
-                    </a>
+                    <h1>Keranjang</h1>
                 </div>
                 <div class="nonactive active">
                     <img class="back_icon" src="{{ asset('assets/back.svg') }}">
@@ -44,26 +40,40 @@
             <div class="bottom">
                 <div class="left">
                     <h2>Alamat Pengiriman</h2>
-                    <button type="button" class="square no-bootstrap" data-toggle="modal" data-target="#alamatDetail"
-                        id="alamatModal" data-address-id="{{ $addresses->first()->addressID }}">
-                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1"> -->
-                        <div class="alamat dis">
-                            <div class="wrap">
-                                <!-- <p>Pilih alamat pengirimanmu</p> -->
-                                <h3 id = "mainName">
-                                    {{ $addresses->first()->nameAddress }} | {{ $addresses->first()->phoneNum }}<br>
-                                </h3>
-                                <p id = "mainDetail">{{ $addresses->first()->detailAddress }}</p>
-                                <p id = "mainCity">{{ $addresses->first()->cityOrRegency }},
-                                    {{ $addresses->first()->ward }}
-                                </p>
-                                <p id = "mainProvince">{{ $addresses->first()->province }}</p>
+                    @if ($latestAddress)
+                        <button type="button" class="square no-bootstrap" data-toggle="modal"
+                            data-target="#alamatDetail" id="alamatModal"
+                            data-address-id="{{ $latestAddress->addressID }}">
+                            <div class="alamat dis">
+                                <div class="wrap">
+                                    <!-- <p>Pilih alamat pengirimanmu</p> -->
+                                    <h3 id = "mainName">
+                                        {{ $latestAddress->nameAddress }} | {{ $latestAddress->phoneNum }}<br>
+                                    </h3>
+                                    <p id = "mainDetail">{{ $latestAddress->detailAddress }}</p>
+                                    <p id = "mainCity">{{ $latestAddress->cityOrRegency }},
+                                        {{ $latestAddress->ward }}
+                                    </p>
+                                    <p id = "mainProvince">{{ $latestAddress->province }}</p>
+                                </div>
+                                <div class="wrap2">
+                                    <img class="back_icon" src="{{ asset('assets/back.svg') }}">
+                                </div>
                             </div>
-                            <div class="wrap2">
-                                <img class="back_icon" src="{{ asset('assets/back.svg') }}">
+                        </button>
+                    @else
+                        <button type="button" class="square no-bootstrap no-address" data-toggle="modal"
+                            data-target="#alamatDetail" id="alamatModal">
+                            <div class="alamat dis">
+                                <div class="wrap">
+                                    Tambah Alamat
+                                </div>
+                                <div class="wrap2">
+                                    <img class="back_icon" src="{{ asset('assets/back.svg') }}">
+                                </div>
                             </div>
-                        </div>
-                    </button>
+                        </button>
+                    @endif
                     <input type="hidden" id="selected-address" name="selected_address" value="">
 
                     @include('customer.modal.alamatDetail')
@@ -104,19 +114,6 @@
                     <h2>Pesanan</h2>
                     <div class="detail">
                         <div class="content">
-                            {{-- @for ($i = 0; $i < 10; $i++)
-                            <div class="product">
-                                <img id="productimg" src="{{ asset('assets/perfume.svg') }}">
-                                <div class="wraps">
-                                    <h1>Eu da Toilette</h1>
-                                    <p>M</p>
-                                </div>
-                                <div class="wraps2">
-                                    <p>1 x 10.000
-                                    </p>
-                                </div>
-                            </div>
-                        @endfor --}}
                             @forelse ($items as $i)
                                 <div class="product">
                                     <img id="productimg" src="{{ asset('assets/perfume.svg') }}">
@@ -180,6 +177,8 @@
     @php
         $tempID = $transaction->transactionID;
     @endphp
+    {{-- Buka Tutup, Save Data Modal --}}
+
     <script>
         $(document).ready(function() {
 
