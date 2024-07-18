@@ -57,6 +57,7 @@ html{
     object-fit: cover;
 }
 
+input[type="text"],
 input[type="email"],
 input[type="password"] {
     font-family: Poppins;
@@ -167,4 +168,21 @@ a {
     padding-top: 0px;
     margin-top: -2px;
     height: 10px ;
+}
+
+.hide-pass-icon {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.password-wrapper{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid #f0f1e4;
+}
+
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    margin-bottom: 0;
+    border-bottom: none;
 }

@@ -73,7 +73,10 @@
                     </div>
                     <div class="wrap">
                         <label for="password">Kata Sandi</label>
-                        <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
+                            <img class="hide-pass-icon" src="/assets/eye.svg" alt="hide" id="eyehidepassword" onclick="hidePassword()">
+                        </div>
                         <div class="error-message">
                         @error('password')
                             {{ str_replace('password', 'Kata Sandi', $message) }}
@@ -82,8 +85,11 @@
                     </div>
                     <div class="wrap">
                         <label for="confirm-password">Konfirmasi Kata Sandi</label>
-                        <input type="password" id="confirm-password" name="confirm-password"
-                            placeholder="Konfirmasi Kata Sandi" required>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirm-password" name="confirm-password"
+                                placeholder="Konfirmasi Kata Sandi" required>
+                            <img class="hide-pass-icon" src="/assets/eye.svg" alt="hide" id="eyehidekonfirmasi" onclick="hideConfirmPassword()">
+                        </div>
                         <div class="error-message">
                         @error('confirm-password')
                             {{ str_replace(['confirm-password', 'password'], ['Konfirmasi Kata Sandi', 'Kata Sandi'], $message) }}
@@ -119,6 +125,32 @@
                 }
             });
         });
+
+        function hidePassword() {
+            var x = document.getElementById('password');
+            var eyel = document.getElementById('eyehidepassword');
+
+            if (x.type === "password") {
+                x.type = "text";
+                eyel.style.opacity = 0.5;
+            } else {
+                x.type = "password";
+                eyel.style.opacity = 1;
+            }
+        }
+
+        function hideConfirmPassword() {
+            var y = document.getElementById('confirm-password');
+            var eyeb = document.getElementById('eyehidekonfirmasi');
+
+            if (y.type === "password") {
+                y.type = "text";
+                eyeb.style.opacity = 0.5;
+            } else {
+                y.type = "password";
+                eyeb.style.opacity = 1;
+            }
+        }
     </script>
 </body>
 

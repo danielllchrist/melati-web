@@ -146,3 +146,8 @@
 .active-page a {
     color: #d5be9e !important;
 }
+
+a{
+    text-decoration: none;
+    color: #f0f1e4;
+}

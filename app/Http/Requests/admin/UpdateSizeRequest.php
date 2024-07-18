@@ -5,7 +5,7 @@ namespace App\Http\Requests\admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProductRequest extends FormRequest
+class UpdateSizeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,6 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'productName' => 'required|string|min:3|max:20',
             'size' => Rule::in(['S', 'M', 'L', 'XL']),
             'stock' => 'required|numeric|min:1|max:10000',
             'productCategory' => Rule::in(['Atasan', 'Bawahan', 'Aksesoris']),
@@ -31,7 +30,6 @@ class ProductRequest extends FormRequest
             'productWeight' => 'required|numeric|min:1|max:10000',
             'productDescription' => 'required|min:10|max:2000',
             'gender' => Rule::in(['Pria', 'Wanita']),
-            'picture' => 'required|array|min:1|max:5',
             'picture.*' => 'image|max:4096',
         ];
     }

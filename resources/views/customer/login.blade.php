@@ -36,7 +36,10 @@
                     </div>
                     <div class="wrap">
                         <label for="password">Kata Sandi</label>
-                        <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
+                            <img class="hide-pass-icon" src="/assets/eye.svg" alt="hide" id="eyehidepassword" onclick="hidePassword()">
+                        </div>
                         <div class="error-message">
                             @error('password')
                                 {{ str_replace('password', 'Kata Sandi', $message) }}
@@ -58,6 +61,21 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function hidePassword() {
+            var x = document.getElementById('password');
+            var eyel = document.getElementById('eyehidepassword');
+
+            if (x.type === "password") {
+                x.type = "text";
+                eyel.style.opacity = 0.5;
+            } else {
+                x.type = "password";
+                eyel.style.opacity = 1;
+            }
+        }
+    </script>
 </body>
 
 </html>
