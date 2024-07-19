@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             WishListSeeder::class,
             ManageAssetSeeder::class,
             ManageLinkSeeder::class,
+            ReturnOrderSeeder::class,
         ]);
     }
 }

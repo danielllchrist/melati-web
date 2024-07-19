@@ -20,7 +20,7 @@
 <body>
     @include('components.admin.headeradmin')
     <div class="atas">
-        <a href="{{ route('admin_dashboard') }}" class = "back-arrow"><img class="back_icon"
+        <a href="{{ route('AdminDashboard') }}" class = "back-arrow"><img class="back_icon"
                 src="{{ asset('assets/back.svg') }}"></a>
         <h1>Produk</h1>
     </div>
@@ -49,13 +49,13 @@
                         <a class="dropdown-item category-slide-cs-menu" href="/admin/produk"><img
                                 src="\assets\crud_admin\semua.svg" class = "add-img"alt=""> Semua</a>
                         <a class="dropdown-item category-slide-cs-menu"
-                            href="{{ route('category', ['category' => 'Atasan']) }}"><img
+                            href="{{ route('Category', ['category' => 'Atasan']) }}"><img
                                 src="\assets\crud_admin\atasan.svg" class = "add-img"alt=""> Atasan</a>
                         <a class="dropdown-item category-slide-cs-menu add-fs"
-                            href="{{ route('category', ['category' => 'Bawahan']) }}"> <img
+                            href="{{ route('Category', ['category' => 'Bawahan']) }}"> <img
                                 src="\assets\crud_admin\bawahan.svg" class = "add-img" alt=""> Bawahan</a>
                         <a class="dropdown-item category-slide-cs-menu add-fs"
-                            href="{{ route('category', ['category' => 'Aksesoris']) }}"><img
+                            href="{{ route('Category', ['category' => 'Aksesoris']) }}"><img
                                 src="\assets\crud_admin\accessories.svg" class = "add-img"alt=""> Aksesoris</a>
                     </div>
                 </div>
@@ -88,6 +88,10 @@
         // AJAX DataTable
         var datatable = $('#dataTable').DataTable({
 
+            "language":{
+                "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json",
+                "sEmptyTable": "Tidak ada data yang tersedia"
+            },
             processing: true,
             serverSide: true,
             stateSave: true,
@@ -95,41 +99,35 @@
                 url: '{!! url()->current() !!}',
             },
             columns: [{
-                    data: 'productID',
-                    name: 'productID',
-                    class: 'text-center'
+                    data: 'product.productID',
+                    name: 'product.productID',
                 },
                 {
-                    data: 'productPicturePath',
-                    name: 'productPicturePath',
-                    class: 'text-center',
+                    data: 'thumbnail',
+                    name: 'thumbnail',
+                    class: 'thumbnailwrapper',
                     orderable: false,
                     searchable: false,
                 },
                 {
-                    data: 'productName',
-                    name: 'productName',
-                    class: 'text-center'
+                    data: 'product.productName',
+                    name: 'product.productName',
                 },
                 {
-                    data: 'productPrice',
-                    name: 'productPrice',
-                    class: 'text-center'
+                    data: 'product.productPrice',
+                    name: 'product.productPrice',
                 },
                 {
                     data: 'size',
                     name: 'size',
-                    class: 'text-center'
                 },
                 {
                     data: 'stock',
                     name: 'stock',
-                    class: 'text-center'
                 },
                 {
-                    data: 'productWeight',
-                    name: 'productWeight',
-                    class: 'text-center'
+                    data: 'product.productWeight',
+                    name: 'product.productWeight',
                 },
                 {
                     data: 'action',
@@ -137,7 +135,6 @@
                     orderable: false,
                     searchable: false,
                     width: '15%',
-                    class: 'text-center'
                 },
             ],
         });

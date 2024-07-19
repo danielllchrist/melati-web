@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('return_orders', function (Blueprint $table) {
-            $table->foreignUuid('transactionID')->nullable(false);
+            $table->unsignedBigInteger('transactionID')->nullable(false);
             $table->text('comment')->nullable(false);
+            $table->primary('transactionID');
             $table->timestamps();
 
             $table->foreign('transactionID')->references('transactionID')->on('transactions');
