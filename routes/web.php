@@ -86,6 +86,7 @@ Route::middleware(['customer'])->group(function () {
         Route::get('/keranjang', 'index')->name('CustomerCart');
         Route::delete('/keranjang/delete/{id}', 'destroy')->name('keranjang.destroy');
         Route::put('/keranjang/update/{id}', 'update')->name('keranjang.update');
+        // Route::put('/update-product-size/{product}', 'ProductController@updateSize')->name('update-product-size');
         Route::post('/keranjang/buat-pesanan', 'store')->name('keranjang.store');
     });
     Route::controller(CustomerWishlistController::class)->group(function () {
