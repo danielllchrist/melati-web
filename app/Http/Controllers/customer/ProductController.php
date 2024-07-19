@@ -20,7 +20,6 @@ class ProductController extends Controller
         $gender = $request->query('gender');
         $category = $request->query('category');
 
-<<<<<<< Updated upstream
         $query = $request->input('search');
 
         if($query){
@@ -31,8 +30,6 @@ class ProductController extends Controller
                 ->get();
         }
 
-=======
->>>>>>> Stashed changes
         if ($gender && $category) {
             $product = Product::where('productCategory', $category)
                 ->where('forGender', $gender)
