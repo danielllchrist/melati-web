@@ -62,6 +62,12 @@
                         <img src="\assets\dressPink.png" width="16%" onclick="switchCarousel(5)">
                     </div>
                 </div>
+                @php
+                    $ratings = $product->review->pluck('rating');
+
+                    $averageRating = $ratings->avg();
+
+                @endphp
 
                 <div class="detail-content">
                     <div class="detail-content-header d-flex flex-column justify-content-between">
@@ -74,12 +80,12 @@
                                 </div> --}}
                         </div>
                         <div class="star-products d-flex align-items-center mb-4">
-                            <i class="fa fa-star rating-color me-2"></i>
-                            <i class="fa fa-star rating-color me-2"></i>
-                            <i class="fa fa-star rating-color me-2"></i>
-                            <i class="fa fa-star rating-color me-2"></i>
-                            <i class="fa fa-star me-2"></i>
-                            <p>(1234 ulasan)</p>
+                            <i class="fa fa-star  @if (floor($averageRating) >= 1) rating-color @endif me-2"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 2) rating-color @endif me-2"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 3) rating-color @endif me-2"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 4) rating-color @endif me-2"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 5) rating-color @endif me-2"></i>
+                            <p>({{$product->review->count()}} ulasan)</p>
                         </div>
                         <h1>Rp. {{ number_format($product->productPrice, 2, ',', '.') }}</h1>
                         <div class="mt-3 mb-3">
@@ -122,17 +128,18 @@
                 <h5>Ulasan Pelanggan</h5>
                 <div class="d-flex">
                     <div class="number">
-                        <h1>4.6</h1>
+                        <h1>{{ $averageRating }}</h1>
                     </div>
+
                     <div class="d-flex flex-column justify-content-center align-items-center mt-3 ms-3">
                         <div class="stars">
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star  @if (floor($averageRating) >= 1) rating-color @endif"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 2) rating-color @endif"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 3) rating-color @endif"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 4) rating-color @endif"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 5) rating-color @endif"></i>
                         </div>
-                        <p>(1234 Ulasan)</p>
+                        <p>({{ $product->review->count() }} ulasan)</p>
                     </div>
                 </div>
 
@@ -140,51 +147,121 @@
                     <div class="star">
                         <p>5</p>
                         <i class="fa fa-star ms-1 me-1"></i>
-                        <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow="50"
+                        @php
+                            $countRating = 0;
+                            foreach ($product->review as $item) {
+                                if ($item->rating == 5) {
+                                    $countRating++;
+                                }
+                            }
+                            if ($product->review->count() > 0) {
+                                $percentageRating = $countRating / $product->review->count();
+                            } else {
+                                $percentageRating = 0;
+                            }
+
+                        @endphp
+                        <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow=""
                             aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: 50%"></div>
+                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%"></div>
                         </div>
-                        <p>50%</p>
+                        <p>{{ floor($percentageRating * 100) }}%</p>
                     </div>
+                    @php
+                        $countRating = 0;
+                        foreach ($product->review as $item) {
+                            if ($item->rating == 4) {
+                                $countRating++;
+                            }
+                        }
+                        if ($product->review->count() > 0) {
+                            $percentageRating = $countRating / $product->review->count();
+                        } else {
+                            $percentageRating = 0;
+                        }
+
+                    @endphp
 
                     <div class="star">
                         <p>4</p>
                         <i class="fa fa-star ms-1 me-1"></i>
                         <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow="20"
                             aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: 20%"></div>
+                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%"></div>
                         </div>
-                        <p>20%</p>
+                        <p>{{ floor($percentageRating * 100) }}%</p>
                     </div>
+                    @php
+                        $countRating = 0;
+                        foreach ($product->review as $item) {
+                            if ($item->rating == 3) {
+                                $countRating++;
+                            }
+                        }
+                        if ($product->review->count() > 0) {
+                            $percentageRating = $countRating / $product->review->count();
+                        } else {
+                            $percentageRating = 0;
+                        }
+
+                    @endphp
 
                     <div class="star">
                         <p>3</p>
                         <i class="fa fa-star ms-1 me-1"></i>
                         <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow="10"
                             aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: 10%"></div>
+                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%"></div>
                         </div>
-                        <p>10%</p>
+                        <p>{{ floor($percentageRating * 100) }}%</p>
                     </div>
+                    @php
+                        $countRating = 0;
+                        foreach ($product->review as $item) {
+                            if ($item->rating == 2) {
+                                $countRating++;
+                            }
+                        }
+                        if ($product->review->count() > 0) {
+                            $percentageRating = $countRating / $product->review->count();
+                        } else {
+                            $percentageRating = 0;
+                        }
+
+                    @endphp
 
                     <div class="star">
                         <p>2</p>
                         <i class="fa fa-star ms-1 me-1"></i>
                         <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow="10"
                             aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: 10%"></div>
+                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%"></div>
                         </div>
-                        <p>10%</p>
+                        <p>{{ floor($percentageRating * 100) }}%</p>
                     </div>
+                    @php
+                        $countRating = 0;
+                        foreach ($product->review as $item) {
+                            if ($item->rating == 1) {
+                                $countRating++;
+                            }
+                        }
+                        if ($product->review->count() > 0) {
+                            $percentageRating = $countRating / $product->review->count();
+                        } else {
+                            $percentageRating = 0;
+                        }
+
+                    @endphp
 
                     <div class="star">
                         <p>1</p>
                         <i class="fa fa-star ms-1 me-1"></i>
                         <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow="10"
                             aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: 10%;"></div>
+                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%;"></div>
                         </div>
-                        <p>10%</p>
+                        <p>{{ floor($percentageRating * 100) }}%</p>
                     </div>
                 </div>
             </div>
@@ -194,17 +271,71 @@
             <div class="reviews w-75">
                 <div class="d-flex align-items-center sort-by">
                     <h5>Sort By</h5>
-                    <button class="btn btn-light rounded-pill fw-bolder category-review-color"
-                        id="newest">Newest</button>
-                    <button class="btn btn-light rounded-pill fw-bolder" id="star5">5 Star</button>
-                    <button class="btn btn-light rounded-pill fw-bolder" id="star4">4 Star</button>
-                    <button class="btn btn-light rounded-pill fw-bolder" id="star3">3 Star</button>
-                    <button class="btn btn-light rounded-pill fw-bolder" id="star2">2 Star</button>
-                    <button class="btn btn-light rounded-pill fw-bolder" id="star1">1 Star</button>
+                    <form action="">
+                        <input type="hidden" name="rating" id="" value="">
+
+                        <button
+                            class="btn btn-light rounded-pill fw-bolder  @if (!request()->query('rating')) category-review-color @endif"
+                            id="newest" type="submit">Newest</button>
+                    </form>
+                    <form action="">
+                        <input type="hidden" name="rating" id="" value="5">
+                        <button
+                            class="btn btn-light rounded-pill fw-bolder  @if (request()->query('rating') == 5) category-review-color @endif"
+                            id="star5" type="submit">5
+                            Star</button>
+                    </form>
+                    <form action="">
+                        <input type="hidden" name="rating" id="" value="4">
+                        <button
+                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 4) category-review-color @endif"
+                            id="star4" type="submit">4
+                            Star</button>
+                    </form>
+                    <form action="">
+                        <input type="hidden" name="rating" id="" value="3">
+                        <button
+                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 3) category-review-color @endif"
+                            id="star3" type="submit">3
+                            Star</button>
+                    </form>
+                    <form action="">
+                        <input type="hidden" name="rating" id="" value="2">
+                        <button
+                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 2) category-review-color @endif"
+                            id="star2" type="submit">2
+                            Star</button>
+                    </form>
+                    <form action="">
+                        <input type="hidden" name="rating" id="" value="1">
+                        <button
+                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 1) category-review-color @endif"
+                            id="star1" type="submit">1
+                            Star</button>
+                    </form>
                 </div>
 
                 <div class="content-review mt-5 mb-5" id="content-review">
-                    @foreach ($product->review as $item)
+                    @php
+                        $ratingFilter = request()->query('rating');
+
+                        if ($ratingFilter !== null) {
+                            $content_review = $product->review->filter(function ($item) use ($ratingFilter) {
+                                return $item->rating == $ratingFilter;
+                            });
+                        } else {
+                            $content_review = $product->review;
+                        }
+
+                    @endphp
+                    @if ($content_review->count() == 0)
+                        <div class="review">
+                            <div class="body-review pb-2">
+                                No rating existed
+                            </div>
+                        </div>
+                    @endif
+                    @foreach ($content_review as $item)
                         <div class="review">
                             <div class="name-review">
                                 <h3>{{ $item->transaction->user->name }}</h3>
@@ -228,6 +359,8 @@
                             </div>
                         </div>
                     @endforeach
+
+
                 </div>
             </div>
         </div>
@@ -239,10 +372,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    
+
     <script>
-        $(document).ready(function(){
-            
+        $(document).ready(function() {
+
         })
     </script>
     <script>

@@ -20,6 +20,26 @@
             width: 100%;
             filter: sepia(0.8);
         }
+
+        .kategori {
+            color: gray;
+            /* set default text color to gray */
+        }
+
+        .kategori.active {
+            color: white;
+            /* set active text color to white */
+        }
+
+        .dropdown-item {
+            color: gray;
+            /* set default dropdown item text color to gray */
+        }
+
+        .dropdown-item:hover {
+            color: white;
+            /* set hover text color to white */
+        }
     </style>
 </head>
 
@@ -63,62 +83,36 @@
                 <h3 class="text-light mb-4">Kategori</h3>
                 <div class="kategori-pria">
                     <div class="collapsed-text">
-                        <a class="collapse-btn text-white-50" data-bs-toggle="collapse" href="#collapsePria"
-                            role="button" aria-expanded="false" aria-controls="collapsePria" id="btnPria">
+                        <a class="collapse-btn" data-bs-toggle="collapse" href="#collapsePria" role="button"
+                            aria-expanded="false" aria-controls="collapsePria" id="btnPria">
                             Pria
                         </a>
                         <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png"
                             width="25px" id="arrowCollapsePria">
-                        @php
-
-                        @endphp
                     </div>
-
                     <div class="collapse multi-collapse" id="collapsePria">
-                        <form action="">
-                            <input type="hidden" name="gender" value="pria">
-                            <input type="hidden" name="category" value="atasan">
-                            <button id="pria-atasan">Atasan</button>
-                        </form>
-                        <form action="">
-                            <input type="hidden" name="gender" value="pria">
-                            <input type="hidden" name="category" value="bawahan">
-                            <button id="pria-bawahan">Bawahan</button>
-                        </form>
-                        <form action="">
-                            <input type="hidden" name="gender" value="pria">
-                            <input type="hidden" name="category" value="aksesoris">
-                            <button id="pria-aksesoris">Aksesoris</button>
-                        </form>
+                        <a class="dropdown-item" href="?gender=pria&category=atasan" id="pria-atasan">Atasan</a>
+                        <a class="dropdown-item" href="?gender=pria&category=bawahan" id="pria-bawahan">Bawahan</a>
+                        <a class="dropdown-item" href="?gender=pria&category=aksesoris"
+                            id="pria-aksesoris">Aksesoris</a>
                     </div>
                 </div>
 
                 <div class="kategori-wanita">
                     <div class="collapsed-text">
-                        <a class="collapse-btn text-white-50" data-bs-toggle="collapse" href="#collapseWanita"
-                            role="button" aria-expanded="false" aria-controls="collapseWanita" id="btnWanita">
+                        <a class="collapse-btn" data-bs-toggle="collapse" href="#collapseWanita" role="button"
+                            aria-expanded="false" aria-controls="collapseWanita" id="btnWanita">
                             Wanita
                         </a>
                         <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png"
                             width="25px" id="arrowCollapseWanita">
                     </div>
-
                     <div class="collapse multi-collapse" id="collapseWanita">
-                        <form action="">
-                            <input type="hidden" name="gender" value="wanita">
-                            <input type="hidden" name="category" value="atasan">
-                            <button id="wanita-atasan">Atasan</button>
-                        </form>
-                        <form action="">
-                            <input type="hidden" name="gender" value="wanita">
-                            <input type="hidden" name="category" value="bawahan">
-                            <button id="wanita-bawahan">Bawahan</button>
-                        </form>
-                        <form action="">
-                            <input type="hidden" name="gender" value="wanita">
-                            <input type="hidden" name="category" value="aksesoris">
-                            <button id="wanita-aksesoris">Aksesoris</button>
-                        </form>
+                        <a class="dropdown-item" href="?gender=wanita&category=atasan" id="wanita-atasan">Atasan</a>
+                        <a class="dropdown-item" href="?gender=wanita&category=bawahan"
+                            id="wanita-bawahan">Bawahan</a>
+                        <a class="dropdown-item" href="?gender=wanita&category=aksesoris"
+                            id="wanita-aksesoris">Aksesoris</a>
                     </div>
                 </div>
             </div>
@@ -131,57 +125,65 @@
                         <option value="2">Harga Terendah</option>
                     </select>
                 </div>
-                <div class="content-catalog d-flex flex-wrap justify-content-around mt-3 mb-3" id="content-catalog">
+                <div class="content-catalog d-flex flex-wrap flex-row mt-3 mb-3" id="content-catalog">
                     @foreach ($product as $item)
                         <div class="catalog-item" data-price="{{ $item->productPrice }}">
-                            <a href="{{route('ProductDetail', ['id' => $item->productID])}}">
+                            <a href="{{ route('ProductDetail', ['id' => $item->productID]) }}">
                                 <div class="card-custom" style="">
-                                    <style></style>
-                                    <img src="assets/kambojaKutubaru.png" class="card-custom-top" alt="Catalog">
-                                    @if (!Auth::check())
-                                        <a href="{{ route('LogIn') }}" style="text-decoration: none;">
-                                            <i class="fa fa-heart-o fa-2x heart" id="wishlist-heart"></i>
-                                        </a>
-                                    @else
-                                        @php
-                                            $query = "SELECT * FROM `wishlists` WHERE `productID` = ? AND `userID` = ?";
-                                            $wished = DB::select($query, [$item->productID, auth()->user()->userID]);
-                                        @endphp
-                                        <input name="productID" type="hidden" value="{{ $item->productID }}">
-                                        @if ($wished)
-                                            <form action="{{ route('unwish') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="productID"
-                                                    value="{{ $item->productID }}">
-                                                <button type="submit">
-                                                    <i class="fa fa-heart fa-2x heart click-wish"
-                                                        id="wishlist-heart"></i>
-                                                </button>
-                                            </form>
+                                    <div class="image-container">
+                                        <img src="assets/kambojaKutubaru.png" class="card-custom-top" alt="Catalog">
+                                        @if (!Auth::check())
+                                            <a href="{{ route('LogIn') }}"
+                                                style="text-decoration: none; background: none; border: none;">
+                                                <i class="fa fa-heart-o fa-2x heart" id="wishlist-heart"
+                                                    style="color: black"></i>
+                                            </a>
                                         @else
-                                            <form action="{{ route('wish') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="productID"
-                                                    value="{{ $item->productID }}">
-                                                <button type="submit">
-                                                    <i class="fa fa-heart-o fa-2x heart click-wish"
-                                                        id="wishlist-heart"></i>
-                                                </button>
-                                            </form>
+                                            @php
+                                                $query =
+                                                    'SELECT * FROM `wishlists` WHERE `productID` = ? AND `userID` = ?';
+                                                $wished = DB::select($query, [
+                                                    $item->productID,
+                                                    auth()->user()->userID,
+                                                ]);
+                                            @endphp
+                                            <input name="productID" type="hidden" value="{{ $item->productID }}">
+                                            @if ($wished)
+                                                <form action="{{ route('unwish') }}" method="POST"
+                                                    class="wishlist-form">
+                                                    @csrf
+                                                    <input type="hidden" name="productID"
+                                                        value="{{ $item->productID }}">
+                                                    <button type="submit" style="background: none; border: none;">
+                                                        <i class="fa fa-heart fa-2x heart-color click-wish"
+                                                            id="wishlist-heart" style="background: none;"></i>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('wish') }}" method="POST"
+                                                    class="wishlist-form">
+                                                    @csrf
+                                                    <input type="hidden" name="productID"
+                                                        value="{{ $item->productID }}">
+                                                    <button type="submit" style="background: none; border: none;">
+                                                        <i class="fa fa-heart-o fa-2x heart click-wish"
+                                                            id="wishlist-heart"
+                                                            style="background-color: none; color: black"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
                                         @endif
-
-                                    @endif
+                                    </div>
 
                                     <div class="card-custom-body">
                                         <p class="productName">{{ $item->productName }}</p>
-                                        <h3 class="productPrice">Rupiah {{ $item->productPrice }}</h3>
+                                        <h3 class="productPrice">Rp {{ $item->productPrice }}</h3>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     @endforeach
                 </div>
-
             </div>
 
         </div>
@@ -193,42 +195,122 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    {{-- <script>
+
+        $(document).ready(function() {
+            // Add event listener to kategori links
+            $('.kategori a').on('click', function() {
+                $(this).parent().toggleClass('active'); // toggle active class on kategori link
+                $(this).next('.collapse').collapse('toggle'); // toggle collapse
+            });
+
+            // Initialize collapse state
+            $('#collapsePria').collapse('hide');
+            $('#collapseWanita').collapse('hide');
+        });
+    </script> --}}
     <script>
         $(document).ready(function() {
-            // $('.click-wish').on('click', function(e) {
-            //     e.preventDefault();
+            // Initialize collapse state
+            $('#collapsePria').collapse('hide');
+            $('#collapseWanita').collapse('hide');
 
-            //     let $icon = $(this);
-            //     let productID = $icon.data('product-id');
-            //     let wished = $icon.data('wished') === 'true';
-            //     let url = wished ? '{{ route('unwish') }}' : '{{ route('wish') }}';
+            $('#btnPria').on('click', function(e) {
+                e.preventDefault();
+                $(this).next('.collapse').collapse('toggle');
+                let currentParams = new URLSearchParams(window.location.search);
+                if (currentParams.get('gender') !== 'pria') {
+                    window.location.href = '?gender=pria';
+                }
+            });
 
-            //     // Update the URL with the productID
-            //     url = url.replace(':productID', productID);
+            $('#btnWanita').on('click', function(e) {
+                e.preventDefault();
+                $(this).next('.collapse').collapse('toggle');
+                let currentParams = new URLSearchParams(window.location.search);
+                if (currentParams.get('gender') !== 'wanita') {
+                    window.location.href = '?gender=wanita';
+                }
+            });
 
-            //     $.ajax({
-            //         type: 'POST',
-            //         url: url,
-            //         data: {
-            //             _token: '{{ csrf_token() }}',
-            //             productID: productID // Include productID in the data
-            //         },
-            //         success: function(response) {
-            //             if (response.status === 'wished') {
-            //                 $icon.removeClass('fa-heart-o').addClass('fa-heart').data('wished', 'true');
-            //             } else if (response.status === 'unwished') {
-            //                 $icon.removeClass('fa-heart').addClass('fa-heart-o').data('wished', 'false');
-            //             }
-            //         },
-            //         error: function(xhr) {
-            //             console.log(xhr.responseText);
-            //             // Handle error gracefully if needed
-            //         }
-            //     });
-            // });
+
+            // Initialize collapse state based on local storage
+            if (localStorage.getItem('collapsePria') === 'true') {
+                $('#collapsePria').collapse('show');
+            } else {
+                $('#collapsePria').collapse('hide');
+            }
+            if (localStorage.getItem('collapseWanita') === 'true') {
+                $('#collapseWanita').collapse('show');
+            } else {
+                $('#collapseWanita').collapse('hide');
+            }
+
+            // Event listener to toggle collapse and arrow direction
+            $('.kategori .collapse-btn').on('click', function(e) {
+                e.preventDefault();
+                const target = $(this).attr('href');
+                $(target).collapse('toggle');
+
+                // Toggle arrow direction
+                const arrow = $(this).next('img');
+                if (arrow.hasClass('collapsed')) {
+                    arrow.removeClass('collapsed');
+                    arrow.attr('src',
+                        'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png'
+                    );
+                } else {
+                    arrow.addClass('collapsed');
+                    arrow.attr('src',
+                        'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/expand2-512.png'
+                    );
+                }
+
+                // Save collapse state to local storage
+                const isExpanded = $(target).hasClass('show');
+                const collapseKey = target.substring(1); // remove the # character
+                localStorage.setItem(collapseKey, !isExpanded);
+            });
+
+            // Highlight the selected category
+            $('.dropdown-item').on('click', function() {
+                $('.dropdown-item').css('color', 'grey');
+                $(this).css('color', 'white');
+
+                // Save selected category to local storage
+                localStorage.setItem('selectedCategory', $(this).attr('id'));
+            });
+
+            // Function to get query parameters
+            function getQueryParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    gender: params.get('gender') ? params.get('gender').toLowerCase() : null,
+                    category: params.get('category') ? params.get('category').toLowerCase() : null
+                };
+            }
+
+            const queryParams = getQueryParams();
+
+            // Construct the combined category id based on query parameters
+            if (queryParams.gender && queryParams.category) {
+                const selectedCategory = `${queryParams.gender}-${queryParams.category}`;
+
+                // If there's a matching element, change its color
+                $('#' + selectedCategory).css('color', 'white');
+            } else {
+                // Ensure no dropdown item is highlighted by default
+                $('.dropdown-item').css('color', 'grey');
+            }
+
         });
     </script>
+
+
+
 
 
     <script>
