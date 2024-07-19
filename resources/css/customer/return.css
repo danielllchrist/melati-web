@@ -236,4 +236,6 @@ textarea::placeholder{
     font-family: Poppins;
     font-weight: 700;
     font-size: larger;
+    margin-top: 20px;
+    margin-left: 90px;
 }

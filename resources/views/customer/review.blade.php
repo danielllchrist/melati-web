@@ -36,7 +36,7 @@
                         <h3 class="product-size">Size: {{ $size->size }}</h3>
                         <div class="rating">
                             <div class="star-icon">
-                                <input type="radio" value="1" name="product_rating" id="rating1">
+                                <input type="radio" value="1" name="product_rating" id="rating1" checked>
                                 <label for="rating1" class="fa fa-star"></label>
                                 <input type="radio" value="2" name="product_rating" id="rating2">
                                 <label for="rating2" class="fa fa-star"></label>
