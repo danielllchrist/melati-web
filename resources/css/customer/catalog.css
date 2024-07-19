@@ -33,7 +33,11 @@
     color: #F0F1E4;
     width: 230px;
     height: 400px;
-    margin: 10px;
+    margin: 0px;
+    /* padding: 0;  */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-custom > i {
@@ -42,9 +46,40 @@
     left: 190px;
 }
 
+.image-container{
+    position: relative;
+    display: inline-block; 
+    width: 100%;
+    
+}
+
 .card-custom-top{
     border-radius: 0;
+    display: block;
     width: 100%;
+}
+
+.wishlist-form {
+    position: absolute;
+    bottom: 3px; /* Adjust as needed */
+    right: 4px; /* Adjust as needed */
+    z-index: 10; /* Ensure the form appears on top of the image */
+    background: none; /* Ensure there's no background */
+}
+
+
+#wishlist-heart {
+    position: absolute;
+    bottom: 3px; /* Adjust as needed */
+    right: 4px; /* Adjust as needed */
+    background: none; /* Ensure there's no background */
+    z-index: 10; /* Ensure the icon appears on top */
+}
+
+.card-custom-body {
+    padding: 10px; /* Add padding if needed for text */
+    margin: 0; /* Remove any extra margin */
+    flex-grow: 1; /* Ensure it takes remaining space */
 }
 
 .card-custom > img {
@@ -70,6 +105,7 @@ select{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    color: grey;
 }
 
 .collapsed-text > img{
@@ -85,3 +121,12 @@ select{
     padding: 0;
     text-decoration: none;
 }
+
+.content-catalog{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 63px;
+}
+
+

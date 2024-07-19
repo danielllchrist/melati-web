@@ -90,7 +90,7 @@ Route::middleware(['customer'])->group(function () {
         Route::post('/keranjang/buat-pesanan', 'store')->name('keranjang.store');
     });
     Route::controller(CustomerWishlistController::class)->group(function () {
-        Route::get('/favorit', 'index')->name('CustomerWishlist');
+        Route::get('/favorit', 'productWish')->name('CustomerWishlist');
     });
     Route::controller(CustomerChatController::class)->group(function () {
         Route::get('/obrolan', 'chat')->name('CustomerChat');

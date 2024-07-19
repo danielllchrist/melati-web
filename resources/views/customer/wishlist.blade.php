@@ -27,7 +27,7 @@
         <h1>Favorit</h1>
     </div>
     <div class="container mb-5 mt-0">
-        <div class="d-flex flex-wrap mt-3 mb-3" id="content-wishlist">
+        {{-- <div class="d-flex flex-wrap mt-3 mb-3" id="content-wishlist">
             <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
             <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
             <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
@@ -41,11 +41,12 @@
             <div class="card-content"><div class="card-custom sold-out"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div><h1>SOLD OUT!</h1></div>
             <div class="card-content"><div class="card-custom sold-out"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div><h1>SOLD OUT!</h1></div>
             <div class="card-content"><div class="card-custom sold-out"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div><h1>SOLD OUT!</h1></div>
-        </div>
+        </div> --}}
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
+    {{-- <script>
         var data = [
                 {"id":1,"quantity":0},
                 {"id":2,"quantity":5},
@@ -99,7 +100,7 @@
         window.onload = function() {
             show();
         }
-    </script>
+    </script> --}}
     @include('components.customer.footercustomer')
 </body>
 </html>
