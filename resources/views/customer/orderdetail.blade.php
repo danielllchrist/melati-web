@@ -23,7 +23,7 @@
                             <a href="{{ route('CustomerMyOrder') }}">
                                 <div class="title">
                                     <img src="\assets\dummy-img\back arrow.svg" alt="">
-                                    <h1>Pesanan #001</h1>
+                                    <h1>Pesanan #{{$order->transactionID}}</h1>
                                 </div>
                             </a>
                         </div>

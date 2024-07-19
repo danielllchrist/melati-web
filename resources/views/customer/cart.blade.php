@@ -14,6 +14,13 @@
 
 <body>
     @include('components.customer.headercustomer')
+    <div id="address-popup" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Silakan tambahkan alamat di halaman profil Anda.</p>
+            <a href="{{ route('CustomerProfile') }}">Ke halaman profil</a>
+        </div>
+    </div>
     <div class="atas">
         <div class="nonactive active">
             <h1>Keranjang</h1>
@@ -32,40 +39,69 @@
         </div>
     </div>
     <div class="bawah">
-        <div class="kiri">
-            @forelse ($carts as $cart)
-                <div class="product" data-sizeid="{{ $cart->sizeID }}"
-                    data-price="{{ $cart->size->product->productPrice }}"
-                    data-productstock="{{$cart->size->stock}}">
-                    <img id="productimg" src="{{ asset('assets/perfume.svg') }}">
-                    <div class="wraps">
-                        <h1>{{ $cart->size->product->productName }}</h1>
-                        <h2>Rp {{ number_format($cart->size->product->productPrice, 0, ',', '.') }}</h2>
-                        <p>Ukuran : {{ $cart->size->size }}</p>
+        @if ($addressExists)
+            <div class="kiri">
+                @forelse ($carts as $cart)
+                    <div class="product" data-sizeid="{{ $cart->sizeID }}"
+                        data-price="{{ $cart->size->product->productPrice }}"
+                        data-productstock="{{ $cart->size->stock }}">
+                        <img id="productimg" src="{{ asset('assets/perfume.svg') }}">
+                        <div class="wraps">
+                            <h1>{{ $cart->size->product->productName }}</h1>
+                            <h2>Rp {{ number_format($cart->size->product->productPrice, 0, ',', '.') }}</h2>
+                            <p>Ukuran : {{ $cart->size->size }}</p>
+                            <select name="sizeID" class="size-select">
+                                @php
+                                    $sizeOrder = ['S', 'M', 'L', 'XL'];
+                                    $sortedSizes = $cart->size->product->size ?? collect();
+                                    $sortedSizes = $sortedSizes->sortBy(function ($size) use ($sizeOrder) {
+                                        return array_search($size->size, $sizeOrder);
+                                    });
+                                @endphp
+                                @foreach ($sortedSizes as $size)
+                                    <option value="{{ $size->sizeID }}"
+                                        {{ $size->sizeID == $cart->sizeID ? 'selected' : '' }}>
+                                        {{ $size->size }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="wraps2">
+                            <button class="trash-minus-button" type="button">
+                                <img class="icon trash-minus-icon" src="{{ asset('assets/trash_icon.svg') }}">
+                            </button>
+                            <input type="number" class="transparent-number-input" min="1" max="100"
+                                value="{{ $cart->quantity }}" name="quantities[]">
+                            <button class="plus" type="button">
+                                <img class="icon plus-icon" src="{{ asset('assets/plus_icon.svg') }}">
+                            </button>
+                            <input type="hidden" name="product_ids[]" value="{{ $cart->size->product->id }}">
+                            <input type="hidden" name="product_names[]"
+                                value="{{ $cart->size->product->productName }}">
+                            <input type="hidden" name="product_prices[]"
+                                value="{{ $cart->size->product->productPrice }}">
+                            <input type="hidden" name="cart_ids[]" value="{{ $cart->sizeID }}">
+                        </div>
                     </div>
-                    <div class="wraps2">
-                        <button class="trash-minus-button" type="button">
-                            <img class="icon trash-minus-icon" src="{{ asset('assets/trash_icon.svg') }}">
-                        </button>
-                        <input type="number" class="transparent-number-input" min="1" max="100"
-                            value="{{ $cart->quantity }}" name="quantities[]">
-                        <button class="plus" type="button">
-                            <img class="icon plus-icon" src="{{ asset('assets/plus_icon.svg') }}">
-                        </button>
-                        <input type="hidden" name="product_ids[]" value="{{ $cart->size->product->id }}">
-                        <input type="hidden" name="product_names[]" value="{{ $cart->size->product->productName }}">
-                        <input type="hidden" name="product_prices[]" value="{{ $cart->size->product->productPrice }}">
-                        <input type="hidden" name="cart_ids[]" value="{{ $cart->sizeID }}">
+                @empty
+                    <div class="btn-wrap">
+                        <h2>Keranjangmu masih kosong nih..</h2>
+                        <button class="btn-ctg" onclick="window.location.href='{{ route('Catalogue') }}'">Belanja
+                            Sekarang</button>
                     </div>
-                </div>
-            @empty
+                @endforelse
+            </div>
+        @else
+            <div class="kiri">
                 <div class="btn-wrap">
-                    <h2>Keranjangmu masih kosong nih..</h2>
-                    <button class="btn-ctg" onclick="window.location.href='{{ route('Catalogue') }}'">Belanja
-                        Sekarang</button>
+                    <h2>Isi Alamat Terlebih Dahulu..</h2>
+                    <button class="btn-ctg" onclick="window.location.href='{{ route('alamat-saya.index') }}'">Tambah
+                        Alamat</button>
                 </div>
-            @endforelse
-        </div>
+            </div>
+        @endif
+
+
         <div class="kanan">
             <form id="checkout-form" method="POST" action="{{ route('keranjang.store') }}">
                 @csrf
@@ -75,7 +111,8 @@
                     <input type="hidden" name="total_price" id="hidden-total-price" value="{{ $total }}">
                 </div>
                 <div class="wrap small">
-                    <button type="submit" class="checkout" id="checkout-button" class="button">
+                    <button type="submit" class="checkout @if (!$addressExists) button disabled @endif" id="checkout-button" class="button"
+                    @if (!$addressExists) disabled @endif>
                         Pesan Sekarang
                     </button>
                 </div>
@@ -88,7 +125,46 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        // $(document).ready(function() {
+        //     @if (session('showPopup'))
+        //         $('#address-popup').show();
+        //     @endif
+
+        //     $('.close').click(function() {
+        //         $('#address-popup').hide();
+        //     });
+        // });
+
+        // $(document).ready(function() {
+        //     $('.size-select').change(function() {
+        //         let sizeID = $(this).val(); 
+        //         let oldsizeID = productElement.dataset.sizeid;
+        //         // Kirim request ke server menggunakan Ajax
+        //         $.ajax({
+        //             url: '/keranjang/update/' + oldsizeID,
+        //             type: 'PUT',
+        //             data: {
+        //                 _token: '{{ csrf_token() }}',
+        //                 sizeID: newSizeID,
+        //             },
+        //             success: function(response) {
+        //                 console.log(response);
+        //                 if (response.success) {
+        //                     location.reload();
+        //                 } else {
+        //                     $('#error-message').text(response.message).show();
+        //                 }
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.log(xhr.responseText);
+        //                 $('#error-message').text('Error updating size.').show();
+        //             }
+        //         });
+        //     });
+        // });
+
         document.getElementById('checkout-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Mencegah form dari submit secara default
             // Mengumpulkan data produk dari keranjang
@@ -117,9 +193,9 @@
                     totalPrice: totalPrice
                 },
                 success: function(response) {
-                    console.log(response); // Tambahkan logging response
+                    // console.log(response);
                     if (response.success) {
-                        window.location.href = '/konfirmasi-pesanan/' + response.transactionID; 
+                        window.location.href = '/konfirmasi-pesanan/' + response.transactionID;
                     } else {
                         $('#error-message').text(response.message).show();
                     }
@@ -149,6 +225,36 @@
                 });
                 totalPriceElement.textContent = formatRupiah(total);
                 hiddenTotalPriceElement.value = total;
+            };
+
+            const updateSize = (productElement) => {
+                const newSizeID = $(productElement).find('.size-select').val();
+                let oldSizeID = productElement.dataset.sizeid;
+                console.log("New Size ID:", newSizeID);
+                console.log("Old Size ID:", oldSizeID);
+                // Kirim request ke server menggunakan Ajax
+                $.ajax({
+                    url: '/keranjang/update/' + oldSizeID,
+                    type: 'POST', // Mengganti dari PUT ke POST untuk pengujian
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        newSizeID: newSizeID,
+                        _method: 'PUT' // Laravel akan menganggap ini sebagai PUT
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.success) {
+                            location.reload();
+                        } else {
+                            $('#error-message').text(response.message).show();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                        $('#error-message').text('Error updating size.').show();
+                    }
+                });
+
             };
 
             const removeProduct = (productElement) => {
@@ -204,7 +310,9 @@
                 const plusButton = product.querySelector('.plus');
                 const trashMinusButton = product.querySelector('.trash-minus-button');
                 const productStock = parseInt(product.dataset
-                .productstock); // Ambil productStock dari dataset
+                    .productstock); // Ambil productStock dari dataset
+                const sizeSelect = product.querySelector('.size-select');
+
                 console.log(productStock);
                 const updateIcon = () => {
                     if (numberInput.value == 1) {
@@ -249,6 +357,14 @@
                     calculateTotal();
                     updateProduct(product);
                 });
+
+                // Event listener untuk size-select
+                if (sizeSelect) {
+                    sizeSelect.addEventListener('change', () => {
+                        console.log("Size changed for product:", product);
+                        updateSize(product);
+                    });
+                }
             });
 
             calculateTotal();

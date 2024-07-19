@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Size;
@@ -10,6 +11,7 @@ use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {   
@@ -24,17 +26,15 @@ class CartController extends Controller
     {
         $userId = Auth::id(); // Mendapatkan user ID yang sedang login
         $carts = Cart::where('userID', $userId)->with(['size.product', 'size'])->get();
-
+        $sizes = Size::all(); // Mengambil semua ukuran
+        $addressExists = Address::where('userID', $userId)->exists();
+        // dd($sizes);
         // Menghitung total harga
         $total = $carts->sum(function ($cart) {
             return $cart->size->product->productPrice * $cart->quantity;
         });
 
-        $productStocks = $carts->map(function ($cart) {
-            return $cart->size->stock;
-        })->all();
-
-        return view('customer.cart', compact('carts', 'total','productStocks')); // Mengirim data carts dan total ke view
+        return view('customer.cart', compact('carts', 'total', 'sizes','addressExists'));
     }
     /**
      * Show the form for creating a new resource.
@@ -80,21 +80,29 @@ class CartController extends Controller
     {
         $userId = Auth::id();
         $cart = Cart::where('userID', $userId)->where('sizeID', $id)->first();
-
         if ($cart) {
-            // Mengambil data quantity baru dari request
+            // Mengambil data sizeID baru dari request
+            $newSizeID = $request->input('newSizeID');
             $newQuantity = $request->input('quantity');
-
-            // Validasi quantity (opsional)
-            if ($newQuantity <= 0) {
-                return response()->json(['success' => false, 'message' => 'Quantity harus lebih besar dari 0.'], 400);
+            Log::info('New Size ID: ' . $newSizeID);
+            Log::info('New Quantity: ' . $newQuantity);
+            if($newQuantity){
+                if ($newQuantity <= 0) {
+                    return response()->json(['success' => false, 'message' => 'Quantity harus lebih besar dari 0.'], 400);
+                }
+                $cart->quantity = $newQuantity;
+            }else if($newSizeID){
+                $cart->sizeID = $newSizeID;
             }
-
-            // Update quantity di dalam cart
-            $cart->quantity = $newQuantity;
             $cart->save();
-
-            return response()->json(['success' => true]);
+            $updatedCart = Cart::where('userID', $userId)->where('sizeID', $newSizeID)->first();
+            if ($updatedCart) {
+                Log::info('Update berhasil, sizeID baru: ' . $updatedCart->sizeID);
+            } else {
+                Log::error('Update gagal, sizeID tidak berubah');
+            }
+            
+            return response()->json(['success' => $cart->sizeID]);
         } else {
             return response()->json(['success' => false, 'message' => 'Item tidak ditemukan di keranjang.'], 404);
         }
@@ -104,6 +112,12 @@ class CartController extends Controller
     {
         try {
             $userId = Auth::id();
+
+            // Periksa apakah pengguna memiliki alamat yang terdaftar
+            $addressExists = Address::where('userID', $userId)->exists();
+            if (!$addressExists) {
+                return redirect()->route('CustomerMyOrder')->with('showPopup', true);
+            }
             $products = $request->input('products');
             $totalPrice = $request->input('totalPrice');
             
