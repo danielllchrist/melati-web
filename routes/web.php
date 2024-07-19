@@ -79,7 +79,8 @@ Route::middleware(['customer'])->group(function () {
     });
 
     Route::controller(CustomerReturnController::class)->group(function () {
-        Route::get('/pengembalian', 'index')->name('CustomerReturn');
+        Route::get('/pengembalian/{transactionID}', 'index')->name('CustomerReturn');
+        Route::post('/pengembalian/{transactionID}', 'store')->name('CustomerReturn.store');
     });
     Route::controller(CustomerCartController::class)->group(function () {
         Route::get('/keranjang', 'index')->name('CustomerCart');

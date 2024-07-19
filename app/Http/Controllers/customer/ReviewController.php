@@ -56,6 +56,22 @@ class ReviewController extends Controller
         return redirect()->route('CustomerMyOrder');
     }
 
+    public function showReview($transactionID, $productID)
+    {
+        $transactionDetail = TransactionDetail::where('transactionID', $transactionID)
+            ->where('productID', $productID)
+            ->firstOrFail();
+
+        $review = Review::where('transactionID', $transactionID)
+            ->where('productID', $productID)
+            ->firstOrFail();
+
+        $product = Product::findOrFail($transactionDetail->productID);
+        $size = Size::findOrFail($transactionDetail->sizeID);
+
+        return view('customer.show_review', compact('transactionDetail', 'product', 'size', 'review'));
+    }
+
     /**
      * Display the specified resource.
      */

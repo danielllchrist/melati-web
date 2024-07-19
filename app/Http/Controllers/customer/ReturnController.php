@@ -4,11 +4,43 @@ namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Transaction;
+use App\Models\ReturnOrder;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ReturnController extends Controller
 {
-    public function index()
+    public function index($transactionID)
     {
-        return view('customer.return');
+        $userID = Auth::id();
+        $user = User::find($userID);
+
+        $transaction = Transaction::with('transactionDetail.product', 'transactionDetail.size', 'status')
+                                  ->where('transactionID', $transactionID)
+                                  ->firstOrFail();
+
+        return view('customer.return', compact('transaction', 'user'));
+    }
+
+    public function store(Request $request, $transactionID)
+    {
+        $request->validate([
+            'reason' => 'required|max:1000',
+        ]);
+
+        // Buat pengembalian baru
+        ReturnOrder::create([
+            'transactionID' => $transactionID,
+            'comment' => $request->reason,
+        ]);
+
+        // Perbarui status transaksi menjadi 7
+        $transaction = Transaction::where('transactionID', $transactionID)->firstOrFail();
+        $transaction->statusID = 7;
+        $transaction->save();
+
+        return redirect()->route('CustomerMyOrder');
     }
 }
+

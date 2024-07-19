@@ -71,7 +71,7 @@
                                                 <h4 class="product-size">Ukuran : {{ $o->size->size }}</h4>
                                                 <h4 class="product-qty">x{{ $o->quantity }}</h4>
                                             </div>
-                                            <h4 class="product-price">Rp {{ $o->product->productPrice }}</h4>
+                                            <h4 class="product-price">Rp {{ number_format($o->product->productPrice ,2)}}</h4>
                                             @if ($order->status->statusName == 'Penilaian')
                                                 <div class="rate"><div class="rate-wrapper"><a href="{{ route('review.create', ['transactionID' => $order->transactionID, 'productID' => $o->product]) }}"><div class="rate-btn">Nilai</div></a></div></div>
                                             @endif
@@ -84,19 +84,19 @@
                             <div class="amount">
                                 <div class="amount-item">
                                     <p class="amount-item-name">Subtotal</p>
-                                    <p class="amount-item-value">Rp {{ $order->subTotalPrice }}</p>
+                                    <p class="amount-item-value">Rp {{ number_format($order->subTotalPrice ,2)}}</p>
                                 </div>
                                 <div class="amount-item">
                                     <p class="amount-item-name">Diskon</p>
-                                    <p class="amount-item-value">- Rp {{ $order->totalDiscount }}</p>
+                                    <p class="amount-item-value">- Rp {{ number_format( $order->totalDiscount ,2)}}</p>
                                 </div>
                                 <div class="amount-item last-item">
                                     <p class="amount-item-name">Ongkos Kirim</p>
-                                    <p class="amount-item-value">Rp {{ $order->shippingFee }}</p>
+                                    <p class="amount-item-value">Rp {{ number_format($order->shippingFee,2) }}</p>
                                 </div>
                                 <div class="total">
                                     <h3 class="amount-item-name">Total</h3>
-                                    <h3 class="amount-item-value">Rp {{ $order->totalPrice }}</h3>
+                                    <h3 class="amount-item-value">Rp {{ number_format($order->totalPrice,2)}}</h3>
                                 </div>
                                 <div class="payment-method">
                                     <img src="\assets\dummy-img\cc.svg" alt="">
@@ -114,7 +114,7 @@
                                     <a href="javascript:void(0)" class="button" onclick="accOrder('{{ $order->transactionID }}')">Pesanan diterima</a>
                                 </div>
                                 <div class="btn-wrapper">
-                                    <a href="javascript:void(0)" class="button" onclick="returnOrder('{{ $order->transactionID }}')">Ajukan Pengembalian</a>
+                                    <a href="{{ route('CustomerReturn', ['transactionID' => $order->transactionID]) }}" class="button">Ajukan Pengembalian</a>
                                 </div>
                             @elseif ($order->status->statusName == 'Penilaian')
                                 {{-- <div class="btn-wrapper">
@@ -172,27 +172,28 @@
                     }
                 });
             }
-            function returnOrder(transactionID) {
-                $.ajax({
-                    url: '{{ route('CustomerReturnOrder') }}',
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        transactionID: transactionID
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            alert('Berhasil mengembalikan pesanan');
-                            location.reload();
-                        } else {
-                            alert('Gagal mengembalikan pesanan');
-                        }
-                    },
-                    error: function() {
-                        alert('Error order.');
-                    }
-                });
-            }
+            // function returnOrder(transactionID) {
+            //     $.ajax({
+            //         url: '{{ route('CustomerReturnOrder') }}',
+            //         type: 'POST',
+            //         data: {
+            //             _token: '{{ csrf_token() }}',
+            //             transactionID: transactionID
+            //         },
+            //         success: function(response) {
+            //             if (response.success) {
+            //                 //alert('Berhasil mengembalikan pesanan');
+
+            //                 location.reload();
+            //             } else {
+            //                 alert('Gagal mengembalikan pesanan');
+            //             }
+            //         },
+            //         error: function() {
+            //             alert('Error order.');
+            //         }
+            //     });
+            // }
         </script>
     </body>
 </html>

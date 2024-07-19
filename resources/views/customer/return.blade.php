@@ -28,24 +28,21 @@
                 <h2>Produk yang ingin Anda kembalikan :</h2>
             </div>
             <div class="products">
-                @for ($i = 0; $i < 10; $i++)
+                @foreach ($transaction->transactionDetail as $detail)
                 <div class="product">
                     <div class="product-img">
-                        <img src="assets/dummy-img/Rectangle 28.png" alt="">
+                        <img src="\assets\dummy-img\Rectangle 28.png" alt="">
                     </div>
                     <div class="product-info">
-                        <div class="left">
-                            <h4 class="product-name">Eau De Toilette</h4>
-                            <h4 class="product-size">Ukuran : M</h4>
-
+                        <h4 class="product-name">{{ $detail->product->productName }}</h4>
+                        <div class="product-size-and-quantity">
+                            <h4 class="product-size">Ukuran : {{ $detail->size->size }}</h4>
+                            <h4 class="product-qty">x{{ $detail->quantity }}</h4>
                         </div>
-                        <div class="right">
-                            <h4 class="product-qty">x1</h4>
-                            <h4 class="product-price">Rp 100,000.00</h4>
-                        </div>
+                        <h4 class="product-price">Rp {{ number_format($detail->product->productPrice ,2)}}</h4>
                     </div>
                 </div>
-                @endfor
+                @endforeach
             </div>
         </section>
 
@@ -54,10 +51,13 @@
                 <h2>Kenapa Anda ingin mengembalikan pesanan ini?</h2>
             </div>
             <div class="reason">
-                <form action="" method="post">
+                <form action="{{ route('CustomerReturn.store', ['transactionID' => $transaction->transactionID]) }}" method="post">
                     @csrf
                     <div class="text-area-wrapper">
-                        <textarea name="" id="" maxlength="1000" placeholder="Beri tahu kami tentang pesanan Anda."></textarea>
+                        <textarea name="reason" id="reason" maxlength="1000" placeholder="Beri tahu kami tentang pesanan Anda." required></textarea>
+                    </div>
+                    <div class="submit-btn-wrapper">
+                        <button type="submit" class="submit-btn">Kirim</button>
                     </div>
                 </form>
             </div>
@@ -69,28 +69,20 @@
             </div>
             <div class="refund">
                 <div class="refund-detail">
-                    <p class="fund">Total Harga</p>
-                    <p class="fund-value">Rp 450,000</p>
+                    <p class="fund">Subtotal</p>
+                    <p class="fund-value">Rp {{ number_format($transaction->subTotalPrice, 2) }}</p>
                 </div>
                 <div class="refund-detail">
                     <p class="fund">Diskon</p>
-                    <p class="fund-value">- Rp 10,000</p>
+                    <p class="fund-value">- Rp {{ number_format($transaction->totalDiscount, 2) }}</p>
                 </div>
                 <div class="refund-detail">
                     <p class="fund">Ongkos Kirim</p>
-                    <p class="fund-value">Rp 10,000</p>
+                    <p class="fund-value">Rp {{ number_format($transaction->shippingFee, 2) }}</p>
                 </div>
                 <div class="refund-details">
                     <h3 class="fund">Total Pengembalian Dana</h3>
-                    <h3 class="fund-value">Rp 450,000</h3>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="submit">
-                <div class="submit-btn-wrapper">
-                    <button class="submit-btn">Kirim</button>
+                    <h3 class="fund-value">Rp {{ number_format($transaction->totalPrice, 2) }}</h3>
                 </div>
             </div>
         </section>

@@ -29,7 +29,7 @@
                     <a href="{{ route('CustomerMyOrder') }}"><h2 class="menu">Pesanan</h2></a>
                     <ul class="spacing-sidebarmenu">
                         <li><a href="{{ route('CustomerMyOrder') }}">Pesanan Saya</a></li>
-                        <li><a href="{{ route('CustomerReturn') }}">Pengembalian Pesanan</a></li>
+                        {{-- <li><a href="{{ route('CustomerReturn') }}">Pengembalian Pesanan</a></li> --}}
                     </ul>
                 </div>
                 <div class="sidebar-menu">
