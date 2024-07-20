@@ -19,7 +19,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-       
+
         $userID = Auth::id();
         $user = User::find($userID);
         $addresses = $user->address;
@@ -27,10 +27,10 @@ class AddressController extends Controller
         $addresses = Address::orderBy('created_at', 'desc')->get();
 
         $provinces = Province::all();
-        $regencies = Regency::all(); 
-        $districts = District::all(); 
+        $regencies = Regency::all();
+        $districts = District::all();
 
-        
+
 
         return view('customer.addaddres',compact('addresses','provinces','regencies','districts', 'user'));
     }
@@ -53,7 +53,7 @@ class AddressController extends Controller
     }
 
     public function store(Request $request)
-        {   
+        {
         $request->validate([
             'nama_tempat' => 'required|string|max:255',
             'nama_penerima' => 'required|string|max:255',
@@ -100,13 +100,13 @@ class AddressController extends Controller
         }
 
        // AddressController.php
-    
+
        public function getAddress($id)
        {
            $address = Address::find($id);
            return response()->json($address);
        }
-   
+
        public function updateAddress(Request $request, $id)
     {
         $request->validate([

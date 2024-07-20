@@ -50,7 +50,7 @@
             salah satu</span>
 
         <label for="stock">Stok*</label>
-        <input value = "{{ old('stock') }}" type="text" id="stock" name="stock" class="underline-input-full"
+        <input value = "{{ old('stock') }}" type="number" id="stock" name="stock" class="underline-input-full"
             required>
         <span class="small-text">Jumlah Stok Produk. Contoh: 5, 20, 100 dll. Wajib</span>
 

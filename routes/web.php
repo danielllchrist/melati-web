@@ -49,6 +49,7 @@ Route::group([], function () {
     });
     Route::controller(CustomerMixMatchController::class)->group(function () {
         Route::get('/mix-and-match', 'index')->name('MixMatch');
+        Route::get('/mix-and-match/tambah-keranjang', 'addCart')->name('addCart');
     });
 });
 

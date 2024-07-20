@@ -34,6 +34,10 @@
             color: #F0F1E4;
         }
 
+        .card-custom-image {
+            object-fit: cover;
+        }
+
         .card-custom,
         .card-custom-image>img {
             max-width: 225px;
@@ -42,6 +46,7 @@
 
         .card-custom-image>img {
             height: 300px;
+            object-fit: cover;
         }
 
         .card-custom-text {
@@ -53,9 +58,9 @@
         .card-custom-text>a {
             text-decoration: none;
             width: 100%;
-            color: rgb(48, 34, 18);
+            color: #4f290c;
             font-weight: 600;
-            background-color: rgb(211, 160, 97);
+            background-color: #d5be9e;
             display: inline-block;
             padding: 5px 0;
             font-weight: 600;
@@ -117,6 +122,7 @@
             width: 30%;
             background-color: #F0F1E4;
             margin-right: 84px;
+            height: 100%;
         }
 
         .mix-match {
@@ -275,6 +281,57 @@
         .creator-pick-wrapper h3 {
             color: #F0F1E4;
         }
+
+        .mm-submit-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 100px;
+        }
+
+        .mm-title {
+            color: #F0F1E4;
+        }
+
+        .mm-add-btn {
+            margin-top: 12px;
+            width: auto;
+            font-family: "Poppins";
+            font-size: 17px;
+            background-color: #d5be9e;
+            color: #4f290c;
+            padding: 12px 30px;
+            text-decoration: none;
+            outline: none;
+            border: none;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-add-btn {
+            /* background-image: url('assets/backgroundCreatorsPick.png'); */
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .modal-add-btn>a {
+            text-decoration: none;
+            width: 300px;;
+            color: #4f290c;
+            font-weight: 600;
+            background-color: #d5be9e;
+            display: inline-block;
+            padding: 5px 0;
+            font-weight: 600;
+            border-radius: 5em;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -289,27 +346,73 @@
         <div class="creator-pick-wrapper">
             <h3>Rekomendasi</h3>
             <div class="d-flex justify-content-between mt-3 mb-3">
-                @foreach ($products as $i)
-                    <div class="card-custom">
-                        <div class="card-custom-image">
-                            {{ $i->productName }}
-                        </div>
-                        <div class="card-custom-text">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                onclick="showDataModal()">
-                                <i class="fa fa-shopping-cart"></i>
-                                Belanja Tampilan Ini
-                            </a>
-                        </div>
+                <div class="card-custom">
+                    <div class="card-custom-image">
+                        <img src="\assets\rekomen\card 1.jpg" alt="">
                     </div>
-                @endforeach
+                    <div class="card-custom-text">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            onclick="showDataModal()">
+                            <i class="fa fa-shopping-cart"></i>
+                            Belanja Tampilan Ini
+                        </a>
+                    </div>
+                </div>
+                <div class="card-custom">
+                    <div class="card-custom-image">
+                        <img src="\assets\rekomen\card 2.jpg" alt="">
+                    </div>
+                    <div class="card-custom-text">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            onclick="showDataModal()">
+                            <i class="fa fa-shopping-cart"></i>
+                            Belanja Tampilan Ini
+                        </a>
+                    </div>
+                </div>
+                <div class="card-custom">
+                    <div class="card-custom-image">
+                        <img src="\assets\rekomen\card 3.jpg" alt="">
+                    </div>
+                    <div class="card-custom-text">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            onclick="showDataModal()">
+                            <i class="fa fa-shopping-cart"></i>
+                            Belanja Tampilan Ini
+                        </a>
+                    </div>
+                </div>
+                <div class="card-custom">
+                    <div class="card-custom-image">
+                        <img src="\assets\rekomen\card 4.jpg" alt="">
+                    </div>
+                    <div class="card-custom-text">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            onclick="showDataModal()">
+                            <i class="fa fa-shopping-cart"></i>
+                            Belanja Tampilan Ini
+                        </a>
+                    </div>
+                </div>
+                <div class="card-custom">
+                    <div class="card-custom-image">
+                        <img src="\assets\rekomen\card 5.jpg" alt="">
+                    </div>
+                    <div class="card-custom-text">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            onclick="showDataModal()">
+                            <i class="fa fa-shopping-cart"></i>
+                            Belanja Tampilan Ini
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="mixmatch">
 
             <div class="banner justify-content-center">
-
+                <img src="\assets\mixmatch\banner.png" alt="">
             </div>
 
             <div class="mix-match-page">
@@ -318,8 +421,7 @@
                     <div class="carousel-inner">
                         @foreach ($atasan as $a)
                             <div class="carousel-item active">
-                                {{-- <img src="{{ url("'". $a->profilePicturePath) . "'"}}" class="d-block w-100"> --}}
-                                <p class = "text-light">{{ $a->productName }}</p>
+                                <img src="{{ Storage::url(json_decode($a->productPicturePath)[0]) }}" alt="">
                             </div>
                         @endforeach
                     </div>
@@ -341,6 +443,8 @@
                             </div>
                         </form>
                     </div>
+                    {{-- passing id produk/size buat di submit jadi request, value diisi di js --}}
+                    <input type="hidden" id="selected-atasan" name="atasan" value="">
                 </div>
 
                 <div id="carousel-bottom-mid" class="carousel slide mix-match d-flex flex-column text-center">
@@ -348,8 +452,7 @@
                     <div class="carousel-inner">
                         @foreach ($bawahan as $b)
                             <div class="carousel-item active">
-                                {{-- <img src="{{ url("'". $a->profilePicturePath) . "'"}}" class="d-block w-100"> --}}
-                                <p class = "text-light">{{ $b->productName }}</p>
+                                <img src="{{ Storage::url(json_decode($b->productPicturePath)[0]) }}" alt="">
                             </div>
                         @endforeach
                     </div>
@@ -365,12 +468,14 @@
                     </button>
                     <div class="search-box">
                         <form class="form-inline my-2 my-lg-0">
-                            <div class="ps-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
-                                    width = "19" height = "19"><input class = "ps-search-custom" type="text"
-                                    placeholder="cari">
+                            <div class="ps-search-custom-container"><img src = "assets/search-white.svg"
+                                    alt = "search" width = "19" height = "19"><input class = "ps-search-custom"
+                                    type="text" placeholder="cari">
                             </div>
                         </form>
                     </div>
+                    {{-- passing id produk/size buat di submit jadi request, value diisi di js --}}
+                    <input type="hidden" id="selected-bawahan" name="bawahan" value="">
                 </div>
             </div>
 
@@ -381,8 +486,7 @@
                     <div class="carousel-inner">
                         @foreach ($aksesoris as $c)
                             <div class="carousel-item active">
-                                {{-- <img src="{{ url("'". $a->profilePicturePath) . "'"}}" class="d-block w-100"> --}}
-                                <p class = "text-light">{{ $c->productName }}</p>
+                                <img src="{{ Storage::url(json_decode($c->productPicturePath)[0]) }}" alt="">
                             </div>
                         @endforeach
                     </div>
@@ -405,9 +509,19 @@
                         </form>
                     </div>
                 </div>
+                {{-- passing id produk/size buat di submit jadi request, value diisi di js --}}
+                <input type="hidden" id="selected-aksesoris" name="akses    oris" value="">
             </div>
         </div>
-    </div>
+        <div id="keluar" class="mm-submit-container">
+            <h3 class="mm-title">Masukkan semua pilihanmu ke keranjang sekarang !</h3>
+            <a class="mm-add-btn" href="#"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Masukkan ke
+                Keranjang</a>
+            <form id="logout-form" action="{{ route('AdminLogOut') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -420,6 +534,12 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex justify-content-center pb-5" id="content-catalog">
+                </div>
+                <div class="modal-add-btn">
+                    <a href="{{route('addCart')}}">
+                        <i class="fa fa-shopping-cart"></i>
+                        Masukkan ke Keranjang
+                    </a>
                 </div>
             </div>
         </div>

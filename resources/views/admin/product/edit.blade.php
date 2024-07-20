@@ -52,7 +52,7 @@
             @enderror
         </div>
         <label for="stock">Stok*</label>
-        <input value = "{{ old('stock') ?? $size->stock }}" type="text" id="stock" name="stock"
+        <input value = "{{ old('stock') ?? $size->stock }}" type="number" id="stock" name="stock"
             class="underline-input-full" required>
         <span class="small-text">Jumlah Stok Produk. Contoh: 5, 20, 100 dll</span>
         <div class="error-message">
@@ -75,7 +75,7 @@
             @enderror
         </div>
         <label for="productPrice">Harga*</label>
-        <input value = "{{ old('productPrice') ?? $size->product->productPrice }}" type="text" id="productPrice"
+        <input value = "{{ old('productPrice') ?? $size->product->productPrice }}" type="number" id="productPrice"
             name="productPrice" class="underline-input-full" required>
         <span class="small-text">Harga Produk. Contoh: 230000, 400000, dll. Wajib</span>
         <div class="error-message">
@@ -85,7 +85,7 @@
         </div>
         <label for="productWeight">Berat
             (gr)*</label>
-        <input value = "{{ old('productWeight') ?? $size->product->productWeight }}" type="text" id="productWeight"
+        <input value = "{{ old('productWeight') ?? $size->product->productWeight }}" type="number" id="productWeight"
             name="productWeight" class="underline-input-full" required>
         <span class="small-text">Berat Produk Dalam Satuan Gram. Contoh : 200, 50, 1500, dll. Wajib. </span>
         <div class="error-message">
