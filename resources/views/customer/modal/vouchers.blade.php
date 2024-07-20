@@ -17,21 +17,26 @@
                         </div>
                     </button>
                 @endfor --}}
-                @forelse($vouchers as $v)
-                    <button class="no-bootstrap flex" type ="button">
-                        <div class="voucher-card" data-voucher-id="{{ $v->voucherID }}">
-                            <h6>{{ $v->voucherName }}</h6>
-                            <p>Minimal belanja Rp {{ $v->minimumSpending }}</p>
-                            <p>EXPIRED {{ $v->expiredDate }}</p>
-                        </div>
-                    </button>
-                @empty
-                    <button class="no-bootstrap flex">
-                        <div class="voucher-card">
+                @if ($vouchers == null){
+                    @forelse($vouchers as $v)
+                        <button class="no-bootstrap flex" type ="button">
+                            <div class="voucher-card" data-voucher-id="{{ $v->voucherID }}">
+                                <h6>{{ $v->voucherName }}</h6>
+                                <p>Minimal belanja Rp {{ $v->minimumSpending }}</p>
+                                <p>EXPIRED {{ $v->expiredDate }}</p>
+                            </div>
+                        </button>
+                    @empty
+                        <div class="address-card">
                             <h6>Anda belum memiliki voucher</h6>
                         </div>
-                    </button>
-                @endforelse
+                    @endforelse
+                    }
+                @else
+                    <div class="address-card">
+                        <h6>Anda belum memiliki voucher</h6>
+                    </div>
+                @endif
             </div>
             <div class="modal-footer">
                 <!-- <button class="btn-add-popup" data-dismiss="modal">

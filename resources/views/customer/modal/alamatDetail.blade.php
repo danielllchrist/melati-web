@@ -35,12 +35,6 @@
 
             </div>
             <div class="modal-footer">
-                <div class="tambah-alamat">
-                    <button class="btn-add-popup" type="button" data-bs-toggle="modal" data-bs-target="#tambahAlamat">
-                        <img class="add_icon" src="{{ asset('assets/add.svg') }}">
-                        Tambah Alamat
-                    </button>
-                </div>
                 <button class=btn-submit-popup type="button" data-dismiss="modal" aria-label="Close">Pilih</button>
             </div>
         </div>
