@@ -260,3 +260,11 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+/* 
+.pf-keluar
+{
+    display : flex;
+    flex-direction: column;
+    gap : 40px;
+} */
