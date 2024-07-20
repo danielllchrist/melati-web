@@ -81,7 +81,7 @@
                     <form class="form-inline my-2 my-lg-0">
                         <div class="ps-search-custom-container"><img src="/assets/search-white.svg" alt="search"
                                 width="15" height="15"><input class="ps-search-custom" type="text"
-                                placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk">
+                                placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk" action="/shipping-service">
                         </div>
                     </form>
                 </div>

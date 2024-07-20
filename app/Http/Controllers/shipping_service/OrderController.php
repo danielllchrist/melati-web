@@ -33,7 +33,7 @@ class OrderController extends Controller
 
     // sort total orders
     $sortBy = $request->get('sortBy', '4'); // Default ke 'All Orders'
-        
+
     switch ($sortBy) {
         case '1':
             $orders = Transaction::where('created_at', '>=', now()->startOfWeek())->orderBy('transactionID')->get();

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -197,14 +197,6 @@
                 $('#alamatModal').find('#mainCity').text(oldCity);
                 $('#alamatModal').find('#mainProvince').text(oldProvince);
                 $('.tambahAlamat').modal('hide');
-            });
-
-            // Ketika tombol "Tambah Alamat" di dalam modal alamat Detail diklik, tutup modal alamatDetail dan buka modal tambahAlamat
-            $('.btn-add-popup').on('click', function() {
-                $('#alamatDetail').modal('hide');
-                setTimeout(function() {
-                    $('#tambahAlamat').modal('show');
-                }, 500); // Waktu tunda untuk memastikan modal pertama benar-benar tertutup
             });
 
             // Event listener untuk kartu address
