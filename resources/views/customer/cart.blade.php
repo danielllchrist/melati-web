@@ -111,8 +111,8 @@
                     <input type="hidden" name="total_price" id="hidden-total-price" value="{{ $total }}">
                 </div>
                 <div class="wrap small">
-                    <button type="submit" class="checkout @if (!$addressExists) button disabled @endif" id="checkout-button" class="button"
-                    @if (!$addressExists) disabled @endif>
+                    <button type="submit" class="checkout @if (!$addressExists) button disabled @endif"
+                        id="checkout-button" class="button" @if (!$addressExists) disabled @endif>
                         Pesan Sekarang
                     </button>
                 </div>
@@ -229,21 +229,20 @@
 
             const updateSize = (productElement) => {
                 const newSizeID = $(productElement).find('.size-select').val();
-                let oldSizeID = productElement.dataset.sizeid;
-                console.log("New Size ID:", newSizeID);
-                console.log("Old Size ID:", oldSizeID);
-                // Kirim request ke server menggunakan Ajax
+                const oldSizeID = productElement.dataset.sizeid;
+
                 $.ajax({
-                    url: '/keranjang/update/' + oldSizeID,
-                    type: 'POST', // Mengganti dari PUT ke POST untuk pengujian
+                    url: `/keranjang/update/${oldSizeID}`,
+                    type: 'POST', // Using POST with _method for PUT
                     data: {
                         _token: '{{ csrf_token() }}',
                         newSizeID: newSizeID,
-                        _method: 'PUT' // Laravel akan menganggap ini sebagai PUT
+                        _method: 'PUT' // Laravel will treat this as a PUT request
                     },
                     success: function(response) {
                         console.log(response);
                         if (response.success) {
+                            // Reload the page to reflect the changes
                             location.reload();
                         } else {
                             $('#error-message').text(response.message).show();
@@ -254,9 +253,7 @@
                         $('#error-message').text('Error updating size.').show();
                     }
                 });
-
             };
-
             const removeProduct = (productElement) => {
                 const id = productElement.dataset.sizeid;
                 fetch(`/keranjang/delete/${id}`, {

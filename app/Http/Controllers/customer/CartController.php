@@ -80,32 +80,36 @@ class CartController extends Controller
     {
         $userId = Auth::id();
         $cart = Cart::where('userID', $userId)->where('sizeID', $id)->first();
+        Log::info($cart);
         if ($cart) {
             // Mengambil data sizeID baru dari request
             $newSizeID = $request->input('newSizeID');
             $newQuantity = $request->input('quantity');
+            
             Log::info('New Size ID: ' . $newSizeID);
             Log::info('New Quantity: ' . $newQuantity);
-            if($newQuantity){
+            
+            if ($newQuantity) {
+                Log::info("Updating quantity");
                 if ($newQuantity <= 0) {
                     return response()->json(['success' => false, 'message' => 'Quantity harus lebih besar dari 0.'], 400);
                 }
                 $cart->quantity = $newQuantity;
-            }else if($newSizeID){
-                $cart->sizeID = $newSizeID;
-            }
-            $cart->save();
-            $updatedCart = Cart::where('userID', $userId)->where('sizeID', $newSizeID)->first();
-            if ($updatedCart) {
-                Log::info('Update berhasil, sizeID baru: ' . $updatedCart->sizeID);
-            } else {
-                Log::error('Update gagal, sizeID tidak berubah');
             }
             
-            return response()->json(['success' => $cart->sizeID]);
+            if ($newSizeID) {
+                Log::info("Updating size");
+                $cart->sizeID = $newSizeID;
+            }
+            
+            $cart->save();
+            Log::info($cart);
+        
+            return response()->json(['success' => true, 'message' => 'Cart updated successfully']);
         } else {
-            return response()->json(['success' => false, 'message' => 'Item tidak ditemukan di keranjang.'], 404);
+            return response()->json(['success' => false, 'message' => 'Cart not found'], 404);
         }
+        
     }
 
     public function store(Request $request)
