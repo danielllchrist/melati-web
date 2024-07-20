@@ -24,7 +24,7 @@ class AddressController extends Controller
         $user = User::find($userID);
         $addresses = $user->address;
 
-        $addresses = Address::orderBy('created_at', 'desc')->get();
+        $addresses = Address::where('userID', $userID)->orderBy('created_at', 'desc')->get();
 
         $provinces = Province::all();
         $regencies = Regency::all();

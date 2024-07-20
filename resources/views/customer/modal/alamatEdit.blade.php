@@ -43,7 +43,7 @@
                                 style="font-family: Poppins; display: flex; background: black; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">
                                 <option value="">Pilih Provinsi</option>
                                 @foreach ($provinces as $provinsi)
-                                    <option value="{{ $provinsi->id }}" {{ $provinsi->id == $address->province_id ? 'selected' : '' }}>
+                                    <option value="{{ $provinsi->id }}" {{ old('provinsi', $address->province_id) == $provinsi->id ? 'selected' : '' }}>
                                         {{ $provinsi->name }}
                                     </option>
                                 @endforeach
@@ -57,7 +57,7 @@
                                 style="font-family: Poppins; display: flex; background: black; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">
                                 <option value="">Pilih Kota/Region</option>
                                 @foreach ($regencies as $regency)
-                                    <option value="{{ $regency->id }}" {{ $regency->id == $address->cityOrRegency_id ? 'selected' : '' }}>
+                                    <option value="{{ $regency->id }}" {{ old('kota', $address->cityOrRegency_id) == $regency->id ? 'selected' : '' }}>
                                         {{ $regency->name }}
                                     </option>
                                 @endforeach
@@ -71,7 +71,7 @@
                                 style="font-family: Poppins; display: flex; background: black; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">
                                 <option value="">Pilih Kelurahan</option>
                                 @foreach ($districts as $district)
-                                    <option value="{{ $district->id }}" {{ $district->id == $address->ward_id ? 'selected' : '' }}>
+                                    <option value="{{ $district->id }}" {{ old('kecamatan', $address->ward_id) == $district->id ? 'selected' : '' }}>
                                         {{ $district->name }}
                                     </option>
                                 @endforeach
@@ -94,7 +94,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-submit-popup" type="submit">SUBMIT</button>
+                <button class= "btn-submit" type="submit" class="btn btn-submit">SUBMIT</button>
             </div>
         </form>
         </div>
