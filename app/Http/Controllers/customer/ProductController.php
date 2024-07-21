@@ -4,7 +4,9 @@ namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\customer\WishlistRequest;
+use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Size;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +24,7 @@ class ProductController extends Controller
 
         $query = $request->input('search');
 
-        if($query){
+        if ($query) {
             $product = Product::where('productName', 'like', '%' . $query . '%')
                 ->orWhere('productCategory', 'like', '%' . $query . '%')
                 ->orWhere('productDescription', 'like', '%' . $query . '%')
@@ -34,7 +36,7 @@ class ProductController extends Controller
             $product = Product::where('productCategory', $category)
                 ->where('forGender', $gender)
                 ->get();
-        } elseif ($gender){
+        } elseif ($gender) {
             $product = Product::where('forGender', $gender)
                 ->get();
         }
@@ -81,28 +83,69 @@ class ProductController extends Controller
         return view('customer.detail', compact('product'));
     }
 
-    public function wishList($id)
+
+    public function get_stock($productID, $size)
     {
-        if (!Auth::check()) {
-            return redirect('masuk');
-        }
+        $query = "SELECT * FROM `sizes` WHERE `size` = ? AND `productID` = ?";
+        $sizeRecord = DB::select($query, [$size, $productID]);
 
-        $user_id = Auth::user()->userID;
-
-        $wcheck = WishList::where('userID', $user_id)->where('productID', $id)->first();
-
-        if (isset($wcheck)) {
-
-            $new = WishList::create([
-                'userID' => $user_id,
-                'productID' => $id
-            ]);
-            return redirect()->route('katalogDetail', $id);
+        if ($sizeRecord) {
+            return response()->json(['stock' => $sizeRecord[0]->stock]);
         } else {
-            $wcheck->delete();
-            return redirect()->route('katalogDetail', $id);
+            return response()->json(['error' => 'Size not found'], 404);
         }
     }
+
+    public function add_cart(Request $request)
+    {
+        // Validation
+        $request->validate([
+            'productID' => 'required|exists:products,productID',
+            'size' => 'required|exists:sizes,size',
+            'quantity' => 'required|integer|min:1'
+        ]);
+
+        $productID = $request->input('productID');
+        $size = $request->input('size');
+        $quantity = $request->input('quantity');
+
+        $sizeQuery = "SELECT * FROM `sizes` WHERE `size` = ? AND `productID` = ?";
+        $sizeCheck = DB::select($sizeQuery, [$size, $productID]);
+
+        if (empty($sizeCheck)) {
+            return redirect()->back()->with('error', 'Stock not found.');
+        }
+
+        $sizeCheck = $sizeCheck[0]; // Access the first element, assuming sizeID is unique
+
+        $checkQuery = "SELECT * FROM `carts` WHERE `userID` = ? AND `sizeID` = ?";
+        $check = DB::select($checkQuery, [auth()->user()->userID, $sizeCheck->sizeID]);
+        $check = $check[0];
+        // dd($sizeCheck, $check);
+
+        if (!empty($check)) {
+            $quantity = (int) $quantity;
+            if ($sizeCheck->stock > $check->quantity + $quantity) {
+                $newQuantity = $check->quantity + $quantity;
+            } else {
+                $newQuantity = $sizeCheck->stock;
+            }
+
+            $updateQuery = "UPDATE `carts` SET `quantity` = ? WHERE `sizeID` = ? AND `userID` = ?";
+            DB::update($updateQuery, [$newQuantity, $check->sizeID, auth()->user()->userID]);
+        } else {
+            $insertQuery = "INSERT INTO `carts` (`userID`, `sizeID`, `quantity`) VALUES (?, ?, ?)";
+            DB::insert($insertQuery, [auth()->user()->userID, $sizeCheck->sizeID, $quantity]);
+        }
+
+        return redirect()->back()->with('success', 'Added successfully');
+    }
+
+
+    public function wishList($productID)
+    {
+    }
+
 
     public function review()
     {
