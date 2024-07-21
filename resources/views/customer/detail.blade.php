@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @vite('resources/css/app.css')
     @vite('resources/css/customer/detail.css')
+    <style>
+        .btn-clicked {
+            color: red;
+            background-color: green;
+        }
+    </style>
 
 </head>
 
@@ -75,9 +81,34 @@
                             <div class="title">
                                 <h1>{{ $product->productName }}</h1>
                             </div>
-                            {{-- <div class="wishlist-content">
-                                    <a href="{{ route('productWishList',$product->productID) }}"><i class="fa fa-heart-o fa-2x mt-2 heart" id="fa-heart-o" onclick="wishlist()"></i></a>
-                                </div> --}}
+                            <div class="wishlist-content">
+                                @if (auth()->user() != null)
+                                    @php
+                                        $query = 'SELECT * FROM `wishlists` WHERE `productID` = ? AND `userID` = ?';
+                                        $wished = DB::select($query, [$product->productID, auth()->user()->userID]);
+                                    @endphp
+                                    @if (!$wished)
+                                        <form action="{{ route('wish') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="productID" value="{{ $product->productID }}">
+                                            <button type="submit" style="background: red; border: none;"><i
+                                                    class="fa fa-heart-o fa-2x mt-2 heart" id="fa-heart-o"
+                                                    onclick="wishlist()"></i></button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('unwish') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="productID" value="{{ $product->productID }}">
+                                            <button type="submit" style="background: green; border: none;"><i
+                                                    class="fa fa-heart fa-2x mt-2 heart" id="fa-heart-o"
+                                                    onclick="wishlist()"></i></button>
+                                        </form>
+                                    @endif
+                                @else
+                                    <a href="{{ route('LogIn') }}"><i class="fa fa-heart-o fa-2x mt-2 heart"
+                                            id="fa-heart-o" onclick="wishlist()"></i></a>
+                                @endif
+                            </div>
                         </div>
                         <div class="star-products d-flex align-items-center mb-4">
                             <i class="fa fa-star  @if (floor($averageRating) >= 1) rating-color @endif me-2"></i>
@@ -85,34 +116,40 @@
                             <i class="fa fa-star @if (floor($averageRating) >= 3) rating-color @endif me-2"></i>
                             <i class="fa fa-star @if (floor($averageRating) >= 4) rating-color @endif me-2"></i>
                             <i class="fa fa-star @if (floor($averageRating) >= 5) rating-color @endif me-2"></i>
-                            <p>({{$product->review->count()}} ulasan)</p>
+                            <p>({{ $product->review->count() }} ulasan)</p>
                         </div>
                         <h1>Rp. {{ number_format($product->productPrice, 2, ',', '.') }}</h1>
                         <div class="mt-3 mb-3">
                             <p>Ukuran :</p>
                             <div class="btn-sizes">
-                                <button class="btn btn-light rounded-circle ps-2 pe-2"
-                                    onclick="selectedSize(this.id)">XS</button>
-                                <button class="btn btn-light rounded-circle ps-2 pe-2"
-                                    onclick="selectedSize(this.id)">S</button>
-                                <button class="btn btn-light rounded-circle ps-2 pe-2"
-                                    onclick="selectedSize(this.id)">M</button>
-                                <button class="btn btn-light rounded-circle ps-2 pe-2"
-                                    onclick="selectedSize(this.id)">L</button>
-                                <button class="btn btn-light rounded-circle ps-2 pe-2"
-                                    onclick="selectedSize(this.id)">XL</button>
+                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
+                                    value="XS">XS</button>
+                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
+                                    value="S">S</button>
+                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
+                                    value="M">M</button>
+                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
+                                    value="L">L</button>
+                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
+                                    value="XL">XL</button>
                             </div>
                         </div>
                         <div class="quantity mb-4">
-                            <p>Jumlah :</p>
-                            <div class="d-flex align-items-center justify-content-around">
-                                <div class="btn-qty">
-                                    <input type="text" value="0" id="qty-value" onkeypress='validate(event)'>
-                                    <i class="fa fa-minus minus" onclick="minus()"></i>
-                                    <i class="fa fa-plus plus" onclick="plus()"></i>
+                            <form action="{{route('add_cart')}}" method="POST">
+                                @csrf
+                                <p>Jumlah :</p>
+                                <div class="d-flex align-items-center justify-content-around">
+                                    <div class="btn-qty">
+                                        <input type="hidden" name="productID" value="{{$product->productID}}">
+                                        <input type="number" value="0" id="qty-value" max="0"
+                                            min="0" name="quantity">
+                                        <input type="hidden" name="size" id="productSize">
+                                        {{-- <i class="fa fa-minus minus" onclick="minus()"></i>
+                                        <i class="fa fa-plus plus" onclick="plus()"></i> --}}
+                                    </div>
+                                    <button class="btn-cart" type="submit">TAMBAHKAN KE KERANJANG</button>
                                 </div>
-                                <button class="btn-cart">TAMBAHKAN KE KERANJANG</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <div class="detail-content-body">
@@ -372,12 +409,41 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('.btn-size').click(function() {
+                $('.btn-size').removeClass('btn-clicked');
+                $(this).addClass('btn-clicked');
+    
+                var size = $(this).val();
+                $('#productSize').val(size);
 
-        })
+                var productID = encodeURIComponent('{{$product->productID}}');
+                
+                $.ajax({
+                    url: '{{ url("/get_stock") }}/' + productID + '/' + size,
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.error) {
+                            console.error('Error:', response.error);
+                            $('#qty-value').attr('max', 0);
+                        } else {
+                            $('#qty-value').attr('max', response.stock);
+                        }
+                        // console.log(response);
+                        $('#qty-value').val(0);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
     </script>
+    
+    
+
     <script>
         // var data = [
         //     {"name" : "El Xavier", "rating": 5, "date":"2024-05-29T12:34:56", "size":"XL", "review":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, fuga, illum officia ipsam itaque, nulla ex voluptatibus molestiae tempore corrupti exercitationem voluptatem consectetur quam! Molestiae earum repudiandae, consectetur aspernatur beatae dolores incidunt assumenda praesentium velit ex doloremque voluptatibus nulla similique esse adipisci cum blanditiis, id non sapiente obcaecati exercitationem? Error?"},

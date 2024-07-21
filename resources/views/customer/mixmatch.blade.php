@@ -183,12 +183,18 @@
             padding-top: 0;
         }
 
+        .catalog-item{
+            position: relative;
+        }
+
         .card-custom {
             border-radius: 0;
             color: white;
             width: 230px;
             height: 400px;
             margin: 10px;
+            z-index: 9;
+            /* position: absolute; */
         }
 
         .card-custom>i {
@@ -199,6 +205,7 @@
 
         .card-custom-top {
             border-radius: 0;
+            display: block;
             width: 100%;
         }
 
@@ -225,6 +232,21 @@
 
         .heart-color {
             color: red;
+        }
+
+        .wishlist-form {
+            position: absolute;
+            bottom: 3px; /* Adjust as needed */
+            right: 4px; /* Adjust as needed */
+            z-index: 10; /* Ensure the form appears on top of the image */
+            background: none; /* Ensure there's no background */
+        }
+        #wishlist-heart {
+            position: absolute;
+            bottom: 3px; /* Adjust as needed */
+            right: 4px; /* Adjust as needed */
+            background: none; /* Ensure there's no background */
+            z-index: 10; /* Ensure the icon appears on top */
         }
 
         .ps-search-custom-container {
@@ -601,13 +623,13 @@
                     content +=
                         "<div class=\"catalog-item\"><a href=\"detail.html\"><div class=\"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" +
                         rupiah(data[i].harga) +
-                        "</h3></div></div></a><i class=\"fa fa-heart fa-2x heart-color\" id=\"wishlist-heart-" + data[i]
+                        "</h3></div></div></a><i class=\"fa fa-heart fa-2x heart-color wish\" id=\"wishlist-heart-" + data[i]
                         .id + "\" onclick=\"wishlist(event, " + data[i].id + ")\"></i></div>";
                 } else {
                     content +=
                         "<div class=\"catalog-item\"><a href=\"detail.html\"><div class=\"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" +
                         rupiah(data[i].harga) +
-                        "</h3></div></div></a><i class=\"fa fa-heart-o fa-2x heart\" id=\"wishlist-heart-" + data[i].id +
+                        "</h3></div></div></a><i class=\"fa fa-heart-o fa-2x heart wish\" id=\"wishlist-heart-" + data[i].id +
                         "\" onclick=\"wishlist(event, " + data[i].id + ")\"></i></div>";
                 }
             }

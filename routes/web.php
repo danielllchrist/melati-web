@@ -46,6 +46,8 @@ Route::group([], function () {
         Route::get('/filter/{filterType}', 'filter')->name('Filter');
         Route::post('/wish', 'wish')->name('wish');
         Route::post('/unwish', 'unwish')->name('unwish');
+        Route::get('/get_stock/{productID}/{size}', 'get_stock')->name('get_stock');
+        Route::post('/add_cart', 'add_cart')->name('add_cart');
     });
     Route::controller(CustomerMixMatchController::class)->group(function () {
         Route::get('/mix-and-match', 'index')->name('MixMatch');
