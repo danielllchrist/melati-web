@@ -6,12 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     <title>Mix & Match Page</title>
+    {{-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- Jquery --}}
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+
     <style>
         body {
             font-family: Poppins;
+        }
+
+        .ui-menu {
+            z-index: 99;
         }
 
         .top-wrapper {
@@ -205,8 +216,9 @@
 
         .card-custom-top {
             border-radius: 0;
-            display: block;
+            height: 300px;
             width: 100%;
+            object-fit: cover
         }
 
         .card-custom-body {
@@ -219,7 +231,7 @@
         }
 
         .card-custom>img {
-            max-height: 245px;
+            /* max-height: 245px; */
         }
 
         .card-custom-body>p {
@@ -342,9 +354,10 @@
             text-align: center;
         }
 
-        .modal-add-btn>a {
+        .modal-add-btn>button {
             text-decoration: none;
-            width: 300px;;
+            width: 300px;
+            ;
             color: #4f290c;
             font-weight: 600;
             background-color: #d5be9e;
@@ -358,6 +371,7 @@
 </head>
 
 <body class="bg-black">
+
     @include('components.customer.headercustomer')
     <div class="container">
         <div class="top-wrapper mb-5 mt-5 d-flex flex-column justify-content-center align-items-center">
@@ -365,6 +379,7 @@
             <h3>Temukan Kombinasi Pakaianmu!</h3>
         </div>
 
+        {{-- Rekomendasi --}}
         <div class="creator-pick-wrapper">
             <h3>Rekomendasi</h3>
             <div class="d-flex justify-content-between mt-3 mb-3">
@@ -374,7 +389,7 @@
                     </div>
                     <div class="card-custom-text">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            onclick="showDataModal()">
+                            onclick="showDataModal(1)">
                             <i class="fa fa-shopping-cart"></i>
                             Belanja Tampilan Ini
                         </a>
@@ -386,7 +401,7 @@
                     </div>
                     <div class="card-custom-text">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            onclick="showDataModal()">
+                            onclick="showDataModal(2)">
                             <i class="fa fa-shopping-cart"></i>
                             Belanja Tampilan Ini
                         </a>
@@ -398,7 +413,7 @@
                     </div>
                     <div class="card-custom-text">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            onclick="showDataModal()">
+                            onclick="showDataModal(3)">
                             <i class="fa fa-shopping-cart"></i>
                             Belanja Tampilan Ini
                         </a>
@@ -410,7 +425,7 @@
                     </div>
                     <div class="card-custom-text">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            onclick="showDataModal()">
+                            onclick="showDataModal(4)">
                             <i class="fa fa-shopping-cart"></i>
                             Belanja Tampilan Ini
                         </a>
@@ -422,7 +437,7 @@
                     </div>
                     <div class="card-custom-text">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            onclick="showDataModal()">
+                            onclick="showDataModal(5)">
                             <i class="fa fa-shopping-cart"></i>
                             Belanja Tampilan Ini
                         </a>
@@ -431,8 +446,8 @@
             </div>
         </div>
 
+        {{-- Mix Match --}}
         <div class="mixmatch">
-
             <div class="banner justify-content-center">
                 <img src="\assets\mixmatch\banner.png" alt="">
             </div>
@@ -441,10 +456,17 @@
                 <div id="carousel-top-mid" class="carousel slide mix-match d-flex flex-column text-center">
                     <h1>ATASAN</h1>
                     <div class="carousel-inner">
+                        @php
+                            $i = 1;
+                        @endphp
                         @foreach ($atasan as $a)
-                            <div class="carousel-item active">
-                                <img src="{{ Storage::url(json_decode($a->productPicturePath)[0]) }}" alt="">
+                            <div class="carousel-item {{ $i == 1 ? 'active' : '' }}">
+                                <img src="{{ Storage::url(json_decode($a->productPicturePath)[0]) }}" alt=""
+                                    data-slide-to="{{ $a->productID }}">
                             </div>
+                            @php
+                                $i = 2;
+                            @endphp
                         @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carousel-top-mid"
@@ -460,22 +482,28 @@
                     <div class="search-box">
                         <form class="form-inline my-2 my-lg-0">
                             <div class="ps-search-custom-container"><img src = "assets/search-white.svg" alt = "search"
-                                    width = "19" height = "19"><input class = "ps-search-custom" type="text"
-                                    placeholder="cari">
+                                    width = "19" height = "19"><input class = "ps-search-custom" type="search"
+                                    id ="Atasan" placeholder="Cari Atasan..." aria-label="Atasan">
                             </div>
                         </form>
                     </div>
                     {{-- passing id produk/size buat di submit jadi request, value diisi di js --}}
-                    <input type="hidden" id="selected-atasan" name="atasan" value="">
                 </div>
 
                 <div id="carousel-bottom-mid" class="carousel slide mix-match d-flex flex-column text-center">
                     <h1>BAWAHAN</h1>
                     <div class="carousel-inner">
+                        @php
+                            $j = 1;
+                        @endphp
                         @foreach ($bawahan as $b)
-                            <div class="carousel-item active">
-                                <img src="{{ Storage::url(json_decode($b->productPicturePath)[0]) }}" alt="">
+                            <div class="carousel-item {{ $j == 1 ? 'active' : '' }}">
+                                <img src="{{ Storage::url(json_decode($b->productPicturePath)[0]) }}" alt=""
+                                    data-slide-to="{{ $b->productID }}">
                             </div>
+                            @php
+                                $j = 2;
+                            @endphp
                         @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carousel-bottom-mid"
@@ -492,12 +520,12 @@
                         <form class="form-inline my-2 my-lg-0">
                             <div class="ps-search-custom-container"><img src = "assets/search-white.svg"
                                     alt = "search" width = "19" height = "19"><input class = "ps-search-custom"
-                                    type="text" placeholder="cari">
+                                    type="search" id ="Bawahan" placeholder="Cari Bawahan..."
+                                    aria-label="Bawahan">
                             </div>
                         </form>
                     </div>
                     {{-- passing id produk/size buat di submit jadi request, value diisi di js --}}
-                    <input type="hidden" id="selected-bawahan" name="bawahan" value="">
                 </div>
             </div>
 
@@ -506,10 +534,17 @@
                     class="carousel slide mix-match d-flex flex-column text-center align-self-center">
                     <h1>AKSESORIS</h1>
                     <div class="carousel-inner">
+                        @php
+                            $k = 1;
+                        @endphp
                         @foreach ($aksesoris as $c)
-                            <div class="carousel-item active">
-                                <img src="{{ Storage::url(json_decode($c->productPicturePath)[0]) }}" alt="">
+                            <div class="carousel-item {{ $k == 1 ? 'active' : '' }}">
+                                <img src="{{ Storage::url(json_decode($c->productPicturePath)[0]) }}" alt=""
+                                    data-slide-to="{{ $c->productID }}">
                             </div>
+                            @php
+                                $k = 2;
+                            @endphp
                         @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carousel-accessories-right"
@@ -526,22 +561,24 @@
                         <form class="form-inline my-2 my-lg-0">
                             <div class="ps-search-custom-container"><img src = "assets/search-white.svg"
                                     alt = "search" width = "19" height = "19"><input class = "ps-search-custom"
-                                    type="text" placeholder="cari">
+                                    type="search" id ="Aksesoris" placeholder="Cari Aksesoris..."
+                                    aria-label="Aksesoris">
                             </div>
                         </form>
                     </div>
                 </div>
                 {{-- passing id produk/size buat di submit jadi request, value diisi di js --}}
-                <input type="hidden" id="selected-aksesoris" name="akses    oris" value="">
             </div>
         </div>
         <div id="keluar" class="mm-submit-container">
             <h3 class="mm-title">Masukkan semua pilihanmu ke keranjang sekarang !</h3>
-            <a class="mm-add-btn" href="#"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Masukkan ke
-                Keranjang</a>
-            <form id="logout-form" action="{{ route('AdminLogOut') }}" method="POST" style="display: none;">
+            <form action="{{ route('addCart') }}" method="POST">
                 @csrf
+                <input type="hidden" id="selected-atasan" name="atasan" value="">
+                <input type="hidden" id="selected-bawahan" name="bawahan" value="">
+                <input type="hidden" id="selected-aksesoris" name="aksesoris" value="">
+                <button class="mm-add-btn" type="submit">Masukkan ke
+                    Keranjang</button>
             </form>
         </div>
     </div>
@@ -557,45 +594,184 @@
                 </div>
                 <div class="modal-body d-flex justify-content-center pb-5" id="content-catalog">
                 </div>
-                <div class="modal-add-btn">
-                    <a href="{{route('addCart')}}">
-                        <i class="fa fa-shopping-cart"></i>
-                        Masukkan ke Keranjang
-                    </a>
-                </div>
+                <form action="{{ route('addCart') }}" method = "POST">
+                    @csrf
+                    {{-- hidden input to store product id --}}
+                    <input type="hidden" id="produk1" name="produk1" value="">
+                    <input type="hidden" id="produk2" name="produk2" value="">
+                    <input type="hidden" id="produk3" name="produk3" value="">
+                    <div class="modal-add-btn">
+                        <button type = "submit">
+                            <i class="fa fa-shopping-cart"></i>
+                            Masukkan ke Keranjang
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
+    {{-- Bootstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
+
+    {{-- Search Autocomplete --}}
+    {{-- Atasan --}}
     <script>
-        var data = [{
-                "id": 1,
-                "harga": 120000,
-                "wishlist": true
-            },
-            {
-                "id": 2,
-                "harga": 150000,
-                "wishlist": false
-            },
-            {
-                "id": 3,
-                "harga": 110000,
-                "wishlist": true
+        var category = $("#Atasan").attr("id");
+        var availableTags = [];
+
+        $.ajax({
+            method: "GET",
+            url: "/ambil-produk/" + category,
+            success: function(data) {
+
+                data.forEach(function(data) {
+                    availableTags.push({
+                        label: data[0],
+                        id: data[1],
+                        imageUrl: data[2]
+                    });
+                });
+
+                // foreach available tags to put all the product names into an array
+                var dataName = availableTags.map(function(item) {
+                    return item.label;
+                });
+
+                startAutoComplete(dataName);
             }
-        ];
+        });
+
+        function startAutoComplete(dataName) {
+            $("#Atasan").autocomplete({
+                source: dataName,
+                // Store the selected item's ID and image URL
+                select: function(event, ui) {
+                    // find the availableTags based on ui
+                    var selected = availableTags.find(function(item) {
+                        return item.label === ui.item.label;
+                    });
+
+                    // fill the value in the hidden input id selected-atasan-id
+                    $("#selected-atasan").val(selected.id);
+
+                    // remove active class from all carousel items
+                    $('#carousel-top-mid .carousel-item').removeClass('active');
+                    var selectedIndex = availableTags.indexOf(selected);
+
+                    // add active class to the selected carousel item
+                    $($('#carousel-top-mid .carousel-item')[selectedIndex]).addClass('active');
+                }
+            });
+        }
+
+        var categoryBawahan = $("#Bawahan").attr("id");
+        var availableTagsBawahan = [];
+
+        $.ajax({
+            method: "GET",
+            url: "/ambil-produk/" + categoryBawahan,
+            success: function(data) {
+                data.forEach(function(data) {
+                    availableTagsBawahan.push({
+                        label: data[0],
+                        id: data[1],
+                        imageUrl: data[2]
+                    });
+                });
+
+                // foreach available tags to put all the product names into an array
+                var dataNameBawahan = availableTagsBawahan.map(function(item) {
+                    return item.label;
+                });
+                startAutoCompleteBawahan(dataNameBawahan);
+            }
+        });
+
+        function startAutoCompleteBawahan(dataNameBawahan) {
+            $("#Bawahan").autocomplete({
+                source: dataNameBawahan,
+                // Store the selected item's ID and image URL
+                select: function(event, ui) {
+                    // find the availableTagsBawahan based on ui
+                    var selected = availableTagsBawahan.find(function(item) {
+                        return item.label === ui.item.label;
+                    });
+
+                    // fill the value in the hidden input id selected-bawahan-id
+                    $("#selected-bawahan").val(selected.id);
+
+                    // remove active class from all carousel items
+                    $('#carousel-bottom-mid .carousel-item').removeClass('active');
+                    var selectedIndex = availableTagsBawahan.indexOf(selected);
+
+                    // add active class to the selected carousel item
+                    $($('#carousel-bottom-mid .carousel-item')[selectedIndex]).addClass('active');
+
+                }
+            });
+        }
+
+        var categoryAksesoris = $("#Aksesoris").attr("id");
+        var availableTagsAksesoris = [];
+
+        $.ajax({
+            method: "GET",
+            url: "/ambil-produk/" + categoryAksesoris,
+            success: function(data) {
+                data.forEach(function(data) {
+                    availableTagsAksesoris.push({
+                        label: data[0],
+                        id: data[1],
+                        imageUrl: data[2]
+                    });
+                });
+
+                // foreach available tags to put all the product names into an array
+                var dataNameAksesoris = availableTagsAksesoris.map(function(item) {
+                    return item.label;
+                });
+
+                startAutoCompleteAksesoris(dataNameAksesoris);
+            }
+        });
+
+        function startAutoCompleteAksesoris(dataNameAksesoris) {
+            $("#Aksesoris").autocomplete({
+                source: dataNameAksesoris,
+                // Store the selected item's ID and image URL
+                select: function(event, ui) {
+                    // find the availableTagsAksesoris based on ui
+                    var selected = availableTagsAksesoris.find(function(item) {
+                        return item.label === ui.item.label;
+                    });
+
+                    // fill the value in the hidden input id selected-aksesoris-id
+                    $("#selected-aksesoris").val(selected.id);
+
+                    // remove active class from all carousel items
+                    $('#carousel-accessories-right .carousel-item').removeClass('active');
+
+                    var selectedIndex = availableTagsAksesoris.indexOf(selected);
+                    // add active class to the selected carousel item
+                    $($('#carousel-accessories-right .carousel-item')[selectedIndex]).addClass('active');
+                }
+            });
+        }
+    </script>
+
+    {{-- Modal --}}
+    <script>
+        console.log('start')
+
 
         const rupiah = (number) => {
             return new Intl.NumberFormat("id-ID", {
@@ -604,61 +780,129 @@
             }).format(number);
         }
 
-        function showDataModal() {
-            document.getElementById("content-catalog").innerHTML = "";
+        var cardDetail = [];
 
-            const randNumber = Math.floor(Math.random() * 3 + 1);
+        // showDataModal
 
-            if (randNumber == 1) {
-                document.getElementsByClassName("modal-dialog")[0].style.maxWidth = "400px";
-            } else if (randNumber == 2) {
-                document.getElementsByClassName("modal-dialog")[0].style.maxWidth = "700px";
-            } else {
-                document.getElementsByClassName("modal-dialog")[0].style.maxWidth = "900px";
-            }
-
-            var content = "";
-            for (let i = 0; i < randNumber; i++) {
-                if (data[i].wishlist) {
-                    content +=
-                        "<div class=\"catalog-item\"><a href=\"detail.html\"><div class=\"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" +
-                        rupiah(data[i].harga) +
-                        "</h3></div></div></a><i class=\"fa fa-heart fa-2x heart-color wish\" id=\"wishlist-heart-" + data[i]
-                        .id + "\" onclick=\"wishlist(event, " + data[i].id + ")\"></i></div>";
-                } else {
-                    content +=
-                        "<div class=\"catalog-item\"><a href=\"detail.html\"><div class=\"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" +
-                        rupiah(data[i].harga) +
-                        "</h3></div></div></a><i class=\"fa fa-heart-o fa-2x heart wish\" id=\"wishlist-heart-" + data[i].id +
-                        "\" onclick=\"wishlist(event, " + data[i].id + ")\"></i></div>";
+        function showDataModal(card) {
+            var count = 0;
+            var cardDetail = [];
+            $.ajax({
+                method: "GET",
+                url: "/ambil-produk-modal/" + card,
+                success: function(data) {
+                    data.forEach(function(data) {
+                        cardDetail.push({
+                            label: data[0],
+                            id: data[1],
+                            imageUrl: data[2],
+                            count: data[3],
+                            price: data[4],
+                        });
+                        count++;
+                    });
+                    var name = cardDetail.map(function(item) {
+                        return item.label;
+                    });
+                    console.log(name);
+                    var img = cardDetail.map(function(item) {
+                        return item.imageUrl;
+                    });
+                    console.log(img)
+                    showProduct(cardDetail)
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error:', error);
                 }
-            }
+            });
 
-            document.getElementById("content-catalog").innerHTML = content;
-        }
+            function showProduct(cardDetail) {
+                document.getElementById("content-catalog").innerHTML = "";
 
-        function wishlist(event, id) {
-            event.preventDefault();
+                var count = cardDetail.length;
+                console.log(count)
 
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].id == id) {
-                    data[i].wishlist = !data[i].wishlist;
+                if (count == 1) {
+                    document.getElementsByClassName("modal-dialog")[0].style.maxWidth = "400px";
+                } else if (count == 2) {
+                    document.getElementsByClassName("modal-dialog")[0].style.maxWidth = "700px";
+                } else if (count == 3) {
+                    document.getElementsByClassName("modal-dialog")[0].style.maxWidth = "900px";
+                }
 
-                    if (data[i].wishlist) {
-                        document.getElementById("wishlist-heart-" + id).classList.remove("fa-heart-o");
-                        document.getElementById("wishlist-heart-" + id).classList.remove("heart");
-                        document.getElementById("wishlist-heart-" + id).classList.add("fa-heart");
-                        document.getElementById("wishlist-heart-" + id).classList.add("heart-color");
+                var content = "";
+
+                // for (let i = 0; i < randNumber; i++) {
+                // if (data[i].wishlist) {
+                //     content += "<div class=\" catalog-item\"><a href=\"detail.html\"> <\
+                //         div class = \"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\"
+                //     alt = \"Catalog\"> <
+                //     div class = \"card-custom-body\"> <
+                //     p > Kamboja Kutubaru < /p> <
+                //     h3 > " +
+                //     rupiah(data[i].harga) +
+                //         "</h3> < /
+                //     div > <
+                //         /div> < /
+                //     a > < i class = \"fa fa-heart fa-2x heart-color\" id=\"wishlist-heart-" + data[i].id + "\"
+                //     onclick = \"wishlist(event, " + data[i].id + " )\"></i></div>";
+                // } else {
+                //     content +=
+                //         "<div class=\"catalog-item\"><a href=\"detail.html\"> <div class = \"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\"
+                //     alt = \"Catalog\"> <div class = \"card-custom-body\"> <p > Kamboja Kutubaru < /p> <h3> " + rupiah(data[i].harga) +"</h3> < /div > </div> </a> <i class = \"fa fa-heart-o fa-2x heart\" id=\"wishlist-heart-" + data[i].id + "\"onclick = \"wishlist(event, " + data[i].id + " )\"></i></div>";
+                // }
+
+                var i = 1;
+                cardDetail.forEach(function(item) {
+                    if (item.wishlist) {
+                        content +=
+                            "<div class=\"catalog-item\"><a href=\"/produk/" + item.id +
+                            "\"> <div class=\"card-custom\"><img src=\"" +
+                            item.imageUrl +
+                            "\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>" +
+                            item.label + "</p><h3>" + rupiah(item.price) +
+                            "</h3></div></div></a></div>";
                     } else {
-                        document.getElementById("wishlist-heart-" + id).classList.remove("fa-heart");
-                        document.getElementById("wishlist-heart-" + id).classList.remove("heart-color");
-                        document.getElementById("wishlist-heart-" + id).classList.add("fa-heart-o");
-                        document.getElementById("wishlist-heart-" + id).classList.add("heart");
+                        content +=
+                            "<div class=\"catalog-item\"><a href=\"/produk/{" + item.id +
+                            "}\"> <div class=\"card-custom\"><img src=\"" +
+                            item.imageUrl +
+                            "\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>" +
+                            item.label + "</p><h3>" + rupiah(item.price) +
+                            "</h3></div></div></a> </div>";
                     }
-                    break;
-                }
+                    // concat
+                    productID = '#produk' + i;
+                    $(productID).val(item.id);
+                    i++;
+                });
+                i = 1;
+
+                document.getElementById("content-catalog").innerHTML = content;
             }
         }
+
+        // function wishlist(event, id) {
+        //     event.preventDefault();
+
+        //     for (let i = 0; i < data.length; i++) {
+        //         if (data[i].id == id) {
+        //             data[i].wishlist = !data[i].wishlist;
+        //             if (data[i].wishlist) {
+        //                 document.getElementById("wishlist-heart-" + id).classList.remove("fa-heart-o");
+        //                 document.getElementById("wishlist-heart-" + id).classList.remove("heart");
+        //                 document.getElementById("wishlist-heart-" + id).classList.add("fa-heart");
+        //                 document.getElementById("wishlist-heart-" + id).classList.add("heart-color");
+        //             } else {
+        //                 document.getElementById("wishlist-heart-" + id).classList.remove("fa-heart");
+        //                 document.getElementById("wishlist-heart-" + id).classList.remove("heart-color");
+        //                 document.getElementById("wishlist-heart-" + id).classList.add("fa-heart-o");
+        //                 document.getElementById("wishlist-heart-" + id).classList.add("heart");
+        //             }
+        //             break;
+        //         }
+        //     }
+        // }
     </script>
 
     @include('components.customer.footercustomer')

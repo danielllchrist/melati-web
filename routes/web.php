@@ -51,7 +51,10 @@ Route::group([], function () {
     });
     Route::controller(CustomerMixMatchController::class)->group(function () {
         Route::get('/mix-and-match', 'index')->name('MixMatch');
-        Route::get('/mix-and-match/tambah-keranjang', 'addCart')->name('addCart');
+        Route::post('/mix-and-match/tambah-keranjang', 'addCart')->name('addCart');
+        Route::get('/ambil-produk/{category}', 'searchProductAjax');
+        Route::get('/ambil-produk-modal/{card}', 'getProductAjax')->name('getProduct');
+        Route::get('/tampilkan-gambar/{productID}', 'getImageURL')->name('getImageURL');
     });
 });
 
