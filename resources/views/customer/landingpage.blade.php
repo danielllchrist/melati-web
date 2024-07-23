@@ -60,13 +60,12 @@
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @php
-                            $i = 1
+                            $i = 1;
                         @endphp
                         @foreach ($assets as $asset)
                             @if (!($asset->assetPath == 'https://fakeimg.pl/800x400'))
                                 <div class="carousel-item {{ $i == 1 ? 'active' : '' }}">
-                                    <img src="{{$asset->assetPath}}" class="d-block w-100"
-                                        alt="Promotion Banner">
+                                    <img src="{{ $asset->assetPath }}" class="d-block w-100" alt="Promotion Banner">
                                     <a href="/katalog" class="carousel-product-link">
                                         <div class="belanja-sekarang-button">
                                             <h2>BELANJA SEKARANG</h2>
@@ -75,7 +74,7 @@
                                     </a>
                                 </div>
                                 @php
-                                    $i = 2
+                                    $i = 2;
                                 @endphp
                             @endif
                         @endforeach
@@ -108,48 +107,77 @@
     <section>
         <div class="product">
             <div class="recommendation-wrapper">
-                <a href="?filter=produk-terbaik" class="recommendation">
+                <a href="javascript:void(0)" id="terbaik" class="recommendation" onclick="showTab('terbaik')">
                     <div class="recommendation-button">
                         <p>PRODUK TERBAIK</p>
-                        @if ($filter == "" || $filter == "produk-terbaik")
-                            <div class="active-recommendation"></div>
-                        @endif
+                        <div class="active-recommendation" id="terbaik-indicator"></div>
                     </div>
                 </a>
-                <a href="?filter=produk-terbaru" class="recommendation">
-                    <div>
+                <a href="javascript:void(0)" id="terbaru" class="recommendation" onclick="showTab('terbaru')">
+                    <div class="recommendation-button">
                         <p>PRODUK TERBARU</p>
-                        @if ($filter == "produk-terbaru")
-                            <div class="active-recommendation"></div>
-                        @endif
+                        <div class="active-recommendation" id="terbaru-indicator"></div>
                     </div>
                 </a>
-                <a href="?filter=rating-tertinggi" class="recommendation">
-                    <div>
+                <a href="javascript:void(0)" id="tertinggi" class="recommendation" onclick="showTab('tertinggi')">
+                    <div class="recommendation-button">
                         <p>RATING TERTINGGI</p>
-                        @if ($filter == "rating-tertinggi")
-                            <div class="active-recommendation"></div>
-                        @endif
+                        <div class="active-recommendation" id="tertinggi-indicator"></div>
                     </div>
                 </a>
             </div>
-            <div class="card-wrapper">
-                @foreach ($products as $product)
-                    <div class="catalog-item">
-                        <a href="{{ route('ProductDetail', ['id'=>'dummy']) }}">
-                            <div class="card-custom">
-                                <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
-                                    alt="Catalog">
-                                <div class="card-custom-body">
-                                    <p>{{ $product->productName }}</p>
-                                    <h3>Rp {{ $product->productPrice }}</h3>
+            <div class="tabs">
+                <div id="terbaik-content" class="card-wrapper tab-content">
+                    @foreach ($product_terbaik as $product)
+                        <div class="catalog-item">
+                            <a href="{{ route('ProductDetail', ['id' => 'dummy']) }}">
+                                <div class="card-custom">
+                                    <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
+                                        alt="Catalog">
+                                    <div class="card-custom-body">
+                                        <p>{{ $product->productName }}</p>
+                                        <h3>Rp {{ $product->productPrice }}</h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                <div id="terbaru-content" class="card-wrapper tab-content">
+                    @foreach ($product_terbaru as $product)
+                        <div class="catalog-item">
+                            <a href="{{ route('ProductDetail', ['id' => 'dummy']) }}">
+                                <div class="card-custom">
+                                    <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
+                                        alt="Catalog">
+                                    <div class="card-custom-body">
+                                        <p>{{ $product->productName }}</p>
+                                        <h3>Rp {{ $product->productPrice }}</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                <div id="tertinggi-content" class="card-wrapper tab-content">
+                    @foreach ($product_tertinggi as $product)
+                        <div class="catalog-item">
+                            <a href="{{ route('ProductDetail', ['id' => 'dummy']) }}">
+                                <div class="card-custom">
+                                    <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
+                                        alt="Catalog">
+                                    <div class="card-custom-body">
+                                        <p>{{ $product->productName }}</p>
+                                        <h3>Rp {{ $product->productPrice }}</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
+
     </section>
 
     <section>
@@ -167,12 +195,46 @@
         <div id="belanja-sekarang-banner">
             <h2>BATIK MELATI</h2>
             <h1>WARISAN BUDAYA , GAYA MODERN</h1>
-            <div id="button-belanja-wrapper"><a href={{route('Catalogue')}}>
-                    <div id="button-belanja" class="buttons" >Belanja Sekarang</div>
+            <div id="button-belanja-wrapper"><a href={{ route('Catalogue') }}>
+                    <div id="button-belanja" class="buttons">Belanja Sekarang</div>
                 </a></div>
         </div>
     </section>
     @include('components.customer.footercustomer')
+
+    <script>
+        function showTab(tabId) {
+            // Hapus kelas 'active' dari semua tab konten
+            var tabs = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+
+            // Hapus kelas 'active' dari semua tab link
+            var links = document.getElementsByClassName('recommendation');
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove('active');
+            }
+
+            // Tambahkan kelas 'active' ke tab konten yang dipilih
+            document.getElementById(tabId + '-content').classList.add('active');
+
+            // Tambahkan kelas 'active' ke tab link yang dipilih
+            document.getElementById(tabId).classList.add('active');
+
+            // Tambahkan kelas 'active' ke indikator yang dipilih
+            var indicators = document.getElementsByClassName('active-recommendation');
+            for (var i = 0; i < indicators.length; i++) {
+                indicators[i].style.display = 'none';
+            }
+            document.getElementById(tabId + '-indicator').style.display = 'block';
+        }
+
+        // Tampilkan tab 'terbaik' secara default saat halaman dimuat
+        window.onload = function() {
+            showTab('terbaik');
+        }
+    </script>
 </body>
 
 </html>
