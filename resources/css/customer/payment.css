@@ -132,3 +132,17 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.button-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    gap: 10px;
+}
+a.bayar:hover {
+    background-color: #D5BE9E;
+    color: #4F290C;
+    text-decoration: none;
+}

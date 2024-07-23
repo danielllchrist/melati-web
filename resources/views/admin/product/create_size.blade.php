@@ -26,7 +26,7 @@
     </div>
 
 
-    <form action="{{ route('StoreSize', ['id' => $size->product->productID]) }}" method="post"
+    <form action="{{ route('StoreSize', ['id' => $size->productID]) }}" method="post"
         enctype="multipart/form-data">
         @csrf
         <label for="producTID">ID*</label>
@@ -46,15 +46,21 @@
                     {{ $option }}</option>
             @endforeach
         </select>
-        <span class="small-text">Ukuran Produk Baru. Ukuran Harus Berbeda Dengan Yang Sudah Tersimpan. Wajib. Pilih
-            salah satu</span>
-
+        <span class="small-text">Ukuran Produk Baru. Ukuran Harus Berbeda Dengan Yang Sudah Tersimpan. Wajib. Pilih salah satu</span>
+        <div class="error-message">
+            @error('size')
+                {{ $message }}
+            @enderror
+        </div>
         <label for="stock">Stok*</label>
         <input value = "{{ old('stock') }}" type="number" id="stock" name="stock" class="underline-input-full"
             required>
         <span class="small-text">Jumlah Stok Produk. Contoh: 5, 20, 100 dll. Wajib</span>
-
-
+        <div class="error-message">
+            @error('stock')
+                {{ str_replace('stock', 'Stok', $message) }}
+            @enderror
+        </div>
         <div class="save-button">
             <button type="submit">Simpan</button>
         </div>

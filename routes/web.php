@@ -118,6 +118,8 @@ Route::middleware(['customer'])->group(function () {
         Route::get('/konfirmasi-pesanan/{transactionID}/{voucherID}', 'useVoucher')->name('UseVoucher');
         Route::post('/tambah-alamat', 'addAddress')->name('AddAddress');
         Route::post('/pembayaran/{transactionID}', 'payment')->name('prepayment');
+        Route::post('/pembayaran/{transactionID}/bayar', 'pay')->name('PayOrder');
+        Route::post('/pembayaran/{transactionID}/batal', 'cancel')->name('CancelOrder');
     });
     // Route::resource('addresses', CustomerAddressController::class)->except(['index']);
     Route::controller(CustomerAddressController::class)->group(function () {

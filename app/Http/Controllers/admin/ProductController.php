@@ -108,9 +108,18 @@ class ProductController extends Controller
 
     public function storesize(SizeRequest $request, $id)
     {
+        $size = Size::where('productID', $id)->first();
+        $sizeID = $size->sizeID;
         $data = $request;
 
         $data['productID'] = $id;
+
+        $existingSizes = Size::where('productID', $id)->get();
+        foreach ($existingSizes as $existingSize) {
+            if ($existingSize->size == $request->size) {
+                return redirect()->route('CreateSize', ['produk' => $sizeID])->withErrors('size', 'Ukuran sudah ada!');
+            }
+        }
 
         $sizeData = $data->only(['productID', 'size', 'stock']);
 

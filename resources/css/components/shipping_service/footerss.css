@@ -153,3 +153,8 @@ hr {
     display : flex;
     gap : 148px;
 }
+
+a:hover {
+    color: #D5BE9E;
+    text-decoration: none;
+}

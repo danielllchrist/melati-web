@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\customer;
 
+use App\Models\VoucherUsage;
 use Carbon\Carbon;
-use App\Models\Cart;
 use App\Models\Size;
 use App\Models\User;
 use App\Models\Address;
-use App\Models\Product;
 use App\Models\Regency;
 use App\Models\Voucher;
 use App\Models\District;
@@ -17,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -142,7 +142,6 @@ class OrderController extends Controller
 
     public function getRegencies($provinsi_id)
     {
-        // dd("jhvjbb");
         $regencies = Regency::where('province_id', $provinsi_id)->pluck('name', 'id');
         return response()->json(['regencies' => $regencies]);
     }
@@ -188,10 +187,39 @@ class OrderController extends Controller
         $transaction->voucherID = $request->selected_voucher_name;
         $transaction->paymentMethod = $request->payment;
         $transaction->save();
+        $id = $transaction->transactionID;
 
 
         $otp = rand(10000, 99999);
-        return view('customer.payment', compact('otp'));
+        return view('customer.payment', compact('otp', 'id'));
+    }
+
+    public function pay($transactionID){
+        $transaction = Transaction::find($transactionID);
+        $transaction->statusID = 1;
+        $transaction->save();
+        return response()->json(['success' => true]);
+    }
+
+    public function cancel($transactionID){
+        $transaction = Transaction::find($transactionID);
+        $transaction->statusID = 6;
+        $transaction->save();
+        // get all transaction detail, foreach all transaction detail and find size and add stock to size
+        $items = TransactionDetail::where('transactionID', $transactionID)->get();
+        foreach ($items as $item) {
+            $size = Size::find($item->sizeID);
+            $size->stock += $item->quantity;
+            $size->save();
+        }
+        // remove the entry on the voucher usage table
+        $userID = Auth::id();
+        $voucherUsage = VoucherUsage::where('voucherID', $transaction->voucherID)
+                                    ->where('userID',  $userID)->first();
+        if ($voucherUsage) {
+            $voucherUsage->delete();
+        }
+        return redirect()->route('CustomerDetailOrder', ['orderID' => $transactionID]);
     }
 
     public function myorder()
