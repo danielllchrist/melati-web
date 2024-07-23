@@ -16,22 +16,26 @@ class WishListSeeder extends Seeder
      */
     public function run(): void
     {
+        $users = User::all();
         $faker = Faker::create('id_ID');
-        for ($i = 0; $i < 100; $i++) {
-            $userID = User::all()->random()->userID;
-            $productID = Product::all()->random()->productID;
+        foreach ($users as $user) {
+            for ($i = 0; $i < 3; $i++) {
+                $productID = Product::all()->random()->productID;
 
-            $existingWishlist = DB::table('wishlists')->where('userID', $userID)->where('productID', $productID)->first();
+                // Cek apakah kombinasi userID dan productID sudah ada
+                $existingWishlist = DB::table('wishlists')->where('userID', $user->userID)->where('productID', $productID)->first();
 
-            if (!$existingWishlist) {
-                DB::table('wishlists')->insert([
-                    'userID' => $userID,
-                    'productID' => $productID,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ]);
-            } else {
-                $i--;
+                if (!$existingWishlist) {
+                    DB::table('wishlists')->insert([
+                        'userID' => $user->userID,
+                        'productID' => $productID,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ]);
+                } else {
+                    // Jika kombinasi userID dan productID sudah ada, kurangi nilai loop dan lanjutkan
+                    $i--;
+                }
             }
         }
     }
