@@ -206,7 +206,7 @@ class OrderController extends Controller
         $orders4 = Transaction::with('transactionDetail')->where('statusID', '5')->get();
         $orders5 = Transaction::with('transactionDetail')->where('statusID', "6")->get();
         $orders6 = Transaction::with('transactionDetail')->where('statusID', "7")->get();
-
+        
         // Ubah status transaksi dalam orders3 jika updated_at lebih dari 2 hari yang lalu
         // dd($orders3);
         foreach ($orders3 as $order) {

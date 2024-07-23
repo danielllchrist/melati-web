@@ -20,12 +20,18 @@ class RoomChat extends Model
 
     protected $fillable = [
         'userID',
+        'adminID',
         'lastChatID',
     ];
 
     public $incrementing = false;
 
     public function user()
+    {
+        return $this->belongsTo(User::class, 'userID', 'userID');
+    }
+
+    public function admin()
     {
         return $this->belongsTo(User::class, 'userID', 'userID');
     }

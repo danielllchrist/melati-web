@@ -20,20 +20,26 @@ class Chat extends Model
     protected $guarded = ['chatID'];
 
     protected $fillable = [
-        'userID',
+        'senderID',
+        'receiverID',
         'message',
         'isImage',
     ];
 
     public $incrementing = false;
 
-    public function user()
+    public function sender()
     {
         return $this->belongsTo(User::class, 'userID', 'userID');
     }
 
-    // public function lastChat()
-    // {
-    //     return $this->hasOne(LastChat::class, 'chatID', 'chatID');
-    // }
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'userID', 'userID');
+    }
+
+    public function lastChat()
+    {
+        return $this->hasOne(LastChat::class, 'chatID', 'chatID');
+    }
 }
