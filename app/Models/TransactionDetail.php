@@ -13,13 +13,13 @@ class TransactionDetail extends Model
 
     protected $table = 'transaction_details';
 
-    protected $primaryKey = ['transactionID', 'productID'];
+    protected $primaryKey = ['transactionID', 'sizeID'];
 
     protected $keyType = 'string';
 
     protected $fillable = [
         'transactionID',
-        'sizeID',
+        'productID',
         'quantity',
         'price',
         'weight',
