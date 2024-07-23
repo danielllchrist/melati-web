@@ -5,7 +5,6 @@ body{
 .carousel-product-link{
     text-decoration: none;
     font-weight: bold !important;
-
 }
 
 .flex-row{
@@ -27,7 +26,6 @@ body{
     height: 620px;
     overflow: hidden;
     position: relative;
-
 }
 
 .carousel-item img {
@@ -114,6 +112,7 @@ body{
     letter-spacing: 2px;
     font-family: Poppins;
     color: #F0F1E4;
+    position: relative;
 }
 
 .recommendation-button{
@@ -131,7 +130,14 @@ body{
 .active-recommendation{
     width: 100%;
     height: 2px;
-    background-color: #8C8686;
+    border-bottom: 2px solid #D5BE9E;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.recommendation.active {
+    color: #D5BE9E; /* Warna font untuk tab aktif */
 }
 
 .card-wrapper{
@@ -186,7 +192,6 @@ body{
 
 a .buttons:hover {
     text-decoration: none;
-
 }
 
 #button-mix-and-match-wrapper {
@@ -239,4 +244,12 @@ a .buttons:hover {
 
 #button-belanja {
     width: 200px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: flex;
 }
