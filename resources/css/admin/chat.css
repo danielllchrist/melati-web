@@ -287,3 +287,8 @@ body{
     word-wrap: break-word; 
     max-width: 92%;
 }
+
+.no-chat{
+    text-align: center;
+    color: #4F290C;
+}

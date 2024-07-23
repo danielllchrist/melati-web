@@ -20,6 +20,9 @@ use App\Http\Controllers\customer\ReturnController as CustomerReturnController;
 use App\Http\Controllers\customer\ProductController as CustomerProductController;
 use App\Http\Controllers\customer\WishlistController as CustomerWishlistController;
 use App\Http\Controllers\shipping_service\OrderController as ShippingServiceOrderController;
+use App\Livewire\AdminChat;
+use App\Livewire\Chat;
+use App\Livewire\CustomerChat;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,9 +101,11 @@ Route::middleware(['customer'])->group(function () {
     Route::controller(CustomerWishlistController::class)->group(function () {
         Route::get('/favorit', 'productWish')->name('CustomerWishlist');
     });
-    Route::controller(CustomerChatController::class)->group(function () {
-        Route::get('/obrolan', 'chat')->name('CustomerChat');
-    });
+    // Route::controller(CustomerChat::class)->group(function () {
+    //     Route::get('/obrolan', 'chat')->name('CustomerChat');
+    // });
+    Route::get('/obrolan', CustomerChat::class)->name("CustomerChat");
+
     Route::controller(CustomerOrderController::class)->group(function () {
         Route::get('/pesanan-saya', 'myorder')->name('CustomerMyOrder');
         Route::get('/pesanan-saya/{orderID}', 'detail_myorder')->name('CustomerDetailOrder');
@@ -152,9 +157,11 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
         Route::post('/produk/simpan_ukuran/{id}', 'storesize')->name('StoreSize');
     });
     Route::resource('/produk', AdminProductController::class);
-    Route::controller(AdminChatController::class)->group(function () {
-        Route::get('/obrolan', 'chat')->name('AdminChat');
-    });
+    // Route::controller(AdminChatController::class)->group(function () {
+    //     Route::get('/obrolan', 'chat')->name('AdminChat');
+    // });
+    Route::get('/obrolan', AdminChat::class)->name("AdminChat");
+
     Route::controller(AdminOrderController::class)->group(function () {
         Route::get('/pesanan', 'index')->name('AdminStatus');
         Route::get('/pesanan/{orderID}', 'orderdetail')->name('AdminOrder');

@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->foreignUuid('chatID')->primary()->nullable(false);
-            $table->foreignUuid('userID')->nullable(false);
+            $table->foreignUuid('senderID')->nullable(false);
+            $table->foreignUuid('receiverID')->nullable(false);
             $table->text('message')->nullable(false);
             $table->boolean('isImage')->default(false)->nullable(false);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('userID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('senderID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('receiverID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

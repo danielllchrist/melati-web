@@ -23,23 +23,23 @@ class LastChat extends Model
         // chat gada di ERD dan migrations
         'chatID',
         'lastMessage',
-        'lastSentUserID',
+        'lastUserID',
     ];
 
     public $incrementing = false;
 
-    // public function chat()
-    // {
-    //     return $this->belongsTo(Chat::class, 'chatID', 'chatID');
-    // }
-
-    public function roomChat()
+    public function chat()
     {
-        return $this->hasOne(RoomChat::class, 'lastChatID', 'lastChatID');
+        return $this->belongsTo(Chat::class, 'chatID', 'chatID');
     }
+
+    // public function roomChat()
+    // {
+    //     return $this->hasOne(RoomChat::class, 'lastChatID', 'lastChatID');
+    // }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'lastSentUserID', 'userID');
+        return $this->belongsTo(User::class, 'lastUserID', 'userID');
     }
 }

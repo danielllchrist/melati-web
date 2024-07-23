@@ -43,7 +43,15 @@ class User extends Authenticatable
         return $this->hasMany(Address::class, 'userID', 'userID');
     }
 
-    public function chat()
+    // public function chat()
+    // {
+    //     return $this->hasMany(Chat::class, 'userID', 'userID');
+    // }
+    public function sender()
+    {
+        return $this->hasMany(Chat::class, 'userID', 'userID');
+    }
+    public function receiver()
     {
         return $this->hasMany(Chat::class, 'userID', 'userID');
     }
@@ -70,7 +78,7 @@ class User extends Authenticatable
 
     public function lastChat()
     {
-        return $this->hasMany(LastChat::class, 'lastSentUserID', 'userID');
+        return $this->hasMany(LastChat::class, 'lastUserID', 'userID');
     }
 
     // asumsi user hanya punya satu roomchat, dan 1 roomchat hanya dimiliki oleh satu user

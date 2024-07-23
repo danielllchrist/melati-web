@@ -47,7 +47,8 @@
 
                         <div id="order-list1" class="order-list">
                             @forelse ($orders1 as $order)
-                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}"
+                                    class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
@@ -87,7 +88,8 @@
 
                         <div id="order-list2" class="order-list" style="display: none;">
                             @forelse ($orders2 as $order)
-                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}"
+                                    class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
@@ -100,8 +102,7 @@
                                         @foreach ($order->transactionDetail as $detail)
                                             <div class="ps-order-detail">
                                                 <div class="ps-picture">
-                                                    <img src="\assets\top2.png" class="ps-picture-img"
-                                                        alt="">
+                                                    <img src="\assets\top2.png" class="ps-picture-img" alt="">
                                                     <div class="ps-picture-text">
                                                         <h2 class="name">{{ $detail->product->productName }}</h2>
                                                         <p>Size: {{ $detail->size->size }}</p>
@@ -128,7 +129,8 @@
 
                         <div id="order-list3" class="order-list" style="display: none;">
                             @forelse ($orders3 as $order)
-                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}"
+                                    class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
@@ -169,7 +171,8 @@
 
                         <div id="order-list4" class="order-list" style="display: none;">
                             @forelse ($orders4 as $order)
-                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}"
+                                    class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
@@ -210,14 +213,16 @@
 
                         <div id="order-list5" class="order-list" style="display: none;">
                             @forelse ($orders5 as $order)
-                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}" class="ps-order-wrap">
+                                <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}"
+                                    class="ps-order-wrap">
                                     <div class="ps-order">
                                         <div class="ps-status-order">
                                             <h3>Pesanan #{{ $order->transactionID }}</h3>
                                             <div class="ps-info">
                                                 <img src="\assets\information_green_button.svg" alt="info"
                                                     class="i">
-                                                <div class="menunggu-konfirmasi" id="batal">{{ $order->status->statusName }}
+                                                <div class="menunggu-konfirmasi" id="batal">
+                                                    {{ $order->status->statusName }}
                                                 </div>
                                             </div>
                                         </div>
@@ -263,6 +268,46 @@
                                 </div>
                             </form>
                         </div>
+                    </div>
+                    <div id="order-list1" class="order-list pengembalian">
+                        @forelse ($orders6 as $order)
+                            <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}"
+                                class="ps-order-wrap">
+                                <div class="ps-order">
+                                    <div class="ps-status-order">
+                                        <h3>Pesanan #{{ $order->transactionID }}</h3>
+                                        <div class="ps-info">
+                                            <img src="\assets\information_green_button.svg" alt="info"
+                                                class="i">
+                                            <div id="batal" class="menunggu-konfirmasi">{{ $order->status->statusName }}</div>
+                                        </div>
+                                    </div>
+                                    @foreach ($order->transactionDetail as $detail)
+                                        <div class="ps-order-detail">
+                                            <div class="ps-picture">
+                                                <img src="\assets\top2.png" class="ps-picture-img" alt="">
+                                                <div class="ps-picture-text">
+                                                    <h2 class="name">{{ $detail->product->productName }}</h2>
+                                                    <p>Ukuran: {{ $detail->size->size }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="ps-total">
+                                                <p>x{{ $detail->quantity }}</p>
+                                                <p class="fw-bold">Rp. {{ $detail->price }}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <div class="ps-total-order">
+                                        <p>Total Pesanan :</p>
+                                        <h3>Rp. {{ $order->totalPrice }}</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        @empty
+                            <div class="ps-order">
+                                No Order Yet
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
