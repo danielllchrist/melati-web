@@ -140,3 +140,12 @@ hr {
     border-top: 1px solid;
   }
 
+  a {
+    color: #D5BE9E;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #D5BE9E;
+    text-decoration: none;
+}

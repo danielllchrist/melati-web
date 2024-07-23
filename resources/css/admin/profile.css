@@ -261,10 +261,8 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-/* 
-.pf-keluar
-{
-    display : flex;
-    flex-direction: column;
-    gap : 40px;
-} */
+.pf-logout-btn:hover{
+    background-color: #d5be9e;
+    color: #4f290c;
+    text-decoration: none;
+}

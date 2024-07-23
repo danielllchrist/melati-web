@@ -13,17 +13,15 @@ return new class extends Migration
     {
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->foreignId('transactionID');
-            $table->foreignUuid('productID')->nullable(false);
             $table->foreignUuid('sizeID')->nullable(false);
             $table->integer('quantity')->nullable(false);
             $table->integer('price')->nullable(false);
             $table->integer('weight')->nullable(false);
             $table->timestamps();
-            $table->primary(['productID', 'transactionID']);
+            $table->primary(['sizeID', 'transactionID']);
             $table->softDeletes();
 
             $table->foreign('transactionID')->references('transactionID')->on('transactions');
-            $table->foreign('productID')->references('productID')->on('products');
             $table->foreign('sizeID')->references('sizeID')->on('sizes');
         });
     }

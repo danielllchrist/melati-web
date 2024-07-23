@@ -259,3 +259,9 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.pf-logout-btn:hover{
+    background-color: #d5be9e;
+    color: #4f290c;
+    text-decoration: none;
+}
