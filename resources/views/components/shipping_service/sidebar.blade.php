@@ -20,9 +20,9 @@
                 <div class="sidebar-menu">
                     <a href="{{ route('ShippingServiceProfile') }}"><h2 class="menu">Akun</h2></a>
                     <ul class="spacing-sidebarmenu">
-                        <li><a href="#profil">Profil</a></li>
-                        <li><a href="#ganti_password">Ganti Kata Sandi</a></li>
-                        <li><a href="#keluar">Keluar</a></li>
+                        <li><a href="{{ route('ShippingServiceProfile') }}#profil">Profil</a></li>
+                        <li><a href="{{ route('ShippingServiceProfile') }}#ganti_password">Ganti Kata Sandi</a></li>
+                        <li><a href="{{ route('ShippingServiceProfile') }}#keluar">Keluar</a></li>
                     </ul>
                 </div>
             </div>

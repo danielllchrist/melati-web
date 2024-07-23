@@ -57,6 +57,11 @@ class Product extends Model
         return $this->hasMany(ManageLink::class, 'productID', 'productID');
     }
 
+    public function transactionDetail()
+    {
+        return $this->hasMany(TransactionDetail::class, 'productID', 'productID');
+    }
+
     public function review()
     {
         return $this->hasMany(Review::class, 'productID', 'productID');
