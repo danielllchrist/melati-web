@@ -139,7 +139,7 @@
 
         // $(document).ready(function() {
         //     $('.size-select').change(function() {
-        //         let sizeID = $(this).val(); 
+        //         let sizeID = $(this).val();
         //         let oldsizeID = productElement.dataset.sizeid;
         //         // Kirim request ke server menggunakan Ajax
         //         $.ajax({

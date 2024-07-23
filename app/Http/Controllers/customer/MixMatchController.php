@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\customer;
 
+use App\Models\Cart;
+use App\Models\Size;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class MixMatchController extends Controller
@@ -28,11 +33,34 @@ class MixMatchController extends Controller
 
     public function addCart(Request $request)
     {
-        // ada paramater ID Product nanti disini create cart baru
-        dd($request);
+
+        // dd($request->all());
+        $userID = Auth::id();
+        // foreach the request attr
+        foreach ($request->all() as $key => $value) {
+            // if the key is not _token
+            if ($key != '_token') {
+                $size = Size::where('productID', $value)->first();
+                if ($size == null) {
+                    // dd(['message' => "produk gada cok", 'value' => $value]);
+                }
+                $quantity = 1;
+                // check if the stock of the products is still viable
+                if ($request->size) {
+                    $stock = $size->stock;
+                    if ($stock < $quantity) {
+                        return redirect()->back()->with('error', 'Stok Produk tidak mencukup untuk jumlah yang diinginkan');
+                    }
+                }
+
+                // create new cart
+                $insertQuery = "INSERT INTO `carts` (`userID`, `sizeID`, `quantity`) VALUES (?, ?, ?)";
+                DB::insert($insertQuery, [$userID, $size->sizeID, $quantity]);
+            }
+        }
 
         // redirect to cart page
-        return redirect()->route('CustomerCart')->with('success', 'Produk berhasil dimasukkan ke keranjang  ');;
+        return redirect()->route('CustomerCart')->with('success', 'Produk berhasil dimasukkan ke keranjang');
     }
 
     public function searchProductAjax($category)
@@ -49,31 +77,24 @@ class MixMatchController extends Controller
     public function getProductAjax($card)
     {
         $count = 0;
-        if($card == 1){
-        $products = Product::where('productName', 'like', '%Produk 1%')->get();
-        $count = 1;
-        }
-        else if($card == 2){
+        if ($card == 1) {
+            $products = Product::where('productName', 'like', '%Produk 1%')->get();
+            $count = 1;
+        } else if ($card == 2) {
 
-        $products = Product::where('productName', 'like', '%Produk 2%')->get();
-        $count = 2;
-        }
-        else if($card == 3){
+            $products = Product::where('productName', 'like', '%Produk 2%')->get();
+            $count = 2;
+        } else if ($card == 3) {
 
-        $products = Product::where('productName', 'like', '%Produk 3%')->get();
-        $count = 3;
-        }
-        else if($card == 4){
-            $products = Product::where('productName', 'like', '%Produk 4%')->
-            get();
+            $products = Product::where('productName', 'like', '%Produk 3%')->get();
+            $count = 3;
+        } else if ($card == 4) {
+            $products = Product::where('productName', 'like', '%Produk 4%')->get();
             $count = 4;
-        }
-        else if($card == 5){
-            $products = Product::where('productName', 'like', '%Produk 5%')->
-            get();
+        } else if ($card == 5) {
+            $products = Product::where('productName', 'like', '%Produk 5%')->get();
             $count = 5;
-
-        }else{
+        } else {
             dd($card);
         }
 
