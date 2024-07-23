@@ -35,7 +35,6 @@ class DatabaseSeeder extends Seeder
             CartSeeder::class,
             WishListSeeder::class,
             ManageAssetSeeder::class,
-            ManageLinkSeeder::class,
             ReturnOrderSeeder::class,
         ]);
     }

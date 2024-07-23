@@ -14,16 +14,17 @@ class VoucherSeeder extends Seeder
      */
     public function run(): void
     {
+        $voucherName = ['Gratis Ongkir', 'Promo Hari Batik Nasional', 'Diskon Rp 10,000.00', 'Diskon Pengguna Setia', 'Promo Batik Lovers'];
         $faker = Faker::create('id_ID');
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 5; $i++) {
             DB::table('vouchers')->insert([
                 'voucherID' => $faker->uuid,
-                'voucherName' => $faker->word,
-                'voucherNominal' => $faker->numberBetween(1000, 100000),
-                'startDate' => $faker->date,
-                'expiredDate' => $faker->date,
-                'minimumSpending' => $faker->numberBetween(1000, 100000),
-                'voucherQuantity' => $faker->numberBetween(100, 1000),
+                'voucherName' => $voucherName[$i],
+                'voucherNominal' => 10000,
+                'startDate' => $faker->dateTimeBetween('2024-01-01', '2024-03-31')->format('Y-m-d'),
+                'expiredDate' => $faker->dateTimeBetween('2024-10-01', '2024-12-31')->format('Y-m-d'),
+                'minimumSpending' => 100000,
+                'voucherQuantity' => 1000,
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);

@@ -177,7 +177,7 @@ a{
     width: 8.5%;
     /* height: 60%; */
     object-fit: cover;
-    margin-bottom: 30px;    
+    margin-bottom: 30px;
 }
 
 .rate-btn {
@@ -297,6 +297,12 @@ a{
     text-decoration: none;
 }
 
+.btn-wrapper a:hover{
+    text-decoration: none;
+    color: #4F290C;
+    background-color: #D5BE9E;
+}
+
 .button {
     display: flex;
     justify-content: center;
@@ -308,4 +314,4 @@ a{
     background-color: #D5BE9E;
     padding: 5px 25px;
     border-radius: 20px;
-}  
+}

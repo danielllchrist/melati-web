@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Regency;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,20 +19,20 @@ class AddressSeeder extends Seeder
      */
     public function run(): void
     {
+        $users = User::all();
         $faker = Faker::create('id_ID');
-        for ($i=0; $i < 10; $i++) {
+        foreach ($users as $user) {
             DB::table('addresses')->insert([
                 'addressID' => $faker->uuid,
-                // 'userID' => User::all()->random()->userID,
-                'userID' => '01ee9554-9e84-367d-96ec-bf2a25b4cb3e',
-                'nameAddress' => $faker->randomElement(['Rumah', 'Kantor', 'Apartment']),
-                'receiver' => $faker->name,
-                'phoneNum' => $faker->phoneNumber,
+                'userID' => $user->userID,
+                'nameAddress' => $faker->randomElement(['Rumah', 'Apartment', 'Ruko', 'Kantor', 'Toko']),
+                'receiver' => $user->name,
+                'phoneNum' => $user->phoneNum,
                 'detailAddress' => $faker->address,
-                'ward' => $faker->streetName,
-                'cityOrRegency' => $faker->city,
-                'province' => $faker->state,
-                'description' => $faker->text(),
+                'ward' => 3201140,
+                'cityOrRegency' => 3201,
+                'province' => 32,
+                'description' => $faker->randomElement(['Awas ada anjing galak!', 'Rumahnya dekat ujung gang ya kak.', 'Titip di pos satpam.']),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
