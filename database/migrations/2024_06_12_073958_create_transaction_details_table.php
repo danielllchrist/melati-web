@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('price')->nullable(false);
             $table->integer('weight')->nullable(false);
             $table->timestamps();
-            $table->primary(['productID', 'transactionID']);
+            $table->primary(['sizeID', 'transactionID']);
             $table->softDeletes();
 
             $table->foreign('transactionID')->references('transactionID')->on('transactions');

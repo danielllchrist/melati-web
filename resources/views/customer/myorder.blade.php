@@ -269,7 +269,7 @@
                             </form>
                         </div>
                     </div>
-                    <div id="order-list1" class="order-list pengembalian">
+                    <div id="order-list-pengembalian" class="order-list pengembalian">
                         @forelse ($orders6 as $order)
                             <a href="{{ route('CustomerDetailOrder', $order->transactionID) }}"
                                 class="ps-order-wrap">
@@ -279,7 +279,8 @@
                                         <div class="ps-info">
                                             <img src="\assets\information_green_button.svg" alt="info"
                                                 class="i">
-                                            <div id="batal" class="menunggu-konfirmasi">{{ $order->status->statusName }}</div>
+                                            <div id="batal" class="menunggu-konfirmasi">
+                                                {{ $order->status->statusName }}</div>
                                         </div>
                                     </div>
                                     @foreach ($order->transactionDetail as $detail)
@@ -321,7 +322,12 @@
             const orderLists = document.querySelectorAll('.order-list');
 
             links.forEach(link => link.classList.remove('active-menus'));
-            orderLists.forEach(list => list.style.display = 'none');
+            orderLists.forEach(list => {
+                // Hanya sembunyikan elemen yang bukan 'pengembalian'
+                if (!list.classList.contains('pengembalian')) {
+                    list.style.display = 'none';
+                }
+            });
 
             event.currentTarget.classList.add('active-menus');
             document.getElementById(listId).style.display = 'block';
