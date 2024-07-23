@@ -42,6 +42,11 @@ class TransactionDetail extends Model
         return $this->belongsTo(Transaction::class, 'transactionID', 'transactionID');
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'productID', 'productID');
+    }
+
     public function size()
     {
         return $this->belongsTo(Size::class, 'sizeID', 'sizeID');
