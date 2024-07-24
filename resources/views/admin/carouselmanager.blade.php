@@ -16,8 +16,8 @@
     <div class="page-title">
         <div class="title-wrapper">
             <div class="title">
-                <img src="\assets\dummy-img\back arrow.svg" alt="">
-                <h1>Atur Promosi</h1>
+                <a href="{{url()->previous()}}"><img src="\assets\dummy-img\back arrow.svg" alt=""></a>
+            <h1>Atur Promosi</h1>
             </div>
         </div>
     </div>

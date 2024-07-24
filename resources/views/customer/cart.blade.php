@@ -45,7 +45,8 @@
                     <div class="product" data-sizeid="{{ $cart->sizeID }}"
                         data-price="{{ $cart->size->product->productPrice }}"
                         data-productstock="{{ $cart->size->stock }}">
-                        <img id="productimg" src="{{ asset('assets/perfume.svg') }}">
+                        <img id="productimg"
+                            src="{{ Storage::url(json_decode($cart->size->product->productPicturePath)[0]) }}">
                         <div class="wraps">
                             <h1>{{ $cart->size->product->productName }}</h1>
                             <h2>Rp {{ number_format($cart->size->product->productPrice, 0, ',', '.') }}</h2>

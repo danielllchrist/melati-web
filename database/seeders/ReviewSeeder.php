@@ -8,6 +8,7 @@ use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ReviewSeeder extends Seeder
@@ -24,16 +25,22 @@ class ReviewSeeder extends Seeder
         foreach ($transactionToReview as $transaction) {
             $transactionDetail = TransactionDetail::where('transactionID', $transaction->transactionID)->get();
             foreach ($transactionDetail as $detail) {
-                $review = $faker->text(100);
-                $rating = $faker->numberBetween(1, 5);
-                DB::table('reviews')->insert([
-                    'transactionDetailID' => $detail->transactionID,
-                    'productID' => $detail->productID,
-                    'review' => $review,
-                    'rating' => $rating,
-                    'created_at' => $faker->dateTime,
-                    'updated_at' => $faker->dateTime,
-                ]);
+                $existingReview = DB::table('reviews')->where('productID', $detail->productID)->where('transactionID', $detail->transactionID)->first();
+                if (!$existingReview) {
+                    $comment = $faker->text(100);
+                    $rating = $faker->numberBetween(1, 5);
+                    DB::table('reviews')->insert([
+                        'productID' => $detail->productID,
+                        'transactionID' => $detail->transactionID,
+                        'rating' => $rating,
+                        'comment' => $comment,
+                        'created_at' => $faker->dateTime,
+                        'updated_at' => $faker->dateTime,
+                    ]);
+                }
+                else{
+                    Log::info('duplikat');
+                }
             }
         }
     }

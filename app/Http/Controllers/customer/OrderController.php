@@ -28,10 +28,10 @@ class OrderController extends Controller
         // get item from transaction details
         $items = TransactionDetail::where('transactionID', $transactionID)->get();
 
-        $vouchers[] = null;
+        $vouchers = null;
         // make a collection vouchers based on user
         foreach ($user->voucherUsage as $v) {
-            $vouchers = $v->voucher;
+            $vouchers[] = $v->voucher;
         }
 
         $targetVoucher = null;
@@ -59,6 +59,7 @@ class OrderController extends Controller
         // get transaction data
         $transaction = Transaction::find($transactionID);
         $transaction->userID = $user->userID;
+
         // Status ID di set pas udah bayar
         $transaction->totalWeight = $totalWeight;
         $transaction->subTotalPrice = $subtotal;
@@ -71,7 +72,9 @@ class OrderController extends Controller
         $regencies = Regency::all();
         $districts = District::all();
 
-        return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'targetVoucher', 'transaction', 'latestAddress'));
+        $tempTotalPrice = null;
+
+        return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'targetVoucher', 'transaction', 'latestAddress', 'tempTotalPrice'));
     }
 
     public function addAddress(Request $request)
@@ -93,10 +96,10 @@ class OrderController extends Controller
         // get item from transaction details
         $items = TransactionDetail::where('transactionID', $transactionID)->get();
 
-        $vouchers[] = null;
+        $vouchers = null;
         // make a collection vouchers based on user
         foreach ($user->voucherUsage as $v) {
-            $vouchers = $v->voucher;
+            $vouchers[] = $v->voucher;
         }
         $targetVoucher = null;
 
@@ -121,15 +124,15 @@ class OrderController extends Controller
         $total = $subtotal + $shipping;
 
         $targetVoucher = null;
-        // if user didn't choose any vouchers / if targetVoucher is not selected, send erro
+        // if user didn't choose any vouchers / if targetVoucher is not selected
         if ($voucherID == 'null') {
-            return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'transaction', 'targetVoucher', 'latestAddress'));
+            return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'transaction', 'targetVoucher', 'latestAddress', 'tempTotalPrice'))->with('Error');
         }
 
         $targetVoucher = Voucher::where('voucherID', $voucherID)->first();
         $transaction->voucherID = $voucherID;
         $transaction->totalDiscount = $targetVoucher->voucherNominal;
-        $transaction->totalPrice -= $targetVoucher->voucherNominal;
+        $tempTotalPrice = $transaction->totalPrice - $targetVoucher->voucherNominal;
         $transaction->save();
 
         // ambil pilihan alamat
@@ -137,7 +140,7 @@ class OrderController extends Controller
         $regencies = Regency::all();
         $districts = District::all();
 
-        return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'transaction', 'targetVoucher', 'latestAddress'));
+        return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'transaction', 'targetVoucher', 'latestAddress', 'tempTotalPrice'));
     }
 
     public function getRegencies($provinsi_id)
@@ -152,7 +155,7 @@ class OrderController extends Controller
         return response()->json(['districts' => $districts]);
     }
 
-    public function payment(Request $request, $transactionID)
+    public function payment(Request $request, $transactionID, $tempTotalPrice = 0)
     {
         // jika user ga pilih alamat, maka pilih alamat paling pertama
         if ($request->selected_address == null) {
@@ -164,6 +167,10 @@ class OrderController extends Controller
 
         // cari transaction
         $transaction = Transaction::find($transactionID);
+
+        if ($tempTotalPrice) {
+            $transaction->totalPrice = $tempTotalPrice;
+        }
         // for each sizeID in cart, decrease the stock of table sizes in database based on the quantity of products bought, if the stock is less than 0, give error
         foreach ($items as $item) {
             $size = Size::find($item->sizeID);
@@ -183,7 +190,11 @@ class OrderController extends Controller
 
 
         // update transaction
-        $transaction->addressID = $request->selected_address;
+        if (!$request->selected_address) {
+            $transaction->addressID = Auth::user()->address->first()->addressID;
+        } else {
+            $transaction->addressID = $request->selected_address;
+        }
         $transaction->voucherID = $request->selected_voucher_name;
         $transaction->paymentMethod = $request->payment;
         $transaction->save();
@@ -194,14 +205,16 @@ class OrderController extends Controller
         return view('customer.payment', compact('otp', 'id'));
     }
 
-    public function pay($transactionID){
+    public function pay($transactionID)
+    {
         $transaction = Transaction::find($transactionID);
         $transaction->statusID = 1;
         $transaction->save();
         return response()->json(['success' => true]);
     }
 
-    public function cancel($transactionID){
+    public function cancel($transactionID)
+    {
         $transaction = Transaction::find($transactionID);
         $transaction->statusID = 6;
         $transaction->save();
@@ -215,7 +228,7 @@ class OrderController extends Controller
         // remove the entry on the voucher usage table
         $userID = Auth::id();
         $voucherUsage = VoucherUsage::where('voucherID', $transaction->voucherID)
-                                    ->where('userID',  $userID)->first();
+            ->where('userID',  $userID)->first();
         if ($voucherUsage) {
             $voucherUsage->delete();
         }
@@ -234,7 +247,7 @@ class OrderController extends Controller
         $orders4 = Transaction::with('transactionDetail')->where('statusID', '5')->get();
         $orders5 = Transaction::with('transactionDetail')->where('statusID', "6")->get();
         $orders6 = Transaction::with('transactionDetail')->where('statusID', "7")->get();
-        
+
         // Ubah status transaksi dalam orders3 jika updated_at lebih dari 2 hari yang lalu
         // dd($orders3);
         foreach ($orders3 as $order) {
