@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
-{   
+{
     public function view()
     {
         return response()->view('customer.cart');
@@ -34,7 +34,7 @@ class CartController extends Controller
             return $cart->size->product->productPrice * $cart->quantity;
         });
 
-        return view('customer.cart', compact('carts', 'total', 'sizes','addressExists'));
+        return view('customer.cart', compact('carts', 'total', 'sizes', 'addressExists'));
     }
     /**
      * Show the form for creating a new resource.
@@ -85,10 +85,10 @@ class CartController extends Controller
             // Mengambil data sizeID baru dari request
             $newSizeID = $request->input('newSizeID');
             $newQuantity = $request->input('quantity');
-            
+
             Log::info('New Size ID: ' . $newSizeID);
             Log::info('New Quantity: ' . $newQuantity);
-            
+
             if ($newQuantity) {
                 Log::info("Updating quantity");
                 if ($newQuantity <= 0) {
@@ -96,20 +96,19 @@ class CartController extends Controller
                 }
                 $cart->quantity = $newQuantity;
             }
-            
+
             if ($newSizeID) {
                 Log::info("Updating size");
                 $cart->sizeID = $newSizeID;
             }
-            
+
             $cart->save();
             Log::info($cart);
-        
+
             return response()->json(['success' => true, 'message' => 'Cart updated successfully']);
         } else {
             return response()->json(['success' => false, 'message' => 'Cart not found'], 404);
         }
-        
     }
 
     public function store(Request $request)
@@ -124,7 +123,7 @@ class CartController extends Controller
             }
             $products = $request->input('products');
             $totalPrice = $request->input('totalPrice');
-            
+
             // Validasi data
             // $request->validate([
             //     'products' => 'required|array',
@@ -134,18 +133,18 @@ class CartController extends Controller
             //     'totalPrice' => 'required|numeric|min:0'
             // ]);
 
+            $count = Transaction::count();
+
             // Buat transaksi baru
             $transaction = new Transaction();
 
             $transaction->userID = $userId;
             $transaction->subTotalPrice = $totalPrice;
-            $transaction->statusID = 1; // Sesuaikan dengan status transaksi yang sesuai
-
-            $lastTransaction = Transaction::latest()->first();
+            $transaction->statusID = 1;
 
             // Jika transaksi terakhir ada, lanjutkan dengan $transaction->transactionID
-            if ($lastTransaction) {
-                $transaction->transactionID = $lastTransaction->transactionID + 1;
+            if ($count > 0) {
+                $transaction->transactionID = $count + 1;
                 $transaction->save();
             } else {
                 // Jika tidak ada transaksi sebelumnya, atur transactionID menjadi 1
@@ -158,7 +157,8 @@ class CartController extends Controller
             // Buat detail transaksi untuk setiap item di keranjang
             foreach ($products as $product) {
                 $transactionDetail = new TransactionDetail();
-                $transactionDetail->transactionID = $transactionId; // Gunakan $transactionId yang telah diperoleh
+                $transactionDetail->transactionID = $transaction->transactionID;
+                // $transactionDetail->transactionID = $transactionId; // Gunakan $transactionId yang telah diperoleh
                 $transactionDetail->sizeID = $product['sizeID'];
 
                 // Ambil productID berdasarkan sizeID dari tabel sizes
@@ -173,12 +173,12 @@ class CartController extends Controller
                     if ($productInfo) {
                         // Kurangi stok produk
                         $newStock = $size->stock - $product['quantity'];
-                        
+
                         // Pastikan stok tidak kurang dari 0
                         if ($newStock < 0) {
                             throw new \Exception('Stok produk ' . $productInfo->productName . ' tidak mencukupi.');
                         }
-                        
+
                         $size->stock = $newStock;
                         $size->save();
 
@@ -193,7 +193,7 @@ class CartController extends Controller
                     throw new \Exception('Ukuran tidak ditemukan.');
                 }
             }
-            
+
             // Hapus keranjang belanja setelah transaksi selesai
             Cart::where('userID', $userId)->delete();
 
@@ -204,5 +204,4 @@ class CartController extends Controller
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
         }
     }
-
 }

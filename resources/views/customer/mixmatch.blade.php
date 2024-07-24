@@ -61,9 +61,14 @@
         }
 
         .card-custom-text {
-            /* background-image: url('assets/backgroundCreatorsPick.png'); */
             padding: 10px 0;
             text-align: center;
+            transition: 0.5s all ease-in-out;
+        }
+
+        .card-custom-text a:hover{
+            box-shadow: 0 0 10px #F0F1E4;
+            color : #4f290c;
         }
 
         .card-custom-text>a {
@@ -73,10 +78,11 @@
             font-weight: 600;
             background-color: #d5be9e;
             display: inline-block;
-            padding: 5px 0;
+            padding: 5px 0; 
             font-weight: 600;
             border-radius: 5em;
             text-align: center;
+            transition: 0.3s all ease-in-out;
         }
 
         .carousel-inner {
@@ -832,26 +838,6 @@
 
                 var content = "";
 
-                // for (let i = 0; i < randNumber; i++) {
-                // if (data[i].wishlist) {
-                //     content += "<div class=\" catalog-item\"><a href=\"detail.html\"> <\
-                //         div class = \"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\"
-                //     alt = \"Catalog\"> <
-                //     div class = \"card-custom-body\"> <
-                //     p > Kamboja Kutubaru < /p> <
-                //     h3 > " +
-                //     rupiah(data[i].harga) +
-                //         "</h3> < /
-                //     div > <
-                //         /div> < /
-                //     a > < i class = \"fa fa-heart fa-2x heart-color\" id=\"wishlist-heart-" + data[i].id + "\"
-                //     onclick = \"wishlist(event, " + data[i].id + " )\"></i></div>";
-                // } else {
-                //     content +=
-                //         "<div class=\"catalog-item\"><a href=\"detail.html\"> <div class = \"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\"
-                //     alt = \"Catalog\"> <div class = \"card-custom-body\"> <p > Kamboja Kutubaru < /p> <h3> " + rupiah(data[i].harga) +"</h3> < /div > </div> </a> <i class = \"fa fa-heart-o fa-2x heart\" id=\"wishlist-heart-" + data[i].id + "\"onclick = \"wishlist(event, " + data[i].id + " )\"></i></div>";
-                // }
-
                 var i = 1;
                 cardDetail.forEach(function(item) {
                     if (item.wishlist) {
@@ -881,28 +867,6 @@
                 document.getElementById("content-catalog").innerHTML = content;
             }
         }
-
-        // function wishlist(event, id) {
-        //     event.preventDefault();
-
-        //     for (let i = 0; i < data.length; i++) {
-        //         if (data[i].id == id) {
-        //             data[i].wishlist = !data[i].wishlist;
-        //             if (data[i].wishlist) {
-        //                 document.getElementById("wishlist-heart-" + id).classList.remove("fa-heart-o");
-        //                 document.getElementById("wishlist-heart-" + id).classList.remove("heart");
-        //                 document.getElementById("wishlist-heart-" + id).classList.add("fa-heart");
-        //                 document.getElementById("wishlist-heart-" + id).classList.add("heart-color");
-        //             } else {
-        //                 document.getElementById("wishlist-heart-" + id).classList.remove("fa-heart");
-        //                 document.getElementById("wishlist-heart-" + id).classList.remove("heart-color");
-        //                 document.getElementById("wishlist-heart-" + id).classList.add("fa-heart-o");
-        //                 document.getElementById("wishlist-heart-" + id).classList.add("heart");
-        //             }
-        //             break;
-        //         }
-        //     }
-        // }
     </script>
 
     @include('components.customer.footercustomer')

@@ -18,7 +18,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
     <div class="main-content">
-        <form action="{{ route('prepayment', ['transactionID' => $transaction->transactionID]) }}" method = "post">
+        <form action="{{ route('prepayment', ['transactionID' => $transaction->transactionID, 'tempTotalPrice' => $tempTotalPrice]) }}" method = "post">
             @csrf
             <div class="atas">
                 <div class="nonactive active">
@@ -101,7 +101,7 @@
                             <p>Kartu Kredit</p>
                         </label>
                         <label class="square">
-                            <input type="radio" name="payment" value="Bank Transfer" required>
+                            <input type="radio" name="payment" value="Transfer Bank" required>
                             <p>Transfer Bank</p>
                         </label>
                         <label class="square">
@@ -116,7 +116,8 @@
                         <div class="content">
                             @forelse ($items as $i)
                                 <div class="product">
-                                    <img id="productimg" src="{{ asset('assets/perfume.svg') }}">
+                                    <img id="productimg"
+                                        src="{{ Storage::url(json_decode($i->size->product->productPicturePath)[0]) }}">
                                     <div class="wraps">
                                         <h1>{{ $i->size->product->productName }}</h1>
                                         {{-- {{dd($i->size->product->size)}} --}}
@@ -156,7 +157,7 @@
                         </div>
                         <div class="w1 brdr">
                             <h2>Total</h2>
-                            <h2>{{ 'Rp ' . number_format($transaction->totalPrice, 0, ',', '.') }}</h2>
+                            <h2>{{ 'Rp ' . number_format($tempTotalPrice ? $tempTotalPrice : $transaction->totalPrice, 0, ',', '.') }}</h2>
                         </div>
                     </div>
                     <div class="wrap3">

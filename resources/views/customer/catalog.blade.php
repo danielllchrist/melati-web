@@ -131,7 +131,8 @@
                             <a href="{{ route('ProductDetail', ['id' => $item->productID]) }}">
                                 <div class="card-custom" style="">
                                     <div class="image-container">
-                                        <img src="assets/kambojaKutubaru.png" class="card-custom-top" alt="Catalog">
+                                        <img src="{{ Storage::url(json_decode($item->productPicturePath)[0]) }}"
+                                            class="card-custom-top" alt="Catalog">
                                         @if (!Auth::check())
                                             <a href="{{ route('LogIn') }}"
                                                 style="text-decoration: none; background: none; border: none;">

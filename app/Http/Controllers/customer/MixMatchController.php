@@ -18,31 +18,37 @@ class MixMatchController extends Controller
     {
         $products = Product::latest()->take(5)->get();
         $atasan = Product::where('ProductCategory', 'Atasan')->get();
+        $atasan = Product::where('ProductCategory', 'Atasan')->get();
         $bawahan = Product::where('ProductCategory', 'Bawahan')->take(3)->get();
         $aksesoris = Product::where('ProductCategory', 'Aksesoris')->take(3)->get();
 
-        // get data from database where product name contains 'Product 1'
-        $card1 = Product::where('productName', 'like', '%Produk 1%')->get();
-        $card2 = Product::where('productName', 'like', '%Produk 2%')->get();
-        $card3 = Product::where('productName', 'like', '%Produk 3%')->get();
-        $card4 = Product::where('productName', 'like', '%Produk 4%')->get();
-        $card5 = Product::where('productName', 'like', '%Produk 5%')->get();
-
-        return response()->view('customer.mixmatch', compact('products', 'atasan', 'bawahan', 'aksesoris', 'card1', 'card2', 'card3', 'card4', 'card5'));
+        return response()->view('customer.mixmatch', compact('products', 'atasan', 'bawahan', 'aksesoris'));
     }
 
     public function addCart(Request $request)
     {
-
-        // dd($request->all());
         $userID = Auth::id();
         // foreach the request attr
         foreach ($request->all() as $key => $value) {
             // if the key is not _token
             if ($key != '_token') {
+                if($value == null){
+                    if($key == 'atasan'){
+                        $value = Product::where('productCategory', 'Atasan')->first()->productID;
+                    }
+                    else if ($key == 'bawahan'){
+                        $value = Product::where('productCategory', 'Bawahan')->first()->productID;
+                    }
+                    else if ($key == 'aksesoris'){
+                        $value = Product::where('productCategory', 'Aksesoris')->first()->productID;
+                    }
+                    else{
+                        dd("Error");
+                    }
+                }
                 $size = Size::where('productID', $value)->first();
                 if ($size == null) {
-                    // dd(['message' => "produk gada cok", 'value' => $value]);
+                    dd(['message' => "produk gada cok", 'value' => $value]);
                 }
                 $quantity = 1;
                 // check if the stock of the products is still viable
@@ -78,21 +84,33 @@ class MixMatchController extends Controller
     {
         $count = 0;
         if ($card == 1) {
-            $products = Product::where('productName', 'like', '%Produk 1%')->get();
+            $products = Product::where('productName', 'like', '%Kebaya Encim Sleeveless%')
+                ->orWhere('productName', 'like', '%Suar Obi Belt%')
+                ->get();
             $count = 1;
         } else if ($card == 2) {
-
-            $products = Product::where('productName', 'like', '%Produk 2%')->get();
+            $products = Product::where('productName', 'like', '%Obi Belt Kinasih%')
+                ->orWhere('productName', 'like', '%Gayatri Set Outer%')
+                ->orWhere('productName', 'like', '%Basic Inner Top%')
+                ->get();
             $count = 2;
         } else if ($card == 3) {
 
-            $products = Product::where('productName', 'like', '%Produk 3%')->get();
+            $products = Product::where('productName', 'like', '%Dama Kara Wide Pants%')
+                ->orWhere('productName', 'like', '%Gayatri Sweater%')
+                ->get();
+
             $count = 3;
         } else if ($card == 4) {
-            $products = Product::where('productName', 'like', '%Produk 4%')->get();
+            $products = Product::where('productName', 'like', '%Hanna Printed Sleeves%')
+                ->orWhere('productName', 'like', '%Brown HeavyPants%')
+                ->get();
+
             $count = 4;
         } else if ($card == 5) {
-            $products = Product::where('productName', 'like', '%Produk 5%')->get();
+            $products = Product::where('productName', 'like', '%Dama Kara Scrunchie%')
+                ->orWhere('productName', 'like', '%Puffy Eco Linen Blouse%')
+                ->get();
             $count = 5;
         } else {
             dd($card);
@@ -102,7 +120,6 @@ class MixMatchController extends Controller
             $path = Storage::url(json_decode($p->productPicturePath)[0]);
             $data[] = [$p['productName'], $p['productID'], $path, $count, $p['productPrice']];
         }
-
         return $data;
     }
 

@@ -19,13 +19,14 @@ class VoucherUsageSeeder extends Seeder
     {
         // disini update total discount dan total price nya
         $faker = Faker::create('id_ID');
+        
         for ($i = 0; $i < 5; $i++) {
             $userID = User::all()->random()->userID;
             $voucherID = Voucher::all()->random()->voucherID;
             // Cek apakah kombinasi voucherID dan productID sudah ada
-            $existingCart = DB::table('voucher_usages')->where('userID', $userID)->where('voucherID', $voucherID)->first();
+            $existingVoucher = DB::table('voucher_usages')->where('userID', $userID)->where('voucherID', $voucherID)->first();
 
-            if (!$existingCart) {
+            if (!$existingVoucher) {
                 DB::table('voucher_usages')->insert([
                     'voucherID' => $voucherID,
                     'userID' => $userID,
@@ -36,17 +37,17 @@ class VoucherUsageSeeder extends Seeder
                 $voucher->voucherQuantity -= 1;
             } else {
                 // Jika kombinasi userID dan productID sudah ada, kurangi nilai loop dan lanjutkan
-                $i--;
+                // $i--;
             }
         }
-        for ($i = 0; $i < 3; $i++) {
-            $userID = '01ee9554-9e84-367d-96ec-bf2a25b4cb3e';
+        for ($i = 0; $i < 5; $i++) {
+            $userID = '48057d34-f68c-391d-a0ad-45b5429faccf';
             $voucherID = Voucher::all()->random()->voucherID;
 
             // Cek apakah kombinasi voucherID dan productID sudah ada
-            $existingCart = DB::table('voucher_usages')->where('userID', $userID)->where('voucherID', $voucherID)->first();
+            $existingVoucher = DB::table('voucher_usages')->where('userID', $userID)->where('voucherID', $voucherID)->first();
 
-            if (!$existingCart) {
+            if (!$existingVoucher) {
                 DB::table('voucher_usages')->insert([
                     'voucherID' => $voucherID,
                     'userID' => $userID,

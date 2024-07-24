@@ -26,7 +26,7 @@ class LandingPageController extends Controller
         $product_terbaru = Product::orderBy('created_at', 'asc')
         ->take(3)
         ->get();
-        
+
         $product_tertinggi = Product::join('reviews', 'products.productID', '=', 'reviews.productID')
         ->select('products.productID', 'products.productName', 'products.productPrice', 'products.productPicturePath')
         ->groupBy('products.productID')
@@ -37,7 +37,7 @@ class LandingPageController extends Controller
         $products = Product::whereIn('productID',$Bestproducts)
         ->select('productID','productName','productPrice','productPicturePath')
         ->get();
-        
+
         return view('customer.landingpage', compact('assets','products','product_terbaik', 'product_terbaru', 'product_tertinggi'));
     }
 }

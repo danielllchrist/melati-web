@@ -54,7 +54,6 @@ Route::group([], function () {
     });
     Route::controller(CustomerMixMatchController::class)->group(function () {
         Route::get('/mix-and-match', 'index')->name('MixMatch');
-        Route::post('/mix-and-match/tambah-keranjang', 'addCart')->name('addCart');
         Route::get('/ambil-produk/{category}', 'searchProductAjax');
         Route::get('/ambil-produk-modal/{card}', 'getProductAjax')->name('getProduct');
         Route::get('/tampilkan-gambar/{productID}', 'getImageURL')->name('getImageURL');
@@ -91,6 +90,11 @@ Route::middleware(['customer'])->group(function () {
         Route::get('/pengembalian/{transactionID}', 'index')->name('CustomerReturn');
         Route::post('/pengembalian/{transactionID}', 'store')->name('CustomerReturn.store');
     });
+
+    Route::controller(CustomerMixMatchController::class)->group(function(){
+        Route::post('/mix-and-match/tambah-keranjang', 'addCart')->name('addCart');
+    });
+    
     Route::controller(CustomerCartController::class)->group(function () {
         Route::get('/keranjang', 'index')->name('CustomerCart');
         Route::delete('/keranjang/delete/{id}', 'destroy')->name('keranjang.destroy');
@@ -117,7 +121,7 @@ Route::middleware(['customer'])->group(function () {
         Route::get('/getDistricts/{kota_id}', 'getDistricts');
         Route::get('/konfirmasi-pesanan/{transactionID}/{voucherID}', 'useVoucher')->name('UseVoucher');
         Route::post('/tambah-alamat', 'addAddress')->name('AddAddress');
-        Route::post('/pembayaran/{transactionID}', 'payment')->name('prepayment');
+        Route::post('/pembayaran/{transactionID}/{tempTotalPrice?}', 'payment')->name('prepayment');
         Route::post('/pembayaran/{transactionID}/bayar', 'pay')->name('PayOrder');
         Route::post('/pembayaran/{transactionID}/batal', 'cancel')->name('CancelOrder');
     });
@@ -184,7 +188,7 @@ Route::middleware(['shipping_service'])->prefix('/shipping-service')->group(func
     Route::controller(ShippingServiceOrderController::class)->group(function () {
         Route::get('/', 'index')->name('ShippingServiceDashboard');
         Route::get('/order/{orderID}', 'orderdetail')->name('ShippingServiceOrder');
-        Route::get('/orderstatus','index')->name('orderstatus');
+        Route::get('/orderstatus', 'index')->name('orderstatus');
         Route::post('/kirim-pesanan', 'sendorder')->name('ShippingServiceSendOrder');
         Route::post('/pesanan-tiba', 'doneorder')->name('ShippingServiceDoneOrder');
     });

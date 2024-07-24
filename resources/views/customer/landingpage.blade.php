@@ -34,10 +34,13 @@
         }
 
         .card-custom>img {
-            max-height: 245px;
+            max-width: 230px;
+            max-height: 275px;
+            object-fit: cover;
         }
 
         .card-custom-body>p {
+            font-size: 1rem;
             margin-bottom: 10px;
         }
 
@@ -93,12 +96,12 @@
             </div>
             <div class="flex-column">
                 <div id="men" class="men-women-content">
-                    <img src="\assets\dummy-img\top 2.png" alt="men">
-                    <img src="\assets\dummy-img\top 2.png" alt="men">
+                    <img src="assets\landing\men.png" alt="men">
+                    {{-- <img src="\assets\dummy-img\top 2.png" alt="men"> --}}
                 </div>
                 <div id="women" class="men-women-content">
-                    <img src="\assets\dummy-img\rok 3.png" alt="women">
-                    <img src="\assets\dummy-img\rok 3.png" alt="women">
+                    {{-- <img src="\assets\dummy-img\rok 3.png" alt="women"> --}}
+                    <img src="assets\landing\women.png" alt="women">
                 </div>
             </div>
         </div>
@@ -132,8 +135,8 @@
                         <div class="catalog-item">
                             <a href="{{ route('ProductDetail', ['id' => 'dummy']) }}">
                                 <div class="card-custom">
-                                    <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
-                                        alt="Catalog">
+                                    <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
+                                        class="card-custom-top" alt="Catalog">
                                     <div class="card-custom-body">
                                         <p>{{ $product->productName }}</p>
                                         <h3>Rp {{ $product->productPrice }}</h3>
@@ -148,8 +151,8 @@
                         <div class="catalog-item">
                             <a href="{{ route('ProductDetail', ['id' => 'dummy']) }}">
                                 <div class="card-custom">
-                                    <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
-                                        alt="Catalog">
+                                    <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
+                                        class="card-custom-top" alt="Catalog">
                                     <div class="card-custom-body">
                                         <p>{{ $product->productName }}</p>
                                         <h3>Rp {{ $product->productPrice }}</h3>
@@ -164,8 +167,8 @@
                         <div class="catalog-item">
                             <a href="{{ route('ProductDetail', ['id' => 'dummy']) }}">
                                 <div class="card-custom">
-                                    <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
-                                        alt="Catalog">
+                                    <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
+                                        class="card-custom-top" alt="Catalog">
                                     <div class="card-custom-body">
                                         <p>{{ $product->productName }}</p>
                                         <h3>Rp {{ $product->productPrice }}</h3>

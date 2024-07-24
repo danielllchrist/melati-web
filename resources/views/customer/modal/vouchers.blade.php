@@ -8,16 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{-- @for ($i = 0; $i < 10; $i++)
-                    <button class="no-bootstrap flex">
-                        <div class="voucher-card">
-                            <h6>Gratis Ongkir</h6>
-                            <p>Minimal belanja Rp 30.000</p>
-                            <p>EXPIRED 31/12/2024</p>
-                        </div>
-                    </button>
-                @endfor --}}
-                @if ($vouchers == null){
+                @if ($vouchers != null){
                     @forelse($vouchers as $v)
                         <button class="no-bootstrap flex" type ="button">
                             <div class="voucher-card" data-voucher-id="{{ $v->voucherID }}">

@@ -190,6 +190,12 @@ body{
     border-bottom: 1px solid rgba(73,96,65,0.1);
 }
 
+.product img{
+    width: 50px;
+    height : 50px;
+    object-fit: cover;
+}
+
 .wraps{
     width: 80%;
     display: flex;
@@ -520,6 +526,10 @@ h5{
     font-size: 14px;
     cursor: pointer;
     text-decoration: none;
+}
+
+.btn-submit-popup a:hover{
+    color : #4F290C;
 }
 
 .modal-footer{

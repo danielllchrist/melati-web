@@ -29,19 +29,14 @@ class DatabaseSeeder extends Seeder
             VoucherSeeder::class,
             TransactionSeeder::class,
             ReviewSeeder::class,
-            // TransactionSeeder::class,
-            VoucherUsageSeeder::class,
-            // ReviewSeeder::class,
             SizeSeeder::class,
             TransactionDetailSeeder::class,
             VoucherUsageSeeder::class,
-            // TransactionDetailSeeder::class,
             CartSeeder::class,
             WishListSeeder::class,
             ManageAssetSeeder::class,
             ReturnOrderSeeder::class,
             ManageLinkSeeder::class,
-            // ReturnOrderSeeder::class,
         ]);
     }
 }
