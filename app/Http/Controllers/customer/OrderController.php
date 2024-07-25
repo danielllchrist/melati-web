@@ -199,10 +199,10 @@ class OrderController extends Controller
         $transaction->paymentMethod = $request->payment;
         $transaction->save();
         $id = $transaction->transactionID;
-
+        $total = $transaction->totalPrice;
 
         $otp = rand(10000, 99999);
-        return view('customer.payment', compact('otp', 'id'));
+        return view('customer.payment', compact('otp', 'id', 'total'));
     }
 
     public function pay($transactionID)
