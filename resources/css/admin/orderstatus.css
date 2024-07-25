@@ -387,3 +387,10 @@ button.ps-menu-link.active-menus {
     margin : 0;
     margin : 0;
   }
+
+  .no-order{
+    width : 100%;
+    color : #4F290C;
+    padding : 30px 45px;
+    background-color: #F0F1E4;
+}

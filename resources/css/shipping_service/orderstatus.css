@@ -325,3 +325,9 @@ tr {
     padding: 0 10px;
     font-size: 14px;
 }
+
+.no-order{
+    width : 250px;
+    color : #4F290C;
+    padding : 30px 45px;
+}
