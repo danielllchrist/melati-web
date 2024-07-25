@@ -38,7 +38,7 @@
         <div class="wrap">
             <img src="https://qrcode.tec-it.com/API/QRCode?data={{ $otp }}" id="qrcode" alt="">
         </div>
-        <p>Rp. 100.000</p>
+        <p>Rp {{ number_format($total, 0, ',', '.') }}</p>
         <form class="custom-form">
             <input type="number" placeholder="Ketik kode OTP disini" id="otp" oninput="removeSpaces(this)"
                 required>
