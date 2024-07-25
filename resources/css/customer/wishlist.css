@@ -75,6 +75,7 @@ a{
 
 .card-custom-top{
     border-radius: 0;
+    display: block;
     width: 100%;
 }
 
@@ -89,4 +90,34 @@ a{
 
 .heart-color{
     color: red;
+}
+
+.image-container {
+    position: relative; /* Add this */
+}
+
+.image-container img {
+    width: 100%; /* make sure the img takes up the full width of the container */
+    height: auto;
+}
+
+.wishlist-form {
+    position: absolute; /* Add this */
+    bottom: 65px; /* Adjust as needed */
+    right: 4px; /* Adjust as needed */
+    z-index: 1; /* Add this */
+}
+
+.wishlist-form button {
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    padding: 0; /* Remove padding */
+}
+
+#wishlist-heart {
+    position: absolute;
+    bottom: 65px; /* Adjust as needed */
+    right: 4px; /* Adjust as needed */
+    background: none; /* Ensure there's no background */
+    z-index: 10; /* Ensure the icon appears on top */
 }

@@ -22,7 +22,7 @@
         }
 
         .kategori {
-            color: gray;
+            color: white;
             /* set default text color to gray */
         }
 
@@ -32,7 +32,7 @@
         }
 
         .dropdown-item {
-            color: gray;
+            color: white;
             /* set default dropdown item text color to gray */
         }
 
@@ -132,7 +132,7 @@
                                 <div class="card-custom" style="">
                                     <div class="image-container">
                                         <img src="{{ Storage::url(json_decode($item->productPicturePath)[0]) }}"
-                                            class="card-custom-top" alt="Catalog">
+                                            class="card-custom-top" alt="{{ $item->productName }}">
                                         @if (!Auth::check())
                                             <a href="{{ route('LogIn') }}"
                                                 style="text-decoration: none; background: none; border: none;">
@@ -178,7 +178,7 @@
 
                                     <div class="card-custom-body">
                                         <p class="productName">{{ $item->productName }}</p>
-                                        <h3 class="productPrice">Rp {{ $item->productPrice }}</h3>
+                                        <h3 class="productPrice">Rp {{ number_format($item->productPrice, 2, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -335,168 +335,7 @@
             });
         });
     </script>
-
-    <script>
-        // var data = [
-        //     {"id":1,"jk":"pria","kategori":"atasan","harga":120000,"wishlist":true},
-        //     {"id":2,"jk":"pria","kategori":"bawahan","harga":150000,"wishlist":false},
-        //     {"id":3,"jk":"pria","kategori":"aksesoris","harga":110000,"wishlist":true},
-        //     {"id":4,"jk":"wanita","kategori":"atasan","harga":100000,"wishlist":true},
-        //     {"id":5,"jk":"wanita","kategori":"bawahan","harga":125000,"wishlist":false},
-        //     {"id":6,"jk":"wanita","kategori":"aksesoris","harga":149000,"wishlist":true},
-        //     {"id":7,"jk":"pria","kategori":"atasan","harga":115000,"wishlist":true},
-        //     {"id":8,"jk":"pria","kategori":"bawahan","harga":105000,"wishlist":true},
-        //     {"id":9,"jk":"pria","kategori":"aksesoris","harga":90000,"wishlist":false},
-        //     {"id":10,"jk":"wanita","kategori":"atasan","harga":50000,"wishlist":false},
-        //     {"id":11,"jk":"wanita","kategori":"bawahan","harga":80000,"wishlist":false},
-        //     {"id":12,"jk":"wanita","kategori":"aksesoris","harga":99000,"wishlist":true},
-        //     {"id":13,"jk":"pria","kategori":"atasan","harga":119000,"wishlist":true},
-        //     {"id":14,"jk":"pria","kategori":"bawahan","harga":109000,"wishlist":true},
-        //     {"id":15,"jk":"pria","kategori":"bawahan","harga":104900,"wishlist":false},
-        //     {"id":16,"jk":"wanita","kategori":"atasan","harga":105900,"wishlist":false}
-        // ];
-
-
-        // var data = "{{ $product->toJson() }}";
-        // console.log(data);
-
-        // var sortBy = Object.values(1); //default sort
-        // var data = {{ $product->toJson() }};
-        // var dataTemp = data;
-        // var dataTemp = {{ $product->toJson() }};
-
-        // console.log(dataTemp);
-
-        // window.onload = function() {
-        //     sort(Object.values(1));
-        //     resetSelection();
-        // }
-
-        // const rupiah = (number) => {
-        //     return new Intl.NumberFormat("id-ID", {
-        //     style: "currency",
-        //     currency: "IDR"
-        //     }).format(number);
-        // }
-
-        // function sort(id) {
-        //     sortBy = id;
-
-        //     for(let i=0; i<dataTemp.length; i++){
-        //         for(let j=0; j<dataTemp.length-1; j++){
-        //             if(id.value == 2){
-        //                 if(dataTemp[j+1].harga < dataTemp[j].harga){
-        //                     var temp = dataTemp[j+1];
-        //                     dataTemp[j+1] = dataTemp[j];
-        //                     dataTemp[j] = temp;
-        //                 }
-        //             }else{
-        //                 if(dataTemp[j+1].harga > dataTemp[j].harga){
-        //                     var temp = dataTemp[j+1];
-        //                     dataTemp[j+1] = dataTemp[j];
-        //                     dataTemp[j] = temp;
-        //                 }
-        //             }
-        //         }
-        //     }
-
-        //     document.getElementById("content-catalog").innerHTML = "";
-        //     var content = "";
-        //     for(let i=0; i<dataTemp.length; i++){
-        //         if(dataTemp[i].wishlist){
-        //             content += "<div class=\"catalog-item\"><a href=\"detail.html\"><div class=\"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" + rupiah(dataTemp[i].harga) + "</h3></div></div></a><i class=\"fa fa-heart fa-2x heart-color\" id=\"wishlist-heart-" + dataTemp[i].id + "\" onclick=\"wishlist(event, " + dataTemp[i].id + ")\"></i></div>";
-        //         }else{
-        //             content += "<div class=\"catalog-item\"><a href=\"detail.html\"><div class=\"card-custom\"><img src=\"assets/kambojaKutubaru.png\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>Kamboja Kutubaru</p><h3>" + rupiah(dataTemp[i].harga) + "</h3></div></div></a><i class=\"fa fa-heart-o fa-2x heart\" id=\"wishlist-heart-" + dataTemp[i].id + "\" onclick=\"wishlist(event, " + dataTemp[i].id + ")\"></i></div>";
-        //         }
-        //     }
-
-        //     document.getElementById("content-catalog").innerHTML = content;
-
-        //     if(dataTemp.length < 4){
-        //         document.getElementById("content-catalog").classList.remove("justify-content-around");
-        //         document.getElementById("content-catalog").classList.add("justify-content-start");
-        //         var cards = document.getElementsByClassName("card-custom");
-        //         for(let i=0; i<cards.length; i++){
-        //             cards[i].classList.add("ms-5");
-        //         }
-        //     }else{
-        //         document.getElementById("content-catalog").classList.add("justify-content-around");
-        //         document.getElementById("content-catalog").classList.remove("justify-content-start");
-        //     }
-        // }
-
-        // $('#collapsePria').on('show.bs.collapse', function () {
-        //     document.getElementById("arrowCollapsePria").style.transform = "rotate(180deg)"
-        //     document.getElementById("btnPria").classList.remove("text-white-50");
-        // })
-
-        // $('#collapsePria').on('hidden.bs.collapse', function () {
-        //     document.getElementById("arrowCollapsePria").style.transform = "rotate(0deg)"
-        //     document.getElementById("btnPria").classList.add("text-white-50");
-        //     selectionData(null, null);
-        // })
-
-        // $('#collapseWanita').on('show.bs.collapse', function () {
-        //     document.getElementById("arrowCollapseWanita").style.transform = "rotate(180deg)"
-        //     document.getElementById("btnWanita").classList.remove("text-white-50");
-        // })
-
-        // $('#collapseWanita').on('hidden.bs.collapse', function () {
-        //     document.getElementById("arrowCollapseWanita").style.transform = "rotate(0deg)"
-        //     document.getElementById("btnWanita").classList.add("text-white-50");
-        //     selectionData(null, null);
-        // })
-
-        // function resetSelection() {
-        //     document.getElementById("pria-atasan").classList.add("text-white-50");
-        //     document.getElementById("pria-bawahan").classList.add("text-white-50");
-        //     document.getElementById("pria-aksesoris").classList.add("text-white-50");
-        //     document.getElementById("wanita-atasan").classList.add("text-white-50");
-        //     document.getElementById("wanita-bawahan").classList.add("text-white-50");
-        //     document.getElementById("wanita-aksesoris").classList.add("text-white-50");
-        // }
-
-        // function selectionData(jk, kategori){
-        //     dataTemp = [];
-        //     for(let i=0; i<data.length; i++){
-        //         if((data[i].jk == jk && data[i].kategori == kategori) || (jk == null && kategori == null)){
-        //             dataTemp.push(data[i]);
-        //         }
-        //     }
-
-        //     //Reset Selection
-        //     resetSelection();
-
-        //     if((jk != null && kategori != null)){
-        //         document.getElementById(jk + "-" + kategori).classList.remove("text-white-50");
-        //     }
-
-        //     sort(Object.values(1));
-        // }
-
-        // function wishlist(event, id){
-        //     event.preventDefault();
-
-        //     for(let i=0; i<data.length; i++){
-        //         if(data[i].id == id){
-        //             data[i].wishlist = !data[i].wishlist;
-
-        //             if(data[i].wishlist){
-        //                 document.getElementById("wishlist-heart-" + id).classList.remove("fa-heart-o");
-        //                 document.getElementById("wishlist-heart-" + id).classList.remove("heart");
-        //                 document.getElementById("wishlist-heart-" + id).classList.add("fa-heart");
-        //                 document.getElementById("wishlist-heart-" + id).classList.add("heart-color");
-        //             }else{
-        //                 document.getElementById("wishlist-heart-" + id).classList.remove("fa-heart");
-        //                 document.getElementById("wishlist-heart-" + id).classList.remove("heart-color");
-        //                 document.getElementById("wishlist-heart-" + id).classList.add("fa-heart-o");
-        //                 document.getElementById("wishlist-heart-" + id).classList.add("heart");
-        //             }
-        //             break;
-        //         }
-        //     }
-        // }
-    </script>
+        
     @include('components.customer.footercustomer')
 </body>
 
