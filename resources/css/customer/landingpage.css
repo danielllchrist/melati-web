@@ -236,8 +236,9 @@ a .buttons:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 350px;
     width: 100%;
+    padding: 50px 0px;
+    gap : 50px;
 }
 
 #belanja-sekarang-banner h1{
@@ -272,4 +273,22 @@ a .buttons:hover {
 
 .tab-content.active {
     display: flex;
+}
+
+.poster-container{
+    display : flex;
+    gap : 50px;
+}
+
+.featured{
+    width : 349.82px;
+    height : 500px;
+    border : 1px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.featured:hover{
+    /* give shadow */
+    border : 1px solid #F0F1E4;
+    box-shadow: 0px 0px 30px #D5BE9E;
 }
