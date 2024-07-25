@@ -94,7 +94,7 @@ Route::middleware(['customer'])->group(function () {
     Route::controller(CustomerMixMatchController::class)->group(function(){
         Route::post('/mix-and-match/tambah-keranjang', 'addCart')->name('addCart');
     });
-    
+
     Route::controller(CustomerCartController::class)->group(function () {
         Route::get('/keranjang', 'index')->name('CustomerCart');
         Route::delete('/keranjang/delete/{id}', 'destroy')->name('keranjang.destroy');
@@ -121,9 +121,9 @@ Route::middleware(['customer'])->group(function () {
         Route::get('/getDistricts/{kota_id}', 'getDistricts');
         Route::get('/konfirmasi-pesanan/{transactionID}/{voucherID}', 'useVoucher')->name('UseVoucher');
         Route::post('/tambah-alamat', 'addAddress')->name('AddAddress');
-        Route::post('/pembayaran/{transactionID}/{tempTotalPrice?}', 'payment')->name('prepayment');
         Route::post('/pembayaran/{transactionID}/bayar', 'pay')->name('PayOrder');
         Route::post('/pembayaran/{transactionID}/batal', 'cancel')->name('CancelOrder');
+        Route::post('/pembayaran/{transactionID}/{tempTotalPrice?}', 'payment')->name('prepayment');
     });
     // Route::resource('addresses', CustomerAddressController::class)->except(['index']);
     Route::controller(CustomerAddressController::class)->group(function () {
@@ -134,11 +134,6 @@ Route::middleware(['customer'])->group(function () {
         Route::get('/getAddress/{id}', 'getAddress')->name('get-address');
         Route::put('/updateAddress/{id}', 'updateAddress')->name('update-address');
     });
-
-    // Route::controller(UserController::class)->group(function () {
-    //     Route::get('/profil', 'profile')->name("profile");
-    // });
-    // Route::resource('/alamat-saya', CustomerAddressController::class)->name("index","alamat_saya");
 });
 
 // Route for admin
