@@ -43,6 +43,16 @@ class ProductController extends Controller
         return view('customer.catalog', compact('product'));
     }
 
+    public function men_catalogue(){
+        $product = Product::where('forGender','Pria')->get();
+        return view('customer.catalog',compact('product'));
+    }
+
+    public function women_catalogue(){
+        $product = Product::where('forGender','Wanita')->get();
+        return view('customer.catalog',compact('product'));
+    }
+
     public function wish(Request $request)
     {
         $productID = $request->input('productID');
