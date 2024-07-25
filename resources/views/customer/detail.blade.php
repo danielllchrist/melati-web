@@ -142,7 +142,7 @@
                                 @endphp
 
                                 @foreach($sizes as $size)
-                                    <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size" value="{{ $size->size }}">{{ $size->size }}</button>
+                                    <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size" value="{{ $size->size }}" data-stock="{{ $size->stock }}">{{ $size->size }}</button>
                                 @endforeach
 
 
@@ -604,19 +604,49 @@
         //     }
         // }
 
-        function minus() {
-            if(document.getElementById("qty-value").value == ""){
-                document.getElementById("qty-value").value = 0;
-            }
-            document.getElementById("qty-value").value -= 1;
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+    var sizeButtons = document.querySelectorAll('.btn-size');
+    var qtyInput = document.getElementById('qty-value');
+    var sizeInput = document.getElementById('productSize');
+    
+    sizeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var selectedSize = button.value;
+            var stock = button.getAttribute('data-stock');
+            
+            sizeInput.value = selectedSize;
+            qtyInput.setAttribute('max', stock);
+            qtyInput.value = 0;  // Reset quantity input value when size changes
+        });
+    });
+});
 
-        function plus() {
-            if(document.getElementById("qty-value").value == ""){
-                document.getElementById("qty-value").value = 0;
-            }
-            document.getElementById("qty-value").value = parseInt(document.getElementById("qty-value").value) + 1;
-        }
+function minus() {
+    var qtyInput = document.getElementById("qty-value");
+    if (qtyInput.value == "") {
+        qtyInput.value = 0;
+    }
+    var currentValue = parseInt(qtyInput.value);
+    if (currentValue > 0) {
+        qtyInput.value = currentValue - 1;
+    }
+}
+
+function plus() {
+    var qtyInput = document.getElementById("qty-value");
+    var maxStock = parseInt(qtyInput.getAttribute("max")); // Get the maximum stock from the input attribute
+
+    if (qtyInput.value == "") {
+        qtyInput.value = 0;
+    }
+    var currentValue = parseInt(qtyInput.value);
+    if (currentValue < maxStock) {
+        qtyInput.value = currentValue + 1;
+    } else {
+        alert("You have reached the maximum stock available."); // Optional: Alert the user if max stock is reached
+    }
+}
+
     </script>
 </body>
 
