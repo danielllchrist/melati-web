@@ -22,21 +22,11 @@
         <div class="main-content">
             {{-- @livewire('order-search-bar') --}}
             <div class="inner-container">
-                <div class="ps-header">
-                    <div class="padding-search-custom">
-                        <form class="form-inline my-2 my-lg-0">
-                            <div class="ps-search-custom-container">
-                                <img src="/assets/search-white.svg" alt="search" width="15" height="15">
-                                <input wire:model.live="search" class = "ps-search-custom" type="search"
-                                    placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk">
-                            </div>
-                        </form>
-                    </div>
-                </div>
                 <div class="ps-content">
                     <div class="ps-status-menu">
                         <ul class="status-menu">
-                            <li><button id="menu-menunggu" class="ps-menu-link active-menus">Menunggu Konfirmasi</button></li>
+                            <li><button id="menu-menunggu" class="ps-menu-link active-menus">Menunggu
+                                    Konfirmasi</button></li>
                             <li><button id="menu-proses" class="ps-menu-link">Dalam Proses</button></li>
                             <li><button id="menu-pengiriman" class="ps-menu-link">Dalam Pengiriman</button></li>
                             <li><button id="menu-sampai" class="ps-menu-link">Tiba di Tujuan</button></li>
@@ -62,10 +52,11 @@
                                     @foreach ($order->transactionDetail as $detail)
                                         <div class="ps-order-detail">
                                             <div class="ps-picture">
-                                                <img src="/assets/top2.png" class="ps-picture-img" alt="">
+                                                <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}"
+                                                    class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: {{ $detail->size->size}}</p>
+                                                    <p>Size: {{ $detail->size->size }}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -81,9 +72,11 @@
                                 </div>
                             </a>
                         @empty
-                            <div class="ps-order">
-                                No Order Yet
-                            </div>
+                            <td>
+                                <div class="no-order">
+                                    Belum ada Pesanan
+                                </div>
+                            </td>
                         @endforelse
                     </div>
 
@@ -105,7 +98,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: {{ $detail->size->size}}</p>
+                                                    <p>Size: {{ $detail->size->size }}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -121,9 +114,11 @@
                                 </div>
                             </a>
                         @empty
-                            <div class="ps-order">
-                                No Order Yet
-                            </div>
+                            <td>
+                                <div class="no-order">
+                                    Belum ada Pesanan
+                                </div>
+                            </td>
                         @endforelse
                     </div>
 
@@ -145,7 +140,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: {{ $detail->size->size}}</p>
+                                                    <p>Size: {{ $detail->size->size }}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -161,9 +156,11 @@
                                 </div>
                             </a>
                         @empty
-                            <div class="ps-order">
-                                No Order Yet
-                            </div>
+                            <td>
+                                <div class="no-order">
+                                    Belum ada Pesanan
+                                </div>
+                            </td>
                         @endforelse
                     </div>
 
@@ -185,7 +182,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: {{ $detail->size->size}}</p>
+                                                    <p>Size: {{ $detail->size->size }}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -216,7 +213,8 @@
                                         <div class="ps-info">
                                             <img src="/assets/information_green_button.svg" alt="info"
                                                 class="i">
-                                            <div class="dalam-proses status" id="batal">{{ $order->status->statusName }}</div>
+                                            <div class="dalam-proses status" id="batal">
+                                                {{ $order->status->statusName }}</div>
                                         </div>
                                     </div>
                                     @foreach ($order->transactionDetail as $detail)
@@ -225,7 +223,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: {{ $detail->size->size}}</p>
+                                                    <p>Size: {{ $detail->size->size }}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -241,9 +239,11 @@
                                 </div>
                             </a>
                         @empty
-                            <div class="ps-order">
-                                No Order Yet
-                            </div>
+                            <td>
+                                <div class="no-order">
+                                    Belum ada Pesanan
+                                </div>
+                            </td>
                         @endforelse
                     </div>
 
@@ -256,7 +256,8 @@
                                         <div class="ps-info">
                                             <img src="/assets/information_green_button.svg" alt="info"
                                                 class="i">
-                                            <div class="dalam-proses status" id="batal">{{ $order->status->statusName }}</div>
+                                            <div class="dalam-proses status" id="batal">
+                                                {{ $order->status->statusName }}</div>
                                         </div>
                                     </div>
                                     @foreach ($order->transactionDetail as $detail)
@@ -265,7 +266,7 @@
                                                 <img src="/assets/top2.png" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
-                                                    <p>Size: {{ $detail->size->size}}</p>
+                                                    <p>Size: {{ $detail->size->size }}</p>
                                                 </div>
                                             </div>
                                             <div class="ps-total">
@@ -281,9 +282,11 @@
                                 </div>
                             </a>
                         @empty
-                            <div class="ps-order">
-                                No Order Yet
-                            </div>
+                            <td>
+                                <div class="no-order">
+                                    Belum ada Pesanan
+                                </div>
+                            </td>
                         @endforelse
                     </div>
 

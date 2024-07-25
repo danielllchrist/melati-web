@@ -48,7 +48,7 @@
         <div class="d-flex box-2 justify-content-between align-items-center">
             <div class="box-left">
                 <p>On Delivery</p>
-                <p class="count">{{$order3Count}}</p>
+                <p class="count">{{ $order3Count }}</p>
             </div>
             <div class="box-right">
                 <img src="/assets/iconDelivery.png" class="delivery-img">
@@ -76,7 +76,7 @@
 
     <div class="main-content">
         <div class="inner-container">
-            <div class="ps-header">
+            {{-- <div class="ps-header">
                 <div class="padding-search-custom">
                     <form class="form-inline my-2 my-lg-0">
                         <div class="ps-search-custom-container"><img src="/assets/search-white.svg" alt="search"
@@ -85,7 +85,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> --}}
             <div class="ps-content">
                 <div class="ps-status-menu">
                     <ul class="status-menu">
@@ -126,7 +126,7 @@
                                         </td>
                                         <td>
                                             <div class="ps-info">
-                                                <a href='{{route("ShippingServiceOrder",$order->transactionID)}}'>
+                                                <a href='{{ route('ShippingServiceOrder', $order->transactionID) }}'>
                                                     <img src="/assets/information_green_button.svg" width="30"
                                                         height="30" alt="info">
                                                 </a>
@@ -134,9 +134,11 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <div class="ps-order">
-                                        No Order Yet
-                                    </div>
+                                    <td>
+                                        <div class="no-order">
+                                            Belum ada Pesanan
+                                        </div>
+                                    </td>
                                 @endforelse
                             </tbody>
                         </table>
@@ -170,18 +172,19 @@
                                         </td>
                                         <td>
                                             <div class="ps-info">
-                                                <a href="{{route("ShippingServiceOrder",$order->transactionID)}}">
-                                                <img src="/assets/information_green_button.svg" width="30"
-                                                    height="30" alt="info">
+                                                <a href="{{ route('ShippingServiceOrder', $order->transactionID) }}">
+                                                    <img src="/assets/information_green_button.svg" width="30"
+                                                        height="30" alt="info">
                                                 </a>
                                             </div>
                                         </td>
-
                                     </tr>
                                 @empty
-                                    <div class="ps-order">
-                                        No Order Yet
-                                    </div>
+                                    <td>
+                                        <div class="no-order">
+                                            Belum ada Pesanan
+                                        </div>
+                                    </td>
                                 @endforelse
                             </tbody>
                         </table>
@@ -215,17 +218,19 @@
                                         </td>
                                         <td>
                                             <div class="ps-info">
-                                                <a href="{{route("ShippingServiceOrder",$order->transactionID)}}">
-                                                <img src="/assets/information_green_button.svg" width="30"
-                                                    height="30" alt="info">
+                                                <a href="{{ route('ShippingServiceOrder', $order->transactionID) }}">
+                                                    <img src="/assets/information_green_button.svg" width="30"
+                                                        height="30" alt="info">
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
                                 @empty
-                                    <div class="ps-order">
-                                        No Order Yet
-                                    </div>
+                                    <td>
+                                        <div class="no-order">
+                                            Belum ada Pesanan
+                                        </div>
+                                    </td>
                                 @endforelse
                             </tbody>
                         </table>
