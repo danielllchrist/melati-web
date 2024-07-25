@@ -40,7 +40,6 @@ class ProductController extends Controller
             $product = Product::where('forGender', $gender)
                 ->get();
         }
-
         return view('customer.catalog', compact('product'));
     }
 
@@ -80,6 +79,7 @@ class ProductController extends Controller
     public function detail_product($id)
     {
         $product = Product::findOrFail($id);
+        // dd($product->productPicturePath);
         return view('customer.detail', compact('product'));
     }
 
@@ -104,6 +104,7 @@ class ProductController extends Controller
             'size' => 'required|exists:sizes,size',
             'quantity' => 'required|integer|min:1'
         ]);
+        
 
         $productID = $request->input('productID');
         $size = $request->input('size');
@@ -115,12 +116,14 @@ class ProductController extends Controller
         if (empty($sizeCheck)) {
             return redirect()->back()->with('error', 'Stock not found.');
         }
-
+        
         $sizeCheck = $sizeCheck[0]; // Access the first element, assuming sizeID is unique
 
         $checkQuery = "SELECT * FROM `carts` WHERE `userID` = ? AND `sizeID` = ?";
         $check = DB::select($checkQuery, [auth()->user()->userID, $sizeCheck->sizeID]);
-        $check = $check[0];
+        if ( count($check) > 1){
+            $check = $check[0];
+        }
         // dd($sizeCheck, $check);
 
         if (!empty($check)) {
@@ -131,11 +134,12 @@ class ProductController extends Controller
                 $newQuantity = $sizeCheck->stock;
             }
 
-            $updateQuery = "UPDATE `carts` SET `quantity` = ? WHERE `sizeID` = ? AND `userID` = ?";
+            $updateQuery = "UPDATE `carts` SET `quantity` = ?, `updated_at` = NOW() WHERE `sizeID` = ? AND `userID` = ?";
             DB::update($updateQuery, [$newQuantity, $check->sizeID, auth()->user()->userID]);
         } else {
-            $insertQuery = "INSERT INTO `carts` (`userID`, `sizeID`, `quantity`) VALUES (?, ?, ?)";
+            $insertQuery = "INSERT INTO `carts` (`userID`, `sizeID`, `quantity`, `created_at`, `updated_at`) VALUES (?, ?, ?, NOW(), NOW())";
             DB::insert($insertQuery, [auth()->user()->userID, $sizeCheck->sizeID, $quantity]);
+
         }
 
         return redirect()->back()->with('success', 'Added successfully');

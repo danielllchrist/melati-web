@@ -13,9 +13,27 @@
     @vite('resources/css/customer/detail.css')
     <style>
         .btn-clicked {
-            color: red;
-            background-color: green;
+            color: #F0F1E4;
+            background-color:rgb(73, 51, 25);
+            border: rgb(73, 51, 25);
         }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .centered {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+.no-spinner {
+    -moz-appearance: textfield;
+}
     </style>
 
 </head>
@@ -32,21 +50,17 @@
                 <div class="image-content">
                     <div id="carouselExample" class="carousel slide">
                         <div class="carousel-inner">
-                            <div class="carousel-item active" id="carousel-1">
-                                <img src="\assets\dressPink.png" class="d-block w-100">
-                            </div>
-                            <div class="carousel-item" id="carousel-2">
-                                <img src="\assets\dressHijau.png" class="d-block w-100">
-                            </div>
-                            <div class="carousel-item" id="carousel-3">
-                                <img src="\assets\dressPink.png" class="d-block w-100">
-                            </div>
-                            <div class="carousel-item" id="carousel-4">
-                                <img src="\assets\dressPink.png" class="d-block w-100">
-                            </div>
-                            <div class="carousel-item" id="carousel-5">
-                                <img src="\assets\dressPink.png" class="d-block w-100">
-                            </div>
+                            @php
+                                $productPictures = json_decode($product->productPicturePath, true);
+                            @endphp
+
+                            @foreach ($productPictures as $index => $photo)
+                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" id="carousel-{{ $index + 1 }}">
+                                    <img src="{{ Storage::url($photo) }}" class="d-block w-100">
+                                </div>
+                            @endforeach
+
+
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                             data-bs-slide="prev">
@@ -61,11 +75,9 @@
                     </div>
 
                     <div class="detail-image d-flex justify-content-between">
-                        <img src="\assets\dressPink.png" width="16%" onclick="switchCarousel(1)">
-                        <img src="\assets\dressHijau.png" width="16%" onclick="switchCarousel(2)">
-                        <img src="\assets\dressPink.png" width="16%" onclick="switchCarousel(3)">
-                        <img src="\assets\dressPink.png" width="16%" onclick="switchCarousel(4)">
-                        <img src="\assets\dressPink.png" width="16%" onclick="switchCarousel(5)">
+                        @foreach ($productPictures as $index => $photo)
+                            <img src="{{ Storage::url($photo) }}" width="16%" onclick="switchCarousel({{ $index + 1 }})">
+                        @endforeach
                     </div>
                 </div>
                 @php
@@ -91,7 +103,7 @@
                                         <form action="{{ route('wish') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="productID" value="{{ $product->productID }}">
-                                            <button type="submit" style="background: red; border: none;"><i
+                                            <button type="submit" style="background: none; border: none; color: #F0F1E4;"><i
                                                     class="fa fa-heart-o fa-2x mt-2 heart" id="fa-heart-o"
                                                     onclick="wishlist()"></i></button>
                                         </form>
@@ -99,8 +111,8 @@
                                         <form action="{{ route('unwish') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="productID" value="{{ $product->productID }}">
-                                            <button type="submit" style="background: green; border: none;"><i
-                                                    class="fa fa-heart fa-2x mt-2 heart" id="fa-heart-o"
+                                            <button type="submit" style="background: none; border: none;"><i
+                                                    class="fa fa-heart fa-2x mt-2 heart-color" id="fa-heart-o"
                                                     onclick="wishlist()"></i></button>
                                         </form>
                                     @endif
@@ -118,12 +130,12 @@
                             <i class="fa fa-star @if (floor($averageRating) >= 5) rating-color @endif me-2"></i>
                             <p>({{ $product->review->count() }} ulasan)</p>
                         </div>
-                        <h1>Rp. {{ number_format($product->productPrice, 2, ',', '.') }}</h1>
+                        <h1>Rp {{ number_format($product->productPrice, 2, ',', '.') }}</h1>
                         <div class="mt-3 mb-3">
                             <p>Ukuran :</p>
                             <div class="btn-sizes">
                                 <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
-                                    value="XS">XS</button>
+                                    value="XS" >XS</button>
                                 <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
                                     value="S">S</button>
                                 <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
@@ -140,14 +152,22 @@
                                 <p>Jumlah :</p>
                                 <div class="d-flex align-items-center justify-content-around">
                                     <div class="btn-qty">
-                                        <input type="hidden" name="productID" value="{{$product->productID}}">
-                                        <input type="number" value="0" id="qty-value" max="0"
-                                            min="0" name="quantity">
-                                        <input type="hidden" name="size" id="productSize">
-                                        {{-- <i class="fa fa-minus minus" onclick="minus()"></i>
-                                        <i class="fa fa-plus plus" onclick="plus()"></i> --}}
-                                    </div>
+                                    <input type="hidden" name="productID" value="{{$product->productID}}">
+                                    <input type="number" value="0" id="qty-value" max="0" 
+                                    min="0" name="quantity" class="no-spinner">
+                                    <input type="hidden" name="size" id="productSize">
+                                    <i class="fa fa-minus minus" onclick="minus()"></i>
+                                    <i class="fa fa-plus plus" onclick="plus()"></i>
+                                </div>
+                                    
+                                @auth
+                                    <!-- Jika pengguna sudah login, tampilkan tombol submit -->
                                     <button class="btn-cart" type="submit">TAMBAHKAN KE KERANJANG</button>
+                                @else
+                                    <!-- Jika pengguna belum login, arahkan ke halaman login -->
+                                    <a href="{{ route('LogIn') }}" class="btn-cart centered" style="background-color: #F0F1E4; color: black;">TAMBAHKAN KE KERANJANG</a>
+                                @endauth
+                            
                                 </div>
                             </form>
                         </div>
@@ -306,8 +326,8 @@
             <hr>
 
             <div class="reviews w-75">
-                <div class="d-flex align-items-center sort-by">
-                    <h5>Sort By</h5>
+                <div class="d-flex align-items-center justify-content-around sort-by">
+                    <h5>Urut Berdasarkan</h5>
                     <form action="">
                         <input type="hidden" name="rating" id="" value="">
 
@@ -555,16 +575,16 @@
         //     }
         // }
 
-        // function switchCarousel(id){
-        //     //Reset active carousel
-        //     let i=1;
-        //     while(document.getElementById("carousel-" + i) != undefined){
-        //         document.getElementById("carousel-" + i).classList.remove("active");
-        //         i += 1;
-        //     }
+        function switchCarousel(id){
+            //Reset active carousel
+            let i=1;
+            while(document.getElementById("carousel-" + i) != undefined){
+                document.getElementById("carousel-" + i).classList.remove("active");
+                i += 1;
+            }
 
-        //     document.getElementById("carousel-" + id).classList.add("active");
-        // }
+            document.getElementById("carousel-" + id).classList.add("active");
+        }
 
         // function validate(evt) {
         //     var theEvent = evt || window.event;
@@ -582,19 +602,19 @@
         //     }
         // }
 
-        // function minus() {
-        //     if(document.getElementById("qty-value").value == ""){
-        //         document.getElementById("qty-value").value = 0;
-        //     }
-        //     document.getElementById("qty-value").value -= 1;
-        // }
+        function minus() {
+            if(document.getElementById("qty-value").value == ""){
+                document.getElementById("qty-value").value = 0;
+            }
+            document.getElementById("qty-value").value -= 1;
+        }
 
-        // function plus() {
-        //     if(document.getElementById("qty-value").value == ""){
-        //         document.getElementById("qty-value").value = 0;
-        //     }
-        //     document.getElementById("qty-value").value = parseInt(document.getElementById("qty-value").value) + 1;
-        // }
+        function plus() {
+            if(document.getElementById("qty-value").value == ""){
+                document.getElementById("qty-value").value = 0;
+            }
+            document.getElementById("qty-value").value = parseInt(document.getElementById("qty-value").value) + 1;
+        }
     </script>
 </body>
 

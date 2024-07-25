@@ -27,21 +27,54 @@
         <h1>Favorit</h1>
     </div>
     <div class="container mb-5 mt-0">
-        {{-- <div class="d-flex flex-wrap mt-3 mb-3" id="content-wishlist">
-            <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
-            <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
-            <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
-            <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
-            <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
-            <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
-            <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
-            <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
-            <div class="card-content"><div class="card-custom"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div></div>
-            <div class="card-content"><div class="card-custom sold-out"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div><h1>SOLD OUT!</h1></div>
-            <div class="card-content"><div class="card-custom sold-out"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div><h1>SOLD OUT!</h1></div>
-            <div class="card-content"><div class="card-custom sold-out"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div><h1>SOLD OUT!</h1></div>
-            <div class="card-content"><div class="card-custom sold-out"><i class="fa fa-heart fa-2x heart-color" id="wishlist-heart-2" onclick="wishlist(2)"></i><img src="assets/dressHijau.png" class="card-custom-top" alt="Catalog"><div class="card-custom-body"><p>Kamboja Kutubaru</p><h3>Rp&nbsp;150.000,00</h3></div></div><h1>SOLD OUT!</h1></div>
-        </div> --}}
+        <div class="d-flex flex-wrap mt-3 mb-3" id="content-wishlist">
+                @if (!Auth::check())
+                    <a href="{{ route('LogIn') }}">
+                    </a>
+                @else
+                    @foreach ($product as $item)
+                        
+                        @php
+                            $query =
+                                'SELECT * FROM `wishlists` WHERE `productID` = ? AND `userID` = ?';
+                            $wished = DB::select($query, [
+                                $item->productID,
+                                auth()->user()->userID,
+                            ]);
+                        @endphp
+                        <input name="productID" type="hidden" value="{{ $item->productID }}">
+                        @if ($wished)
+                        <div class="catalog-item" data-price="{{ $item->productPrice }}">
+                            <a href="{{ route('ProductDetail', ['id' => $item->productID]) }}">
+                                <div class="card-custom" style="">
+                                    <div class="image-container">
+                                        <img src="{{ Storage::url(json_decode($item->productPicturePath)[0]) }}" class="card-custom-top" alt="Catalog">
+                                        <form action="{{ route('unwish') }}" method="POST"
+                                            class="wishlist-form">
+                                            @csrf
+                                            <input type="hidden" name="productID"
+                                                value="{{ $item->productID }}">
+                                            <button type="submit" style="background: none; border: none;">
+                                                <i class="fa fa-heart fa-2x heart-color click-wish"
+                                                    id="wishlist-heart" style="background: none;"></i>
+                                            </button>
+                                        </form>
+                                        <div class="card-custom-body">
+                                            <p class="productName">{{ $item->productName }}</p>
+                                            <h3 class="productPrice">Rp {{ number_format($item->productPrice, 2, ',', '.') }}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        @else
+                            
+                        @endif
+                                
+                        
+                    @endforeach
+                @endif
+        </div>
         
     </div>
 
