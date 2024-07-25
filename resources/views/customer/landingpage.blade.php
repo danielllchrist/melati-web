@@ -96,12 +96,18 @@
             </div>
             <div class="flex-column">
                 <div id="men" class="men-women-content">
-                    <img src="assets\landing\men.png" alt="men">
+                    <a href="{{ route('MenCatalogue') }}">
+                        <img src="assets\landing\men.png" alt="men" class="hover-image"
+                            data-hover="assets/landing/menHover.png">
+                    </a>
                     {{-- <img src="\assets\dummy-img\top 2.png" alt="men"> --}}
                 </div>
                 <div id="women" class="men-women-content">
                     {{-- <img src="\assets\dummy-img\rok 3.png" alt="women"> --}}
-                    <img src="assets\landing\women.png" alt="women">
+                    <a href="{{ route('WomenCatalogue') }}">
+                        <img src="assets\landing\women.png" alt="women" class="hover-image"
+                            data-hover="assets/landing/womenHover.png">
+                    </a>
                 </div>
             </div>
         </div>
@@ -244,6 +250,19 @@
         window.onload = function() {
             showTab('terbaik');
         }
+
+        document.querySelectorAll('.hover-image').forEach(img => {
+            const originalSrc = img.src;
+            const hoverSrc = img.getAttribute('data-hover');
+
+            img.addEventListener('mouseover', () => {
+                img.src = hoverSrc;
+            });
+
+            img.addEventListener('mouseout', () => {
+                img.src = originalSrc;
+            });
+        });
     </script>
 </body>
 

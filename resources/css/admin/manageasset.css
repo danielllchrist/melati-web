@@ -241,3 +241,14 @@ a .buttons:hover {
     width: 200px;
 }
 
+.men-women-content img.hover-image {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.men-women-content img.hover-image:hover {
+    content: url();
+}
+
+.men-women-content img.hover-image.fade-out {
+    opacity: 0;
+}

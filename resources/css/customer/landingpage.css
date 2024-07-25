@@ -292,3 +292,17 @@ a .buttons:hover {
     border : 1px solid #F0F1E4;
     box-shadow: 0px 0px 30px #D5BE9E;
 }
+
+.men-women-content img.hover-image {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.men-women-content img.hover-image:hover {
+    content: url();
+}
+
+.men-women-content img.hover-image.fade-out {
+    opacity: 0;
+}
+
+
