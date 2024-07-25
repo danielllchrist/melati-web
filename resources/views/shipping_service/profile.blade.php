@@ -157,7 +157,7 @@
             const formData = new FormData();
             formData.append('image', file);
 
-            fetch('{{ route('CustomerUpdateProfilePicture') }}', {
+            fetch('{{ route('ShippingServiceUpdateProfilePicture') }}', {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'

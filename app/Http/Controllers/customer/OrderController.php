@@ -232,7 +232,7 @@ class OrderController extends Controller
         if ($voucherUsage) {
             $voucherUsage->delete();
         }
-        return redirect()->route('CustomerDetailOrder', ['orderID' => $transactionID]);
+        return redirect()->intended()->route('CustomerDetailOrder', ['orderID' => $transactionID]);
     }
 
     public function myorder()
