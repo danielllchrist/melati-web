@@ -187,7 +187,15 @@
                 <h5>Ulasan Pelanggan</h5>
                 <div class="d-flex">
                     <div class="number">
-                        <h1>{{ $averageRating }}</h1>
+                        <h1>
+                            @if(floor($averageRating) == $averageRating)
+                                {{ $averageRating }}
+                            @elseif($averageRating == round($averageRating, 1))
+                                {{ number_format($averageRating, 1) }}
+                            @else
+                                {{ number_format($averageRating, 2) }}
+                            @endif
+                        </h1>
                     </div>
 
                     <div class="d-flex flex-column justify-content-center align-items-center mt-3 ms-3">
