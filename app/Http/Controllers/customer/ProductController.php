@@ -40,6 +40,7 @@ class ProductController extends Controller
             $product = Product::where('forGender', $gender)
                 ->get();
         }
+
         return view('customer.catalog', compact('product'));
     }
 
@@ -69,7 +70,6 @@ class ProductController extends Controller
                         VALUES (?, ?, ?, ?, ?)";
             DB::insert($insertQuery, [$userID, $productID, $now, $now, $now]);
         }
-
         return redirect()->back();
     }
 
@@ -88,7 +88,7 @@ class ProductController extends Controller
 
     public function detail_product($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('size')->findOrFail($id);
         // dd($product->productPicturePath);
         return view('customer.detail', compact('product'));
     }
@@ -114,7 +114,7 @@ class ProductController extends Controller
             'size' => 'required|exists:sizes,size',
             'quantity' => 'required|integer|min:1'
         ]);
-        
+
 
         $productID = $request->input('productID');
         $size = $request->input('size');
@@ -123,15 +123,17 @@ class ProductController extends Controller
         $sizeQuery = "SELECT * FROM `sizes` WHERE `size` = ? AND `productID` = ?";
         $sizeCheck = DB::select($sizeQuery, [$size, $productID]);
 
-        if (empty($sizeCheck)) {
+        // dd($sizeCheck);
+        if (empty($sizeCheck) || count($sizeCheck) == 0) {
+
             return redirect()->back()->with('error', 'Stock not found.');
         }
-        
-        $sizeCheck = $sizeCheck[0]; // Access the first element, assuming sizeID is unique
+
+        $sizeCheck = $sizeCheck[0];
 
         $checkQuery = "SELECT * FROM `carts` WHERE `userID` = ? AND `sizeID` = ?";
         $check = DB::select($checkQuery, [auth()->user()->userID, $sizeCheck->sizeID]);
-        if ( count($check) > 1){
+        if (count($check) > 1) {
             $check = $check[0];
         }
         // dd($sizeCheck, $check);
@@ -149,7 +151,6 @@ class ProductController extends Controller
         } else {
             $insertQuery = "INSERT INTO `carts` (`userID`, `sizeID`, `quantity`, `created_at`, `updated_at`) VALUES (?, ?, ?, NOW(), NOW())";
             DB::insert($insertQuery, [auth()->user()->userID, $sizeCheck->sizeID, $quantity]);
-
         }
 
         return redirect()->back()->with('success', 'Added successfully');

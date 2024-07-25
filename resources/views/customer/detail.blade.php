@@ -134,16 +134,18 @@
                         <div class="mt-3 mb-3">
                             <p>Ukuran :</p>
                             <div class="btn-sizes">
-                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
-                                    value="XS" >XS</button>
-                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
-                                    value="S">S</button>
-                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
-                                    value="M">M</button>
-                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
-                                    value="L">L</button>
-                                <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
-                                    value="XL">XL</button>
+                                @php
+                                    $sizes = $product->size->sortBy(function ($size) {
+                                        $order = ['XS' => 1, 'S' => 2, 'M' => 3, 'L' => 4, 'XL' => 5];
+                                        return $order[$size->size] ?? 999;
+                                    });
+                                @endphp
+
+                                @foreach($sizes as $size)
+                                    <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size" value="{{ $size->size }}">{{ $size->size }}</button>
+                                @endforeach
+
+
                             </div>
                         </div>
                         <div class="quantity mb-4">
