@@ -117,8 +117,8 @@
             @enderror
         </div>
         <label for="picture">Gambar Produk*</label>
-        <input name="picture[]" id="picture" class="underline-input-full"
-            placeholder="Max 5 photos" required accept="image/png,image/jpg,image/jpeg" type="file" multiple>
+        <input name="picture[]" id="picture" class="underline-input-full" placeholder="Max 5 photos"
+            accept="image/png,image/jpg,image/jpeg" type="file" multiple>
         <span class="small-text">Gambar Produk. Wajib. Pilih minimal 1 gambar</span>
         <div class="error-message">
             @error('picture')

@@ -31,6 +31,8 @@
                 <li class><a href="{{ route('CustomerCart') }}" class="nav-custom"><img
                             src = "\assets\nav_menu\cart.svg" alt = "cart" width = "33" height = "33"></a>
                 </li>
+                <li class><a href="{{ route('CustomerChat') }}" class="nav-custom"><img
+                            src = "\assets\admin_menu\circle.svg" alt = "chat" width = "28" height = "28"></a></li>
                 <li class><a href="{{ route('CustomerProfile') }}" class="nav-custom"><img
                             src = "\assets\nav_menu\person.svg" alt = "profile" width = "28" height = "28"></a></li>
             </ul>

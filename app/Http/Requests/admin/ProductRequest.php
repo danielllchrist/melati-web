@@ -31,7 +31,7 @@ class ProductRequest extends FormRequest
             'productWeight' => 'required|numeric|min:1|max:10000',
             'productDescription' => 'required|min:10|max:2000',
             'gender' => Rule::in(['Pria', 'Wanita']),
-            'picture' => 'required|array|min:1|max:5',
+            'picture' => 'array|min:1|max:5',
             'picture.*' => 'image|max:4096',
         ];
     }

@@ -233,13 +233,17 @@ section{
     display: flex;
     flex-direction: row;
     width: 400px;
-    gap: 18px;
+    /* gap: 18px; */
     padding: 10px 25px 0 35px;
     border-top: #D5BE9E solid 2px;
 }
 
 .total .amount-item-name{
     font-weight: 600;
+}
+
+.amount-item-name h3{
+    width : 100px;
 }
 
 .total .amount-item-value{

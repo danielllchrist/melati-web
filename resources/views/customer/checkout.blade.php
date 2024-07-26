@@ -18,7 +18,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
     <div class="main-content">
-        <form action="{{ route('prepayment', ['transactionID' => $transaction->transactionID, 'tempTotalPrice' => $tempTotalPrice]) }}" method = "post">
+        <form action="{{ route('prepayment', ['transactionID' => $transaction->transactionID, 'tempTotalPrice' => $tempTotalPrice, 'voucherID' => $targetVoucher]) }}" method = "post">
             @csrf
             <div class="atas">
                 <div class="nonactive active">
@@ -216,7 +216,6 @@
                 var addressCity = $(this).find('#regency').text();
                 var addressProvince = $(this).find('#province').text();
 
-                // Ketika tombol "Pilih" di dalam modal vouchers diklik, tutup modal vouchers
                 $('#alamatDetail .btn-submit-popup').on('click', function() {
                     oldID = addressId;
                     oldName = addressName
@@ -288,15 +287,16 @@
                 $('#selected-voucher').val(voucherID);
 
 
-                console.log(isPilihButtonClicked)
+                // console.log(isPilihButtonClicked)
                 // Set the flag to true
                 isPilihButtonClicked = true;
-                console.log(isPilihButtonClicked)
+                // console.log(isPilihButtonClicked)
 
                 $('#vouchers').modal('hide');
                 event.preventDefault();
 
                 var transactionID = <?php echo json_encode($tempID); ?>;
+                // console.log the value of id selected-voucher
                 window.location.href = '/konfirmasi-pesanan/' + transactionID + '/' + voucherID;
             });
 
