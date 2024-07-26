@@ -19,34 +19,35 @@ class MixMatchController extends Controller
         $products = Product::latest()->take(5)->get();
         $atasan = Product::where('ProductCategory', 'Atasan')->get();
         $atasan = Product::where('ProductCategory', 'Atasan')->get();
-        $bawahan = Product::where('ProductCategory', 'Bawahan')->take(3)->get();
-        $aksesoris = Product::where('ProductCategory', 'Aksesoris')->take(3)->get();
+        $bawahan = Product::where('ProductCategory', 'Bawahan')->get();
+        $aksesoris = Product::where('ProductCategory', 'Aksesoris')->get();
 
         return response()->view('customer.mixmatch', compact('products', 'atasan', 'bawahan', 'aksesoris'));
     }
 
     public function addCart(Request $request)
     {
+        // dd($request);
         $userID = Auth::id();
         // foreach the request attr
         foreach ($request->all() as $key => $value) {
             // if the key is not _token
             if ($key != '_token') {
-                if($value == null){
-                    if($key == 'atasan'){
+                if ($value == null) {
+                    if ($key == 'atasan') {
                         $value = Product::where('productCategory', 'Atasan')->first()->productID;
-                    }
-                    else if ($key == 'bawahan'){
+                    } else if ($key == 'bawahan') {
                         $value = Product::where('productCategory', 'Bawahan')->first()->productID;
-                    }
-                    else if ($key == 'aksesoris'){
+                    } else if ($key == 'aksesoris') {
                         $value = Product::where('productCategory', 'Aksesoris')->first()->productID;
-                    }
-                    else{
+                    } else if ($key == 'produk3') {
+                        break;
+                    } else {
                         dd("Error");
                     }
                 }
-                $size = Size::where('productID', $value)->first();
+                // where size is the samew with ProductID and the first created size
+                $size = Size::where('productID', $value)->oldest('created_at')->first();
                 if ($size == null) {
                     dd(['message' => "produk gada cok", 'value' => $value]);
                 }
@@ -59,9 +60,16 @@ class MixMatchController extends Controller
                     }
                 }
 
-                // create new cart
-                $insertQuery = "INSERT INTO `carts` (`userID`, `sizeID`, `quantity`) VALUES (?, ?, ?)";
-                DB::insert($insertQuery, [$userID, $size->sizeID, $quantity]);
+                // check if the product is already in the cart
+                $cart = Cart::where('userID', $userID)->where('sizeID', $size->sizeID)->first();
+                if ($cart) {
+                    $cart->quantity += $quantity;
+                    $cart->save();
+                } else {
+                    // create new cart
+                    $insertQuery = "INSERT INTO `carts` (`userID`, `sizeID`, `quantity`) VALUES (?, ?, ?)";
+                    DB::insert($insertQuery, [$userID, $size->sizeID, $quantity]);
+                }
             }
         }
 

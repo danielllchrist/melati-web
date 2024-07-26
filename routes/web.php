@@ -91,7 +91,7 @@ Route::middleware(['customer'])->group(function () {
         Route::post('/pengembalian/{transactionID}', 'store')->name('CustomerReturn.store');
     });
 
-    Route::controller(CustomerMixMatchController::class)->group(function(){
+    Route::controller(CustomerMixMatchController::class)->group(function () {
         Route::post('/mix-and-match/tambah-keranjang', 'addCart')->name('addCart');
     });
 
@@ -123,7 +123,7 @@ Route::middleware(['customer'])->group(function () {
         Route::post('/tambah-alamat', 'addAddress')->name('AddAddress');
         Route::post('/pembayaran/{transactionID}/bayar', 'pay')->name('PayOrder');
         Route::post('/pembayaran/{transactionID}/batal', 'cancel')->name('CancelOrder');
-        Route::post('/pembayaran/{transactionID}/{tempTotalPrice?}', 'payment')->name('prepayment');
+        Route::post('/pembayaran/{transactionID}/{tempTotalPrice?}/{voucherID?}', 'payment')->name('prepayment');
     });
     // Route::resource('addresses', CustomerAddressController::class)->except(['index']);
     Route::controller(CustomerAddressController::class)->group(function () {

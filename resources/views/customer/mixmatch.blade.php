@@ -66,9 +66,9 @@
             transition: 0.5s all ease-in-out;
         }
 
-        .card-custom-text a:hover{
+        .card-custom-text a:hover {
             box-shadow: 0 0 10px #F0F1E4;
-            color : #4f290c;
+            color: #4f290c;
         }
 
         .card-custom-text>a {
@@ -78,7 +78,7 @@
             font-weight: 600;
             background-color: #d5be9e;
             display: inline-block;
-            padding: 5px 0; 
+            padding: 5px 0;
             font-weight: 600;
             border-radius: 5em;
             text-align: center;
@@ -200,7 +200,7 @@
             padding-top: 0;
         }
 
-        .catalog-item{
+        .catalog-item {
             position: relative;
         }
 
@@ -254,17 +254,26 @@
 
         .wishlist-form {
             position: absolute;
-            bottom: 3px; /* Adjust as needed */
-            right: 4px; /* Adjust as needed */
-            z-index: 10; /* Ensure the form appears on top of the image */
-            background: none; /* Ensure there's no background */
+            bottom: 3px;
+            /* Adjust as needed */
+            right: 4px;
+            /* Adjust as needed */
+            z-index: 10;
+            /* Ensure the form appears on top of the image */
+            background: none;
+            /* Ensure there's no background */
         }
+
         #wishlist-heart {
             position: absolute;
-            bottom: 3px; /* Adjust as needed */
-            right: 4px; /* Adjust as needed */
-            background: none; /* Ensure there's no background */
-            z-index: 10; /* Ensure the icon appears on top */
+            bottom: 3px;
+            /* Adjust as needed */
+            right: 4px;
+            /* Adjust as needed */
+            background: none;
+            /* Ensure there's no background */
+            z-index: 10;
+            /* Ensure the icon appears on top */
         }
 
         .ps-search-custom-container {
@@ -776,9 +785,6 @@
 
     {{-- Modal --}}
     <script>
-        console.log('start')
-
-
         const rupiah = (number) => {
             return new Intl.NumberFormat("id-ID", {
                 style: "currency",
@@ -867,6 +873,62 @@
                 document.getElementById("content-catalog").innerHTML = content;
             }
         }
+    </script>
+
+    {{-- Carousel --}}
+    <script>
+        $('#carousel-top-mid').on('slide.bs.carousel', function(e) {
+            var activeIndex = $(this).find('.active').index();
+            var nextIndex = (activeIndex + 1) % $(this).find('.carousel-item').length;
+            var prevIndex = (activeIndex - 1 + $(this).find('.carousel-item').length) % $(this).find(
+                '.carousel-item').length;
+
+            if (e.direction === 'left') { // sliding to next slide
+                var nextImageId = $(this).find('.carousel-item').eq(nextIndex).find('img').data('slide-to');
+                $('#selected-atasan').val(nextImageId);
+                console.log(nextImageId);
+                console.log('sekarang' + activeIndex + 'sebelumnya' + nextIndex);
+            } else if (e.direction === 'right') { // sliding to previous slide
+                var prevImageId = $(this).find('.carousel-item').eq(prevIndex).find('img').data('slide-to');
+                $('#selected-atasan').val(prevImageId);
+                console.log(nextImageId);
+                console.log('sekarang' + activeIndex + 'sebelumnya' + prevIndex);
+            }
+        });
+
+        $('#carousel-bottom-mid').on('slide.bs.carousel', function(e) {
+            var activeIndex = $(this).find('.active').index();
+            var nextIndex = (activeIndex + 1) % $(this).find('.carousel-item').length;
+            var prevIndex = (activeIndex - 1 + $(this).find('.carousel-item').length) % $(this).find(
+                '.carousel-item').length;
+
+            if (e.direction === 'left') { // sliding to next slide
+                var nextImageId = $(this).find('.carousel-item').eq(nextIndex).find('img').data('slide-to');
+                $('#selected-bawahan').val(nextImageId);
+            } else if (e.direction === 'right') { // sliding to previous slide
+                var prevImageId = $(this).find('.carousel-item').eq(prevIndex).find('img').data('slide-to');
+                $('#selected-bawahan').val(prevImageId);
+            }
+        });
+
+        $('#carousel-accessories-right').on('slide.bs.carousel', function(e) {
+            var activeIndex = $(this).find('.active').index();
+            var nextIndex = (activeIndex + 1) % $(this).find('.carousel-item').length;
+            var prevIndex = (activeIndex - 1 + $(this).find('.carousel-item').length) % $(this).find(
+                '.carousel-item').length;
+
+            if (e.direction === 'left') { // sliding to next slide
+                var nextImageId = $(this).find('.carousel-item').eq(nextIndex).find('img').data('slide-to');
+                $('#selected-aksesoris').val(nextImageId);
+                console.log(nextImageId);
+                console.log('sekarang' + activeIndex + 'sebelumnya' + nextIndex);
+            } else if (e.direction === 'right') { // sliding to previous slide
+                var prevImageId = $(this).find('.carousel-item').eq(prevIndex).find('img').data('slide-to');
+                $('#selected-aksesoris').val(prevImageId);
+                console.log(nextImageId);
+                console.log('sekarang' + activeIndex + 'sebelumnya' + prevIndex);
+            }
+        });
     </script>
 
     @include('components.customer.footercustomer')

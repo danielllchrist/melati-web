@@ -63,7 +63,7 @@
                                 @foreach ($order->transactionDetail as $o)
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="\assets\dummy-img\Rectangle 28.png" alt="">
+                                            <img src="{{Storage::url(json_decode($o->product->productPicturePath)[0])}}" alt="">
                                         </div>
                                         <div class="product-info">
                                             <h4 class="product-name">{{ $o->product->productName }}</h4>

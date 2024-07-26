@@ -17,18 +17,6 @@
         <div class="main-content">
             <div class="inner-container">
                 <div class="section">
-                    <div class="ps-header">
-                        <h2 class="ps-title">Pesanan Saya</h2>
-                        <div class="padding-search-custom">
-                            <form class="form-inline my-2 my-lg-0">
-                                <div class="ps-search-custom-container">
-                                    <img src="assets/search-white.svg" alt="search" width="19" height="19">
-                                    <input class="ps-search-custom" type="text"
-                                        placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                     <div class="ps-content">
                         <div class="ps-status-menu">
                             <ul class="status-menu">
@@ -61,7 +49,8 @@
                                         @foreach ($order->transactionDetail as $detail)
                                             <div class="ps-order-detail">
                                                 <div class="ps-picture">
-                                                    <img src="\assets\top2.png" class="ps-picture-img" alt="">
+                                                    <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}"
+                                                        class="ps-picture-img" alt="">
                                                     <div class="ps-picture-text">
                                                         <h2 class="name">{{ $detail->product->productName }}</h2>
                                                         <p>Ukuran: {{ $detail->size->size }}</p>
@@ -102,7 +91,8 @@
                                         @foreach ($order->transactionDetail as $detail)
                                             <div class="ps-order-detail">
                                                 <div class="ps-picture">
-                                                    <img src="\assets\top2.png" class="ps-picture-img" alt="">
+                                                    <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}"
+                                                        class="ps-picture-img" alt="">
                                                     <div class="ps-picture-text">
                                                         <h2 class="name">{{ $detail->product->productName }}</h2>
                                                         <p>Size: {{ $detail->size->size }}</p>
@@ -143,8 +133,8 @@
                                         @foreach ($order->transactionDetail as $detail)
                                             <div class="ps-order-detail">
                                                 <div class="ps-picture">
-                                                    <img src="\assets\top2.png" class="ps-picture-img"
-                                                        alt="">
+                                                    <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}"
+                                                        class="ps-picture-img" alt="">
                                                     <div class="ps-picture-text">
                                                         <h2 class="name">{{ $detail->product->productName }}</h2>
                                                         <p>Size: {{ $detail->size->size }}</p>
@@ -185,8 +175,8 @@
                                         @foreach ($order->transactionDetail as $detail)
                                             <div class="ps-order-detail">
                                                 <div class="ps-picture">
-                                                    <img src="\assets\top2.png" class="ps-picture-img"
-                                                        alt="">
+                                                    <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}"
+                                                        class="ps-picture-img" alt="">
                                                     <div class="ps-picture-text">
                                                         <h2 class="name">{{ $detail->product->productName }}</h2>
                                                         <p>Size: {{ $detail->size->size }}</p>
@@ -229,8 +219,8 @@
                                         @foreach ($order->transactionDetail as $detail)
                                             <div class="ps-order-detail">
                                                 <div class="ps-picture">
-                                                    <img src="\assets\top2.png" class="ps-picture-img"
-                                                        alt="">
+                                                    <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}"
+                                                        class="ps-picture-img" alt="">
                                                     <div class="ps-picture-text">
                                                         <h2 class="name">{{ $detail->product->productName }}</h2>
                                                         <p>Size: {{ $detail->size->size }}</p>
@@ -286,7 +276,8 @@
                                     @foreach ($order->transactionDetail as $detail)
                                         <div class="ps-order-detail">
                                             <div class="ps-picture">
-                                                <img src="\assets\top2.png" class="ps-picture-img" alt="">
+                                                <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}"
+                                                    class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
                                                     <p>Ukuran: {{ $detail->size->size }}</p>

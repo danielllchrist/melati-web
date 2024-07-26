@@ -29,7 +29,7 @@
             <section>
                 <div class="product-detail">
                     <div class="img-wrapper">
-                        <img src="{{ asset($product->productPicturePath) }}" alt="">
+                        <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}" alt="">
                     </div>
                     <div class="details-and-stars">
                         <h3 class="product-name">{{ $product->productName }}</h3>

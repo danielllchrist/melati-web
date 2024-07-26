@@ -27,12 +27,13 @@ class OrderController extends Controller
 
         // get item from transaction details
         $items = TransactionDetail::where('transactionID', $transactionID)->get();
+        $vouchers = Voucher::all();
 
-        $vouchers = null;
-        // make a collection vouchers based on user
-        foreach ($user->voucherUsage as $v) {
-            $vouchers[] = $v->voucher;
-        }
+        // $vouchers = null;
+        // // make a collection vouchers based on user
+        // foreach ($allVouchers as $v) {
+        //     $vouchers[] = $v->voucherName;
+        // }
 
         $targetVoucher = null;
 
@@ -52,7 +53,7 @@ class OrderController extends Controller
         }
 
         // 2 Ribu
-        $shipping = $totalWeight * 2;
+        $shipping = 15000;
 
         $total = $subtotal + $shipping;
 
@@ -96,12 +97,7 @@ class OrderController extends Controller
         // get item from transaction details
         $items = TransactionDetail::where('transactionID', $transactionID)->get();
 
-        $vouchers = null;
-        // make a collection vouchers based on user
-        foreach ($user->voucherUsage as $v) {
-            $vouchers[] = $v->voucher;
-        }
-        $targetVoucher = null;
+        $vouchers = Voucher::all();
 
         // get address that user have
         $addresses = $user->address;
@@ -155,7 +151,7 @@ class OrderController extends Controller
         return response()->json(['districts' => $districts]);
     }
 
-    public function payment(Request $request, $transactionID, $tempTotalPrice = 0)
+    public function payment(Request $request, $transactionID, $tempTotalPrice = 0, $voucherID = null)
     {
         // jika user ga pilih alamat, maka pilih alamat paling pertama
         if ($request->selected_address == null) {
@@ -171,23 +167,6 @@ class OrderController extends Controller
         if ($tempTotalPrice) {
             $transaction->totalPrice = $tempTotalPrice;
         }
-        // for each sizeID in cart, decrease the stock of table sizes in database based on the quantity of products bought, if the stock is less than 0, give error
-        foreach ($items as $item) {
-            $size = Size::find($item->sizeID);
-            if (!$size) {
-                // Size not found, give error
-                return back()->withError("Size not found");
-            }
-            $newStock = $size->stock - $item->quantity;
-            if ($newStock < 0) {
-                // Stock is less than 0, give error
-                return back()->withError("Not enough stock for size {$size->sizeID}");
-            }
-
-            $size->stock = $newStock;
-            $size->save();
-        }
-
 
         // update transaction
         if (!$request->selected_address) {
@@ -196,12 +175,36 @@ class OrderController extends Controller
             $transaction->addressID = $request->selected_address;
         }
         $transaction->voucherID = $request->selected_voucher_name;
+
+        if ($request->selected_voucher_name != null || $voucherID) {
+            // add entry of voucher usage table
+            $userID = Auth::id();
+            if ($request->selected_voucher_name != null) {
+                $voucherResult = $request->selected_voucher_name;
+            } else {
+                $voucherResult = $voucherID;
+            }
+            // check if existing voucher with the same voucherid and user id is already in the database
+            $voucherExists = VoucherUsage::where('voucherID', $voucherResult)->where('userID',  $userID)->first();
+            if ($voucherExists) {
+                $voucherExists->updated_at = Carbon::now();
+            } else {
+                $voucherUsage = new VoucherUsage();
+                $voucherUsage->voucherID = $voucherResult;
+                $voucherUsage->userID = $userID;
+                $voucherUsage->save();
+            }
+        }
+
         $transaction->paymentMethod = $request->payment;
         $transaction->save();
         $id = $transaction->transactionID;
         $total = $transaction->totalPrice;
 
         $otp = rand(10000, 99999);
+
+
+
         return view('customer.payment', compact('otp', 'id', 'total'));
     }
 
@@ -210,6 +213,7 @@ class OrderController extends Controller
         $transaction = Transaction::find($transactionID);
         $transaction->statusID = 1;
         $transaction->save();
+
         return response()->json(['success' => true]);
     }
 

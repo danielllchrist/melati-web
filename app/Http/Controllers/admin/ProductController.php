@@ -80,10 +80,16 @@ class ProductController extends Controller
         $product = $request->validated();
         $pictures = [];
 
-        foreach ($request->file('picture') as $picture) {
-            $picture_path = $picture->store('public/product');
+        if ($request->input('picture')) {
+            foreach ($request->file('picture') as $picture) {
+                $picture_path = $picture->store('public/product');
 
-            //push to array
+                //push to array
+                array_push($pictures, $picture_path);
+            }
+        } else {
+            // make a 800x 600 placeholder picture as a default for no profile picture path
+            $picture_path = '/product/default.jpg';
             array_push($pictures, $picture_path);
         }
 

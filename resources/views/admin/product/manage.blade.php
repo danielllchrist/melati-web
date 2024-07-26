@@ -65,14 +65,14 @@
                     <table id="dataTable">
                         <thead>
                             <tr class = "table-cell">
-                                <th class="user-table-title">No</th>
+                                <th class="user-table-title">ID</th>
                                 <th class="user-table-title">Gambar</th>
                                 <th class="user-table-title">Nama</th>
                                 <th class="user-table-title">Harga</th>
                                 <th class="user-table-title">Ukuran</th>
                                 <th class="user-table-title">Stok</th>
                                 <th class="user-table-title">Berat (gr)</th>
-                                <th class="user-table-title">Action</th>
+                                <th class="user-table-title">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,8 +88,8 @@
         // AJAX DataTable
         var datatable = $('#dataTable').DataTable({
 
-            "language":{
-                "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json",
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json",
                 "sEmptyTable": "Tidak ada data yang tersedia"
             },
             processing: true,
