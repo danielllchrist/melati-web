@@ -144,10 +144,6 @@ input[type="date"] {
     display: inline-block;
 }
 
-input[type="radio"] {
-    accent-color: #d5be9e;
-}
-
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
@@ -173,19 +169,25 @@ input[type="radio"] {
     gap: 127px;
 }
 
-.pf-radio {
-    display: flex;
-    gap: 7px;
-}
+    .pf-radio {
+        display: flex;
+        gap: 7px;
+    }
 
-.pf-radio input[type="radio"] {
-    color: #f0f1e4 !important;
-    background-color: #f0f1e4 !important;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-}
+    .pf-radio input[type="radio"] {
+        color: #f0f1e4 !important;
+        background-color: #f0f1e4 !important;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        outline: none;
+    }
+
+    input[type="radio"] {
+        margin-right: 10px;
+        display: flex;
+        accent-color: #d5be9e;
+    }
 
 .pf-profile-pp {
     margin-top: 124px;

@@ -18,7 +18,9 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
     <div class="main-content">
-        <form action="{{ route('prepayment', ['transactionID' => $transaction->transactionID, 'tempTotalPrice' => $tempTotalPrice, 'voucherID' => $targetVoucher]) }}" method = "post">
+        <form
+            action="{{ route('prepayment', ['transactionID' => $transaction->transactionID, 'tempTotalPrice' => $tempTotalPrice, 'voucherID' => $targetVoucher]) }}"
+            method = "post">
             @csrf
             <div class="atas">
                 <div class="nonactive active">
@@ -157,7 +159,8 @@
                         </div>
                         <div class="w1 brdr">
                             <h2>Total</h2>
-                            <h2>{{ 'Rp ' . number_format($tempTotalPrice ? $tempTotalPrice : $transaction->totalPrice, 0, ',', '.') }}</h2>
+                            <h2>{{ 'Rp ' . number_format($tempTotalPrice ? $tempTotalPrice : $transaction->totalPrice, 0, ',', '.') }}
+                            </h2>
                         </div>
                     </div>
                     <div class="wrap3">

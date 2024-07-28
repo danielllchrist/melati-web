@@ -27,28 +27,32 @@
                         <input type="text" id="name" name="name" placeholder="Masukan nama Anda" required
                             value="{{ old('name') }}">
                         <div class="error-message">
-                        @error('name')
-                            {{ str_replace('name', 'Nama', $message) }}
-                        @enderror
+                            @error('name')
+                                {{ str_replace('name', 'Nama', $message) }}
+                            @enderror
                         </div>
                     </div>
                     <div class="wrap">
                         <label for="gender">Gender</label>
                         <div class="gender-container">
-                            <input type="radio" id="pria" name="gender" value="Pria" required>
-                            <label for="pria">Pria</label>
-                            <input type="radio" id="wanita" name="gender" value="Wanita" required>
-                            <label for="wanita">Wanita</label>
+                            <div class="pf-radio"><input type="radio" id="pria" name="gender" value="Pria"
+                                    required>
+                                <label for="pria">Pria</label>
+                            </div>
+                            <div class="pf-radio">
+                                <input type="radio" id="wanita" name="gender" value="Wanita" required>
+                                <label for="wanita">Wanita</label>
+                            </div>
                         </div>
                     </div>
                     <div class="wrap">
                         <label for="phoneNum">Nomor Telepon</label>
-                        <input type="number" id="phoneNum" name="phoneNum" placeholder="Masukan Nomor Telepon" required min="0"
-                            value="{{ old('phoneNum') }}">
+                        <input type="number" id="phoneNum" name="phoneNum" placeholder="Masukan Nomor Telepon"
+                            required min="0" value="{{ old('phoneNum') }}">
                         <div class="error-message">
-                        @error('phoneNum')
-                            {{ str_replace('phone num', 'Nomor Telepon', $message) }}
-                        @enderror
+                            @error('phoneNum')
+                                {{ str_replace('phone num', 'Nomor Telepon', $message) }}
+                            @enderror
                         </div>
                     </div>
                     <div class="wrap">
@@ -56,31 +60,33 @@
                         <input type="email" id="email" name="email" placeholder="Masukan Email" required
                             value="{{ old('email') }}">
                         <div class="error-message">
-                        @error('email')
-                            {{ str_replace('email', 'Email', $message) }}
-                        @enderror
+                            @error('email')
+                                {{ str_replace('email', 'Email', $message) }}
+                            @enderror
                         </div>
                     </div>
                     <div class="wrap">
                         <label for="age">Usia</label>
-                        <input type="number" id="age" name="age" placeholder="Masukan Usia" required min="0"
-                            value="{{ old('age') }}">
+                        <input type="number" id="age" name="age" placeholder="Masukan Usia" required
+                            min="0" value="{{ old('age') }}">
                         <div class="error-message">
-                        @error('age')
-                            {{ str_replace('age', 'Usia', $message) }}
-                        @enderror
+                            @error('age')
+                                {{ str_replace('age', 'Usia', $message) }}
+                            @enderror
                         </div>
                     </div>
                     <div class="wrap">
                         <label for="password">Kata Sandi</label>
                         <div class="password-wrapper">
-                            <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi" required>
-                            <img class="hide-pass-icon" src="/assets/eye.svg" alt="hide" id="eyehidepassword" onclick="hidePassword()">
+                            <input type="password" id="password" name="password" placeholder="Masukan Kata Sandi"
+                                required>
+                            <img class="hide-pass-icon" src="/assets/eye.svg" alt="hide" id="eyehidepassword"
+                                onclick="hidePassword()">
                         </div>
                         <div class="error-message">
-                        @error('password')
-                            {{ str_replace('password', 'Kata Sandi', $message) }}
-                        @enderror
+                            @error('password')
+                                {{ str_replace('password', 'Kata Sandi', $message) }}
+                            @enderror
                         </div>
                     </div>
                     <div class="wrap">
@@ -88,12 +94,13 @@
                         <div class="password-wrapper">
                             <input type="password" id="confirm-password" name="confirm-password"
                                 placeholder="Konfirmasi Kata Sandi" required>
-                            <img class="hide-pass-icon" src="/assets/eye.svg" alt="hide" id="eyehidekonfirmasi" onclick="hideConfirmPassword()">
+                            <img class="hide-pass-icon" src="/assets/eye.svg" alt="hide" id="eyehidekonfirmasi"
+                                onclick="hideConfirmPassword()">
                         </div>
                         <div class="error-message">
-                        @error('confirm-password')
-                            {{ str_replace(['confirm-password', 'password'], ['Konfirmasi Kata Sandi', 'Kata Sandi'], $message) }}
-                        @enderror
+                            @error('confirm-password')
+                                {{ str_replace(['confirm-password', 'password'], ['Konfirmasi Kata Sandi', 'Kata Sandi'], $message) }}
+                            @enderror
                         </div>
                     </div>
             </div>
@@ -109,17 +116,17 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const phoneNumInput = document.getElementById('phoneNum');
             const ageInput = document.getElementById('age');
 
-            phoneNumInput.addEventListener('input', function () {
+            phoneNumInput.addEventListener('input', function() {
                 if (this.value < 0) {
                     this.value = 0;
                 }
             });
 
-            ageInput.addEventListener('input', function () {
+            ageInput.addEventListener('input', function() {
                 if (this.value < 0) {
                     this.value = 0;
                 }
