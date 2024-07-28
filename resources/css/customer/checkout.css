@@ -142,7 +142,7 @@ body{
     padding-left: 2px;
 }
 
-.pembayaran input[type="radio"] {
+/* .pembayaran input[type="radio"] {
     appearance: none;
     width: 20px;
     height: 20px;
@@ -163,7 +163,23 @@ body{
     top: 52%;
     left: 47%;
     transform: translate(-50%, -50%);
+} */
+
+.pembayaran input[type="radio"] {
+    color: #f0f1e4 !important;
+    background-color: #f0f1e4 !important;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    outline: none;
 }
+
+input[type="radio"] {
+    margin-right: 10px;
+    display: flex;
+    accent-color: #d5be9e;
+}
+
 
 .pembayaran .square{
     flex-direction: row;

@@ -24,21 +24,21 @@
                             <div class="pf-formdetail">
                                 <div class="pf-name">Nama</div>
                                 <input class="pf-textfield" type="text" id="nama" name="name"
-                                placeholder="Nama" required value="{{ old('name') ? old('name') : $user->name }}">
+                                    placeholder="Nama" required value="{{ old('name') ? old('name') : $user->name }}">
                             </div>
                             <div class="error-message">
                                 @error('name')
-                                {{ str_replace('name', 'Nama', $message) }}
+                                    {{ str_replace('name', 'Nama', $message) }}
                                 @enderror
                             </div>
                             <div class="pf-formdetail">
                                 <div class="pf-name">Usia</div>
                                 <input class="pf-textfield" type="number" id="age" name="age"
-                                placeholder="Usia" required value="{{ old('age') ? old('age') : $user->age }}">
+                                    placeholder="Usia" required value="{{ old('age') ? old('age') : $user->age }}">
                             </div>
                             <div class="error-message">
                                 @error('age')
-                                {{ str_replace('age', 'Usia', $message) }}
+                                    {{ str_replace('age', 'Usia', $message) }}
                                 @enderror
                             </div>
                             <div class="pf-formdetail">
@@ -58,38 +58,40 @@
                             </div>
                             <div class="error-message">
                                 @error('gender')
-                                {{ str_replace('gender', 'Gender', $message) }}
+                                    {{ str_replace('gender', 'Gender', $message) }}
                                 @enderror
                             </div>
                             <div class="pf-formdetail">
                                 <div class="pf-name">Nomor Telepon</div>
                                 <input class="pf-textfield" type="number" id="phoneNum" name="phoneNum"
-                                    placeholder="Nomor Telepon" required value="{{ old('phoneNum') ? old('phoneNum') : $user->phoneNum }}">
+                                    placeholder="Nomor Telepon" required
+                                    value="{{ old('phoneNum') ? old('phoneNum') : $user->phoneNum }}">
                             </div>
                             <div class="error-message">
                                 @error('phoneNum')
-                                {{ str_replace('phone num', 'Nomor Telepon', $message) }}
+                                    {{ str_replace('phone num', 'Nomor Telepon', $message) }}
                                 @enderror
                             </div>
                             <div class="pf-formdetail">
                                 <div class="pf-name">Email</div>
                                 <input class="pf-textfield" type="email" id="email" name="email"
-                                    placeholder="Email" required value="{{ old('email') ? old('email') : $user->email }}">
+                                    placeholder="Email" required
+                                    value="{{ old('email') ? old('email') : $user->email }}">
                             </div>
                             <div class="error-message">
                                 @error('email')
-                                {{ str_replace('email', 'Email', $message) }}
+                                    {{ str_replace('email', 'Email', $message) }}
                                 @enderror
                             </div>
                             <div class="pf-submit-btn-container"><button class="pf-submit-btn"
-                                type="submit">Simpan</button></div>
+                                    type="submit">Simpan</button></div>
                         </form>
                     </div>
                     <div class="pf-profile-pp">
                         <!-- Profile Photo -->
                         <div x-show="! photoPreview">
                             <img class="pfp-image rounded-full h-40 w-40 object-cover"
-                                src="{{  $user->profilePicturePath }}" alt="profile" id="profilepicture1">
+                                src="{{ $user->profilePicturePath }}" alt="profile" id="profilepicture1">
                         </div>
                         <form>
                             @csrf
@@ -114,7 +116,7 @@
                         </div>
                         <div class="error-message">
                             @error('old_password')
-                            {{ str_replace('old password', 'Kata Sandi Lama', $message) }}
+                                {{ str_replace('old password', 'Kata Sandi Lama', $message) }}
                             @enderror
                         </div>
                         <div class="pf-formdetail">
@@ -126,7 +128,7 @@
                         </div>
                         <div class="error-message">
                             @error('password')
-                            {{ str_replace('password', 'Kata Sandi Baru', $message) }}
+                                {{ str_replace('password', 'Kata Sandi Baru', $message) }}
                             @enderror
                         </div>
                         <div class="pf-submit-btn-container"><button class="pf-submit-btn"
@@ -206,14 +208,17 @@
 
         // Smooth scrolling with offset
         document.querySelectorAll('.sidebar-menu a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
                 const yOffset = -100; // Adjust this value as needed
                 const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
-                window.scrollTo({ top: y, behavior: 'smooth' });
+                window.scrollTo({
+                    top: y,
+                    behavior: 'smooth'
+                });
             });
         });
     </script>

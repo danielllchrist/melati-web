@@ -95,11 +95,6 @@ input[type="password"] {
     margin-right: 1rem;
 }
 
-input[type="radio"] {
-    margin-right: 10px;
-    display: flex;
-}
-
 button[type="submit"] {
     background-color: #d5be9e;
     color: #4f290c;

@@ -98,7 +98,7 @@ input[type="password"] {
     margin-right: 1rem;
 }
 
-input[type="radio"] {
+/* input[type="radio"] {
     margin-right: 10px;
     display: flex;
     width: 16px;
@@ -123,6 +123,26 @@ input[type="radio"]:checked::before {
     height: 10px;
     background-color: #d5be9e;
     border-radius: 50%;
+} */
+
+.pf-radio {
+    display: flex;
+    gap: 7px;
+}
+
+.pf-radio input[type="radio"] {
+    color: #f0f1e4 !important;
+    background-color: #f0f1e4 !important;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+    display: flex;
+    accent-color: #d5be9e;
 }
 
 label[for="pria"] {
