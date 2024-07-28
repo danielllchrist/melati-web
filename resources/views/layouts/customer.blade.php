@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
-    <title>Chat</title>
+    <title>Obrolan</title>
     @vite('resources/css/customer/chat.css')
     @vite('resources/css/app.css')
 </head>
@@ -14,7 +14,7 @@
     @include('components.customer.headercustomer')
     <div class="atas">
         <img class="back_icon" src="{{ asset('assets/back.svg') }}">
-        <h1>Live Chat</h1>
+        <h1>Obrolan</h1>
     </div>
 
     {{ $slot }}

@@ -5,7 +5,7 @@
                 @foreach ($lastChats as $lastChat)
                     <button class="nostyle" id="cust" wire:click="selectChat('{{ $lastChat->lastUserID }}')">
                         <div class="customer">
-                            <img class="pp" src="{{ asset('assets/carouselCatalog.png') }}">
+                            <img class="pp" src={{$lastChat->user->profilePicturePath}}>
                             <div class="text">
                                 <h1>{{ $lastChat->user->name }}</h1>
                                 <p>{{ $lastChat->lastMessage }}</p>

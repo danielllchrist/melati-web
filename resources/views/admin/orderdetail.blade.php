@@ -56,7 +56,7 @@
                     @foreach ($order->transactionDetail as $o)
                         <div class="product">
                             <div class="product-img">
-                                <img src="\{{Storage::url(json_decode($o->product->productPicturePath)[0])}}" alt="">
+                                <img src="{{ Storage::url(json_decode($o->product->productPicturePath)[0]) }}" alt="">
                             </div>
                             <div class="product-info">
                                 <h4 class="product-name">{{ $o->product->productName }}</h4>
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="wrap">
                                     <h4 class="product-qty">x{{ $o->quantity }}</h4>
-                                    <h4 class="product-price">Rp {{ $o->product->productPrice }}</h4>
+                                    <h4 class="product-price">{{ 'Rp ' . number_format($o->product->productPrice , 0, ',', '.') }}</</h4>
                                 </div>
                             </div>
                         </div>
@@ -76,19 +76,19 @@
                 <div class="amount">
                     <div class="amount-item">
                         <p class="amount-item-name">Subtotal</p>
-                        <p class="amount-item-value">Rp {{ $order->subTotalPrice }}</p>
+                        <p class="amount-item-value">{{ 'Rp ' . number_format($order->subTotalPrice, 0, ',', '.') }}</</p>
                     </div>
                     <div class="amount-item">
                         <p class="amount-item-name">Diskon</p>
-                        <p class="amount-item-value">- Rp {{ $order->totalDiscount }}</p>
+                        <p class="amount-item-value">{{ '-Rp ' . number_format($order->totalDiscount , 0, ',', '.') }}</p>
                     </div>
                     <div class="amount-item last-item">
                         <p class="amount-item-name">Ongkos Kirim</p>
-                        <p class="amount-item-value">Rp {{ $order->shippingFee }}</p>
+                        <p class="amount-item-value">{{ 'Rp ' . number_format($order->shippingFee , 0, ',', '.') }}<//p>
                     </div>
                     <div class="total">
                         <h3 class="amount-item-name">Total</h3>
-                        <h3 class="amount-item-value">Rp {{ $order->totalPrice }}</h3>
+                        <h3 class="amount-item-value">{{ 'Rp ' . number_format($order->totalPrice , 0, ',', '.') }}</h3>
                     </div>
                     <div class="payment-method">
                         <img src="\assets\dummy-img\cc.svg" alt="">

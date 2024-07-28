@@ -60,7 +60,7 @@ a{
     margin: 20vw;
     display: flex;
     flex-direction: column;
-    margin: 35px 80px;
+    margin: 30px 40px;
     align-items: center;
     padding-bottom: 20px;
 }
@@ -220,7 +220,7 @@ a{
 .amount-item p, .total h3 {
     margin: 0;
     color: #4F290C;
-    width: 47%;
+    width: 100%;
     letter-spacing: 1px;
 }
 
@@ -257,7 +257,7 @@ a{
 
 .total .amount-item-value{
     font-weight: 700;
-    font-size: 24px;
+    font-size: 23px;
 }
 
 .payment-method {

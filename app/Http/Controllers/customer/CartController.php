@@ -11,6 +11,7 @@ use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
@@ -76,11 +77,14 @@ class CartController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+        Log::info('Request data:', $request->all());
         $userId = Auth::id();
         $cart = Cart::where('userID', $userId)->where('sizeID', $id)->first();
+        $quantity = $cart->quantity;
+        $oldSizeID = $cart->sizeID;
         Log::info($cart);
+
         if ($cart) {
             // Mengambil data sizeID baru dari request
             $newSizeID = $request->input('newSizeID');
@@ -95,11 +99,24 @@ class CartController extends Controller
                     return response()->json(['success' => false, 'message' => 'Quantity harus lebih besar dari 0.'], 400);
                 }
                 $cart->quantity = $newQuantity;
-            }
-
-            if ($newSizeID) {
+            } else if ($newSizeID) {
                 Log::info("Updating size");
-                $cart->sizeID = $newSizeID;
+                
+                // Buat entri baru di tabel cart
+                // $newCart = new Cart();
+                // $newCart->userID = $userId;
+                // $newCart->sizeID = $newSizeID;
+                // $newCart->quantity = $cart->quantity; // Menggunakan quantity dari cart yang dihapus
+                // $newCart->save();
+
+                // Hapus cart yang ada
+
+                $deleteQuery = "DELETE FROM carts WHERE userID = ? AND sizeID = ? AND quantity = ?";
+                DB::delete($deleteQuery, [$userId, $oldSizeID, $quantity]);
+                $insertQuery = "INSERT INTO carts (userID, sizeID, quantity) VALUES (?, ?, ?)";
+                DB::insert($insertQuery, [$userId, $newSizeID, $quantity]);
+                
+                // Log::info($newCart);
             }
 
             $cart->save();
@@ -109,6 +126,7 @@ class CartController extends Controller
         } else {
             return response()->json(['success' => false, 'message' => 'Cart not found'], 404);
         }
+
     }
 
     public function store(Request $request)
@@ -121,6 +139,7 @@ class CartController extends Controller
             if (!$addressExists) {
                 return redirect()->route('CustomerMyOrder')->with('showPopup', true);
             }
+
             $products = $request->input('products');
             $totalPrice = $request->input('totalPrice');
 
@@ -128,8 +147,8 @@ class CartController extends Controller
             // $request->validate([
             //     'products' => 'required|array',
             //     'products.*.sizeID' => 'required|exists:sizes,id',
-            //     'products.quantity' => 'required|integer|min:1',
-            //     'products.*.productPrice' => 'required|numeric|min:0',
+            //     'products.*.quantity' => 'required|integer|min:1',
+            //     'products.*.price' => 'required|numeric|min:0',
             //     'totalPrice' => 'required|numeric|min:0'
             // ]);
 
@@ -137,28 +156,21 @@ class CartController extends Controller
 
             // Buat transaksi baru
             $transaction = new Transaction();
-
             $transaction->userID = $userId;
             $transaction->subTotalPrice = $totalPrice;
             $transaction->statusID = 1;
 
-            // Jika transaksi terakhir ada, lanjutkan dengan $transaction->transactionID
             if ($count > 0) {
                 $transaction->transactionID = $count + 1;
-                $transaction->save();
             } else {
-                // Jika tidak ada transaksi sebelumnya, atur transactionID menjadi 1
                 $transaction->transactionID = 1;
-                $transaction->save();
             }
-            // Ambil ID transaksi yang baru saja dibuat
-            $transactionId = $transaction->transactionID;
+            $transaction->save();
 
             // Buat detail transaksi untuk setiap item di keranjang
             foreach ($products as $product) {
                 $transactionDetail = new TransactionDetail();
                 $transactionDetail->transactionID = $transaction->transactionID;
-                // $transactionDetail->transactionID = $transactionId; // Gunakan $transactionId yang telah diperoleh
                 $transactionDetail->sizeID = $product['sizeID'];
 
                 // Ambil productID berdasarkan sizeID dari tabel sizes
@@ -198,10 +210,11 @@ class CartController extends Controller
             Cart::where('userID', $userId)->delete();
 
             // Kembalikan respon yang sesuai
-            return response()->json(['success' => true, 'message' => 'Transaksi berhasil disimpan!', 'transactionID' => $transactionId]);
+            return response()->json(['success' => true, 'message' => 'Transaksi berhasil disimpan!', 'transactionID' => $transaction->transactionID]);
         } catch (\Exception $e) {
             // Kembalikan pesan error jika terjadi exception
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
         }
     }
+
 }

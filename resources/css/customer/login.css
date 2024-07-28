@@ -181,3 +181,7 @@ a {
     margin-bottom: 0;
     border-bottom: none;
 }
+
+.alert{
+    color: #b95244;
+}

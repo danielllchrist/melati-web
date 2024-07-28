@@ -242,3 +242,12 @@ input::-webkit-inner-spin-button {
     color: #4f290c;
     text-decoration: none;
 }
+
+.pf-keluar {
+    color: #d5be9e;
+    margin: 5px 0;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 31px;
+    /* cursor: pointer; */
+}
