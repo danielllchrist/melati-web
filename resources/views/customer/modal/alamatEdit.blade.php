@@ -14,7 +14,7 @@
                     <input type="hidden" name="address_id" value="{{ $address->addressID }}">
                     <div class="row">
                         <div class="col-md-12">
-                            <label style="color: #ffffff;">Nama Tempat</label>
+                            <label style="color: #F0F1E4;">Nama Tempat</label>
                             <input type="text" name="nama_tempat" class="form-control"
                                 style="font-family: Poppins; display: flex; background: transparent; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px"
                                 value="{{ old('nama_tempat', $address->nameAddress) }}">
@@ -22,7 +22,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label style="color: #ffffff;">Nama Penerima</label>
+                            <label style="color: #F0F1E4;">Nama Penerima</label>
                             <input type="text" name="nama_penerima" class="form-control"
                                 style="font-family: Poppins; display: flex; background: transparent; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px"
                                 value="{{ old('nama_penerima', $address->receiver) }}">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label style="color: #ffffff;">Nomor Telepon</label>
+                            <label style="color: #F0F1E4;">Nomor Telepon</label>
                             <input type="text" name="nomor_telepon" class="form-control"
                                 style="font-family: Poppins; display: flex; background: transparent; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px"
                                 value="{{ old('nomor_telepon', $address->phoneNum) }}">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label style="color: #ffffff;">Provinsi</label>
+                            <label style="color: #F0F1E4;">Provinsi</label>
                             <select name="provinsi" id="provinsi-{{ $address->addressID }}" class="form-control"
                                 style="font-family: Poppins; display: flex; background: black; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">
                                 <option value="">Pilih Provinsi</option>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label style="color: #ffffff;">Kota/Region</label>
+                            <label style="color: #F0F1E4;">Kota/Region</label>
                             <select name="kota" id="kota-{{ $address->addressID }}" class="form-control"
                                 style="font-family: Poppins; display: flex; background: black; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">
                                 <option value="">Pilih Kota/Region</option>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label style="color: #ffffff;">Kelurahan</label>
+                            <label style="color: #F0F1E4;">Kelurahan</label>
                             <select name="kecamatan" id="kecamatan-{{ $address->addressID }}" class="form-control"
                                 style="font-family: Poppins; display: flex; background: black; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">
                                 <option value="">Pilih Kelurahan</option>
@@ -80,14 +80,14 @@
                     </div>                    
                     <div class="row">
                         <div class="col-md-12">
-                            <label style="color: #ffffff;">Alamat Lengkap</label>
+                            <label style="color: #F0F1E4;">Alamat Lengkap</label>
                             <textarea name="alamat_lengkap" class="form-control"
                                 style="font-family: Poppins; display: flex; background: transparent; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">{{ old('alamat_lengkap', $address->detailAddress) }}</textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label style="color: #ffffff;">Deskripsi Alamat</label>
+                            <label style="color: #F0F1E4;">Deskripsi Alamat</label>
                             <textarea name="deskripsi_alamat" class="form-control"
                                 style="font-family: Poppins; display: flex; background: transparent; text-decoration: none; color: #F0F1E4; border: none; border-bottom: 2px solid #F0F1E4; background-clip: padding-box; appearance: none; outline: none; margin-bottom: 40px">{{ old('deskripsi_alamat', $address->description) }}</textarea>
                         </div>
