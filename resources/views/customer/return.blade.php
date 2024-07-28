@@ -31,7 +31,7 @@
                 @foreach ($transaction->transactionDetail as $detail)
                 <div class="product">
                     <div class="product-img">
-                        <img src="\assets\dummy-img\Rectangle 28.png" alt="">
+                        <img src="\{{Storage::url(json_decode($detail->product->productPicturePath)[0])}}" alt="">
                     </div>
                     <div class="product-info">
                         <h4 class="product-name">{{ $detail->product->productName }}</h4>

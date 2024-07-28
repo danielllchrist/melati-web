@@ -139,13 +139,13 @@
                 <div id="terbaik-content" class="card-wrapper tab-content">
                     @foreach ($product_terbaik as $product)
                         <div class="catalog-item">
-                            <a href="{{ route('ProductDetail', ['id' => 'dummy']) }}">
+                            <a href="{{ route('ProductDetail', ['id' =>  $product->productID]) }}">
                                 <div class="card-custom">
                                     <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
                                         class="card-custom-top" alt="Catalog">
                                     <div class="card-custom-body">
                                         <p>{{ $product->productName }}</p>
-                                        <h3>Rp {{ $product->productPrice }}</h3>
+                                        <h3>Rp {{ number_format($product->productPrice,2,',','.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -155,13 +155,13 @@
                 <div id="terbaru-content" class="card-wrapper tab-content">
                     @foreach ($product_terbaru as $product)
                         <div class="catalog-item">
-                            <a href="{{ route('ProductDetail', ['id' => 'dummy']) }}">
+                            <a href="{{ route('ProductDetail', ['id' =>  $product->productID]) }}">
                                 <div class="card-custom">
                                     <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
                                         class="card-custom-top" alt="Catalog">
                                     <div class="card-custom-body">
                                         <p>{{ $product->productName }}</p>
-                                        <h3>Rp {{ $product->productPrice }}</h3>
+                                        <h3>Rp {{ number_format($product->productPrice,2,',','.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -171,13 +171,13 @@
                 <div id="tertinggi-content" class="card-wrapper tab-content">
                     @foreach ($product_tertinggi as $product)
                         <div class="catalog-item">
-                            <a href="{{ route('ProductDetail', ['id' => 'dummy']) }}">
+                            <a href="{{ route('ProductDetail', ['id' =>  $product->productID]) }}">
                                 <div class="card-custom">
                                     <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
                                         class="card-custom-top" alt="Catalog">
                                     <div class="card-custom-body">
                                         <p>{{ $product->productName }}</p>
-                                        <h3>Rp {{ $product->productPrice }}</h3>
+                                        <h3>Rp {{ number_format($product->productPrice,2,',','.') }}</h3>
                                     </div>
                                 </div>
                             </a>

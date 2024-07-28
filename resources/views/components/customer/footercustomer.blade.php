@@ -23,8 +23,8 @@
                 <div class="kelamin">
                     <p class="title">Jenis Kelamin</p>
                     <ul class = "child">
-                        <li><a href="">Pria</a></li>
-                        <li><a href="">Wanita</a></li>
+                        <li><a href="{{ route('MenCatalogue') }}">Pria</a></li>
+                        <li><a href="{{ route('WomenCatalogue') }}">Wanita</a></li>
                     </ul>
                 </div>
                 <div class="bantuan">
