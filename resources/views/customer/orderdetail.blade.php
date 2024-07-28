@@ -71,7 +71,7 @@
                                                 <h4 class="product-size">Ukuran : {{ $o->size->size }}</h4>
                                                 <h4 class="product-qty">x{{ $o->quantity }}</h4>
                                             </div>
-                                            <h4 class="product-price">Rp {{ number_format($o->product->productPrice ,2)}}</h4>
+                                            <h4 class="product-price">{{ 'Rp ' . number_format($o->product->productPrice , 0, ',', '.') }}</h4>
                                             @if ($order->status->statusName == 'Penilaian')
                                                 <div class="rate"><div class="rate-wrapper"><a href="{{ route('review.create', ['transactionID' => $order->transactionID, 'productID' => $o->product]) }}"><div class="rate-btn">Nilai</div></a></div></div>
                                             @endif
@@ -84,19 +84,19 @@
                             <div class="amount">
                                 <div class="amount-item">
                                     <p class="amount-item-name">Subtotal</p>
-                                    <p class="amount-item-value">Rp {{ number_format($order->subTotalPrice ,2)}}</p>
+                                    <p class="amount-item-value">{{ 'Rp ' . number_format($order->subTotalPrice , 0, ',', '.') }}</p>
                                 </div>
                                 <div class="amount-item">
                                     <p class="amount-item-name">Diskon</p>
-                                    <p class="amount-item-value">- Rp {{ number_format( $order->totalDiscount ,2)}}</p>
+                                    <p class="amount-item-value">{{ '-Rp ' . number_format($order->totalDiscount , 0, ',', '.') }}</p>
                                 </div>
                                 <div class="amount-item last-item">
                                     <p class="amount-item-name">Ongkos Kirim</p>
-                                    <p class="amount-item-value">Rp {{ number_format($order->shippingFee,2) }}</p>
+                                    <p class="amount-item-value">{{ 'Rp ' . number_format($order->shippingFee , 0, ',', '.') }}</p>
                                 </div>
                                 <div class="total">
                                     <h3 class="amount-item-name">Total</h3>
-                                    <h3 class="amount-item-value">Rp {{ number_format($order->totalPrice,2)}}</h3>
+                                    <h3 class="amount-item-value"> {{ 'Rp ' . number_format($order->totalPrice , 0, ',', '.') }}</h3>
                                 </div>
                                 <div class="payment-method">
                                     <img src="\assets\dummy-img\cc.svg" alt="">

@@ -42,48 +42,54 @@
         @if ($addressExists)
             <div class="kiri">
                 @forelse ($carts as $cart)
+                    {{-- <a href=""> --}}
                     <div class="product" data-sizeid="{{ $cart->sizeID }}"
                         data-price="{{ $cart->size->product->productPrice }}"
                         data-productstock="{{ $cart->size->stock }}">
-                        <img id="productimg"
-                            src="{{ Storage::url(json_decode($cart->size->product->productPicturePath)[0]) }}">
-                        <div class="wraps">
-                            <h1>{{ $cart->size->product->productName }}</h1>
-                            <h2>Rp {{ number_format($cart->size->product->productPrice, 0, ',', '.') }}</h2>
-                            <p>Ukuran : {{ $cart->size->size }}</p>
-                            <select name="sizeID" class="size-select">
-                                @php
-                                    $sizeOrder = ['S', 'M', 'L', 'XL'];
-                                    $sortedSizes = $cart->size->product->size ?? collect();
-                                    $sortedSizes = $sortedSizes->sortBy(function ($size) use ($sizeOrder) {
-                                        return array_search($size->size, $sizeOrder);
-                                    });
-                                @endphp
-                                @foreach ($sortedSizes as $size)
-                                    <option value="{{ $size->sizeID }}"
-                                        {{ $size->sizeID == $cart->sizeID ? 'selected' : '' }}>
-                                        {{ $size->size }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="wraps2">
-                            <button class="trash-minus-button" type="button">
-                                <img class="icon trash-minus-icon" src="{{ asset('assets/trash_icon.svg') }}">
-                            </button>
-                            <input type="number" class="transparent-number-input" min="1" max="100"
-                                value="{{ $cart->quantity }}" name="quantities[]">
-                            <button class="plus" type="button">
-                                <img class="icon plus-icon" src="{{ asset('assets/plus_icon.svg') }}">
-                            </button>
-                            <input type="hidden" name="product_ids[]" value="{{ $cart->size->product->id }}">
-                            <input type="hidden" name="product_names[]"
-                                value="{{ $cart->size->product->productName }}">
-                            <input type="hidden" name="product_prices[]"
-                                value="{{ $cart->size->product->productPrice }}">
-                            <input type="hidden" name="cart_ids[]" value="{{ $cart->sizeID }}">
-                        </div>
+                        <a href="{{ route('ProductDetail', $cart->size->product->productID) }}" class="product-in">
+                            <img id="productimg"
+                                src="{{ Storage::url(json_decode($cart->size->product->productPicturePath)[0]) }}">
+                            <div class="wraps">
+                                <h1>{{ $cart->size->product->productName }}</h1>
+                                <h2>Rp {{ number_format($cart->size->product->productPrice, 0, ',', '.') }}</h2>
+                                <p>Ukuran : {{ $cart->size->size }}</p>
+                            </div>
+                        </a>
                     </div>
+                    
+                    <div class="no-link">
+                    <select name="sizeID" class="size-select" id="size-select-{{ $cart->sizeID }}">
+                        @php
+                            $sizeOrder = ['S', 'M', 'L', 'XL'];
+                            $sortedSizes = $cart->size->product->size ?? collect();
+                            $sortedSizes = $sortedSizes->sortBy(function ($size) use ($sizeOrder) {
+                                return array_search($size->size, $sizeOrder);
+                            });
+                        @endphp
+                        @foreach ($sortedSizes as $size)
+                            <option value="{{ $size->sizeID }}"
+                                {{ $size->sizeID == $cart->sizeID ? 'selected' : '' }}>
+                                {{ $size->size }}
+                            </option>
+                        @endforeach
+                    </select>
+                    </div>
+
+                    <div class="wraps2">
+                        <button class="trash-minus-button" type="button">
+                            <img class="icon trash-minus-icon" src="{{ asset('assets/trash_icon.svg') }}">
+                        </button>
+                        <input type="number" class="transparent-number-input" min="1" max="100"
+                            value="{{ $cart->quantity }}" name="quantities[]">
+                        <button class="plus" type="button">
+                            <img class="icon plus-icon" src="{{ asset('assets/plus_icon.svg') }}">
+                        </button>
+                        <input type="hidden" name="product_ids[]" value="{{ $cart->size->product->id }}">
+                        <input type="hidden" name="product_names[]" value="{{ $cart->size->product->productName }}">
+                        <input type="hidden" name="product_prices[]" value="{{ $cart->size->product->productPrice }}">
+                        <input type="hidden" name="cart_ids[]" value="{{ $cart->sizeID }}">
+                    </div>
+                    
                 @empty
                     <div class="btn-wrap">
                         <h2>Keranjangmu masih kosong nih..</h2>
@@ -118,9 +124,7 @@
                     </button>
                 </div>
             </form>
-        </div>
-    </div>
-    @include('components.customer.footercustomer')
+        @include('components.customer.footercustomer')
     <div id="error-message" class="alert alert-danger" style="display: none;"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -128,53 +132,18 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        // $(document).ready(function() {
-        //     @if (session('showPopup'))
-        //         $('#address-popup').show();
-        //     @endif
-
-        //     $('.close').click(function() {
-        //         $('#address-popup').hide();
-        //     });
-        // });
-
-        // $(document).ready(function() {
-        //     $('.size-select').change(function() {
-        //         let sizeID = $(this).val();
-        //         let oldsizeID = productElement.dataset.sizeid;
-        //         // Kirim request ke server menggunakan Ajax
-        //         $.ajax({
-        //             url: '/keranjang/update/' + oldsizeID,
-        //             type: 'PUT',
-        //             data: {
-        //                 _token: '{{ csrf_token() }}',
-        //                 sizeID: newSizeID,
-        //             },
-        //             success: function(response) {
-        //                 console.log(response);
-        //                 if (response.success) {
-        //                     location.reload();
-        //                 } else {
-        //                     $('#error-message').text(response.message).show();
-        //                 }
-        //             },
-        //             error: function(xhr, status, error) {
-        //                 console.log(xhr.responseText);
-        //                 $('#error-message').text('Error updating size.').show();
-        //             }
-        //         });
-        //     });
-        // });
-
         document.getElementById('checkout-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Mencegah form dari submit secara default
             // Mengumpulkan data produk dari keranjang
             let products = [];
-            document.querySelectorAll('.product').forEach((product) => {
+            document.querySelectorAll('.kiri').forEach((kiri) => {
+                const product = kiri.querySelector('.product');
+                const wraps2 = kiri.querySelector('.wraps2');
+
                 let sizeID = product.dataset.sizeid;
-                let productPrice = parseFloat(product.querySelector('input[name="product_prices[]"]')
+                let productPrice = parseFloat(wraps2.querySelector('input[name="product_prices[]"]')
                     .value);
-                let quantity = parseInt(product.querySelector('.transparent-number-input').value);
+                let quantity = parseInt(wraps2.querySelector('.transparent-number-input').value);
                 products.push({
                     sizeID: sizeID,
                     price: productPrice,
@@ -207,6 +176,17 @@
                 }
             });
         });
+
+        // $(document).ready(function() {
+        //     // Tambahkan listener untuk setiap elemen dengan class .size-select
+        //     $(".size-select").change(function() {
+        //         var selectedValue = $(this).val();
+        //         var productElement = $(this).closest('.kiri'); // Cari elemen produk terkait
+        //         console.log("Nilai yang dipilih: " + selectedValue);
+        //         updateSize(productElement, selectedValue); // Panggil updateSize dengan nilai baru dan elemen produk
+        //     });
+        // });
+
         document.addEventListener('DOMContentLoaded', (event) => {
             const totalPriceElement = document.getElementById('total-price');
             const hiddenTotalPriceElement = document.getElementById('hidden-total-price');
@@ -219,18 +199,25 @@
 
             const calculateTotal = () => {
                 let total = 0;
-                document.querySelectorAll('.product').forEach((product) => {
+                document.querySelectorAll('.kiri').forEach((kiri) => {
+                    const product = kiri.querySelector('.product');
+                    const wraps2 = kiri.querySelector('.wraps2');
+
                     const price = parseFloat(product.dataset.price);
-                    const quantity = parseInt(product.querySelector('.transparent-number-input').value);
+                    const quantity = parseInt(wraps2.querySelector('.transparent-number-input').value);
                     total += price * quantity;
                 });
                 totalPriceElement.textContent = formatRupiah(total);
                 hiddenTotalPriceElement.value = total;
             };
 
-            const updateSize = (productElement) => {
-                const newSizeID = $(productElement).find('.size-select').val();
-                const oldSizeID = productElement.dataset.sizeid;
+            const updateSize = (productElement, newSizeID) => {
+                const size = productElement.querySelector('.no-link');
+                const product = productElement.querySelector('.product');
+                
+                const oldSizeID = product.dataset.sizeid;
+                console.log(newSizeID);
+                console.log("old "+ oldSizeID);
 
                 $.ajax({
                     url: `/keranjang/update/${oldSizeID}`,
@@ -255,7 +242,9 @@
                     }
                 });
             };
+
             const removeProduct = (productElement) => {
+                const product = productElement.querySelector('.product');
                 const id = productElement.dataset.sizeid;
                 fetch(`/keranjang/delete/${id}`, {
                         method: 'DELETE',
@@ -276,8 +265,10 @@
             };
 
             const updateProduct = (productElement) => {
-                let sizeID = productElement.dataset.sizeid;
-                let newQuantity = parseInt(productElement.querySelector('.transparent-number-input').value);
+                const product = productElement.querySelector('.product');
+                const quantity = productElement.querySelector('.wraps2');
+                let sizeID = product.dataset.sizeid;
+                let newQuantity = parseInt(quantity.querySelector('.transparent-number-input').value);
 
                 // Kirim request ke server menggunakan Ajax
                 $.ajax({
@@ -302,14 +293,18 @@
                 });
             };
 
-            document.querySelectorAll('.product').forEach((product) => {
-                const numberInput = product.querySelector('.transparent-number-input');
-                const trashMinusIcon = product.querySelector('.trash-minus-icon');
-                const plusButton = product.querySelector('.plus');
-                const trashMinusButton = product.querySelector('.trash-minus-button');
+            document.querySelectorAll('.kiri').forEach((kiri) => {
+                const product = kiri.querySelector('.product');
+                const wraps2 = kiri.querySelector('.wraps2');
+                const size = kiri.querySelector('.no-link');
+
+                const numberInput = wraps2.querySelector('.transparent-number-input');
+                const trashMinusIcon = wraps2.querySelector('.trash-minus-icon');
+                const plusButton = wraps2.querySelector('.plus');
+                const trashMinusButton = wraps2.querySelector('.trash-minus-button');
                 const productStock = parseInt(product.dataset
                     .productstock); // Ambil productStock dari dataset
-                const sizeSelect = product.querySelector('.size-select');
+                const sizeSelect = size.querySelector('.size-select');
 
                 console.log(productStock);
                 const updateIcon = () => {
@@ -328,7 +323,7 @@
                         numberInput.value = currentQuantity + 1;
                         updateIcon();
                         calculateTotal();
-                        updateProduct(product);
+                        updateProduct(kiri);
                     }
                 });
 
@@ -338,7 +333,7 @@
                         numberInput.value = currentQuantity - 1;
                         updateIcon();
                         calculateTotal();
-                        updateProduct(product);
+                        updateProduct(kiri);
                     } else if (currentQuantity === 1) {
                         removeProduct(product);
                     }
@@ -353,14 +348,16 @@
                     }
                     updateIcon();
                     calculateTotal();
-                    updateProduct(product);
+                    updateProduct(kiri);
                 });
-
+                console.log("yes");
                 // Event listener untuk size-select
                 if (sizeSelect) {
                     sizeSelect.addEventListener('change', () => {
                         console.log("Size changed for product:", product);
-                        updateSize(product);
+                        var newSizeID = sizeSelect.value; // Ambil nilai yang dipilih
+                        console.log("newSize:", newSizeID);
+                        updateSize(kiri, newSizeID); // Panggil updateSize dengan elemen produk dan newSizeID
                     });
                 }
             });

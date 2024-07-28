@@ -139,13 +139,13 @@
                 <div id="terbaik-content" class="card-wrapper tab-content">
                     @foreach ($product_terbaik as $product)
                         <div class="catalog-item">
-                            <a href="{{ route('ProductDetail', ['id' =>  $product->productID]) }}">
+                            <a href="{{ route('ProductDetail', $product->productID) }}">
                                 <div class="card-custom">
                                     <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
                                         class="card-custom-top" alt="Catalog">
                                     <div class="card-custom-body">
                                         <p>{{ $product->productName }}</p>
-                                        <h3>Rp {{ number_format($product->productPrice,2,',','.') }}</h3>
+                                        <h3>{{ 'Rp ' . number_format($product->productPrice, 0, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -155,13 +155,13 @@
                 <div id="terbaru-content" class="card-wrapper tab-content">
                     @foreach ($product_terbaru as $product)
                         <div class="catalog-item">
-                            <a href="{{ route('ProductDetail', ['id' =>  $product->productID]) }}">
+                            <a href="{{ route('ProductDetail', $product->productID) }}">
                                 <div class="card-custom">
                                     <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
                                         class="card-custom-top" alt="Catalog">
                                     <div class="card-custom-body">
                                         <p>{{ $product->productName }}</p>
-                                        <h3>Rp {{ number_format($product->productPrice,2,',','.') }}</h3>
+                                        <h3>{{ 'Rp ' . number_format($product->productPrice, 0, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -171,13 +171,13 @@
                 <div id="tertinggi-content" class="card-wrapper tab-content">
                     @foreach ($product_tertinggi as $product)
                         <div class="catalog-item">
-                            <a href="{{ route('ProductDetail', ['id' =>  $product->productID]) }}">
+                            <a href="{{ route('ProductDetail', $product->productID) }}">
                                 <div class="card-custom">
                                     <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
                                         class="card-custom-top" alt="Catalog">
                                     <div class="card-custom-body">
                                         <p>{{ $product->productName }}</p>
-                                        <h3>Rp {{ number_format($product->productPrice,2,',','.') }}</h3>
+                                        <h3>{{ 'Rp ' . number_format($product->productPrice, 0, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -192,7 +192,7 @@
     <section>
         <div id="mix-and-match">
             <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
-            <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
+        <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
             <h1>Bebaskan kreativitasmu! Mix and match gaya favoritmu dengan mudah.</h1>
             <div id="button-mix-and-match-wrapper"><a href="{{ route('MixMatch') }}">
                     <div id="button-mix-and-match" class="buttons">Kunjungi fitur Mix and Match</div>

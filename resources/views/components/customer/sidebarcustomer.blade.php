@@ -28,7 +28,8 @@
                 <div class="sidebar-menu">
                     <a href="{{ route('CustomerMyOrder') }}"><h2 class="menu">Pesanan</h2></a>
                     <ul class="spacing-sidebarmenu">
-                        <li><a href="{{ route('CustomerMyOrder') }}">Pesanan Saya</a></li>
+                        <li><a href="{{ route('CustomerMyOrder') }}#pesanan">Pesanan Saya</a></li>
+                        <li><a href="{{ route('CustomerMyOrder') }}#pengembalian">Pengambalian Barang</a></li>
                     </ul>
                 </div>
                 <div class="sidebar-menu">

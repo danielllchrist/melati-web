@@ -34,10 +34,13 @@
         }
 
         .card-custom>img {
-            max-height: 245px;
+            max-width: 230px;
+            max-height: 275px;
+            object-fit: cover;
         }
 
         .card-custom-body>p {
+            font-size: 1rem;
             margin-bottom: 10px;
         }
 
@@ -67,7 +70,7 @@
                                 <a href="/admin/manajer-carousel">
                                     <div class="carousel-item {{ $i == 1 ? 'active' : '' }}">
                                         <img src="{{ $asset->assetPath }}" class="d-block w-100" alt="Promotion Banner">
-                                        <a href="/katalog" class="carousel-product-link">
+                                        <a href="" class="carousel-product-link">
                                             <div class="belanja-sekarang-button">
                                                 <h2>BELANJA SEKARANG</h2>
                                                 <div class="belanja-sekarang"></div>
@@ -95,7 +98,7 @@
             </div>
             <div class="flex-column">
                 <div id="men" class="men-women-content">
-                    <a href="{{ route('MenCatalogue') }}">
+                    <a href="">
                         <img src="\assets\landing\men.png" alt="men" class="hover-image"
                             data-hover="\assets/landing/menHover.png">
                     </a>
@@ -103,7 +106,7 @@
                 </div>
                 <div id="women" class="men-women-content">
                     {{-- <img src="\assets\dummy-img\rok 3.png" alt="women"> --}}
-                    <a href="{{ route('WomenCatalogue') }}">
+                    <a href="">
                         <img src="\assets\landing\women.png" alt="women" class="hover-image"
                             data-hover="\assets/landing/womenHover.png">
                     </a>
@@ -116,49 +119,86 @@
     <section>
         <div class="product">
             <div class="recommendation-wrapper">
-                <a href="?filter=produk-terbaik" class="recommendation">
+                <a href="javascript:void(0)" id="terbaik" class="recommendation" onclick="showTab('terbaik')">
                     <div class="recommendation-button">
                         <p>PRODUK TERBAIK</p>
-                        <div class="active-recommendation"></div>
+                        <div class="active-recommendation" id="terbaik-indicator"></div>
                     </div>
                 </a>
-                <a href="?filter=produk-terbaru" class="recommendation">
-                    <div>
+                <a href="javascript:void(0)" id="terbaru" class="recommendation" onclick="showTab('terbaru')">
+                    <div class="recommendation-button">
                         <p>PRODUK TERBARU</p>
+                        <div class="active-recommendation" id="terbaru-indicator"></div>
                     </div>
                 </a>
-                <a href="?filter=rating-tertinggi" class="recommendation">
-                    <div>
+                <a href="javascript:void(0)" id="tertinggi" class="recommendation" onclick="showTab('tertinggi')">
+                    <div class="recommendation-button">
                         <p>RATING TERTINGGI</p>
+                        <div class="active-recommendation" id="tertinggi-indicator"></div>
                     </div>
                 </a>
             </div>
-            <div class="card-wrapper">
-                @foreach ($products as $product)
-                    <div class="catalog-item">
-                        <a href="detail.html">
-                            <div class="card-custom">
-                                <img src="/assets/{{ $product->productPicturePath }}" class="card-custom-top"
-                                    alt="Catalog">
-                                <div class="card-custom-body">
-                                    <p>{{ $product->productName }}</p>
-                                    <h3>Rp {{ $product->productPrice }}</h3>
+            <div class="tabs">
+                <div id="terbaik-content" class="card-wrapper tab-content">
+                    @foreach ($product_terbaik as $product)
+                        <div class="catalog-item">
+                            {{-- <a href="{{ route('ProductDetail', $product->productID) }}"> --}}
+                                <div class="card-custom">
+                                    <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
+                                        class="card-custom-top" alt="Catalog">
+                                    <div class="card-custom-body">
+                                        <p>{{ $product->productName }}</p>
+                                        <h3>{{ 'Rp ' . number_format($product->productPrice, 0, ',', '.') }}</h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
+                            {{-- </a> --}}
+                        </div>
+                    @endforeach
+                </div>
+                <div id="terbaru-content" class="card-wrapper tab-content">
+                    @foreach ($product_terbaru as $product)
+                        <div class="catalog-item">
+                            {{-- <a href="{{ route('ProductDetail', $product->productID) }}"> --}}
+                                <div class="card-custom">
+                                    <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
+                                        class="card-custom-top" alt="Catalog">
+                                    <div class="card-custom-body">
+                                        <p>{{ $product->productName }}</p>
+                                        <h3>{{ 'Rp ' . number_format($product->productPrice, 0, ',', '.') }}</h3>
+                                    </div>
+                                </div>
+                            {{-- </a> --}}
+                        </div>
+                    @endforeach
+                </div>
+                <div id="tertinggi-content" class="card-wrapper tab-content">
+                    @foreach ($product_tertinggi as $product)
+                        <div class="catalog-item">
+                            {{-- <a href="{{ route('ProductDetail', $product->productID) }}"> --}}
+                                <div class="card-custom">
+                                    <img src="{{ Storage::url(json_decode($product->productPicturePath)[0]) }}"
+                                        class="card-custom-top" alt="Catalog">
+                                    <div class="card-custom-body">
+                                        <p>{{ $product->productName }}</p>
+                                        <h3>{{ 'Rp ' . number_format($product->productPrice, 0, ',', '.') }}</h3>
+                                    </div>
+                                </div>
+                            {{-- </a> --}}
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
+
     </section>
 
     <section>
         <div id="mix-and-match">
             <img src="\assets\dummy-img\Tenun Kediri by Didiet Maulana 1.png" alt="">
             <h1>Bebaskan kreativitasmu! Mix and match gaya favoritmu dengan mudah.</h1>
-            <div id="button-mix-and-match-wrapper"><a href="/mixmatch">
+            <div id="button-mix-and-match-wrapper">
                     <div id="button-mix-and-match" class="buttons">Kunjungi fitur Mix and Match</div>
-                </a></div>
+                </div>
         </div>
     </section>
 
@@ -166,33 +206,77 @@
         <div id="belanja-sekarang-banner">
             <h2>BATIK MELATI</h2>
             <h1>WARISAN BUDAYA , GAYA MODERN</h1>
-            <div id="button-belanja-wrapper"><a href="/katalog">
+            <div id="button-belanja-wrapper">
                     <div id="button-belanja" class="buttons">Belanja Sekarang</div>
-                </a></div>
+                </div>
         </div>
     </section>
     @include('components.admin.footeradmin')
 
-
     <script>
-        // Mendapatkan semua tombol rekomendasi
-        const buttons = document.querySelectorAll('.recommendation');
+        function showTab(tabId) {
+            // Hapus kelas 'active' dari semua tab konten
+            var tabs = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
 
-        // Menambahkan event listener ke setiap tombol rekomendasi
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Menghapus kelas active-button dan active-recommendation dari tombol sebelumnya
-                buttons.forEach(b => {
-                    b.classList.remove('active-button');
-                    b.querySelector('.active-recommendation').classList.remove(
-                        'active-recommendation');
-                });
+            // Hapus kelas 'active' dari semua tab link
+            var links = document.getElementsByClassName('recommendation');
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove('active');
+            }
 
-                // Menambahkan kelas active-button dan active-recommendation ke tombol yang diklik
-                button.classList.add('active-button');
-                button.querySelector('.active-recommendation').classList.add('active-recommendation');
+            // Tambahkan kelas 'active' ke tab konten yang dipilih
+            document.getElementById(tabId + '-content').classList.add('active');
+
+            // Tambahkan kelas 'active' ke tab link yang dipilih
+            document.getElementById(tabId).classList.add('active');
+
+            // Tambahkan kelas 'active' ke indikator yang dipilih
+            var indicators = document.getElementsByClassName('active-recommendation');
+            for (var i = 0; i < indicators.length; i++) {
+                indicators[i].style.display = 'none';
+            }
+            document.getElementById(tabId + '-indicator').style.display = 'block';
+        }
+
+        // Tampilkan tab 'terbaik' secara default saat halaman dimuat
+        window.onload = function() {
+            showTab('terbaik');
+        }
+
+        document.querySelectorAll('.hover-image').forEach(img => {
+            const originalSrc = img.src;
+            const hoverSrc = img.getAttribute('data-hover');
+
+            img.addEventListener('mouseover', () => {
+                img.src = hoverSrc;
+            });
+
+            img.addEventListener('mouseout', () => {
+                img.src = originalSrc;
             });
         });
+    
+        // // Mendapatkan semua tombol rekomendasi
+        // const buttons = document.querySelectorAll('.recommendation');
+
+        // // Menambahkan event listener ke setiap tombol rekomendasi
+        // buttons.forEach(button => {
+        //     button.addEventListener('click', () => {
+        //         // Menghapus kelas active-button dan active-recommendation dari tombol sebelumnya
+        //         buttons.forEach(b => {
+        //             b.classList.remove('active-button');
+        //             b.querySelector('.active-recommendation').classList.remove(
+        //                 'active-recommendation');
+        //         });
+
+        //         // Menambahkan kelas active-button dan active-recommendation ke tombol yang diklik
+        //         button.classList.add('active-button');
+        //         button.querySelector('.active-recommendation').classList.add('active-recommendation');
+        //     });
+        // });
 
         document.querySelectorAll('.hover-image').forEach(img => {
             const originalSrc = img.src;

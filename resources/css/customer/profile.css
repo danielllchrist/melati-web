@@ -42,8 +42,7 @@ html {
     font-family: Poppins;
     font-weight: 600;
     font-size: 31px;
-    cursor: pointer;
-
+    /* cursor: pointer; */
 }
 
 .pf-submit-btn-container {

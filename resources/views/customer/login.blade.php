@@ -25,7 +25,7 @@
                     <h1>Masuk</h1>
                     <p>Pembayaran cepat dan aman. Masuk untuk menyimpan informasi pengiriman Anda.</p>
                     @if (session()->has('success'))
-                        <div class="alert">
+                        <div class="alert2">
                             <strong>{{ session()->get('success') }}</strong>
                         </div>
                     @endif

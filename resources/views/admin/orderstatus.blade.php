@@ -25,8 +25,7 @@
                 <div class="ps-content">
                     <div class="ps-status-menu">
                         <ul class="status-menu">
-                            <li><button id="menu-menunggu" class="ps-menu-link active-menus">Menunggu
-                                    Konfirmasi</button></li>
+                            <li><button id="menu-menunggu" class="ps-menu-link active-menus">Menunggu Konfirmasi</button></li>
                             <li><button id="menu-proses" class="ps-menu-link">Dalam Proses</button></li>
                             <li><button id="menu-pengiriman" class="ps-menu-link">Dalam Pengiriman</button></li>
                             <li><button id="menu-sampai" class="ps-menu-link">Tiba di Tujuan</button></li>
@@ -61,13 +60,13 @@
                                             </div>
                                             <div class="ps-total">
                                                 <p>x{{ $detail->quantity }}</p>
-                                                <p class="fw-bold">Rp. {{ $detail->price }}</p>
+                                                <p class="fw-bold">{{ 'Rp ' . number_format($detail->price , 0, ',', '.') }}</p>
                                             </div>
                                         </div>
                                     @endforeach
                                     <div class="ps-total-order">
                                         <p>Total Pesanan: </p>
-                                        <h3>Rp. {{ $order->totalPrice }}</h3>
+                                        <h3>{{ 'Rp ' . number_format( $order->totalPrice, 0, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -95,7 +94,7 @@
                                     @foreach ($order->transactionDetail as $detail)
                                         <div class="ps-order-detail">
                                             <div class="ps-picture">
-                                                <img src="/assets/top2.png" class="ps-picture-img" alt="">
+                                                <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
                                                     <p>Size: {{ $detail->size->size }}</p>
@@ -103,13 +102,13 @@
                                             </div>
                                             <div class="ps-total">
                                                 <p>x{{ $detail->quantity }}</p>
-                                                <p class="fw-bold">Rp. {{ $detail->price }}</p>
+                                                <p class="fw-bold">{{ 'Rp ' . number_format($detail->price , 0, ',', '.') }}</p>
                                             </div>
                                         </div>
                                     @endforeach
                                     <div class="ps-total-order">
                                         <p>Total Pesanan: </p>
-                                        <h3>Rp. {{ $order->totalPrice }}</h3>
+                                        <h3>{{ 'Rp ' . number_format($order->totalPrice , 0, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -137,7 +136,7 @@
                                     @foreach ($order->transactionDetail as $detail)
                                         <div class="ps-order-detail">
                                             <div class="ps-picture">
-                                                <img src="/assets/top2.png" class="ps-picture-img" alt="">
+                                                <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
                                                     <p>Size: {{ $detail->size->size }}</p>
@@ -145,13 +144,13 @@
                                             </div>
                                             <div class="ps-total">
                                                 <p>x{{ $detail->quantity }}</p>
-                                                <p class="fw-bold">Rp. {{ $detail->price }}</p>
+                                                <p class="fw-bold">{{ 'Rp ' . number_format($detail->price , 0, ',', '.') }}</p>
                                             </div>
                                         </div>
                                     @endforeach
                                     <div class="ps-total-order">
                                         <p>Total Pesanan: </p>
-                                        <h3>Rp. {{ $order->totalPrice }}</h3>
+                                        <h3>{{ 'Rp ' . number_format($order->totalPrice , 0, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -179,7 +178,7 @@
                                     @foreach ($order->transactionDetail as $detail)
                                         <div class="ps-order-detail">
                                             <div class="ps-picture">
-                                                <img src="/assets/top2.png" class="ps-picture-img" alt="">
+                                                <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
                                                     <p>Size: {{ $detail->size->size }}</p>
@@ -187,13 +186,13 @@
                                             </div>
                                             <div class="ps-total">
                                                 <p>x{{ $detail->quantity }}</p>
-                                                <p class="fw-bold">Rp. {{ $detail->price }}</p>
+                                                <p class="fw-bold">{{ 'Rp ' . number_format($detail->price , 0, ',', '.') }}</p>
                                             </div>
                                         </div>
                                     @endforeach
                                     <div class="ps-total-order">
                                         <p>Total Pesanan: </p>
-                                        <h3>Rp. {{ $order->totalPrice }}</h3>
+                                        <h3>{{ 'Rp ' . number_format($order->totalPrice, 0, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -220,7 +219,7 @@
                                     @foreach ($order->transactionDetail as $detail)
                                         <div class="ps-order-detail">
                                             <div class="ps-picture">
-                                                <img src="/assets/top2.png" class="ps-picture-img" alt="">
+                                                <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
                                                     <p>Size: {{ $detail->size->size }}</p>
@@ -228,13 +227,13 @@
                                             </div>
                                             <div class="ps-total">
                                                 <p>x{{ $detail->quantity }}</p>
-                                                <p class="fw-bold">Rp. {{ $detail->price }}</p>
+                                                <p class="fw-bold">{{ 'Rp ' . number_format($detail->price , 0, ',', '.') }}</p>
                                             </div>
                                         </div>
                                     @endforeach
                                     <div class="ps-total-order">
                                         <p>Total Pesanan: </p>
-                                        <h3>Rp. {{ $order->totalPrice }}</h3>
+                                        <h3>{{ 'Rp ' . number_format($order->totalPrice, 0, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -263,7 +262,7 @@
                                     @foreach ($order->transactionDetail as $detail)
                                         <div class="ps-order-detail">
                                             <div class="ps-picture">
-                                                <img src="/assets/top2.png" class="ps-picture-img" alt="">
+                                                <img src="{{ Storage::url(json_decode($detail->product->productPicturePath)[0]) }}" class="ps-picture-img" alt="">
                                                 <div class="ps-picture-text">
                                                     <h2 class="name">{{ $detail->product->productName }}</h2>
                                                     <p>Size: {{ $detail->size->size }}</p>
@@ -271,13 +270,13 @@
                                             </div>
                                             <div class="ps-total">
                                                 <p>x{{ $detail->quantity }}</p>
-                                                <p class="fw-bold">Rp. {{ $detail->price }}</p>
+                                                <p class="fw-bold">{{ 'Rp ' . number_format($detail->price , 0, ',', '.') }}</p>
                                             </div>
                                         </div>
                                     @endforeach
                                     <div class="ps-total-order">
                                         <p>Total Pesanan: </p>
-                                        <h3>Rp. {{ $order->totalPrice }}</h3>
+                                        <h3>{{ 'Rp ' . number_format($order->totalPrice , 0, ',', '.') }}</h3>
                                     </div>
                                 </div>
                             </a>
