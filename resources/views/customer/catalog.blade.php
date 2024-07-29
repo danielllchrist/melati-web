@@ -79,7 +79,7 @@
 
         <div class="d-flex pt-5">
             <div class="kategori me-3">
-                <h3 class="text-light mb-4">Kategori</h3>
+                <h3 class="text-light mb-4" style="color:#F0F1E4;">Kategori</h3>
                 <div class="kategori-pria">
                     <div class="collapsed-text">
                         <a class="collapse-btn" data-bs-toggle="collapse" href="#collapsePria" role="button"
@@ -117,7 +117,7 @@
             </div>
             <div class="catalog d-flex flex-column mb-5 w-100">
                 <div class="d-flex justify-content-end align-items-center header-catalog">
-                    <p class="text-light me-4 mt-3">Urut berdasarkan</p>
+                    <p class="me-4 mt-3" style="color: #F0F1E4;">Urut berdasarkan</p>
                     <select name="sortBy" id="sortBy">
                         <option value="0" selected disabled>Pilih</option>
                         <option value="1">Harga Tertinggi</option>
@@ -203,71 +203,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Initialize collapse state
-        $('#collapsePria').collapse('hide');
-        $('#collapseWanita').collapse('hide');
-
-        $('#btnPria').on('click', function(e) {
-            e.preventDefault();
-            $(this).toggleClass('active');
-            $(this).next('.collapse').collapse('toggle');
-            let currentParams = new URLSearchParams(window.location.search);
-            if (currentParams.get('gender') !== 'pria') {
-                window.location.href = '?gender=pria';
-            }
-        });
-
-        $('#btnWanita').on('click', function(e) {
-            e.preventDefault();
-            $(this).toggleClass('active');
-            $(this).next('.collapse').collapse('toggle');
-            let currentParams = new URLSearchParams(window.location.search);
-            if (currentParams.get('gender') !== 'wanita') {
-                window.location.href = '?gender=wanita';
-            }
-        });
-
-        // Initialize collapse state based on local storage
-        if (localStorage.getItem('collapsePria') === 'true') {
-            $('#collapsePria').collapse('show');
-            $('#btnPria').addClass('active');
-        } else {
-            $('#collapsePria').collapse('hide');
-            $('#btnPria').removeClass('active');
-        }
-        if (localStorage.getItem('collapseWanita') === 'true') {
-            $('#collapseWanita').collapse('show');
-            $('#btnWanita').addClass('active');
-        } else {
-            $('#collapseWanita').collapse('hide');
-            $('#btnWanita').removeClass('active');
-        }
-
-        // Event listener to toggle collapse and arrow direction
-        $('.kategori .collapse-btn').on('click', function(e) {
-            e.preventDefault();
-            const target = $(this).attr('href');
-            $(target).collapse('toggle');
-
-            // Toggle arrow direction
-            const arrow = $(this).next('img');
-            if (arrow.hasClass('collapsed')) {
-                arrow.removeClass('collapsed');
-                arrow.attr('src', 'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png');
-            } else {
-                arrow.addClass('collapsed');
-                arrow.attr('src', 'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/expand2-512.png');
-            }
-
-            // Save collapse state to local storage
-            const isExpanded = $(target).hasClass('show');
-            const collapseKey = target.substring(1); // remove the # character
-            localStorage.setItem(collapseKey, !isExpanded);
-        });
-
         // Highlight the selected category
-        $('.dropdown-item').on('click', function() {
-            $('.dropdown-item').removeClass('active');
+        $('.dropdown-item, .collapse-btn').on('click', function() {
+            $('.dropdown-item, .collapse-btn').removeClass('active');
             $(this).addClass('active');
 
             // Save selected category to local storage
@@ -291,9 +229,9 @@
 
             // If there's a matching element, change its color
             $('#' + selectedCategory).addClass('active');
-        } else {
-            // Ensure no dropdown item is highlighted by default
-            $('.dropdown-item').css('color', 'grey');
+        } else if (queryParams.gender) {
+            // If only gender is selected
+            $('#btn' + queryParams.gender.charAt(0).toUpperCase() + queryParams.gender.slice(1)).addClass('active');
         }
     });
 </script>
