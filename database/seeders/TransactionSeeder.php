@@ -22,8 +22,13 @@ class TransactionSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
         for ($i = 0; $i < 20; $i++) {
+            $userID = '';
+            do {
+                $userID = User::all()->random()->userID;
+            }
+            while ($userID == '01ee9554-9e84-367d-96ec-bf2a25b4cb3e' || $userID == '029ef8cd-7c30-3d78-a748-5ba3520cbb8b');
             DB::table('transactions')->insert([
-                'userID' => User::all()->random()->userID,
+                'userID' => $userID,
                 'addressID' => Address::all()->random()->addressID,
                 'voucherID' => Voucher::all()->random()->voucherID,
                 'statusID' => Status::all()->random()->statusID,
@@ -38,8 +43,13 @@ class TransactionSeeder extends Seeder
             ]);
         }
         for ($i = 0; $i < 10; $i++) {
+            $userID = '';
+            do {
+                $userID = User::all()->random()->userID;
+            }
+            while ($userID == '01ee9554-9e84-367d-96ec-bf2a25b4cb3e' || $userID == '029ef8cd-7c30-3d78-a748-5ba3520cbb8b');
             DB::table('transactions')->insert([
-                'userID' => User::all()->random()->userID,
+                'userID' => $userID,
                 'addressID' => Address::all()->random()->addressID,
                 'voucherID' => Voucher::all()->random()->voucherID,
                 'statusID' => 5,

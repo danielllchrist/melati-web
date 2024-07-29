@@ -13,7 +13,7 @@
         <div class="sidebar-content">
             <div class="sidebar-back">
                 <div class="profile">
-                    <img class="pp-picture" src="{{ $user->profilePicturePath }}" alt="" id="profilepicture">
+                    <img class="pp-picture" src="{{ $user->profilePicturePath ? $user->profilePicturePath : '/storage/uploads/daniel.png' }}" alt="" id="profilepicture">
                     <p>{{ Str::limit(strtok($user->name, ' '), 10) }}</p>
                 </div>
             </div>

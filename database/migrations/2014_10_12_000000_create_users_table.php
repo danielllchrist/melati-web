@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email', 255)->nullable(false)->unique();
             $table->integer('age')->nullable(false);
             $table->string('password', 100)->nullable(false);
-            $table->string('profilePicturePath')->nullable(true);
+            $table->string('profilePicturePath')->default('/storage/uploads/daniel.png');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
