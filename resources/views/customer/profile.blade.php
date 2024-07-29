@@ -90,7 +90,7 @@
                         <!-- Profile Photo -->
                         <div x-show="! photoPreview">
                             <img class="pfp-image rounded-full h-40 w-40 object-cover"
-                                src="{{  $user->profilePicturePath }}" alt="profile" id="profilepicture1">
+                                src="{{ $user->profilePicturePath ? $user->profilePicturePath : '/storage/uploads/daniel.png' }}" alt="profile" id="profilepicture1">
                         </div>
                         <form>
                             @csrf

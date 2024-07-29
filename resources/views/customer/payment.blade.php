@@ -82,32 +82,32 @@
                 return;
             } else if (otpValue != actualOTP) {
                 alert('Kode OTP salah!');
+            } else {
+                // Jika nilai otpValue adalah 'actualOTP', maka lanjutkan ke sini
+                $('.atas div:nth-child(4)').addClass('active');
+                alert('Selamat! Pembayaran berhasil.');
+                fetch('{{ route('PayOrder', ['transactionID' => $id]) }}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            // Add any necessary data here
+                        })
+                    }).then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Redirect to a new page after successful payment
+                            window.location.href =
+                                '{{ route('CustomerDetailOrder', ['orderID' => $id]) }}'; // Replace with your success route
+                        } else {
+                            alert('Gagal memproses pembayaran!');
+                        }
+                    }).catch(error => {
+                        console.error('Error:', error);
+                        alert('Terjadi kesalahan.');
+                    });
             }
-
-            // Jika nilai otpValue adalah 'actualOTP', maka lanjutkan ke sini
-            $('.atas div:nth-child(4)').addClass('active');
-            alert('Selamat! Pembayaran berhasil.');
-            fetch('{{ route('PayOrder', ['transactionID' => $id]) }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        // Add any necessary data here
-                    })
-                }).then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Redirect to a new page after successful payment
-                        window.location.href =
-                            '{{ route('CustomerDetailOrder', ['orderID' => $id]) }}'; // Replace with your success route
-                    } else {
-                        alert('Gagal memproses pembayaran!');
-                    }
-                }).catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan.');
-                });
         });
     });
 </script>

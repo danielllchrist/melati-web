@@ -98,33 +98,6 @@ input[type="password"] {
     margin-right: 1rem;
 }
 
-/* input[type="radio"] {
-    margin-right: 10px;
-    display: flex;
-    width: 16px;
-    height: 16px;
-    color: #f0f1e4;
-    appearance: none;
-    background-color: #f0f1e4;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-}
-
-input[type="radio"]:checked {
-    background-color: #4f290c;
-}
-
-input[type="radio"]:checked::before {
-    content: "";
-    display: block;
-    width: 10px;
-    height: 10px;
-    background-color: #d5be9e;
-    border-radius: 50%;
-} */
-
 .pf-radio {
     display: flex;
     gap: 7px;
@@ -235,6 +208,7 @@ input::-webkit-inner-spin-button {
     display: flex;
     flex-direction: row;
     border-bottom: 2px solid #f0f1e4;
+    margin-bottom: 10px;
 }
 
 .password-wrapper input[type="password"],
