@@ -244,23 +244,45 @@ class OrderController extends Controller
         $userID = Auth::id();
         $user = User::find($userID);
 
-        // Ambil semua pesanan dengan status 1 hingga 7
-        $orders1 = Transaction::with('transactionDetail')->where('userID', $user->userID)->where('statusID', "1")->get();
+        // Ambil semua pesanan dengan status 1 hingga 7 dan urutkan berdasarkan updated_at dari paling baru hingga paling lama
+        $orders1 = Transaction::with('transactionDetail')
+            ->where('userID', $userID)
+            ->where('statusID', "1")
+            ->orderBy('updated_at', 'desc')
+            ->get();
+            
         $orders2 = Transaction::with('transactionDetail')
             ->where('userID', $userID)
-            ->where(function ($query) {
-                $query->where('statusID', '2')
-                    ->orWhere('statusID', '3');
-            })->get();        
-        $orders3 = Transaction::with('transactionDetail')->where('userID', $user->userID)->where('statusID', "4")->get();
-        $orders4 = Transaction::with('transactionDetail')->where('userID', $user->userID)->where('statusID', '5')->get();
-        $orders5 = Transaction::with('transactionDetail')->where('userID', $user->userID)->where('statusID', "6")->get();
-        $orders6 = Transaction::with('transactionDetail')->where('userID', $user->userID)->where('statusID', "7")->get();
+            ->whereIn('statusID', ['2', '3'])
+            ->orderBy('updated_at', 'desc')
+            ->get();
+            
+        $orders3 = Transaction::with('transactionDetail')
+            ->where('userID', $userID)
+            ->where('statusID', "4")
+            ->orderBy('updated_at', 'desc')
+            ->get();
+            
+        $orders4 = Transaction::with('transactionDetail')
+            ->where('userID', $userID)
+            ->where('statusID', '5')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+            
+        $orders5 = Transaction::with('transactionDetail')
+            ->where('userID', $userID)
+            ->where('statusID', "6")
+            ->orderBy('updated_at', 'desc')
+            ->get();
+            
+        $orders6 = Transaction::with('transactionDetail')
+            ->where('userID', $userID)
+            ->where('statusID', "7")
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         // Ubah status transaksi dalam orders3 jika updated_at lebih dari 2 hari yang lalu
-        // dd($orders2);
         foreach ($orders3 as $order) {
-            // dd($order->statusID);
             if (Carbon::parse($order->updated_at)->addDays(2)->isPast()) {
                 $order->statusID = 5;
                 $order->save(); // Simpan perubahan
@@ -268,8 +290,17 @@ class OrderController extends Controller
         }
 
         // Perbarui orders4 setelah melakukan perubahan status
-        $orders4 = Transaction::with('transactionDetail')->where('userID', $userID)->where('statusID', '5')->get();
-        $orders3 = Transaction::with('transactionDetail')->where('userID', $userID)->where('statusID', "4")->get();
+        $orders4 = Transaction::with('transactionDetail')
+            ->where('userID', $userID)
+            ->where('statusID', '5')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+            
+        $orders3 = Transaction::with('transactionDetail')
+            ->where('userID', $userID)
+            ->where('statusID', "4")
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         return view('customer.myorder', compact("orders1", "orders2", "orders3", "orders4", "orders5", "orders6", "user"));
     }

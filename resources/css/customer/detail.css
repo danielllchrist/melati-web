@@ -109,6 +109,7 @@ hr{
     max-width: 1280px;
     width: 100%;
     padding-bottom: 50px;
+    gap: 50px;
 }
 
 .review{
@@ -238,4 +239,10 @@ hr{
 .btn-clicked{
     color:rgb(73, 51, 25) !important;
     background-color: #D5BE9E!important;
+}
+
+.back-wrapper{
+    position: relative;
+    top: 40px;
+    left: -50px;
 }

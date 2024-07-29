@@ -21,8 +21,6 @@
 
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
@@ -60,6 +58,11 @@
         </div> -->
     <div class="container">
         <div class="d-flex flex-column mt-5 mb-5">
+            <div class="back-wrapper">
+                <div class="back">
+                    <a href="{{ route('Catalogue') }}"><img src="\assets\dummy-img\back arrow.svg" alt=""></a>
+                </div>
+            </div>
             <div class="product-content d-flex justify-content-start ms-5 me-5">
                 <div class="image-content">
                     <div id="carouselExample" class="carousel slide">
@@ -71,13 +74,9 @@
                             @foreach ($productPictures as $index => $photo)
                                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}"
                                     id="carousel-{{ $index + 1 }}">
-                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}"
-                                    id="carousel-{{ $index + 1 }}">
                                     <img src="{{ Storage::url($photo) }}" class="d-block w-100">
                                 </div>
                             @endforeach
-
-
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                             data-bs-slide="prev">
@@ -95,16 +94,13 @@
                         @foreach ($productPictures as $index => $photo)
                             <img src="{{ Storage::url($photo) }}" width="16%"
                                 onclick="switchCarousel({{ $index + 1 }})">
-                            <img src="{{ Storage::url($photo) }}" width="16%"
-                                onclick="switchCarousel({{ $index + 1 }})">
                         @endforeach
                     </div>
+
                 </div>
                 @php
                     $ratings = $product->review->pluck('rating');
-
                     $averageRating = $ratings->avg();
-
                 @endphp
 
                 <div class="detail-content">
@@ -124,29 +120,31 @@
                                             @csrf
                                             <input type="hidden" name="productID" value="{{ $product->productID }}">
                                             <button type="submit"
-                                                style="background: none; border: none; color: #F0F1E4;"><i
-                                            <button type="submit"
-                                                style="background: none; border: none; color: #F0F1E4;"><i
-                                                    class="fa fa-heart-o fa-2x mt-2 heart" id="fa-heart-o"
-                                                    onclick="wishlist()"></i></button>
+                                                style="background: none; border: none; color: #F0F1E4;">
+                                                <i class="fa fa-heart-o fa-2x mt-2 heart" id="fa-heart-o"
+                                                    onclick="wishlist()"></i>
+                                            </button>
                                         </form>
                                     @else
                                         <form action="{{ route('unwish') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="productID" value="{{ $product->productID }}">
-                                            <button type="submit" style="background: none; border: none;"><i
-                                                    class="fa fa-heart fa-2x mt-2 heart-color" id="fa-heart-o"
-                                                    onclick="wishlist()"></i></button>
+                                            <button type="submit" style="background: none; border: none;">
+                                                <i class="fa fa-heart fa-2x mt-2 heart-color" id="fa-heart-o"
+                                                    onclick="wishlist()"></i>
+                                            </button>
                                         </form>
                                     @endif
                                 @else
-                                    <a href="{{ route('LogIn') }}"><i class="fa fa-heart-o fa-2x mt-2 heart"
-                                            id="fa-heart-o" onclick="wishlist()"></i></a>
+                                    <a href="{{ route('LogIn') }}">
+                                        <i class="fa fa-heart-o fa-2x mt-2 heart" id="fa-heart-o"
+                                            onclick="wishlist()"></i>
+                                    </a>
                                 @endif
                             </div>
                         </div>
                         <div class="star-products d-flex align-items-center mb-4">
-                            <i class="fa fa-star  @if (floor($averageRating) >= 1) rating-color @endif me-2"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 1) rating-color @endif me-2"></i>
                             <i class="fa fa-star @if (floor($averageRating) >= 2) rating-color @endif me-2"></i>
                             <i class="fa fa-star @if (floor($averageRating) >= 3) rating-color @endif me-2"></i>
                             <i class="fa fa-star @if (floor($averageRating) >= 4) rating-color @endif me-2"></i>
@@ -172,14 +170,11 @@
                                         value="{{ $size->size }}" data-stock="{{ $size->stock }}"
                                         onclick="showStock('{{ $size->stock }}')">{{ $size->size }}</button>
                                 @endforeach
-                                
+
                                 <p id="stock-message" class="stock" style="margin-top: 20px; margin-bottom:none;"></p>
                             </div>
-
-
                         </div>
                         <div class="quantity mb-4">
-                            <form action="{{ route('add_cart') }}" method="POST">
                             <form action="{{ route('add_cart') }}" method="POST">
                                 @csrf
                                 <p>Jumlah :</p>
@@ -189,8 +184,10 @@
                                         <input type="number" value="0" id="qty-value" max="0"
                                             min="0" name="quantity" class="no-spinner">
                                         <input type="hidden" name="size" id="productSize">
-                                        <i class="fa fa-minus minus" style="color: rgb(73, 51, 25);" onclick="minus()"></i>
-                                        <i class="fa fa-plus plus" style="color: rgb(73, 51, 25);" onclick="plus()"></i>
+                                        <i class="fa fa-minus minus" style="color: rgb(73, 51, 25);"
+                                            onclick="minus()"></i>
+                                        <i class="fa fa-plus plus" style="color: rgb(73, 51, 25);"
+                                            onclick="plus()"></i>
                                     </div>
 
                                     @auth
@@ -199,9 +196,10 @@
                                     @else
                                         <!-- Jika pengguna belum login, arahkan ke halaman login -->
                                         <a href="{{ route('LogIn') }}" class="btn-cart centered"
-                                            style="background-color: #F0F1E4; color: black;">TAMBAHKAN KE KERANJANG</a>
+                                            style="background-color: #F0F1E4; color: black;">
+                                            TAMBAHKAN KE KERANJANG
+                                        </a>
                                     @endauth
-
                                 </div>
                             </form>
                         </div>
@@ -221,7 +219,6 @@
                     <div class="number">
                         <h1>
                             @if (floor($averageRating) == $averageRating)
-                            @if (floor($averageRating) == $averageRating)
                                 {{ $averageRating }}
                             @elseif($averageRating == round($averageRating, 1))
                                 {{ number_format($averageRating, 1) }}
@@ -233,7 +230,7 @@
 
                     <div class="d-flex flex-column justify-content-center align-items-center mt-3 ms-3">
                         <div class="stars">
-                            <i class="fa fa-star  @if (floor($averageRating) >= 1) rating-color @endif"></i>
+                            <i class="fa fa-star @if (floor($averageRating) >= 1) rating-color @endif"></i>
                             <i class="fa fa-star @if (floor($averageRating) >= 2) rating-color @endif"></i>
                             <i class="fa fa-star @if (floor($averageRating) >= 3) rating-color @endif"></i>
                             <i class="fa fa-star @if (floor($averageRating) >= 4) rating-color @endif"></i>
@@ -244,184 +241,51 @@
                 </div>
 
                 <div class="detail-star">
-                    <div class="star">
-                        <p>5</p>
-                        <i class="fa fa-star ms-1 me-1"></i>
+                    @for ($i = 5; $i >= 1; $i--)
                         @php
-                            $countRating = 0;
-                            foreach ($product->review as $item) {
-                                if ($item->rating == 5) {
-                                    $countRating++;
-                                }
-                            }
-                            if ($product->review->count() > 0) {
-                                $percentageRating = $countRating / $product->review->count();
-                            } else {
-                                $percentageRating = 0;
-                            }
-
+                            $countRating = $product->review->where('rating', $i)->count();
+                            $percentageRating =
+                                $product->review->count() > 0 ? $countRating / $product->review->count() : 0;
                         @endphp
-                        <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow=""
-                            aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%"></div>
+                        <div class="star">
+                            <p>{{ $i }}</p>
+                            <i class="fa fa-star ms-1 me-1"></i>
+                            <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow=""
+                                aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%"></div>
+                            </div>
+                            <p>{{ floor($percentageRating * 100) }}%</p>
                         </div>
-                        <p>{{ floor($percentageRating * 100) }}%</p>
-                    </div>
-                    @php
-                        $countRating = 0;
-                        foreach ($product->review as $item) {
-                            if ($item->rating == 4) {
-                                $countRating++;
-                            }
-                        }
-                        if ($product->review->count() > 0) {
-                            $percentageRating = $countRating / $product->review->count();
-                        } else {
-                            $percentageRating = 0;
-                        }
-
-                    @endphp
-
-                    <div class="star">
-                        <p>4</p>
-                        <i class="fa fa-star ms-1 me-1"></i>
-                        <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%"></div>
-                        </div>
-                        <p>{{ floor($percentageRating * 100) }}%</p>
-                    </div>
-                    @php
-                        $countRating = 0;
-                        foreach ($product->review as $item) {
-                            if ($item->rating == 3) {
-                                $countRating++;
-                            }
-                        }
-                        if ($product->review->count() > 0) {
-                            $percentageRating = $countRating / $product->review->count();
-                        } else {
-                            $percentageRating = 0;
-                        }
-
-                    @endphp
-
-                    <div class="star">
-                        <p>3</p>
-                        <i class="fa fa-star ms-1 me-1"></i>
-                        <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow="10"
-                            aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%"></div>
-                        </div>
-                        <p>{{ floor($percentageRating * 100) }}%</p>
-                    </div>
-                    @php
-                        $countRating = 0;
-                        foreach ($product->review as $item) {
-                            if ($item->rating == 2) {
-                                $countRating++;
-                            }
-                        }
-                        if ($product->review->count() > 0) {
-                            $percentageRating = $countRating / $product->review->count();
-                        } else {
-                            $percentageRating = 0;
-                        }
-
-                    @endphp
-
-                    <div class="star">
-                        <p>2</p>
-                        <i class="fa fa-star ms-1 me-1"></i>
-                        <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow="10"
-                            aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%"></div>
-                        </div>
-                        <p>{{ floor($percentageRating * 100) }}%</p>
-                    </div>
-                    @php
-                        $countRating = 0;
-                        foreach ($product->review as $item) {
-                            if ($item->rating == 1) {
-                                $countRating++;
-                            }
-                        }
-                        if ($product->review->count() > 0) {
-                            $percentageRating = $countRating / $product->review->count();
-                        } else {
-                            $percentageRating = 0;
-                        }
-
-                    @endphp
-
-                    <div class="star">
-                        <p>1</p>
-                        <i class="fa fa-star ms-1 me-1"></i>
-                        <div class="progress ms-1 me-1" style="width: 100%;" role="progressbar" aria-valuenow="10"
-                            aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: {{ floor($percentageRating * 100) }}%;"></div>
-                        </div>
-                        <p>{{ floor($percentageRating * 100) }}%</p>
-                    </div>
+                    @endfor
                 </div>
             </div>
 
-            <hr>
-
             <div class="reviews w-75">
-                <div class="d-flex align-items-center justify-content-around sort-by">
-                    <h5>Urut Berdasarkan</h5>
+                <div class="d-flex align-items-center justify-content-around sort-by ">
+                    <h5 class="mb-0">Urut Berdasarkan</h5>
                     <form action="">
-                        <input type="hidden" name="rating" id="" value="">
-
+                        <input type="hidden" name="rating" value="">
                         <button
                             class="btn btn-light rounded-pill fw-bolder @if (!request()->query('rating')) category-review-color @endif"
                             id="newest" type="submit">Terbaru</button>
                     </form>
-                    <form action="">
-                        <input type="hidden" name="rating" id="" value="5">
-                        <button
-                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 5) category-review-color @endif"
-                            id="star5" type="submit">Bintang 5</button>
-                    </form>
-                    <form action="">
-                        <input type="hidden" name="rating" id="" value="4">
-                        <button
-                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 4) category-review-color @endif"
-                            id="star4" type="submit">Bintang 4</button>
-                    </form>
-                    <form action="">
-                        <input type="hidden" name="rating" id="" value="3">
-                        <button
-                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 3) category-review-color @endif"
-                            id="star3" type="submit">Bintang 3</button>
-                    </form>
-                    <form action="">
-                        <input type="hidden" name="rating" id="" value="2">
-                        <button
-                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 2) category-review-color @endif"
-                            id="star2" type="submit">Bintang 2</button>
-                    </form>
-                    <form action="">
-                        <input type="hidden" name="rating" id="" value="1">
-                        <button
-                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 1) category-review-color @endif"
-                            id="star1" type="submit">Bintang 1</button>
-                    </form>
+                    @for ($i = 5; $i >= 1; $i--)
+                        <form action="">
+                            <input type="hidden" name="rating" value="{{ $i }}">
+                            <button
+                                class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == $i) category-review-color @endif"
+                                id="star{{ $i }}" type="submit">Bintang {{ $i }}</button>
+                        </form>
+                    @endfor
                 </div>
 
                 <div class="content-review mt-5 mb-5" id="content-review">
                     @php
                         $ratingFilter = request()->query('rating');
-
-                        if ($ratingFilter !== null) {
-                            $content_review = $product->review->filter(function ($item) use ($ratingFilter) {
-                                return $item->rating == $ratingFilter;
-                            });
-                        } else {
-                            $content_review = $product->review;
-                        }
-
+                        $content_review =
+                            $ratingFilter !== null
+                                ? $product->review->where('rating', $ratingFilter)
+                                : $product->review;
                     @endphp
                     @if ($content_review->count() == 0)
                         <div class="review">
@@ -443,51 +307,46 @@
                                 @for ($i = 0; $i < 5 - $item->rating; $i++)
                                     <i class="fa fa-star me-1"></i>
                                 @endfor
-
                             </div>
                             <div class="date-review">
                                 <h4>{{ $item->transaction->created_at->format('d F Y') }}</h4>
-
                             </div>
                             <div class="body-review">
                                 <p>{{ $item->comment }}</p>
                             </div>
                         </div>
                     @endforeach
-
-                    <hr>
                 </div>
             </div>
         </div>
+
         <!-- <div class="d-flex end" style="height: 20vh;">
             @include('components.customer.footercustomer')
             </div> -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer>
     </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" defer></script>
+
     <script>
         function showStock(stock) {
             // Menampilkan pesan stok tersisa di dalam elemen dengan ID stock-message
             document.getElementById('stock-message').innerText = 'Tersisa ' + stock;
         }
+
         $(document).ready(function() {
             $('.btn-size').click(function() {
                 $('.btn-size').removeClass('btn-clicked');
                 $(this).addClass('btn-clicked');
-
 
                 var size = $(this).val();
                 $('#productSize').val(size);
 
                 var productID = encodeURIComponent('{{ $product->productID }}');
 
-                var productID = encodeURIComponent('{{ $product->productID }}');
-
                 $.ajax({
-                    url: '{{ url('/get_stock') }}/' + productID + '/' + size,
                     url: '{{ url('/get_stock') }}/' + productID + '/' + size,
                     method: 'GET',
                     success: function(response) {
@@ -497,7 +356,7 @@
                         } else {
                             $('#qty-value').attr('max', response.stock);
                         }
-                        // console.log(response);
+                        // Reset nilai quantity ke 0
                         $('#qty-value').val(0);
                     },
                     error: function(xhr, status, error) {
@@ -507,8 +366,6 @@
             });
         });
     </script>
-
-
 
     <script>
         // var data = [
@@ -622,13 +479,11 @@
         // }
 
         function switchCarousel(id) {
-            //Reset active carousel
+            // Reset active carousel
             let i = 1;
-            while (document.getElementById("carousel-" + i) != undefined) {
-            let i = 1;
-            while (document.getElementById("carousel-" + i) != undefined) {
+            while (document.getElementById("carousel-" + i) !== null) {
                 document.getElementById("carousel-" + i).classList.remove("active");
-                i += 1;
+                i++;
             }
 
             document.getElementById("carousel-" + id).classList.add("active");
@@ -650,35 +505,10 @@
                 });
             });
         });
-            var sizeButtons = document.querySelectorAll('.btn-size');
-            var qtyInput = document.getElementById('qty-value');
-            var sizeInput = document.getElementById('productSize');
-
-            sizeButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    var selectedSize = button.value;
-                    var stock = button.getAttribute('data-stock');
-
-                    sizeInput.value = selectedSize;
-                    qtyInput.setAttribute('max', stock);
-                    qtyInput.value = 0; // Reset quantity input value when size changes
-                });
-            });
-        });
 
         function minus() {
             var qtyInput = document.getElementById("qty-value");
-            if (qtyInput.value == "") {
-                qtyInput.value = 0;
-            }
-            var currentValue = parseInt(qtyInput.value);
-            if (currentValue > 0) {
-                qtyInput.value = currentValue - 1;
-            }
-        }
-        function minus() {
-            var qtyInput = document.getElementById("qty-value");
-            if (qtyInput.value == "") {
+            if (qtyInput.value === "") {
                 qtyInput.value = 0;
             }
             var currentValue = parseInt(qtyInput.value);
@@ -690,21 +520,8 @@
         function plus() {
             var qtyInput = document.getElementById("qty-value");
             var maxStock = parseInt(qtyInput.getAttribute("max")); // Get the maximum stock from the input attribute
-        function plus() {
-            var qtyInput = document.getElementById("qty-value");
-            var maxStock = parseInt(qtyInput.getAttribute("max")); // Get the maximum stock from the input attribute
 
-            if (qtyInput.value == "") {
-                qtyInput.value = 0;
-            }
-            var currentValue = parseInt(qtyInput.value);
-            if (currentValue < maxStock) {
-                qtyInput.value = currentValue + 1;
-            } else {
-                alert("You have reached the maximum stock available."); // Optional: Alert the user if max stock is reached
-            }
-        }
-            if (qtyInput.value == "") {
+            if (qtyInput.value === "") {
                 qtyInput.value = 0;
             }
             var currentValue = parseInt(qtyInput.value);
