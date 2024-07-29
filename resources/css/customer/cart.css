@@ -112,12 +112,12 @@ body{
 
 .kiri{
     background-color:#F0F1E4;
-    width: 73%;
-    height: 84%;
+    width: 100%;
+    /* height: 84%; */
     /* margin-left: 4%; */
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    padding-bottom: 20px;
 }
 
 #productimg{
@@ -141,7 +141,16 @@ body{
     flex-direction: row;
     height: 100px;
     width: 100%;
-    background-color: red;
+    /* background-color: red; */
+    text-decoration: none;
+}
+.container-cart{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width:100%;
+    /* background-color: red; */
+    overflow-y: auto;
 }
 
 .wraps{
@@ -194,6 +203,9 @@ body{
     justify-self: center;
     align-self: flex-end;
     align-items: center;
+    position: absolute;
+    top: -40px;
+    right: 20px;
 }
 
 .wraps2 button{
@@ -237,18 +249,18 @@ body{
     border-bottom-color: #007bff;
 } */
 
-.kiri::-webkit-scrollbar-track
+.container-cart::-webkit-scrollbar-track
 {
 	background-color: #F0F1E4;
 }
 
-.kiri::-webkit-scrollbar
+.container-cart::-webkit-scrollbar
 {
 	width: 5px;
 	background-color: #F0F1E4;
 }
 
-.kiri::-webkit-scrollbar-thumb
+.container-cart::-webkit-scrollbar-thumb
 {
 	background-color: #D5BE9E;
 }
@@ -305,11 +317,20 @@ body{
     color: inherit;
 }
 
-.no-link {
-    /* position: absolute; */
-    z-index: 2;
-    background-color: red;
+.wrapper{
+    background-color: pink;
+    position: relative;
+    /* width: 200px; */
+}
 
+.no-link {
+    position: absolute;
+    z-index: 2;
+    /* background-color: red; */
+    width: 50px;
+    height: 40px;
+    top: -40px;
+    left: 128px;
 }
 
 .no-link-select{
