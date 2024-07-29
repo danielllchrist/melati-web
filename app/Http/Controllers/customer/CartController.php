@@ -26,7 +26,7 @@ class CartController extends Controller
     public function index()
     {
         $userId = Auth::id(); // Mendapatkan user ID yang sedang login
-        $carts = Cart::where('userID', $userId)->with(['size.product', 'size'])->get();
+        $carts = Cart::where('userID', $userId)->with(['size.product', 'size'])->orderBy('updated_at', 'asc')->get();
         $sizes = Size::all(); // Mengambil semua ukuran
         $addressExists = Address::where('userID', $userId)->exists();
         // dd($sizes);
@@ -80,6 +80,7 @@ class CartController extends Controller
     public function update(Request $request, $id){
         Log::info('Request data:', $request->all());
         $userId = Auth::id();
+        $cartUser = Cart::where('userID', $userId)->get();
         $cart = Cart::where('userID', $userId)->where('sizeID', $id)->first();
         $quantity = $cart->quantity;
         $oldSizeID = $cart->sizeID;
@@ -100,23 +101,28 @@ class CartController extends Controller
                 }
                 $cart->quantity = $newQuantity;
             } else if ($newSizeID) {
-                Log::info("Updating size");
-                
-                // Buat entri baru di tabel cart
-                // $newCart = new Cart();
-                // $newCart->userID = $userId;
-                // $newCart->sizeID = $newSizeID;
-                // $newCart->quantity = $cart->quantity; // Menggunakan quantity dari cart yang dihapus
-                // $newCart->save();
+               Log::info("Updating size");
 
-                // Hapus cart yang ada
+                // Periksa apakah newSizeID sudah ada di cartUser
+                $existingCart = $cartUser->where('sizeID', $newSizeID)->first();
+                if ($existingCart) {
+                    // Tambahkan quantity dari $existingCart + $quantity kemudian save
+                    $newQuantity = $existingCart->quantity + $quantity;
+                    $updateQuery = "UPDATE carts SET quantity = ? WHERE userID = ? AND sizeID = ?";
+                    DB::update($updateQuery, [$newQuantity, $userId, $newSizeID]);
 
+                    // Hapus cart lama
+                    $deleteQuery = "DELETE FROM carts WHERE userID = ? AND sizeID = ? AND quantity = ?";
+                    DB::delete($deleteQuery, [$userId, $oldSizeID, $quantity]);
+
+                    return response()->json(['success' => true, 'message' => 'Cart updated successfully']);
+                }
+
+                // Lanjutkan dengan operasi DELETE dan INSERT
                 $deleteQuery = "DELETE FROM carts WHERE userID = ? AND sizeID = ? AND quantity = ?";
                 DB::delete($deleteQuery, [$userId, $oldSizeID, $quantity]);
                 $insertQuery = "INSERT INTO carts (userID, sizeID, quantity) VALUES (?, ?, ?)";
-                DB::insert($insertQuery, [$userId, $newSizeID, $quantity]);
-                
-                // Log::info($newCart);
+                DB::insert($insertQuery, [$userId, $newSizeID, $quantity]);            
             }
 
             $cart->save();
@@ -136,21 +142,12 @@ class CartController extends Controller
 
             // Periksa apakah pengguna memiliki alamat yang terdaftar
             $addressExists = Address::where('userID', $userId)->exists();
-            if (!$addressExists) {
-                return redirect()->route('CustomerMyOrder')->with('showPopup', true);
-            }
+            // if (!$addressExists) {
+            //     return redirect()->route('CustomerMyOrder')->with('showPopup', true);
+            // }
 
             $products = $request->input('products');
             $totalPrice = $request->input('totalPrice');
-
-            // Validasi data
-            // $request->validate([
-            //     'products' => 'required|array',
-            //     'products.*.sizeID' => 'required|exists:sizes,id',
-            //     'products.*.quantity' => 'required|integer|min:1',
-            //     'products.*.price' => 'required|numeric|min:0',
-            //     'totalPrice' => 'required|numeric|min:0'
-            // ]);
 
             $count = Transaction::count();
 
@@ -177,12 +174,15 @@ class CartController extends Controller
                 $size = Size::find($product['sizeID']);
 
                 if ($size) {
+                    //buatkan validasi disini, jika sizeID 
+
                     $transactionDetail->productID = $size->productID;
 
                     // Ambil informasi produk berdasarkan productID
                     $productInfo = Product::find($size->productID);
 
                     if ($productInfo) {
+
                         // Kurangi stok produk
                         $newStock = $size->stock - $product['quantity'];
 

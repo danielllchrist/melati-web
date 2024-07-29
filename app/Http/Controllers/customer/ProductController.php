@@ -89,7 +89,7 @@ class ProductController extends Controller
     public function detail_product($id)
     {
         $product = Product::with('size')->findOrFail($id);
-        // dd($product->productPicturePath);
+        // dd($product->size);
         return view('customer.detail', compact('product'));
     }
 
@@ -115,42 +115,49 @@ class ProductController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
-
         $productID = $request->input('productID');
         $size = $request->input('size');
         $quantity = $request->input('quantity');
 
-        $sizeQuery = "SELECT * FROM `sizes` WHERE `size` = ? AND `productID` = ?";
-        $sizeCheck = DB::select($sizeQuery, [$size, $productID]);
+        // Cari sizeID di tabel sizes
+        $sizeCheck = DB::table('sizes')
+            ->where('productID', $productID)
+            ->where('size', $size)
+            ->first();
 
-        // dd($sizeCheck);
-        if (empty($sizeCheck) || count($sizeCheck) == 0) {
-
-            return redirect()->back()->with('error', 'Stock not found.');
+        if (!$sizeCheck) {
+            return redirect()->back()->with('error', 'Size not found.');
         }
 
-        $sizeCheck = $sizeCheck[0];
+        $sizeID = $sizeCheck->sizeID;
+        $userID = Auth::id();
 
-        $checkQuery = "SELECT * FROM `carts` WHERE `userID` = ? AND `sizeID` = ?";
-        $check = DB::select($checkQuery, [auth()->user()->userID, $sizeCheck->sizeID]);
-        if (count($check) > 1) {
-            $check = $check[0];
-        }
-        // dd($sizeCheck, $check);
+        // Check if the cart item already exists for the user and sizeID
+        $existingCart = Cart::where('userID', $userID)
+            ->where('sizeID', $sizeID)
+            ->first();
 
-        if (!empty($check)) {
-            $quantity = (int) $quantity;
-            if ($sizeCheck->stock > $check->quantity + $quantity) {
-                $newQuantity = $check->quantity + $quantity;
+        if ($existingCart) {
+            // Update quantity if item already exists in cart
+            if ($sizeCheck->stock >= $existingCart->quantity + $quantity) {
+                $existingCart->quantity += $quantity;
             } else {
-                $newQuantity = $sizeCheck->stock;
+                return redirect()->back()->with('error', 'Not enough stock available.');
             }
-
-            $updateQuery = "UPDATE `carts` SET `quantity` = ?, `updated_at` = NOW() WHERE `sizeID` = ? AND `userID` = ?";
-            DB::update($updateQuery, [$newQuantity, $check->sizeID, auth()->user()->userID]);
+            $existingCart->save();
         } else {
-            $insertQuery = "INSERT INTO `carts` (`userID`, `sizeID`, `quantity`, `created_at`, `updated_at`) VALUES (?, ?, ?, NOW(), NOW())";
-            DB::insert($insertQuery, [auth()->user()->userID, $sizeCheck->sizeID, $quantity]);
+            // Insert new cart item if it doesn't exist
+            if ($sizeCheck->stock >= $quantity) {
+                DB::table('carts')->insert([
+                    'userID' => $userID,
+                    'sizeID' => $sizeID,
+                    'quantity' => $quantity,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            } else {
+                return redirect()->back()->with('error', 'Not enough stock available.');
+            }
         }
 
         return redirect()->back()->with('success', 'Added successfully');

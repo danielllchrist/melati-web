@@ -14,12 +14,12 @@
     <style>
         .btn-clicked {
             color: #F0F1E4;
-            background-color:rgb(73, 51, 25);
+            background-color: rgb(73, 51, 25);
             border: rgb(73, 51, 25);
         }
 
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
@@ -31,9 +31,9 @@
             height: 100%;
         }
 
-.no-spinner {
-    -moz-appearance: textfield;
-}
+        .no-spinner {
+            -moz-appearance: textfield;
+        }
     </style>
 
 </head>
@@ -55,7 +55,8 @@
                             @endphp
 
                             @foreach ($productPictures as $index => $photo)
-                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" id="carousel-{{ $index + 1 }}">
+                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}"
+                                    id="carousel-{{ $index + 1 }}">
                                     <img src="{{ Storage::url($photo) }}" class="d-block w-100">
                                 </div>
                             @endforeach
@@ -76,7 +77,8 @@
 
                     <div class="detail-image d-flex justify-content-between">
                         @foreach ($productPictures as $index => $photo)
-                            <img src="{{ Storage::url($photo) }}" width="16%" onclick="switchCarousel({{ $index + 1 }})">
+                            <img src="{{ Storage::url($photo) }}" width="16%"
+                                onclick="switchCarousel({{ $index + 1 }})">
                         @endforeach
                     </div>
                 </div>
@@ -103,7 +105,8 @@
                                         <form action="{{ route('wish') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="productID" value="{{ $product->productID }}">
-                                            <button type="submit" style="background: none; border: none; color: #F0F1E4;"><i
+                                            <button type="submit"
+                                                style="background: none; border: none; color: #F0F1E4;"><i
                                                     class="fa fa-heart-o fa-2x mt-2 heart" id="fa-heart-o"
                                                     onclick="wishlist()"></i></button>
                                         </form>
@@ -135,41 +138,48 @@
                             <p>Ukuran :</p>
                             <div class="btn-sizes">
                                 @php
-                                    $sizes = $product->size->sortBy(function ($size) {
-                                        $order = ['XS' => 1, 'S' => 2, 'M' => 3, 'L' => 4, 'XL' => 5];
-                                        return $order[$size->size] ?? 999;
+                                    // Urutan yang diinginkan
+                                    $order = ['S' => 1, 'M' => 2, 'L' => 3, 'XL' => 4];
+
+                                    // Urutkan ukuran
+                                    $sizes = $product->size->sortBy(function ($size) use ($order) {
+                                        return $order[$size->size];
                                     });
                                 @endphp
 
-                                @foreach($sizes as $size)
-                                    <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size" value="{{ $size->size }}" data-stock="{{ $size->stock }}">{{ $size->size }}</button>
+                                @foreach ($sizes as $size)
+                                    <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
+                                        value="{{ $size->size }}" data-stock="{{ $size->stock }}"
+                                        onclick="showStock('{{ $size->stock }}')">{{ $size->size }}</button>
                                 @endforeach
-
-
+                                <p id="stock-message"></p>
                             </div>
+
+
                         </div>
                         <div class="quantity mb-4">
-                            <form action="{{route('add_cart')}}" method="POST">
+                            <form action="{{ route('add_cart') }}" method="POST">
                                 @csrf
                                 <p>Jumlah :</p>
                                 <div class="d-flex align-items-center justify-content-around">
                                     <div class="btn-qty">
-                                    <input type="hidden" name="productID" value="{{$product->productID}}">
-                                    <input type="number" value="0" id="qty-value" max="0" 
-                                    min="0" name="quantity" class="no-spinner">
-                                    <input type="hidden" name="size" id="productSize">
-                                    <i class="fa fa-minus minus" onclick="minus()"></i>
-                                    <i class="fa fa-plus plus" onclick="plus()"></i>
-                                </div>
-                                    
-                                @auth
-                                    <!-- Jika pengguna sudah login, tampilkan tombol submit -->
-                                    <button class="btn-cart" type="submit">TAMBAHKAN KE KERANJANG</button>
-                                @else
-                                    <!-- Jika pengguna belum login, arahkan ke halaman login -->
-                                    <a href="{{ route('LogIn') }}" class="btn-cart centered" style="background-color: #F0F1E4; color: black;">TAMBAHKAN KE KERANJANG</a>
-                                @endauth
-                            
+                                        <input type="hidden" name="productID" value="{{ $product->productID }}">
+                                        <input type="number" value="0" id="qty-value" max="0"
+                                            min="0" name="quantity" class="no-spinner">
+                                        <input type="hidden" name="size" id="productSize">
+                                        <i class="fa fa-minus minus" onclick="minus()"></i>
+                                        <i class="fa fa-plus plus" onclick="plus()"></i>
+                                    </div>
+
+                                    @auth
+                                        <!-- Jika pengguna sudah login, tampilkan tombol submit -->
+                                        <button class="btn-cart" type="submit">TAMBAHKAN KE KERANJANG</button>
+                                    @else
+                                        <!-- Jika pengguna belum login, arahkan ke halaman login -->
+                                        <a href="{{ route('LogIn') }}" class="btn-cart centered"
+                                            style="background-color: #F0F1E4; color: black;">TAMBAHKAN KE KERANJANG</a>
+                                    @endauth
+
                                 </div>
                             </form>
                         </div>
@@ -188,7 +198,7 @@
                 <div class="d-flex">
                     <div class="number">
                         <h1>
-                            @if(floor($averageRating) == $averageRating)
+                            @if (floor($averageRating) == $averageRating)
                                 {{ $averageRating }}
                             @elseif($averageRating == round($averageRating, 1))
                                 {{ number_format($averageRating, 1) }}
@@ -441,18 +451,22 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
+        function showStock(stock) {
+            // Menampilkan pesan stok tersisa di dalam elemen dengan ID stock-message
+            document.getElementById('stock-message').innerText = 'Tersisa ' + stock;
+        }
         $(document).ready(function() {
             $('.btn-size').click(function() {
                 $('.btn-size').removeClass('btn-clicked');
                 $(this).addClass('btn-clicked');
-    
+
                 var size = $(this).val();
                 $('#productSize').val(size);
 
-                var productID = encodeURIComponent('{{$product->productID}}');
-                
+                var productID = encodeURIComponent('{{ $product->productID }}');
+
                 $.ajax({
-                    url: '{{ url("/get_stock") }}/' + productID + '/' + size,
+                    url: '{{ url('/get_stock') }}/' + productID + '/' + size,
                     method: 'GET',
                     success: function(response) {
                         if (response.error) {
@@ -471,8 +485,8 @@
             });
         });
     </script>
-    
-    
+
+
 
     <script>
         // var data = [
@@ -585,10 +599,10 @@
         //     }
         // }
 
-        function switchCarousel(id){
+        function switchCarousel(id) {
             //Reset active carousel
-            let i=1;
-            while(document.getElementById("carousel-" + i) != undefined){
+            let i = 1;
+            while (document.getElementById("carousel-" + i) != undefined) {
                 document.getElementById("carousel-" + i).classList.remove("active");
                 i += 1;
             }
@@ -613,48 +627,47 @@
         // }
 
         document.addEventListener('DOMContentLoaded', function() {
-    var sizeButtons = document.querySelectorAll('.btn-size');
-    var qtyInput = document.getElementById('qty-value');
-    var sizeInput = document.getElementById('productSize');
-    
-    sizeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var selectedSize = button.value;
-            var stock = button.getAttribute('data-stock');
-            
-            sizeInput.value = selectedSize;
-            qtyInput.setAttribute('max', stock);
-            qtyInput.value = 0;  // Reset quantity input value when size changes
+            var sizeButtons = document.querySelectorAll('.btn-size');
+            var qtyInput = document.getElementById('qty-value');
+            var sizeInput = document.getElementById('productSize');
+
+            sizeButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var selectedSize = button.value;
+                    var stock = button.getAttribute('data-stock');
+
+                    sizeInput.value = selectedSize;
+                    qtyInput.setAttribute('max', stock);
+                    qtyInput.value = 0; // Reset quantity input value when size changes
+                });
+            });
         });
-    });
-});
 
-function minus() {
-    var qtyInput = document.getElementById("qty-value");
-    if (qtyInput.value == "") {
-        qtyInput.value = 0;
-    }
-    var currentValue = parseInt(qtyInput.value);
-    if (currentValue > 0) {
-        qtyInput.value = currentValue - 1;
-    }
-}
+        function minus() {
+            var qtyInput = document.getElementById("qty-value");
+            if (qtyInput.value == "") {
+                qtyInput.value = 0;
+            }
+            var currentValue = parseInt(qtyInput.value);
+            if (currentValue > 0) {
+                qtyInput.value = currentValue - 1;
+            }
+        }
 
-function plus() {
-    var qtyInput = document.getElementById("qty-value");
-    var maxStock = parseInt(qtyInput.getAttribute("max")); // Get the maximum stock from the input attribute
+        function plus() {
+            var qtyInput = document.getElementById("qty-value");
+            var maxStock = parseInt(qtyInput.getAttribute("max")); // Get the maximum stock from the input attribute
 
-    if (qtyInput.value == "") {
-        qtyInput.value = 0;
-    }
-    var currentValue = parseInt(qtyInput.value);
-    if (currentValue < maxStock) {
-        qtyInput.value = currentValue + 1;
-    } else {
-        alert("You have reached the maximum stock available."); // Optional: Alert the user if max stock is reached
-    }
-}
-
+            if (qtyInput.value == "") {
+                qtyInput.value = 0;
+            }
+            var currentValue = parseInt(qtyInput.value);
+            if (currentValue < maxStock) {
+                qtyInput.value = currentValue + 1;
+            } else {
+                alert("You have reached the maximum stock available."); // Optional: Alert the user if max stock is reached
+            }
+        }
     </script>
 </body>
 
