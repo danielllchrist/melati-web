@@ -22,23 +22,22 @@
         }
 
         .kategori {
-            color: white;
-            /* set default text color to gray */
+            padding: 20px;
+            border-radius: 10px;
         }
-
-        .kategori.active {
-            color: white;
-            /* set active text color to white */
+        .kategori h3 {
+            color: #F0F1E4;
         }
-
-        .dropdown-item {
-            color: white;
-            /* set default dropdown item text color to gray */
+        .collapsed-text a, .dropdown-item {
+            color: grey;
+            text-decoration: none;
         }
-
-        .dropdown-item:hover {
-            color: white;
-            /* set hover text color to white */
+        .collapsed-text img {
+            margin-left: 10px;
+            filter: invert(0.8);
+        }
+        .collapsed-text a.active, .dropdown-item.active {
+            color: #F0F1E4;
         }
     </style>
 </head>
@@ -120,7 +119,7 @@
                 <div class="d-flex justify-content-end align-items-center header-catalog">
                     <p class="text-light me-4 mt-3">Urut berdasarkan</p>
                     <select name="sortBy" id="sortBy">
-                        <option value="0" selected disabled>Select one</option>
+                        <option value="0" selected disabled>Pilih</option>
                         <option value="1">Harga Tertinggi</option>
                         <option value="2">Harga Terendah</option>
                     </select>
@@ -199,116 +198,106 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    {{-- <script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Initialize collapse state
+        $('#collapsePria').collapse('hide');
+        $('#collapseWanita').collapse('hide');
 
-        $(document).ready(function() {
-            // Add event listener to kategori links
-            $('.kategori a').on('click', function() {
-                $(this).parent().toggleClass('active'); // toggle active class on kategori link
-                $(this).next('.collapse').collapse('toggle'); // toggle collapse
-            });
-
-            // Initialize collapse state
-            $('#collapsePria').collapse('hide');
-            $('#collapseWanita').collapse('hide');
+        $('#btnPria').on('click', function(e) {
+            e.preventDefault();
+            $(this).toggleClass('active');
+            $(this).next('.collapse').collapse('toggle');
+            let currentParams = new URLSearchParams(window.location.search);
+            if (currentParams.get('gender') !== 'pria') {
+                window.location.href = '?gender=pria';
+            }
         });
-    </script> --}}
-    <script>
-        $(document).ready(function() {
-            // Initialize collapse state
-            $('#collapsePria').collapse('hide');
-            $('#collapseWanita').collapse('hide');
 
-            $('#btnPria').on('click', function(e) {
-                e.preventDefault();
-                $(this).next('.collapse').collapse('toggle');
-                let currentParams = new URLSearchParams(window.location.search);
-                if (currentParams.get('gender') !== 'pria') {
-                    window.location.href = '?gender=pria';
-                }
-            });
-
-            $('#btnWanita').on('click', function(e) {
-                e.preventDefault();
-                $(this).next('.collapse').collapse('toggle');
-                let currentParams = new URLSearchParams(window.location.search);
-                if (currentParams.get('gender') !== 'wanita') {
-                    window.location.href = '?gender=wanita';
-                }
-            });
-
-
-            // Initialize collapse state based on local storage
-            if (localStorage.getItem('collapsePria') === 'true') {
-                $('#collapsePria').collapse('show');
-            } else {
-                $('#collapsePria').collapse('hide');
+        $('#btnWanita').on('click', function(e) {
+            e.preventDefault();
+            $(this).toggleClass('active');
+            $(this).next('.collapse').collapse('toggle');
+            let currentParams = new URLSearchParams(window.location.search);
+            if (currentParams.get('gender') !== 'wanita') {
+                window.location.href = '?gender=wanita';
             }
-            if (localStorage.getItem('collapseWanita') === 'true') {
-                $('#collapseWanita').collapse('show');
-            } else {
-                $('#collapseWanita').collapse('hide');
-            }
-
-            // Event listener to toggle collapse and arrow direction
-            $('.kategori .collapse-btn').on('click', function(e) {
-                e.preventDefault();
-                const target = $(this).attr('href');
-                $(target).collapse('toggle');
-
-                // Toggle arrow direction
-                const arrow = $(this).next('img');
-                if (arrow.hasClass('collapsed')) {
-                    arrow.removeClass('collapsed');
-                    arrow.attr('src',
-                        'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png'
-                    );
-                } else {
-                    arrow.addClass('collapsed');
-                    arrow.attr('src',
-                        'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/expand2-512.png'
-                    );
-                }
-
-                // Save collapse state to local storage
-                const isExpanded = $(target).hasClass('show');
-                const collapseKey = target.substring(1); // remove the # character
-                localStorage.setItem(collapseKey, !isExpanded);
-            });
-
-            // Highlight the selected category
-            $('.dropdown-item').on('click', function() {
-                $('.dropdown-item').css('color', 'grey');
-                $(this).css('color', 'white');
-
-                // Save selected category to local storage
-                localStorage.setItem('selectedCategory', $(this).attr('id'));
-            });
-
-            // Function to get query parameters
-            function getQueryParams() {
-                const params = new URLSearchParams(window.location.search);
-                return {
-                    gender: params.get('gender') ? params.get('gender').toLowerCase() : null,
-                    category: params.get('category') ? params.get('category').toLowerCase() : null
-                };
-            }
-
-            const queryParams = getQueryParams();
-
-            // Construct the combined category id based on query parameters
-            if (queryParams.gender && queryParams.category) {
-                const selectedCategory = `${queryParams.gender}-${queryParams.category}`;
-
-                // If there's a matching element, change its color
-                $('#' + selectedCategory).css('color', 'white');
-            } else {
-                // Ensure no dropdown item is highlighted by default
-                $('.dropdown-item').css('color', 'grey');
-            }
-
         });
-    </script>
+
+        // Initialize collapse state based on local storage
+        if (localStorage.getItem('collapsePria') === 'true') {
+            $('#collapsePria').collapse('show');
+            $('#btnPria').addClass('active');
+        } else {
+            $('#collapsePria').collapse('hide');
+            $('#btnPria').removeClass('active');
+        }
+        if (localStorage.getItem('collapseWanita') === 'true') {
+            $('#collapseWanita').collapse('show');
+            $('#btnWanita').addClass('active');
+        } else {
+            $('#collapseWanita').collapse('hide');
+            $('#btnWanita').removeClass('active');
+        }
+
+        // Event listener to toggle collapse and arrow direction
+        $('.kategori .collapse-btn').on('click', function(e) {
+            e.preventDefault();
+            const target = $(this).attr('href');
+            $(target).collapse('toggle');
+
+            // Toggle arrow direction
+            const arrow = $(this).next('img');
+            if (arrow.hasClass('collapsed')) {
+                arrow.removeClass('collapsed');
+                arrow.attr('src', 'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png');
+            } else {
+                arrow.addClass('collapsed');
+                arrow.attr('src', 'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/expand2-512.png');
+            }
+
+            // Save collapse state to local storage
+            const isExpanded = $(target).hasClass('show');
+            const collapseKey = target.substring(1); // remove the # character
+            localStorage.setItem(collapseKey, !isExpanded);
+        });
+
+        // Highlight the selected category
+        $('.dropdown-item').on('click', function() {
+            $('.dropdown-item').removeClass('active');
+            $(this).addClass('active');
+
+            // Save selected category to local storage
+            localStorage.setItem('selectedCategory', $(this).attr('id'));
+        });
+
+        // Function to get query parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                gender: params.get('gender') ? params.get('gender').toLowerCase() : null,
+                category: params.get('category') ? params.get('category').toLowerCase() : null
+            };
+        }
+
+        const queryParams = getQueryParams();
+
+        // Construct the combined category id based on query parameters
+        if (queryParams.gender && queryParams.category) {
+            const selectedCategory = `${queryParams.gender}-${queryParams.category}`;
+
+            // If there's a matching element, change its color
+            $('#' + selectedCategory).addClass('active');
+        } else {
+            // Ensure no dropdown item is highlighted by default
+            $('.dropdown-item').css('color', 'grey');
+        }
+    });
+</script>
+
 
 
 
