@@ -33,6 +33,17 @@
 
         .no-spinner {
             -moz-appearance: textfield;
+            color: rgb(73, 51, 25);
+            background-color: #F0F1E4;
+            width: 100px;
+        }
+
+        button.btn.btn-light.rounded-circle.ps-2.pe-2.btn-size.btn-clicked {
+            height: 40px;
+        }
+
+        button.btn.btn-light.rounded-circle.ps-2.pe-2.btn-size {
+            height: 40px;
         }
     </style>
 
@@ -92,7 +103,7 @@
                 <div class="detail-content">
                     <div class="detail-content-header d-flex flex-column justify-content-between">
                         <div class="d-flex justify-content-between">
-                            <div class="title">
+                            <div class="title" style="color: #F0F1E4;">
                                 <h1>{{ $product->productName }}</h1>
                             </div>
                             <div class="wishlist-content">
@@ -152,7 +163,8 @@
                                         value="{{ $size->size }}" data-stock="{{ $size->stock }}"
                                         onclick="showStock('{{ $size->stock }}')">{{ $size->size }}</button>
                                 @endforeach
-                                <p id="stock-message"></p>
+                                
+                                <p id="stock-message" class="stock" style="margin-top: 20px; margin-bottom:none;"></p>
                             </div>
 
 
@@ -167,8 +179,8 @@
                                         <input type="number" value="0" id="qty-value" max="0"
                                             min="0" name="quantity" class="no-spinner">
                                         <input type="hidden" name="size" id="productSize">
-                                        <i class="fa fa-minus minus" onclick="minus()"></i>
-                                        <i class="fa fa-plus plus" onclick="plus()"></i>
+                                        <i class="fa fa-minus minus" style="color: rgb(73, 51, 25);" onclick="minus()"></i>
+                                        <i class="fa fa-plus plus" style="color: rgb(73, 51, 25);" onclick="plus()"></i>
                                     </div>
 
                                     @auth
@@ -352,43 +364,38 @@
                         <input type="hidden" name="rating" id="" value="">
 
                         <button
-                            class="btn btn-light rounded-pill fw-bolder  @if (!request()->query('rating')) category-review-color @endif"
-                            id="newest" type="submit">Newest</button>
+                            class="btn btn-light rounded-pill fw-bolder @if (!request()->query('rating')) category-review-color @endif"
+                            id="newest" type="submit">Terbaru</button>
                     </form>
                     <form action="">
                         <input type="hidden" name="rating" id="" value="5">
                         <button
-                            class="btn btn-light rounded-pill fw-bolder  @if (request()->query('rating') == 5) category-review-color @endif"
-                            id="star5" type="submit">5
-                            Star</button>
+                            class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 5) category-review-color @endif"
+                            id="star5" type="submit">Bintang 5</button>
                     </form>
                     <form action="">
                         <input type="hidden" name="rating" id="" value="4">
                         <button
                             class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 4) category-review-color @endif"
-                            id="star4" type="submit">4
-                            Star</button>
+                            id="star4" type="submit">Bintang 4</button>
                     </form>
                     <form action="">
                         <input type="hidden" name="rating" id="" value="3">
                         <button
                             class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 3) category-review-color @endif"
-                            id="star3" type="submit">3
-                            Star</button>
+                            id="star3" type="submit">Bintang 3</button>
                     </form>
                     <form action="">
                         <input type="hidden" name="rating" id="" value="2">
                         <button
                             class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 2) category-review-color @endif"
-                            id="star2" type="submit">2
-                            Star</button>
+                            id="star2" type="submit">Bintang 2</button>
                     </form>
                     <form action="">
                         <input type="hidden" name="rating" id="" value="1">
                         <button
                             class="btn btn-light rounded-pill fw-bolder @if (request()->query('rating') == 1) category-review-color @endif"
-                            id="star1" type="submit">1
-                            Star</button>
+                            id="star1" type="submit">Bintang 1</button>
                     </form>
                 </div>
 
@@ -437,7 +444,7 @@
                         </div>
                     @endforeach
 
-
+                    <hr>
                 </div>
             </div>
         </div>

@@ -84,6 +84,12 @@ hr{
     color: #F0F1E4;
 }
 
+.button:hover{
+    background-color: rgb(73, 51, 25) !important;
+    border: 1px solid rgb(73, 51, 25) !important;
+    color: #F0F1E4;
+}
+
 .content-review{
     max-height: 450px;
     height: 100%;
@@ -177,9 +183,9 @@ hr{
 }
 
 .category-review-color {
-    background-color: rgb(73, 51, 25);
-    border: 1px solid rgb(73, 51, 25);
-    color: #F0F1E4;
+    background-color: #D5BE9E !important;
+    border: 1px solid #D5BE9E !important;
+    color: rgb(73, 51, 25);
 }
 
 .btn-sizes > button {
@@ -191,7 +197,7 @@ hr{
 .minus {
     position: relative;
     color: black;
-    left: -90px;
+    left: -115px;
     cursor: pointer;
 }
 
@@ -203,7 +209,7 @@ hr{
 }
 
 .btn-qty > input {
-    width: 100px;
+    width: 130px;
     padding: 10px;
     text-align: center;
     border: none;
@@ -212,12 +218,24 @@ hr{
 }
 
 .btn-cart {
-    width: 80%;
+    width: 73%;
     padding: 10px 0;
     border-radius: 5em;
     font-weight: bold;
+    background-color: #F0F1E4 !important;
+    color: rgb(73, 51, 25)!important;
+}
+
+.btn-light{
+    background-color: #F0F1E4;
+    color: rgb(73, 51, 25);
 }
 
 .quantity > p {
     margin: 0 0 5px 0;
+}
+
+.btn-clicked{
+    color:rgb(73, 51, 25) !important;
+    background-color: #D5BE9E!important;
 }
