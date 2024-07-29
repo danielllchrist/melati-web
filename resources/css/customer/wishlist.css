@@ -41,10 +41,19 @@ a{
 .card-custom{
     border-radius: 0;
     color: #F0F1E4;
-    width: 220px;
+    width: 230px;
     height: 400px;
     margin: 10px 15px;
     z-index: 1;
+    display: flex;
+}
+
+.productName{
+    display: block;
+  width: 165px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .sold-out{
@@ -69,8 +78,7 @@ a{
 .card-custom > i {
     position: relative;
     top: 240px;
-    left: 180px;
-    cursor: pointer;
+    left: 190px;
 }
 
 .card-custom-top{
@@ -79,7 +87,11 @@ a{
     width: 100%;
 }
 
-
+.card-custom-body {
+    padding: 10px; /* Add padding if needed for text */
+    margin: 0; /* Remove any extra margin */
+    flex-grow: 1; /* Ensure it takes remaining space */
+}
 .card-custom-body > p{
     margin-bottom: 10px;
 }
@@ -92,13 +104,16 @@ a{
     color: red;
 }
 
-.image-container {
-    position: relative; /* Add this */
+.image-container{
+    position: relative;
+    display: inline-block;
+    width: 100%;
 }
 
 .image-container img {
-    width: 100%; /* make sure the img takes up the full width of the container */
-    height: auto;
+    width : 230px;
+    height : 275px;
+    object-fit: cover;
 }
 
 .wishlist-form {
