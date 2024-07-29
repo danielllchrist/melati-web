@@ -11,12 +11,12 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders1 = Transaction::with('transactionDetail')->where('statusID', "1")->get();
-        $orders2 = Transaction::with('transactionDetail')->where('statusID', "2")->get();
-        $orders3 = Transaction::with('transactionDetail')->where('statusID', "3")->get();
-        $orders4 = Transaction::with('transactionDetail')->where('statusID', '4')->orWhere('statusID', '5')->get();
-        $orders5 = Transaction::with('transactionDetail')->where('statusID', "6")->get();
-        $orders6 = Transaction::with('transactionDetail')->where('statusID', "7")->get();
+        $orders1 = Transaction::with('transactionDetail')->where('statusID', "1")->orderBy('updated_at', 'desc')->get();
+        $orders2 = Transaction::with('transactionDetail')->where('statusID', "2")->orderBy('updated_at', 'desc')->get();
+        $orders3 = Transaction::with('transactionDetail')->where('statusID', "3")->orderBy('updated_at', 'desc')->get();
+        $orders4 = Transaction::with('transactionDetail')->where('statusID', '4')->orWhere('statusID', '5')->orderBy('updated_at', 'desc')->get();
+        $orders5 = Transaction::with('transactionDetail')->where('statusID', "6")->orderBy('updated_at', 'desc')->get();
+        $orders6 = Transaction::with('transactionDetail')->where('statusID', "7")->orderBy('updated_at', 'desc')->get();
 
         return view('admin.orderstatus', compact("orders1","orders2","orders3","orders4","orders5","orders6"));
     }

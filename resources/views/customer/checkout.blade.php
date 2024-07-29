@@ -150,7 +150,7 @@
                         <div class="w1">
                             <h3>Discounts</h3>
                             {{-- <p>{{"Rp " . number_format($i->size->product->productPrice, 0, ',', '.')}}</p> --}}
-                            <p>{{ $targetVoucher == null ? 'Rp. 0' : 'Rp. ' . number_format($targetVoucher->voucherNominal, 0, ',', '.') }}
+                            <p>{{ $targetVoucher == null ? '-Rp. 0' : '-Rp. ' . number_format($targetVoucher->voucherNominal, 0, ',', '.') }}
                             </p>
                         </div>
                         <div class="w1">

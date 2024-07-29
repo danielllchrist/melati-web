@@ -25,18 +25,24 @@
             padding: 20px;
             border-radius: 10px;
         }
+
         .kategori h3 {
             color: #F0F1E4;
         }
-        .collapsed-text a, .dropdown-item {
+
+        .collapsed-text a,
+        .dropdown-item {
             color: grey;
             text-decoration: none;
         }
+
         .collapsed-text img {
             margin-left: 10px;
             filter: invert(0.8);
         }
-        .collapsed-text a.active, .dropdown-item.active {
+
+        .collapsed-text a.active,
+        .dropdown-item.active {
             color: #F0F1E4;
         }
     </style>
@@ -53,10 +59,10 @@
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div> -->
+                <div class="carousel-item active">
+                    <img src="{{ asset('assets/carouselCatalog.png') }}" class="d-block w-100" alt="...">
+                </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('assets/carouselCatalog.png') }}" class="d-block w-100" alt="...">
-                    </div>
                     <div class="carousel-item">
                         <img src="{{ asset('assets/carouselCatalog.png') }}" class="d-block w-100" alt="...">
                     </div>
@@ -79,17 +85,19 @@
 
         <div class="d-flex pt-5">
             <div class="kategori me-3">
-                <h3 class="text-light mb-4" style="color:#F0F1E4;">Kategori</h3>
+                <h3 class="mb-3">Kategori</h3>
+                <a class="collapse-btn" href="{{ route('Catalogue') }}" role="button" id="btnAll">
+                    Semua
+                </a>
                 <div class="kategori-pria">
                     <div class="collapsed-text">
-                        <a class="collapse-btn" data-bs-toggle="collapse" href="#collapsePria" role="button"
-                            aria-expanded="false" aria-controls="collapsePria" id="btnPria">
+                        <a class="collapse-btn" href="?gender=pria" role="button" id="btnPria">
                             Pria
                         </a>
-                        <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png"
-                            width="25px" id="arrowCollapsePria">
+                        {{-- <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png"
+                            width="25px" id="arrowCollapsePria"> --}}
                     </div>
-                    <div class="collapse multi-collapse" id="collapsePria">
+                    <div class="" id="collapsePria">
                         <a class="dropdown-item" href="?gender=pria&category=atasan" id="pria-atasan">Atasan</a>
                         <a class="dropdown-item" href="?gender=pria&category=bawahan" id="pria-bawahan">Bawahan</a>
                         <a class="dropdown-item" href="?gender=pria&category=aksesoris"
@@ -99,17 +107,16 @@
 
                 <div class="kategori-wanita">
                     <div class="collapsed-text">
-                        <a class="collapse-btn" data-bs-toggle="collapse" href="#collapseWanita" role="button"
-                            aria-expanded="false" aria-controls="collapseWanita" id="btnWanita">
+                        <a class="collapse-btn" role="button" aria-expanded="false" aria-controls="collapseWanita"
+                            id="btnWanita">
                             Wanita
                         </a>
-                        <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png"
-                            width="25px" id="arrowCollapseWanita">
+                        {{-- <img src="https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png"
+                            width="25px" id="arrowCollapseWanita"> --}}
                     </div>
-                    <div class="collapse multi-collapse" id="collapseWanita">
+                    <div class="" id="collapseWanita">
                         <a class="dropdown-item" href="?gender=wanita&category=atasan" id="wanita-atasan">Atasan</a>
-                        <a class="dropdown-item" href="?gender=wanita&category=bawahan"
-                            id="wanita-bawahan">Bawahan</a>
+                        <a class="dropdown-item" href="?gender=wanita&category=bawahan" id="wanita-bawahan">Bawahan</a>
                         <a class="dropdown-item" href="?gender=wanita&category=aksesoris"
                             id="wanita-aksesoris">Aksesoris</a>
                     </div>
@@ -135,8 +142,8 @@
                                         @if (!Auth::check())
                                             <a href="{{ route('LogIn') }}"
                                                 style="text-decoration: none; background: none; border: none;">
-                                                <i class="fa fa-heart-o fa-2x heart" id="wishlist-heart"
-                                                    style="color: black"></i>
+                                                <i class="fa fa-heart-o fa-2x heart wishlist-heart"
+                                                    id="wishlist-heart"></i>
                                             </a>
                                         @else
                                             @php
@@ -177,7 +184,9 @@
 
                                     <div class="card-custom-body">
                                         <p class="productName">{{ $item->productName }}</p>
-                                        <h3 class="productPrice">Rp {{ number_format($item->productPrice, 2, ',', '.') }}</h3>
+                                        <h3 class="productPrice">
+                                            {{ 'Rp ' . number_format($item->productPrice, 0, ',', '.') }}
+                                        </h3>
                                     </div>
                                 </div>
                             </a>
@@ -199,42 +208,104 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Highlight the selected category
-        $('.dropdown-item, .collapse-btn').on('click', function() {
-            $('.dropdown-item, .collapse-btn').removeClass('active');
-            $(this).addClass('active');
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize collapse state
+            // $('#collapsePria').collapse('hide');
+            // $('#collapseWanita').collapse('hide');
 
-            // Save selected category to local storage
-            localStorage.setItem('selectedCategory', $(this).attr('id'));
+            $('#btnPria').on('click', function(e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                $(this).next('.collapse').collapse('toggle');
+                let currentParams = new URLSearchParams(window.location.search);
+                if (currentParams.get('gender') !== 'pria') {
+                    window.location.href = '?gender=pria';
+                }
+            });
+
+            $('#btnWanita').on('click', function(e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                $(this).next('.collapse').collapse('toggle');
+                let currentParams = new URLSearchParams(window.location.search);
+                if (currentParams.get('gender') !== 'wanita') {
+                    window.location.href = '?gender=wanita';
+                }
+            });
+
+            // Initialize collapse state based on local storage
+            if (localStorage.getItem('collapsePria') === 'true') {
+                // $('#collapsePria').collapse('show');
+                $('#btnPria').addClass('active');
+            } else {
+                // $('#collapsePria').collapse('hide');
+                $('#btnPria').removeClass('active');
+            }
+            if (localStorage.getItem('collapseWanita') === 'true') {
+                // $('#collapseWanita').collapse('show');
+                $('#btnWanita').addClass('active');
+            } else {
+                // $('#collapseWanita').collapse('hide');
+                $('#btnWanita').removeClass('active');
+            }
+
+            // Event listener to toggle collapse and arrow direction
+            // $('.kategori .collapse-btn').on('click', function(e) {
+            //     e.preventDefault();
+            //     const target = $(this).attr('href');
+            //     $(target).collapse('toggle');
+
+            //     // Toggle arrow direction
+            //     // const arrow = $(this).next('img');
+            //     // if (arrow.hasClass('collapsed')) {
+            //     //     arrow.removeClass('collapsed');
+            //     //     arrow.attr('src', 'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/collapse2-512.png');
+            //     // } else {
+            //     //     arrow.addClass('collapsed');
+            //     //     arrow.attr('src', 'https://cdn0.iconfinder.com/data/icons/arrows-android-l-lollipop-icon-pack/24/expand2-512.png');
+            //     // }
+
+            //     // Save collapse state to local storage
+            //     const isExpanded = $(target).hasClass('show');
+            //     const collapseKey = target.substring(1); // remove the # character
+            //     localStorage.setItem(collapseKey, !isExpanded);
+            // });
+
+            // Highlight the selected category
+            $('.dropdown-item').on('click', function() {
+                $('.dropdown-item').removeClass('active');
+                $(this).addClass('active');
+
+                // Save selected category to local storage
+                localStorage.setItem('selectedCategory', $(this).attr('id'));
+            });
+
+            // Function to get query parameters
+            function getQueryParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    gender: params.get('gender') ? params.get('gender').toLowerCase() : null,
+                    category: params.get('category') ? params.get('category').toLowerCase() : null
+                };
+            }
+
+            const queryParams = getQueryParams();
+
+            // Construct the combined category id based on query parameters
+            if (queryParams.gender && queryParams.category) {
+                const selectedCategory = `${queryParams.gender}-${queryParams.category}`;
+
+                // If there's a matching element, change its color
+                $('#' + selectedCategory).addClass('active');
+            } else {
+                // Ensure no dropdown item is highlighted by default
+                $('.dropdown-item').css('color', 'grey');
+            }
         });
-
-        // Function to get query parameters
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                gender: params.get('gender') ? params.get('gender').toLowerCase() : null,
-                category: params.get('category') ? params.get('category').toLowerCase() : null
-            };
-        }
-
-        const queryParams = getQueryParams();
-
-        // Construct the combined category id based on query parameters
-        if (queryParams.gender && queryParams.category) {
-            const selectedCategory = `${queryParams.gender}-${queryParams.category}`;
-
-            // If there's a matching element, change its color
-            $('#' + selectedCategory).addClass('active');
-        } else if (queryParams.gender) {
-            // If only gender is selected
-            $('#btn' + queryParams.gender.charAt(0).toUpperCase() + queryParams.gender.slice(1)).addClass('active');
-        }
-    });
-</script>
+    </script>
 
 
 
@@ -262,7 +333,7 @@
             });
         });
     </script>
-        
+
     @include('components.customer.footercustomer')
 </body>
 

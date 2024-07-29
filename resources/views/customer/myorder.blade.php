@@ -17,6 +17,18 @@
         <div class="main-content">
             <div class="inner-container">
                 <div class="section">
+                    <div class="ps-header">
+                        <h2 class="ps-title" id="pesanan">Pesanan Saya</h2>
+                        {{-- <div class="padding-search-custom">
+                            <form class="form-inline my-2 my-lg-0">
+                                <div class="ps-search-custom-container">
+                                    <img src="assets/search-white.svg" alt="search" width="19" height="19">
+                                    <input class="ps-search-custom" type="text"
+                                        placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk">
+                                </div>
+                            </form>
+                        </div> --}}
+                    </div>
                     <div class="ps-content">
                         <div class="ps-status-menu">
                             <ul class="status-menu">

@@ -44,7 +44,7 @@ Route::group([], function () {
     Route::controller(CustomerProductController::class)->group(function () {
         Route::get('/katalog', 'product')->name('Catalogue');
         Route::get('/katalog?gender=wanita', 'women_catalogue')->name('WomenCatalogue');
-        Route::get('katalog?gender=pria', 'men_catalogue')->name('MenCatalogue');
+        Route::get('/katalog?gender=pria', 'men_catalogue')->name('MenCatalogue');
         Route::get('/produk/{id}', 'detail_product')->name('ProductDetail');
         Route::get('/filter/{filterType}', 'filter')->name('Filter');
         Route::post('/wish', 'wish')->name('wish');

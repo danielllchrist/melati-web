@@ -6,6 +6,7 @@
 
 .kategori{
     width: 15%;
+    margin-top: 50px;
 }
 
 .collapse-btn{
@@ -97,6 +98,7 @@
 
 .card-custom-body > h3{
     font-size: 18px;
+    color: #F0F1E4;
 }
 
 select{
@@ -110,7 +112,7 @@ select{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    color: grey;
+    color: #D5BE9E;
 }
 
 .collapsed-text > img{
@@ -143,21 +145,20 @@ select{
   text-overflow: ellipsis;
 }
 
-/* select#sortBy{
-        display: flex;
-        width: 200px;
-        height: 40px;
-        padding: 10px 18px;
-        appearance: none;
-        background-color: transparent;
-        background-clip: padding-box;
-        border: 1px solid #D5BE9E;
-        border-radius: 5px;
-        justify-content: start;
-        align-items: center;
-        color: #D5BE9E;
-} */
+#collapsePria, #collapseWanita{
+    margin-left: 16px;
+    margin-top: 3px;
+}
 
+#btnPria:hover, #btnWanita:hover{
+    color: #D5BE9E;
+}
+.wishlist-heart {
+    color: #4F290C;
+    /* border: 2px solid #D5BE9E; */
+    border-radius: 50%;
+    padding: 5px;
+}
 #sortBy {
     border: 1px solid #D5BE9E;
     color: #D5BE9E;
