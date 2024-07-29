@@ -58,6 +58,11 @@
         </div> -->
     <div class="container">
         <div class="d-flex flex-column mt-5 mb-5">
+            <div class="back-wrapper">
+                <div class="back">
+                    <a href="{{ route('Catalogue') }}"><img src="\assets\dummy-img\back arrow.svg" alt=""></a>
+                </div>
+            </div>
             <div class="product-content d-flex justify-content-start ms-5 me-5">
                 <div class="image-content">
                     <div id="carouselExample" class="carousel slide">

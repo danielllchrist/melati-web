@@ -62,24 +62,6 @@
                 <div class="carousel-item active">
                     <img src="{{ asset('assets/carouselCatalog.png') }}" class="d-block w-100" alt="...">
                 </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item">
-                        <img src="{{ asset('assets/carouselCatalog.png') }}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('assets/carouselCatalog.png') }}" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
 
@@ -181,13 +163,14 @@
                                             @endif
                                         @endif
                                     </div>
-
-                                    <div class="card-custom-body">
-                                        <p class="productName">{{ $item->productName }}</p>
-                                        <h3 class="productPrice">
-                                            {{ 'Rp ' . number_format($item->productPrice, 0, ',', '.') }}
-                                        </h3>
-                                    </div>
+                                    <a href="{{ route('ProductDetail', ['id' => $item->productID]) }}">
+                                        <div class="card-custom-body">
+                                            <p class="productName" style="color: #F0F1E4">{{ $item->productName }}</p>
+                                            <h3 class="productPrice">
+                                                {{ 'Rp ' . number_format($item->productPrice, 0, ',', '.') }}
+                                            </h3>
+                                        </div>
+                                    </a>
                                 </div>
                             </a>
                         </div>
