@@ -31,7 +31,7 @@
 .card-custom{
     border-radius: 0;
     color: #F0F1E4;
-    width: 230px;
+    width: 220px;
     height: 400px;
     margin: 0px;
     /* padding: 0;  */
@@ -53,7 +53,7 @@
 }
 
 .image-container img{
-    width : 230px;
+    width : 220px;
     height : 275px;
     object-fit: cover;
 }
@@ -141,4 +141,33 @@ select{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+/* select#sortBy{
+        display: flex;
+        width: 200px;
+        height: 40px;
+        padding: 10px 18px;
+        appearance: none;
+        background-color: transparent;
+        background-clip: padding-box;
+        border: 1px solid #D5BE9E;
+        border-radius: 5px;
+        justify-content: start;
+        align-items: center;
+        color: #D5BE9E;
+} */
+
+#sortBy {
+    border: 1px solid #D5BE9E;
+    color: #D5BE9E;
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 5px;
+    height: 40px;
+}
+#sortBy option {
+    background-color: black; /* Ensures the dropdown options match the surrounding style */
+    color: #D5BE9E;
+    border: 1px solid #D5BE9E
 }
