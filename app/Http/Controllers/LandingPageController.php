@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\ManageAsset;
 use App\Models\Product;
 use App\Models\TransactionDetail;
@@ -38,6 +39,12 @@ class LandingPageController extends Controller
         ->select('productID','productName','productPrice','productPicturePath')
         ->get();
 
-        return view('customer.landingpage', compact('assets','products','product_terbaik', 'product_terbaru', 'product_tertinggi'));
+        if(auth()->user()){
+            $carts = Cart::where('userID', auth()->user()->userID)->get();
+        }
+
+        return view('customer.landingpage', compact('assets','carts','products','product_terbaik', 'product_terbaru', 'product_tertinggi'));
+
+        
     }
 }

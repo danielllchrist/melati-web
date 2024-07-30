@@ -15,6 +15,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -302,7 +303,10 @@ class OrderController extends Controller
             ->orderBy('updated_at', 'desc')
             ->get();
 
-        return view('customer.myorder', compact("orders1", "orders2", "orders3", "orders4", "orders5", "orders6", "user"));
+
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+
+        return view('customer.myorder', compact("orders1", "orders2", "orders3", "orders4", "orders5", "orders6", "user",'carts'));
     }
 
     public function detail_myorder($orderID)
@@ -311,7 +315,10 @@ class OrderController extends Controller
         $user = User::find($userID);
 
         $order = Transaction::find($orderID);
-        return view('customer.orderdetail', compact('order', 'user'));
+
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+
+        return view('customer.orderdetail', compact('order', 'user','carts'));
     }
 
     public function cancelOrder(Request $request)

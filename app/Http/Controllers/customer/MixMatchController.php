@@ -22,7 +22,9 @@ class MixMatchController extends Controller
         $bawahan = Product::where('ProductCategory', 'Bawahan')->get();
         $aksesoris = Product::where('ProductCategory', 'Aksesoris')->get();
 
-        return response()->view('customer.mixmatch', compact('products', 'atasan', 'bawahan', 'aksesoris'));
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+
+        return response()->view('customer.mixmatch', compact('products', 'atasan', 'bawahan', 'aksesoris','carts'));
     }
 
     public function addCart(Request $request)
@@ -43,7 +45,7 @@ class MixMatchController extends Controller
                     } else if ($key == 'produk3') {
                         break;
                     } else {
-                        dd("Error");
+                        // dd("Error");
                     }
                 }
                 // where size is the samew with ProductID and the first created size

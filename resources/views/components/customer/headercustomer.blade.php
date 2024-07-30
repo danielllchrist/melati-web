@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    
     <nav class="header-custom">
         <a class="" href="{{ route('LandingPage') }}">
             <img src="\assets\images\logo svg.svg" width="120" height="62" class="d-inline-block align-top"
@@ -28,9 +29,16 @@
                 <li class><a href="{{ route('CustomerWishlist') }}" class="nav-custom"><img
                             src = "\assets\nav_menu\wishlist.svg" alt = "wishlist" width = "28" height = "28"></a>
                 </li>
-                <li class><a href="{{ route('CustomerCart') }}" class="nav-custom"><img
+                <li class="position-relative"><a href="{{ route('CustomerCart') }}" class="nav-custom"><img
                             src = "\assets\nav_menu\cart.svg" alt = "cart" width = "33" height = "33"></a>
+                            @auth                             
+                                <span id = "cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{count($carts)}}
+                                    {{-- <span class="visually-hidden">current items in cart</span> --}}
+                                </span>
+                            @endauth
                 </li>
+                
                 <li class><a href="{{ route('CustomerChat') }}" class="nav-custom"><img
                             src = "\assets\admin_menu\circle.svg" alt = "chat" width = "28" height = "28"></a></li>
                 <li class><a href="{{ route('CustomerProfile') }}" class="nav-custom"><img

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Cart;
 use App\Models\Chat;
 use App\Models\LastChat;
 use App\Models\RoomChat;
@@ -87,6 +88,8 @@ class CustomerChat extends Component
                   ->orWhere('receiverID', $userID);
         })->orderBy('created_at', 'asc')->get();
 
-        return view('livewire.customer-chat', ['userMsg' => $userMsg]);
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+
+        return view('livewire.customer-chat', ['userMsg' => $userMsg, 'carts'=> $carts])->layout('layouts.customer', ['carts' => $carts]);
     }
 }

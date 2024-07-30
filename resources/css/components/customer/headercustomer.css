@@ -105,3 +105,23 @@ img{
     /* color: #F0F1E4; */
     font-size: 31px;
 }
+
+#cart-count{
+    --bs-bg-opacity: 1 ;
+    background-color: #D5BE9E !important;   
+    border-radius: 50% !important;
+    position: relative;
+    top: 0px;
+    transform: translate(-50%, -50%) !important;
+    /* left: 100%!important; */
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #4F290C;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}

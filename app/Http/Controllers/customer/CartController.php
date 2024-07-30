@@ -29,13 +29,14 @@ class CartController extends Controller
         $carts = Cart::where('userID', $userId)->with(['size.product', 'size'])->orderBy('updated_at', 'asc')->get();
         $sizes = Size::all(); // Mengambil semua ukuran
         $addressExists = Address::where('userID', $userId)->exists();
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
         // dd($sizes);
         // Menghitung total harga
         $total = $carts->sum(function ($cart) {
             return $cart->size->product->productPrice * $cart->quantity;
         });
 
-        return view('customer.cart', compact('carts', 'total', 'sizes', 'addressExists'));
+        return view('customer.cart', compact('carts', 'total', 'sizes', 'addressExists', 'carts'));
     }
     /**
      * Show the form for creating a new resource.
