@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfilePictureRequest;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -85,8 +86,10 @@ class UserController extends Controller
             return view('shipping_service.profile', compact('user'));
         }
 
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+
         // If none of the above, assume the user is a customer
-        return view('customer.profile', compact('user'));
+        return view('customer.profile', compact('user','carts'));
     }
 
     public function update_profile(ProfileRequest $request)

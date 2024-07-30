@@ -4,6 +4,7 @@ namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Cart;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\Regency;
@@ -31,8 +32,11 @@ class AddressController extends Controller
         $districts = District::all();
 
 
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
 
-        return view('customer.addaddres',compact('addresses','provinces','regencies','districts', 'user'));
+
+
+        return view('customer.addaddres',compact('addresses','provinces','regencies','districts', 'user','carts'));
     }
 
     public function getRegencies($provinsi_id)

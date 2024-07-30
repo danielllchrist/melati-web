@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Wishlist; // Assuming you have a Wishlist model
@@ -36,7 +37,9 @@ class WishlistController extends Controller
                 ->get();
         }
 
-        return view('customer.wishlist', compact('product'));
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+
+        return view('customer.wishlist', compact('product','carts'));
     }
 
     public function wish(Request $request)

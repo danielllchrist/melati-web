@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Size;
@@ -69,7 +70,9 @@ class ReviewController extends Controller
         $product = Product::findOrFail($transactionDetail->productID);
         $size = Size::findOrFail($transactionDetail->sizeID);
 
-        return view('customer.show_review', compact('transactionDetail', 'product', 'size', 'review'));
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+
+        return view('customer.show_review', compact('transactionDetail', 'product', 'size', 'review','carts'));
     }
 
     /**

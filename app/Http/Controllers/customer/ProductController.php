@@ -41,17 +41,24 @@ class ProductController extends Controller
                 ->get();
         }
 
+        if(auth()->user()){
+            $carts = Cart::where('userID', auth()->user()->userID)->get();
+            return view('customer.catalog', compact('product', 'carts'));
+        }
+
         return view('customer.catalog', compact('product'));
     }
 
     public function men_catalogue(){
         $product = Product::where('forGender','Pria')->get();
-        return view('customer.catalog',compact('product'));
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+        return view('customer.catalog',compact('product', 'carts'));
     }
 
     public function women_catalogue(){
         $product = Product::where('forGender','Wanita')->get();
-        return view('customer.catalog',compact('product'));
+        $cart = Cart::where('userID', auth()->user()->userID)->get();
+        return view('customer.catalog',compact('product', 'carts'));
     }
 
     public function wish(Request $request)
@@ -89,8 +96,9 @@ class ProductController extends Controller
     public function detail_product($id)
     {
         $product = Product::with('size')->findOrFail($id);
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
         // dd($product->size);
-        return view('customer.detail', compact('product'));
+        return view('customer.detail', compact('product', 'carts'));
     }
 
 

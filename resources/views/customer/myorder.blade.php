@@ -81,7 +81,7 @@
                                 </a>
                             @empty
                                 <div class="ps-order">
-                                    No Order Yet
+                                    Belum ada Pesanan
                                 </div>
                             @endforelse
                         </div>
@@ -122,7 +122,7 @@
                                 </a>
                             @empty
                                 <div class="ps-order">
-                                    No Order Yet
+                                    Belum ada Pesanan
                                 </div>
                             @endforelse
                         </div>
@@ -164,7 +164,7 @@
                                 </a>
                             @empty
                                 <div class="ps-order">
-                                    No Order Yet
+                                    Belum ada Pesanan
                                 </div>
                             @endforelse
                         </div>
@@ -205,7 +205,7 @@
                                 </a>
                             @empty
                                 <div class="ps-order">
-                                    No Order Yet
+                                    Belum ada Pesanan
                                 </div>
                             @endforelse
                         </div>
@@ -248,7 +248,7 @@
                                 </a>
                             @empty
                                 <div class="ps-order">
-                                    No Order Yet
+                                    Belum ada Pesanan
                                 </div>
                             @endforelse
                         </div>
@@ -304,7 +304,7 @@
                             </a>
                         @empty
                             <div class="ps-order">
-                                No Order Yet
+                                Belum ada Pesanan
                             </div>
                         @endforelse
                     </div>

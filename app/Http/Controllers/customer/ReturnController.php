@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\ReturnOrder;
@@ -19,8 +20,10 @@ class ReturnController extends Controller
         $transaction = Transaction::with('transactionDetail.product', 'transactionDetail.size', 'status')
                                   ->where('transactionID', $transactionID)
                                   ->firstOrFail();
+         
+        $carts = Cart::where('userID', auth()->user()->userID)->get();                          
 
-        return view('customer.return', compact('transaction', 'user'));
+        return view('customer.return', compact('transaction', 'user','carts'));
     }
 
     public function store(Request $request, $transactionID)
