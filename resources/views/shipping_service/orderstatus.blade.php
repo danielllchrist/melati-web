@@ -61,10 +61,10 @@
                 <p class="count" id="total-order">{{ $orders->count() }}</p>
                 <form action="{{ route('orderstatus') }}" method="GET">
                     <select name="sortBy" id="sortBy" onchange="this.form.submit()">
-                        <option value="1" {{ request('sortBy') == '1' ? 'selected' : '' }}>This Week</option>
-                        <option value="2" {{ request('sortBy') == '2' ? 'selected' : '' }}>This Month</option>
-                        <option value="3" {{ request('sortBy') == '3' ? 'selected' : '' }}>This Year</option>
-                        <option value="4" {{ request('sortBy') == '4' ? 'selected' : '' }}>All Orders</option>
+                        <option value="4" {{ request('sortBy') == '4' ? 'selected' : '' }}>Semua</option>
+                        <option value="1" {{ request('sortBy') == '1' ? 'selected' : '' }}>Minggu Ini</option>
+                        <option value="2" {{ request('sortBy') == '2' ? 'selected' : '' }}>Bulan Ini</option>
+                        <option value="3" {{ request('sortBy') == '3' ? 'selected' : '' }}>Tahun Ini</option>
                     </select>
                 </form>
             </div>

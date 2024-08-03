@@ -92,15 +92,15 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-
     public function detail_product($id)
     {
         $product = Product::with('size')->findOrFail($id);
-        $carts = Cart::where('userID', auth()->user()->userID)->get();
-        // dd($product->size);
+        $carts = "";
+        if(auth()->user()){
+            $carts = Cart::where('userID', auth()->user()->userID)->get();
+        }
         return view('customer.detail', compact('product', 'carts'));
     }
-
 
     public function get_stock($productID, $size)
     {

@@ -12,24 +12,36 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         // Ambil semua orders2 dengan statusID 2
-    $orders2 = Transaction::with('transactionDetail')->where('statusID', "2")->get();
+// Ambil orders2 dengan statusID 2
+$orders2 = Transaction::with('transactionDetail')
+    ->where('statusID', "2")
+    ->get();
 
     // Filter orders2 yang updated_at nya sudah lebih dari 24 jam
-    $orders2updated = $orders2->filter(function ($order) {
-        return Carbon::now()->diffInHours($order->updated_at) >= 24;
-    });
+    // $orders2updated = $orders2->filter(function ($order) {
+    //     return Carbon::now()->diffInHours($order->updated_at) >= 24;
+    // });
 
-    // hitung need to be pickup
+    // Urutkan orders2updated berdasarkan updated_at dari yang terbaru
+    $orders2updated = $orders2->sortByDesc('updated_at');
+
+    // Hitung need to be pickup
     $countOrders2updated = $orders2updated->count();
 
-    //hitung on delivery
-    $order3Count = Transaction::where('statusID','3')->count();
+    // Hitung on delivery
+    $order3Count = Transaction::where('statusID', '3')->count();
 
+    // Ambil orders3 dan orders4 dan urutkan berdasarkan updated_at dari yang terbaru
+    $orders3 = Transaction::with('transactionDetail')
+        ->where('statusID', "3")
+        ->get()
+        ->sortByDesc('updated_at');
 
-
-    // Ambil orders3 dan orders4
-    $orders3 = Transaction::with('transactionDetail')->where('statusID', "3")->get();
-    $orders4 = Transaction::with('transactionDetail')->where('statusID', '4')->get();
+    $orders4 = Transaction::with('transactionDetail')
+        ->where('statusID', '4')
+        ->orWhere('statusID', '5')
+        ->get()
+        ->sortByDesc('updated_at');
 
     // sort total orders
     $sortBy = $request->get('sortBy', '4'); // Default ke 'All Orders'

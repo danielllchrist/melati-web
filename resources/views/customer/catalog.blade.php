@@ -60,7 +60,7 @@
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div> -->
                 <div class="carousel-item active">
-                    <img src="{{ asset('assets/carouselCatalog.png') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('/assets/carouselCatalog.png') }}" class="d-block w-100" alt="...">
                 </div>
             </div>
         </div>
@@ -290,11 +290,6 @@
         });
     </script>
 
-
-
-
-
-
     <script>
         $(document).ready(function() {
             $('#sortBy').on('change', function() {
@@ -317,6 +312,25 @@
         });
     </script>
 
+    <script>
+        // Save scroll position to sessionStorage when user scrolls
+        window.addEventListener('scroll', function() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        });
+
+        // Restore scroll position when page loads
+        window.addEventListener('load', function() {
+            const scrollPosition = sessionStorage.getItem('scrollPosition');
+            if (scrollPosition !== null) {
+                window.scrollTo(0, parseInt(scrollPosition, 10));
+            }
+        });
+
+        // Optional: Clear scroll position on page unload if you don't want to retain it across page reloads
+        window.addEventListener('beforeunload', function() {
+            sessionStorage.removeItem('scrollPosition');
+        });
+    </script>
     @include('components.customer.footercustomer')
 </body>
 

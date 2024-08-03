@@ -188,16 +188,6 @@
                 });
             });
 
-            // $(document).ready(function() {
-            //     // Tambahkan listener untuk setiap elemen dengan class .size-select
-            //     $(".size-select").change(function() {
-            //         var selectedValue = $(this).val();
-            //         var productElement = $(this).closest('.kiri'); // Cari elemen produk terkait
-            //         console.log("Nilai yang dipilih: " + selectedValue);
-            //         updateSize(productElement, selectedValue); // Panggil updateSize dengan nilai baru dan elemen produk
-            //     });
-            // });
-
             document.addEventListener('DOMContentLoaded', (event) => {
                 const totalPriceElement = document.getElementById('total-price');
                 const hiddenTotalPriceElement = document.getElementById('hidden-total-price');

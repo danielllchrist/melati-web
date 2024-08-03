@@ -21,7 +21,9 @@
 
         .card-custom-top {
             border-radius: 0;
-            width: 100%;
+            width: 230px;
+            height: 275px;
+            object-fit: cover;
         }
 
         .card-custom-body {
@@ -204,11 +206,18 @@
 
     <section>
         <div id="belanja-sekarang-banner">
-            <h2>BATIK MELATI</h2>
-            <h1>WARISAN BUDAYA , GAYA MODERN</h1>
-            <div id="button-belanja-wrapper">
+            <div class= "feature-text">
+                <h1>KREASI UNGGULAN KAMI</h1>
+                <h2>Film yang Menampilkan Produk Melati</h2>
+            </div>
+            <div class = "poster-container">
+                <img src="\assets\landing\poster1.png" alt="" class="featured">
+                <img src="\assets\landing\poster2.png" alt="" class="featured">
+                <img src="\assets\landing\poster3.png" alt="" class="featured">
+            </div>
+            <div id="button-belanja-wrapper"><a href={{ route('Catalogue') }}>
                     <div id="button-belanja" class="buttons">Belanja Sekarang</div>
-                </div>
+                </a></div>
         </div>
     </section>
     @include('components.admin.footeradmin')

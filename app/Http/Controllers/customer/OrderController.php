@@ -76,7 +76,9 @@ class OrderController extends Controller
 
         $tempTotalPrice = null;
 
-        return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'targetVoucher', 'transaction', 'latestAddress', 'tempTotalPrice'));
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+
+        return view('customer.checkout', compact('carts','provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'targetVoucher', 'transaction', 'latestAddress', 'tempTotalPrice'));
     }
 
     public function addAddress(Request $request)
@@ -137,7 +139,9 @@ class OrderController extends Controller
         $regencies = Regency::all();
         $districts = District::all();
 
-        return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'transaction', 'targetVoucher', 'latestAddress', 'tempTotalPrice'));
+         $carts = Cart::where('userID', auth()->user()->userID)->get();
+
+        return view('customer.checkout', compact('provinces', 'regencies', 'districts', 'items', 'vouchers', 'addresses', 'transaction', 'targetVoucher', 'latestAddress', 'tempTotalPrice','carts'));
     }
 
     public function getRegencies($provinsi_id)
@@ -204,9 +208,9 @@ class OrderController extends Controller
 
         $otp = rand(10000, 99999);
 
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
 
-
-        return view('customer.payment', compact('otp', 'id', 'total'));
+        return view('customer.payment', compact('otp', 'id', 'total','carts'));
     }
 
     public function pay($transactionID)

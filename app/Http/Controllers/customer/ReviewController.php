@@ -32,7 +32,9 @@ class ReviewController extends Controller
         $product = Product::findOrFail($transactionDetail->productID);
         $size = Size::findOrFail($transactionDetail->sizeID);
 
-        return view('customer.review', compact('transactionDetail', 'product', 'size'));
+        $carts = Cart::where('userID', auth()->user()->userID)->get();
+
+        return view('customer.review', compact('transactionDetail', 'product', 'size','carts'));
     }
 
     public function store(Request $request, $transactionID, $productID)

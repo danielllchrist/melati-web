@@ -1,84 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="\assets\Logo.svg">
     <title>Favorit</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @vite('resources/css/app.css')
     @vite('resources/css/customer/wishlist.css')
     <style>
-    .card-custom-body{
-        padding: 10px 50px 50px 15px;
-        background-image: url('assets/backgroundHargaKatalog.png');
-        background-position: center;
-        background-size: cover;
-        width: 100%;
-        filter: sepia(0.8);
-    }
+        .card-custom-body {
+            padding: 10px 50px 50px 15px;
+            background-image: url('assets/backgroundHargaKatalog.png');
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            filter: sepia(0.8);
+        }
     </style>
 </head>
+
 <body class="bg-black">
     @include('components.customer.headercustomer')
     <div class="atas">
-        <img class="back_icon" src="{{asset('assets/back.svg')}}">
+        <a href="{{ url()->previous() }}"><img src="\assets\dummy-img\back arrow.svg" alt=""
+                class="back_icon"></a>
         <h1>Favorit</h1>
     </div>
     <div class="container mb-5 mt-0">
         <div class="d-flex flex-wrap mt-3 mb-3" id="content-wishlist">
-                @if (!Auth::check())
-                    <a href="{{ route('LogIn') }}">
-                    </a>
+            @if (!Auth::check())
+                <a href="{{ route('LogIn') }}"></a>
+            @else
+                @php
+                    // Fetch all wished products for the logged-in user
+                    $userID = auth()->user()->userID;
+                    $wishedProducts = DB::table('wishlists')->where('userID', $userID)->pluck('productID')->toArray();
+                @endphp
+
+                @if (count($wishedProducts) === 0)
+                    <div class="kiri">
+                        <div class="btn-wrap">
+                            <h2>Favoritmu masih kosong nih..</h2>
+                            <button class="btn-ctg" onclick="window.location.href='{{ route('Catalogue') }}'">
+                                Belanja Sekarang</button>
+                        </div>
+                    </div>
                 @else
                     @foreach ($product as $item)
-                        
                         @php
-                            $query =
-                                'SELECT * FROM `wishlists` WHERE `productID` = ? AND `userID` = ?';
-                            $wished = DB::select($query, [
-                                $item->productID,
-                                auth()->user()->userID,
-                            ]);
+                            $isWished = in_array($item->productID, $wishedProducts);
                         @endphp
-                        <input name="productID" type="hidden" value="{{ $item->productID }}">
-                        @if ($wished)
-                        <div class="catalog-item" data-price="{{ $item->productPrice }}">
-                            <a href="{{ route('ProductDetail', ['id' => $item->productID]) }}">
-                                <div class="card-custom" style="">
-                                    <div class="image-container">
-                                        <img src="{{ Storage::url(json_decode($item->productPicturePath)[0]) }}" class="card-custom-top" alt="Catalog">
-                                        <form action="{{ route('unwish') }}" method="POST"
-                                            class="wishlist-form">
-                                            @csrf
-                                            <input type="hidden" name="productID"
-                                                value="{{ $item->productID }}">
-                                            <button type="submit" style="background: none; border: none;">
-                                                <i class="fa fa-heart fa-2x heart-color click-wish"
-                                                    id="wishlist-heart" style="background: none;"></i>
-                                            </button>
-                                        </form>
-                                        <div class="card-custom-body">
-                                            <p class="productName">{{ $item->productName }}</p>
-                                            <h3 class="productPrice">Rp {{ number_format($item->productPrice, 2, ',', '.') }}</h3>
+
+                        @if ($isWished)
+                            <div class="catalog-item" data-price="{{ $item->productPrice }}">
+                                <a href="{{ route('ProductDetail', ['id' => $item->productID]) }}">
+                                    <div class="card-custom" style="">
+                                        <div class="image-container">
+                                            <img src="{{ Storage::url(json_decode($item->productPicturePath)[0]) }}"
+                                                class="card-custom-top" alt="Catalog">
+                                            <form action="{{ route('unwish') }}" method="POST" class="wishlist-form">
+                                                @csrf
+                                                <input type="hidden" name="productID" value="{{ $item->productID }}">
+                                                <button type="submit" style="background: none; border: none;">
+                                                    <i class="fa fa-heart fa-2x heart-color click-wish"
+                                                        id="wishlist-heart" style="background: none;"></i>
+                                                </button>
+                                            </form>
+                                            <div class="card-custom-body">
+                                                <p class="productName">{{ $item->productName }}</p>
+                                                <h3 class="productPrice">Rp
+                                                    {{ number_format($item->productPrice, 2, ',', '.') }}</h3>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        @else
-                            
+                                </a>
+                            </div>
                         @endif
-                                
-                        
                     @endforeach
                 @endif
+            @endif
         </div>
-        
+
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
     {{-- <script>
         var data = [
                 {"id":1,"quantity":0},
@@ -136,4 +147,5 @@
     </script> --}}
     @include('components.customer.footercustomer')
 </body>
+
 </html>

@@ -9,7 +9,10 @@
     <title>Penilaian</title>
     @vite('resources/css/app.css')
     @vite('resources/css/customer/review.css')
-    <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
+    {{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {{-- <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script> --}}
 </head>
 
 <body>
@@ -69,6 +72,7 @@
             </section>
         </form>
     </div>
+    {{-- <script src="https://kit.fontawesome.com/5ea815c1d0.js" crossorigin="anonymous"></script> --}}
     @include('components.customer.footercustomer')
 </body>
 
