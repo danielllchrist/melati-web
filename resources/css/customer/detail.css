@@ -113,9 +113,14 @@ hr{
 }
 
 .review{
+    padding: 10px 10px;
     margin: 10px 0;
-    border-bottom: 1px;
+    border-bottom: 1px solid#F0F1E4;
     color: #F0F1E4;
+}
+
+.number{
+    /* padding-right: 40px; */
 }
 
 .carousel-item > img{
@@ -223,8 +228,12 @@ hr{
     padding: 10px 0;
     border-radius: 5em;
     font-weight: bold;
-    background-color: #F0F1E4 !important;
+    background-color: #D5BE9E !important;
     color: rgb(73, 51, 25)!important;
+}
+
+.btn-size.active {
+    background-color: #D5BE9E;
 }
 
 .btn-light{

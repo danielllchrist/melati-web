@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Review;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,13 +31,16 @@ class ManageLandingPageController extends Controller
         $product_terbaru = Product::orderBy('created_at', 'asc')
         ->take(3)
         ->get();
+        $topRatedProductIDs = Review::select('productID', DB::raw('AVG(rating) as average_rating'))
+            ->groupBy('productID')
+            ->orderBy('average_rating', 'DESC')
+            ->take(3)
+            ->pluck('productID');
 
-        $product_tertinggi = Product::join('reviews', 'products.productID', '=', 'reviews.productID')
-        ->select('products.productID', 'products.productName', 'products.productPrice', 'products.productPicturePath')
-        ->groupBy('products.productID')
-        ->orderByRaw('AVG(reviews.rating) DESC')
-        ->take(3)
-        ->get();
+        // Mengambil detail produk dari tabel products
+        $product_tertinggi = Product::whereIn('productID', $topRatedProductIDs)
+            ->select('productID', 'productName', 'productPrice', 'productPicturePath')
+            ->get();
 
         $products = Product::whereIn('productID',$Bestproducts)
         ->select('productID','productName','productPrice','productPicturePath')

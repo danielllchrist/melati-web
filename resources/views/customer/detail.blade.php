@@ -60,7 +60,7 @@
         <div class="d-flex flex-column mt-5 mb-5">
             <div class="back-wrapper">
                 <div class="back">
-                    <a href="{{ route('Catalogue') }}"><img src="\assets\dummy-img\back arrow.svg" alt=""></a>
+                    <a href="{{ url()->previous() }}"><img src="\assets\dummy-img\back arrow.svg" alt=""></a>
                 </div>
             </div>
             <div class="product-content d-flex justify-content-start ms-5 me-5">
@@ -166,9 +166,10 @@
                                 @endphp
 
                                 @foreach ($sizes as $size)
-                                    <button class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
+                                    <button id="size-{{ $size->size }}"
+                                        class="btn btn-light rounded-circle ps-2 pe-2 btn-size"
                                         value="{{ $size->size }}" data-stock="{{ $size->stock }}"
-                                        onclick="showStock('{{ $size->stock }}')">{{ $size->size }}</button>
+                                        onclick="showStock('{{ $size->stock }}', 'size-{{ $size->size }}')">{{ $size->size }}</button>
                                 @endforeach
 
                                 <p id="stock-message" class="stock" style="margin-top: 20px; margin-bottom:none;"></p>
@@ -213,7 +214,7 @@
         </div>
 
         <div class="d-flex wrap-review mt-5 mb-5">
-            <div class="graph w-25">
+            <div class="graph w-25 number">
                 <h5>Ulasan Pelanggan</h5>
                 <div class="d-flex">
                     <div class="number">
@@ -297,7 +298,7 @@
                     @foreach ($content_review as $item)
                         <div class="review">
                             <div class="name-review">
-                                <h3>{{ $item->transaction->user->name }}</h3>
+                                <h4>{{ $item->transaction->user->name }}</h4>
                             </div>
 
                             <div class="stars-review">
@@ -331,153 +332,52 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" defer></script>
 
     <script>
-        function showStock(stock) {
+        function showStock(stock, id) {
             // Menampilkan pesan stok tersisa di dalam elemen dengan ID stock-message
             document.getElementById('stock-message').innerText = 'Tersisa ' + stock;
+
+            // Hapus class active dari semua tombol
+            var buttons = document.getElementsByClassName('btn-size');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+
+            // Tambahkan class active pada tombol yang diklik
+            document.getElementById(id).classList.add('active');
         }
 
-        $(document).ready(function() {
-            $('.btn-size').click(function() {
-                $('.btn-size').removeClass('btn-clicked');
-                $(this).addClass('btn-clicked');
+        // $(document).ready(function() {
+        //     $('.btn-size').click(function() {
+        //         $('.btn-size').removeClass('btn-clicked');
+        //         $(this).addClass('btn-clicked');
 
-                var size = $(this).val();
-                $('#productSize').val(size);
+        //         var size = $(this).val();
+        //         $('#productSize').val(size);
 
-                var productID = encodeURIComponent('{{ $product->productID }}');
+        //         var productID = encodeURIComponent('{{ $product->productID }}');
 
-                $.ajax({
-                    url: '{{ url('/get_stock') }}/' + productID + '/' + size,
-                    method: 'GET',
-                    success: function(response) {
-                        if (response.error) {
-                            console.error('Error:', response.error);
-                            $('#qty-value').attr('max', 0);
-                        } else {
-                            $('#qty-value').attr('max', response.stock);
-                        }
-                        // Reset nilai quantity ke 0
-                        $('#qty-value').val(0);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            });
-        });
+        //         $.ajax({
+        //             url: '{{ url('/get_stock') }}/' + productID + '/' + size,
+        //             method: 'GET',
+        //             success: function(response) {
+        //                 if (response.error) {
+        //                     console.error('Error:', response.error);
+        //                     $('#qty-value').attr('max', 0);
+        //                 } else {
+        //                     $('#qty-value').attr('max', response.stock);
+        //                 }
+        //                 // Reset nilai quantity ke 0
+        //                 $('#qty-value').val(0);
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.log(error);
+        //             }
+        //         });
+        //     });
+        // }); 
     </script>
 
     <script>
-        // var data = [
-        //     {"name" : "El Xavier", "rating": 5, "date":"2024-05-29T12:34:56", "size":"XL", "review":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, fuga, illum officia ipsam itaque, nulla ex voluptatibus molestiae tempore corrupti exercitationem voluptatem consectetur quam! Molestiae earum repudiandae, consectetur aspernatur beatae dolores incidunt assumenda praesentium velit ex doloremque voluptatibus nulla similique esse adipisci cum blanditiis, id non sapiente obcaecati exercitationem? Error?"},
-        //     {"name" : "El Klemer", "rating": 4, "date":"2024-05-28T08:15:00", "size":"L", "review":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, fuga, illum officia ipsam itaque, nulla ex voluptatibus molestiae tempore corrupti exercitationem voluptatem consectetur quam!"},
-        //     {"name" : "El Chef", "rating": 1, "date":"2024-05-22T18:45:50", "size":"M", "review":"Lorem ipsum dolor sit amet consectetur adipisicing elit."},
-        //     {"name" : "El Gemoy", "rating": 2, "date":"2024-05-27T20:25:20", "size":"XXL", "review":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti itaque doloremque ullam exercitationem quam nobis omnis repudiandae, a sint aspernatur nihil accusantium cumque obcaecati dolorem dolore perspiciatis? Pariatur, corporis laudantium provident asperiores debitis quos cumque cupiditate voluptatem tempore deserunt a necessitatibus suscipit laborum voluptas veniam. Velit doloremque veritatis, at repellat placeat cumque saepe blanditiis voluptates. Aspernatur blanditiis, eius repudiandae eveniet vel iure suscipit molestias ipsa itaque, eos officiis odit laudantium."},
-        //     {"name" : "El Chudai", "rating": 3, "date":"2024-05-25T06:35:01", "size":"S", "review":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti itaque doloremque ullam exercitationem quam nobis omnis repudiandae, a sint aspernatur nihil accusantium cumque obcaecati dolorem dolore perspiciatis? Pariatur, corporis laudantium provident asperiores debitis quos cumque cupiditate voluptatem tempore deserunt a necessitatibus suscipit laborum voluptas veniam. Velit doloremque veritatis, at repellat placeat cumque saepe blanditiis voluptates."}
-        // ];
-
-        // function showSort(id, sortBy){
-        //     console.log(id);
-        //     for(let i=0; i<6; i++){
-        //         if(i > 0){
-        //             document.getElementById("star" + i).classList.remove("category-review-color");
-        //         }else{
-        //             document.getElementById("newest").classList.remove("category-review-color");
-        //         }
-        //     }
-        //     document.getElementById(id).classList.add("category-review-color");
-
-        //     var tempData = [];
-
-        //     for(let i=0; i<data.length; i++){
-        //         if(sortBy >= 1 && sortBy <= 5 && data[i].rating == sortBy){
-        //             tempData.push(data[i]);
-        //         }else if(sortBy == 6){
-        //             tempData.push(data[i]);
-        //         }
-        //     }
-
-        //     for(let i=0; i<tempData.length; i++){
-        //         for(let j=0; j<tempData.length-1; j++){
-        //             var tempDateNext = new Date(tempData[j+1].date).valueOf();
-        //             var tempDateCurrent = new Date(tempData[j].date).valueOf();
-
-        //             if(tempDateNext > tempDateCurrent){
-        //                 var temp = tempData[j+1];
-        //                 tempData[j+1] = tempData[j];
-        //                 tempData[j] = temp;
-        //             }
-        //         }
-        //     }
-
-        //     var content = "";
-        //     for(let i=0; i<tempData.length; i++){
-        //         content += "<div class=\"review\"><div class=\"name-review\"><h3>" + tempData[i].name + "</h3></div><div class=\"stars-review\">";
-        //         let tempStar = 5;
-        //         for(let j=0; j<tempData[i].rating; j++){
-        //             content += "<i class=\"fa fa-star rating-color me-1\"></i>";
-        //             tempStar -= 1;
-        //         }
-
-        //         for(let j=0; j<tempStar; j++){
-        //             content += "<i class=\"fa fa-star me-1\"></i>";
-        //         }
-
-        //         content += "</div><div class=\"date-review\">";
-
-        //         const dateNow = new Date();
-        //         const dateReview = new Date(tempData[i].date);
-
-        //         const diffTime = Math.abs(dateNow - dateReview);
-        //         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-        //         if(diffDays > 0){
-        //             content += "<h4>" + diffDays + " day ago - ";
-        //         }else{
-        //             let seconds = diffTime / 1000;
-
-        //             const hDiff = parseInt( seconds / 3600 );
-        //             seconds = seconds % 3600;
-
-        //             const minDiff = parseInt( seconds / 60 );
-        //             seconds = parseInt(seconds % 60);
-
-        //             if(hDiff > 0){
-        //                 content += "<h4>" + hDiff + " hour " + minDiff + " minute " + seconds + " second ago - ";
-        //             }else if(minDiff > 0){
-        //                 content += "<h4>" + minDiff + " minute " + seconds + " second ago - ";
-        //             }else{
-        //                 content += "<h4>" + seconds + " second ago - ";
-        //             }
-        //         }
-
-        //         content += tempData[i].size + "</h4></div><div class=\"body-review\"><p>" + tempData[i].review + "</p></div></div>";
-        //     }
-
-        //     document.getElementById("content-review").innerHTML = content;
-        //     console.log(content);
-        // }
-
-        // window.onload = function(e){
-        //     showSort("newest",6);
-        // }
-
-        // function wishlist(){
-        //     var element = document.getElementById("wishlist-heart");
-
-        //     if(element.classList.contains("fa-heart-o")){
-        //         element.classList.add("fa-heart");
-        //         element.classList.add("heart-color");
-
-        //         element.classList.remove("fa-heart-o");
-        //     }else{
-        //         element.classList.remove("fa-heart");
-        //         element.classList.remove("heart-color");
-
-        //         element.classList.add("fa-heart-o");
-        //     }
-        // }
-
         function switchCarousel(id) {
             // Reset active carousel
             let i = 1;
@@ -531,6 +431,24 @@
                 alert("You have reached the maximum stock available."); // Optional: Alert the user if max stock is reached
             }
         }
+
+        // Save scroll position to sessionStorage when user scrolls
+        window.addEventListener('scroll', function() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        });
+
+        // Restore scroll position when page loads
+        window.addEventListener('load', function() {
+            const scrollPosition = sessionStorage.getItem('scrollPosition');
+            if (scrollPosition !== null) {
+                window.scrollTo(0, parseInt(scrollPosition, 10));
+            }
+        });
+
+        // Optional: Clear scroll position on page unload if you don't want to retain it across page reloads
+        window.addEventListener('beforeunload', function() {
+            sessionStorage.removeItem('scrollPosition');
+        });
     </script>
 </body>
 

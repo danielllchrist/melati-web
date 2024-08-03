@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\ManageAsset;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LandingPageController extends Controller
 {
@@ -28,17 +30,21 @@ class LandingPageController extends Controller
         ->take(3)
         ->get();
 
-        $product_tertinggi = Product::join('reviews', 'products.productID', '=', 'reviews.productID')
-        ->select('products.productID', 'products.productName', 'products.productPrice', 'products.productPicturePath')
-        ->groupBy('products.productID')
-        ->orderByRaw('AVG(reviews.rating) DESC')
+    $topRatedProductIDs = Review::select('productID', DB::raw('AVG(rating) as average_rating'))
+        ->groupBy('productID')
+        ->orderBy('average_rating', 'DESC')
         ->take(3)
+        ->pluck('productID');
+
+    // Mengambil detail produk dari tabel products
+    $product_tertinggi = Product::whereIn('productID', $topRatedProductIDs)
+        ->select('productID', 'productName', 'productPrice', 'productPicturePath')
         ->get();
 
         $products = Product::whereIn('productID',$Bestproducts)
         ->select('productID','productName','productPrice','productPicturePath')
         ->get();
-
+        $carts = "";
         if(auth()->user()){
             $carts = Cart::where('userID', auth()->user()->userID)->get();
         }

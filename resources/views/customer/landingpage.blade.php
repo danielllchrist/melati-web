@@ -21,7 +21,9 @@
 
         .card-custom-top {
             border-radius: 0;
-            width: 100%;
+            width : 220px;
+            height : 275px;
+    object-fit: cover;
         }
 
         .card-custom-body {
@@ -34,8 +36,8 @@
         }
 
         .card-custom>img {
-            max-width: 230px;
-            max-height: 275px;
+            width: 220px;
+            height: 275px;
             object-fit: cover;
         }
 
@@ -207,9 +209,9 @@
                 <h2>Film yang Menampilkan Produk Melati</h2>
             </div>
             <div class = "poster-container">
-                <img src="assets/landing/poster1.png" alt="" class="featured">
-                <img src="assets/landing/poster2.png" alt="" class="featured">
-                <img src="assets/landing/poster3.png" alt="" class="featured">
+                <img src="\assets\landing\poster1.png" alt="" class="featured">
+                <img src="\assets\landing\poster2.png" alt="" class="featured">
+                <img src="\assets\landing\poster3.png" alt="" class="featured">
             </div>
             <div id="button-belanja-wrapper"><a href={{ route('Catalogue') }}>
                     <div id="button-belanja" class="buttons">Belanja Sekarang</div>

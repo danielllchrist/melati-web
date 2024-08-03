@@ -171,28 +171,7 @@
                         alert('Error order.');
                     }
                 });
-            }
-            // function returnOrder(transactionID) {
-            //     $.ajax({
-            //         url: '{{ route('CustomerReturnOrder') }}',
-            //         type: 'POST',
-            //         data: {
-            //             _token: '{{ csrf_token() }}',
-            //             transactionID: transactionID
-            //         },
-            //         success: function(response) {
-            //             if (response.success) {
-            //                 //alert('Berhasil mengembalikan pesanan');
-
-            //                 location.reload();
-            //             } else {
-            //                 alert('Gagal mengembalikan pesanan');
-            //             }
-            //         },
-            //         error: function() {
-            //             alert('Error order.');
-            //         }
-            //     });
+            };
             // }
         </script>
     </body>

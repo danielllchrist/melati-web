@@ -13,7 +13,7 @@
 <body>
     @include('components.admin.headeradmin')
     <div class="atas">
-        <img class="back_icon" src="{{ asset('assets/back.svg') }}">
+        <a href="{{ url()->previous() }}"><img src="\assets\dummy-img\back arrow.svg" alt="" class="back_icon"></a>
         <h1>Obrolan</h1>
     </div>
 

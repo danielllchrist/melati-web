@@ -71,7 +71,7 @@ class CartController extends Controller
         $cart = Cart::where('userID', $userId)->where('sizeID', $id)->first();
 
         if ($cart) {
-            $cart->delete();
+            $cart->forceDelete();
             return response()->json(['success' => true]);
         } else {
             return response()->json(['success' => false, 'message' => 'Item tidak ditemukan di keranjang.'], 404);
@@ -208,7 +208,7 @@ class CartController extends Controller
             }
 
             // Hapus keranjang belanja setelah transaksi selesai
-            Cart::where('userID', $userId)->delete();
+            Cart::where('userID', $userId)->forceDelete();
 
             // Kembalikan respon yang sesuai
             return response()->json(['success' => true, 'message' => 'Transaksi berhasil disimpan!', 'transactionID' => $transaction->transactionID]);
