@@ -46,6 +46,7 @@
         button.btn.btn-light.rounded-circle.ps-2.pe-2.btn-size {
             height: 40px;
         }
+        
     </style>
 
 </head>
