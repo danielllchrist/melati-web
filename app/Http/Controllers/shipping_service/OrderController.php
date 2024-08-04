@@ -49,14 +49,32 @@ $orders2 = Transaction::with('transactionDetail')
 
     switch ($sortBy) {
         case '1':
-            $orders = Transaction::where('created_at', '>=', now()->startOfWeek())->orderBy('transactionID')->get();
+            $order1 = Transaction::where('statusID', 2)->where('created_at', '>=', now()->startOfWeek())->orderBy('transactionID')->get();
+            $order2 = Transaction::where('statusID', 3)->where('created_at', '>=', now()->startOfWeek())->orderBy('transactionID')->get();
+            $order3 = Transaction::where('statusID', 4)->where('created_at', '>=', now()->startOfWeek())->orderBy('transactionID')->get();
+            $order4 = Transaction::where('statusID', 5)->where('created_at', '>=', now()->startOfWeek())->orderBy('transactionID')->get();
+            $order5 = Transaction::where('statusID', 7)->where('created_at', '>=', now()->startOfWeek())->orderBy('transactionID')->get();
+            $orders = $order1->merge($order2)->merge($order3)->merge($order4)->merge($order5);
             break;
+
         case '2':
-            $orders = Transaction::where('created_at', '>=', now()->startOfMonth())->orderBy('transactionID')->get();
+            $order1 = Transaction::where('statusID', 2)->where('created_at', '>=', now()->startOfMonth())->orderBy('transactionID')->get();
+            $order2 = Transaction::where('statusID', 3)->where('created_at', '>=', now()->startOfMonth())->orderBy('transactionID')->get();
+            $order3 = Transaction::where('statusID', 4)->where('created_at', '>=', now()->startOfMonth())->orderBy('transactionID')->get();
+            $order4 = Transaction::where('statusID', 5)->where('created_at', '>=', now()->startOfMonth())->orderBy('transactionID')->get();
+            $order5 = Transaction::where('statusID', 7)->where('created_at', '>=', now()->startOfMonth())->orderBy('transactionID')->get();
+            $orders = $order1->merge($order2)->merge($order3)->merge($order4)->merge($order5);
             break;
+
         case '3':
-            $orders = Transaction::where('created_at', '>=', now()->startOfYear())->orderBy('transactionID')->get();
+            $order1 = Transaction::where('statusID', 2)->where('created_at', '>=', now()->startOfYear())->orderBy('transactionID')->get();
+            $order2 = Transaction::where('statusID', 3)->where('created_at', '>=', now()->startOfYear())->orderBy('transactionID')->get();
+            $order3 = Transaction::where('statusID', 4)->where('created_at', '>=', now()->startOfYear())->orderBy('transactionID')->get();
+            $order4 = Transaction::where('statusID', 5)->where('created_at', '>=', now()->startOfYear())->orderBy('transactionID')->get();
+            $order5 = Transaction::where('statusID', 7)->where('created_at', '>=', now()->startOfYear())->orderBy('transactionID')->get();
+            $orders = $order1->merge($order2)->merge($order3)->merge($order4)->merge($order5);
             break;
+
         case '4':
             $order1 = Transaction::where('statusID', 2)->orderBy('transactionID')->get();
             $order2 = Transaction::where('statusID', 3)->orderBy('transactionID')->get();
@@ -65,8 +83,14 @@ $orders2 = Transaction::with('transactionDetail')
             $order5 = Transaction::where('statusID', 7)->orderBy('transactionID')->get();
             $orders = $order1->merge($order2)->merge($order3)->merge($order4)->merge($order5);
             break;
+
         default:
-            $orders = Transaction::orderBy('transactionID')->get();
+            $order1 = Transaction::where('statusID', 2)->orderBy('transactionID')->get();
+            $order2 = Transaction::where('statusID', 3)->orderBy('transactionID')->get();
+            $order3 = Transaction::where('statusID', 4)->orderBy('transactionID')->get();
+            $order4 = Transaction::where('statusID', 5)->orderBy('transactionID')->get();
+            $order5 = Transaction::where('statusID', 7)->orderBy('transactionID')->get();
+            $orders = $order1->merge($order2)->merge($order3)->merge($order4)->merge($order5);
             break;
     }
 

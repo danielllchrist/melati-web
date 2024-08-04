@@ -37,7 +37,7 @@
     <div class="container d-flex justify-content-between mt-5 mb-5">
         <div class="d-flex box-1 justify-content-between align-items-center">
             <div class="box-left">
-                <p id="need">Need to be picked up</p>
+                <p id="need">Perlu diambil</p>
                 <p class="count">{{ $countOrders2updated }}</p>
             </div>
             <div class="box-right">
@@ -47,7 +47,7 @@
 
         <div class="d-flex box-2 justify-content-between align-items-center">
             <div class="box-left">
-                <p>On Delivery</p>
+                <p>Dalam Pengiriman</p>
                 <p class="count">{{ $order3Count }}</p>
             </div>
             <div class="box-right">
@@ -57,7 +57,7 @@
 
         <div class="d-flex box-3 justify-content-between align-items-center">
             <div class="box-left">
-                <p>Total Order</p>
+                <p>Total Pesanan</p>
                 <p class="count" id="total-order">{{ $orders->count() }}</p>
                 <form action="{{ route('orderstatus') }}" method="GET">
                     <select name="sortBy" id="sortBy" onchange="this.form.submit()">
@@ -76,16 +76,6 @@
 
     <div class="main-content">
         <div class="inner-container">
-            {{-- <div class="ps-header">
-                <div class="padding-search-custom">
-                    <form class="form-inline my-2 my-lg-0">
-                        <div class="ps-search-custom-container"><img src="/assets/search-white.svg" alt="search"
-                                width="15" height="15"><input class="ps-search-custom" type="text"
-                                placeholder="Kamu bisa cari berdasarkan Nomor Pesanan/Nama Produk" action="/shipping-service">
-                        </div>
-                    </form>
-                </div>
-            </div> --}}
             <div class="ps-content">
                 <div class="ps-status-menu">
                     <ul class="status-menu">

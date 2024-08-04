@@ -846,34 +846,40 @@
 
                 var i = 1;
                 cardDetail.forEach(function(item) {
+                    // Tentukan panjang maksimum untuk label
+                    let maxLength = 15;
+
+                    // Lakukan pemotongan string untuk label item
+                    let truncatedStr = item.label.length > maxLength ? item.label.substring(0, maxLength) + "..." :
+                        item.label;
+
                     if (item.wishlist) {
-                        let str = item.label;
-                        let maxLength = 20;
-                        let truncatedStr = str.length>maxLength ? str.substring(0, maxLength) + "..." : str;
                         content +=
                             "<div class=\"catalog-item\"><a href=\"/produk/" + item.id +
                             "\"> <div class=\"card-custom\"><img src=\"" +
                             item.imageUrl +
                             "\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>" +
-                            str + "</p><h3>" + rupiah(item.price) +
+                            truncatedStr + "</p><h3>" + rupiah(item.price) +
                             "</h3></div></div></a></div>";
                     } else {
-                        let str = item.label;
-                        let maxLength = 20;
-                        let truncatedStr = str.length>maxLength ? str.substring(0, maxLength) + "..." : str;
                         content +=
-                            "<div class=\"catalog-item\"><a href=\"/produk/{" + item.id +
-                            "}\"> <div class=\"card-custom\"><img src=\"" +
+                            "<div class=\"catalog-item\"><a href=\"/produk/" + item.id +
+                            "\"> <div class=\"card-custom\"><img src=\"" +
                             item.imageUrl +
                             "\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>" +
-                            str + "</p><h3>" + rupiah(item.price) +
-                            "</h3></div></div></a> </div>";
+                            truncatedStr + "</p><h3>" + rupiah(item.price) +
+                            "</h3></div></div></a></div>";
                     }
-                    // concat
-                    productID = '#produk' + i;
+
+                    // Konkat ID produk dan tambahkan ke elemen yang sesuai
+                    let productID = '#produk' + i;
                     $(productID).val(item.id);
                     i++;
                 });
+
+                i = 1;
+                document.getElementById("content-catalog").innerHTML = content;
+
                 i = 1;
 
                 document.getElementById("content-catalog").innerHTML = content;
