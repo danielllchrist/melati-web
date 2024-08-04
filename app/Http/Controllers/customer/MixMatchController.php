@@ -21,8 +21,10 @@ class MixMatchController extends Controller
         $atasan = Product::where('ProductCategory', 'Atasan')->get();
         $bawahan = Product::where('ProductCategory', 'Bawahan')->get();
         $aksesoris = Product::where('ProductCategory', 'Aksesoris')->get();
-
-        $carts = Cart::where('userID', auth()->user()->userID)->get();
+        $carts = "";
+        if(auth()->user()){
+            $carts = Cart::where('userID', auth()->user()->userID)->get();
+        }
 
         return response()->view('customer.mixmatch', compact('products', 'atasan', 'bawahan', 'aksesoris','carts'));
     }
