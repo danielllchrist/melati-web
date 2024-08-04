@@ -847,20 +847,26 @@
                 var i = 1;
                 cardDetail.forEach(function(item) {
                     if (item.wishlist) {
+                        let str = item.label;
+                        let maxLength = 20;
+                        let truncatedStr = str.length>maxLength ? str.substring(0, maxLength) + "..." : str;
                         content +=
                             "<div class=\"catalog-item\"><a href=\"/produk/" + item.id +
                             "\"> <div class=\"card-custom\"><img src=\"" +
                             item.imageUrl +
                             "\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>" +
-                            item.label + "</p><h3>" + rupiah(item.price) +
+                            str + "</p><h3>" + rupiah(item.price) +
                             "</h3></div></div></a></div>";
                     } else {
+                        let str = item.label;
+                        let maxLength = 20;
+                        let truncatedStr = str.length>maxLength ? str.substring(0, maxLength) + "..." : str;
                         content +=
                             "<div class=\"catalog-item\"><a href=\"/produk/{" + item.id +
                             "}\"> <div class=\"card-custom\"><img src=\"" +
                             item.imageUrl +
                             "\" class=\"card-custom-top\" alt=\"Catalog\"><div class=\"card-custom-body\"><p>" +
-                            item.label + "</p><h3>" + rupiah(item.price) +
+                            str + "</p><h3>" + rupiah(item.price) +
                             "</h3></div></div></a> </div>";
                     }
                     // concat

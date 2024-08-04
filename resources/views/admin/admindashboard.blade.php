@@ -44,7 +44,7 @@
             <div class="d-flex box-2 justify-content-between align-items-center">
                 <div class="box-left">
                     <p>Total Diskon + Kembalian</p>
-                    <p class="count">{{ "Rp " . number_format($discount_total->total, 0, ",", ".") }}</p>
+                    <p class="count">{{ "Rp " . number_format($disc_return, 0, ",", ".") }}</p>
                 </div>
                 <div class="box-right">
                     <img src="\assets\iconTotalDiscount.png" class="discount-img">
@@ -75,6 +75,7 @@
         <div class="d-flex justify-content-between">
             <div class="revenue-report">
                 <canvas id="revenueChart"></canvas>
+                {{-- <script src="path/to/your/chart-setup.js"></script> --}}
             </div>
             <div class="d-flex flex-column">
                 <div class="month mb-5">
@@ -133,8 +134,10 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
     <script>
-        const ctx = document.getElementById('revenueChart');
+        const ctx = document.getElementById('revenueChart').getContext('2d');
 
         let gender_pria = parseInt({{$user_by_gender[0]->total}});
         let gender_wanita = parseInt({{$user_by_gender[1]->total}});
@@ -147,6 +150,9 @@
         let total_revenue_data = total_revenue.split('-');
 
 
+        // var ctx = document.getElementById('myChart').getContext('2d');
+        var hoveredIndex = null; // Variable untuk menyimpan indeks elemen yang di-hover
+
         var revenue = new Chart(ctx, {
             type: 'line',
             data: {
@@ -154,11 +160,12 @@
                 datasets: [{
                     data: total_revenue_data,
                     borderColor: 'rgb(0, 0, 0)',
-                    lineTension: 0.4,
-                    pointRadius: 0
+                    tension: 0.4, // Mengatur tension untuk membuat garis menjadi spline
+                    pointRadius: 3, // Menampilkan poin untuk bisa di klik atau di hover
+                    pointBackgroundColor: 'rgb(0, 0, 0)',
                 }]
             },
-            options : {
+            options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
@@ -188,10 +195,65 @@
                     },
                     legend: {
                         display: false
+                    },
+                    datalabels: {
+                        display: function(context) {
+                            // Menampilkan data label hanya pada titik data yang di-hover
+                            return context.dataIndex === hoveredIndex;
+                        },
+                        align: 'top',
+                        color: 'rgb(165, 42, 42)', // Mengubah warna menjadi coklat
+                        formatter: function(value, context) {
+                            return 'Rp ' + number_format(value, 0, ',', '.');
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return 'Rp ' + number_format(tooltipItem.raw, 0, ',', '.');
+                            }
+                        },
+                        displayColors: false // Menghapus kotak warna di tooltip
+                    }
+                },
+                hover: {
+                    onHover: function(event, elements) {
+                        // Mengupdate indeks elemen yang di-hover
+                        if (elements.length) {
+                            hoveredIndex = elements[0].index;
+                        } else {
+                            hoveredIndex = null;
+                        }
+                        revenue.update();
                     }
                 }
-            }
+            },
+            plugins: [ChartDataLabels]
         });
+
+
+// Fungsi number_format seperti sebelumnya
+        function number_format(number, decimals, dec_point, thousands_sep) {
+            number = number.toString().replace(',', '').replace(' ', '');
+            var n = !isFinite(+number) ? 0 : +number,
+                prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+                sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+                dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+                s = '',
+                toFixedFix = function(n, prec) {
+                    var k = Math.pow(10, prec);
+                    return '' + Math.round(n * k) / k;
+                };
+            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+            if (s[0].length > 3) {
+                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+            }
+            if ((s[1] || '').length < prec) {
+                s[1] = s[1] || '';
+                s[1] += new Array(prec - s[1].length + 1).join('0');
+            }
+            return s.join(dec);
+        }
 
         const ctxGender = document.getElementById('genderChart');
 
