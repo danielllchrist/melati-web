@@ -37,7 +37,7 @@
     <div class="container d-flex justify-content-between mt-5 mb-5">
         <div class="d-flex box-1 justify-content-between align-items-center">
             <div class="box-left">
-                <p id="need">Perlu diambil</p>
+                <p id="need">Perlu Diantar</p>
                 <p class="count">{{ $countOrders2updated }}</p>
             </div>
             <div class="box-right">
