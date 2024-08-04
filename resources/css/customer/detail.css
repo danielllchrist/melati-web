@@ -253,5 +253,9 @@ hr{
 .back-wrapper{
     position: relative;
     top: 40px;
-    left: -50px;
+    width: 40px;
+}
+
+.back{
+    width: 40px;
 }
