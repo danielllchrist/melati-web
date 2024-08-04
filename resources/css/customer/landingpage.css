@@ -166,6 +166,10 @@ body{
     text-overflow: ellipsis;
 }
 
+.card-custom-body{
+    width: 220px !important;
+}
+
 .card-wrapper{
     display: flex;
     flex-direction: row;

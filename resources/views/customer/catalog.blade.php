@@ -116,7 +116,7 @@
                 <div class="content-catalog d-flex flex-wrap flex-row mt-3 mb-3" id="content-catalog">
                     @foreach ($product as $item)
                         <div class="catalog-item" data-price="{{ $item->productPrice }}">
-                            <a href="{{ route('ProductDetail', ['id' => $item->productID]) }}">
+                            <a class="ahref" style="height: 275px;" href="{{ route('ProductDetail', ['id' => $item->productID]) }}">
                                 <div class="card-custom" style="">
                                     <div class="image-container">
                                         <img src="{{ Storage::url(json_decode($item->productPicturePath)[0]) }}"
