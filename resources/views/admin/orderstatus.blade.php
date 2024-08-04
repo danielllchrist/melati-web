@@ -16,7 +16,7 @@
     <div class="main-content">
         <div class="page-title">
             <div class="title">
-                <h1>Order</h1>
+                <h1>Pesanan</h1>
             </div>
         </div>
         <div class="main-content">
