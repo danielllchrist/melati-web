@@ -286,7 +286,7 @@ tr {
 .box-1, .box-2, .box-3{
     width: 275px;
     border-bottom: 5px solid rgb(59, 48, 33);
-    color: white;
+    color: #F0F1E4;
     padding: 20px 30px;
 }
 
@@ -296,6 +296,7 @@ tr {
 
 .box-left > p {
     margin: 0;
+    color: #F0F1E4;
 }
 
 .count {
@@ -304,21 +305,21 @@ tr {
 }
 
 .pickup-img {
-    background-color: white;
+    background-color: #F0F1E4;
     border-radius: 5em;
     padding: 5px;
     width: 50px;
 }
 
 .delivery-img {
-    background-color: white;
+    background-color: #F0F1E4;
     border-radius: 5em;
     padding: 10px 5px;
     width: 50px;
 }
 
 .done-img {
-    background-color: white;
+    background-color: #F0F1E4;
     border-radius: 5em;
     padding: 15px 10px;
     width: 50px;
@@ -327,6 +328,7 @@ tr {
 #sortBy {
     padding: 0 10px;
     font-size: 14px;
+    background-color: #F0F1E4;
 }
 
 .no-order{
