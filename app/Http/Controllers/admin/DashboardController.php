@@ -23,6 +23,9 @@ class DashboardController extends Controller
         $discount_total = Transaction::select( DB::RAW('SUM(totalDiscount) as total') )->first();
         $return_total = Transaction::select( DB::RAW('SUM(subTotalPrice) as total') )->where('statusID',5)->first();
         $disc_return = $discount_total->total + $return_total->total;
+        $return_total = Transaction::select( DB::RAW('SUM(subTotalPrice) as total') )->where('statusID',5)->first();
+        $disc_return = $discount_total->total + $return_total->total;
+    
         $transaction_this_month = count(Transaction::whereMonth('created_at',Carbon::now()->month)->get());
         $earnings_this_month = Transaction::select( DB::RAW('SUM(subTotalPrice) as total') )
         ->whereMonth('created_at',Carbon::now()->month)->where('statusID','!=',5)->first();
@@ -52,11 +55,12 @@ class DashboardController extends Controller
         }
 
 
-        return view('admin.admindashboard', compact(
-            'month_revenue', 'total_revenue', 'return_this_month',
-            'user_by_gender', 'user_total', 'transaction_total',
-            'earnings_total', 'discount_total', 'transaction_this_month',
-            'earnings_this_month', 'discount_this_month', 'disc_return'));
+        return view('admin.admindashboard',compact(
+        'month_revenue','total_revenue','return_this_month',
+        'user_by_gender','user_total','transaction_total',
+        'earnings_total','discount_total',
+        'transaction_this_month','earnings_this_month','discount_this_month', 'disc_return'
+        ));
     }
 
     public function getMonthName($val){

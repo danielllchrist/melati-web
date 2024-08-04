@@ -316,6 +316,9 @@
                                 <p>{{ $item->comment }}</p>
                             </div>
                         </div>
+                        {{-- @if ($index < count($content_review) - 1) --}}
+                            {{-- <hr class="garis" style="color: #F0F1E4; border-bottom: 2px;"> --}}
+                        {{-- @endif --}}
                     @endforeach
                 </div>
             </div>
