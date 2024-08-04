@@ -40,6 +40,7 @@ $orders2 = Transaction::with('transactionDetail')
     $orders4 = Transaction::with('transactionDetail')
         ->where('statusID', '4')
         ->orWhere('statusID', '5')
+        ->orWhere('statusID', '7')
         ->get()
         ->sortByDesc('updated_at');
 
@@ -57,7 +58,12 @@ $orders2 = Transaction::with('transactionDetail')
             $orders = Transaction::where('created_at', '>=', now()->startOfYear())->orderBy('transactionID')->get();
             break;
         case '4':
-            $orders = Transaction::orderBy('transactionID')->get();
+            $order1 = Transaction::where('statusID', 2)->orderBy('transactionID')->get();
+            $order2 = Transaction::where('statusID', 3)->orderBy('transactionID')->get();
+            $order3 = Transaction::where('statusID', 4)->orderBy('transactionID')->get();
+            $order4 = Transaction::where('statusID', 5)->orderBy('transactionID')->get();
+            $order5 = Transaction::where('statusID', 7)->orderBy('transactionID')->get();
+            $orders = $order1->merge($order2)->merge($order3)->merge($order4)->merge($order5);
             break;
         default:
             $orders = Transaction::orderBy('transactionID')->get();
