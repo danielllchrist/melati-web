@@ -38,7 +38,7 @@ class TransactionSeeder extends Seeder
                 'shippingFee' => 15000,
                 'paymentMethod' => $faker->randomElement(['Kartu Kredit', 'Transfer Bank', 'E-Wallet']),
                 'totalPrice' => 0,
-                'created_at' => $faker->dateTimeBetween('2024-01-01', '2024-01-01'),
+                'created_at' => $faker->dateTimeBetween('2024-01-01', '2024-08-12'),
                 'updated_at' => Carbon::now(),
             ]);
         }

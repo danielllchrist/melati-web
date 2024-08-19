@@ -27,13 +27,12 @@ class ReviewSeeder extends Seeder
             foreach ($transactionDetail as $detail) {
                 $existingReview = DB::table('reviews')->where('productID', $detail->productID)->where('transactionID', $detail->transactionID)->first();
                 if (!$existingReview) {
-                    $comment = $faker->text(100);
                     $rating = $faker->numberBetween(1, 5);
                     DB::table('reviews')->insert([
                         'productID' => $detail->productID,
                         'transactionID' => $detail->transactionID,
                         'rating' => $rating,
-                        'comment' => $comment,
+                        'comment' => $faker->randomElement(['Produk Baik, Seller Ramah, Pengiriman Cepat', 'Miminnya Ramah, Produk Premium', 'Estetik, Auto Repeat Order']),
                         'created_at' => $faker->dateTime,
                         'updated_at' => $faker->dateTime,
                     ]);
